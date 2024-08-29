@@ -9,6 +9,7 @@
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
+        <div class="container">
         <div class="row gx-0 align-items-center" style="height: 45px;">
             <div class="col-lg-8 text-center text-lg-start mb-lg-0">
                 <div class="d-flex flex-wrap">
@@ -26,8 +27,28 @@
                                 class="fa fa-user text-primary me-2"></i>Register</small></a> --}}
                     <a href="https://www.instagram.com/lifeatags/" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-instagram text-white"></i></a>
                     <a href="https://www.linkedin.com/company/arkamaya-guna-saharsa/" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-linkedin-in text-white"></i></a>
-                    <a href="#"><small class="me-3"><i class="fa fa-sign-in-alt text-primary me-2"></i>Member Login</small></a>
-                    {{-- <div class="dropdown">
+                    @if(auth()->check())
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <small class=""><i class="fa fa-user text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                   <i class="fa fa-sign-out-alt me-2"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @else
+                    <a href="{{ route('login') }}"><small class="me-3"><i class="fa fa-sign-in-alt text-primary me-2"></i>Member Login</small></a>
+                @endif
+                                                    {{-- <div class="dropdown">
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><small><i
                                     class="fa fa-home text-primary me-2"></i> My Dashboard</small></a>
                         <div class="dropdown-menu rounded">
@@ -42,10 +63,12 @@
             </div>
         </div>
     </div>
+    </div>
     <!-- Topbar End -->
 
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
+        <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
             <div class="row col-lg-12 justify-content-center">
                 <!-- Empty Columns on Left and Right -->
@@ -90,5 +113,6 @@
                 <div class="col-lg-1"></div>
             </div>
         </nav>
+    </div>
     </div>
     <!-- Navbar End -->
