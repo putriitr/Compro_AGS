@@ -41,7 +41,7 @@
                             </li>
                         </ul>
                     </div>
-                    
+
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -86,9 +86,9 @@
                         <div class="navbar-nav mx-auto py-0">
                             <a href="/" class="nav-item nav-link">Home</a>
                             <a href="/about" class="nav-item nav-link">About</a>
-                            <a href="/service" class="nav-item nav-link">Product</a>
+                            <a href="/product" class="nav-item nav-link">Product</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle"
+                                <a href="/ecommerce" class="nav-link dropdown-toggle"
                                     data-bs-toggle="dropdown">E-Commerce</a>
                                 <div class="dropdown-menu m-0">
                                     <a href="appointment.html" class="dropdown-item">Labtek</a>

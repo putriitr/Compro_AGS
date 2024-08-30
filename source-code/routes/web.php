@@ -24,6 +24,14 @@ Route::get('/about', function () {
     return view('Customer.About.about');
 });
 
+Route::get('/product', function () {
+    return view('Customer.Product.product');
+});
+
+Route::get('/category', function () {
+    return view('Customer.Category-Product.category');
+});
+
 Route::get('/contact', function () {
     return view('Customer.Contact.contact');
 });
@@ -41,7 +49,7 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
 
     //Admin Routes List
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-   
+
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('members', MemberController::class);
 
@@ -50,5 +58,5 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
 
 });
-   
+
 

@@ -12,7 +12,7 @@
                     <h1 class="display-1 text-capitalize text-white mb-4">Empowering Your Business With Excellence</h1>
                     <p class="mb-5 fs-5">We optimize your output by delivering innovative, high-quality, advanced technology
                         and value-added products solutions through new or reimagined technology products and services.</p>
-                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Book Appointment</a>
+                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Place an order</a>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
                     <p class="mb-5 fs-5 animated slideInDown">We optimize your output by delivering innovative,
                         high-quality, advanced technology and value-added products solutions through new or reimagined
                         technology products and services.</p>
-                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Book Appointment</a>
+                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Place an order</a>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Abous Us More</a>
+                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="/about">Abous Us More</a>
                 </div>
             </div>
         </div>
@@ -135,7 +135,6 @@
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
                     <div class="section-title text-start mb-5">
-                        <h4 class="sub-title pe-3 mb-0">About Us</h4>
                         <h4 class="display-3 mb-4" style="font-size: 50px;">PT Arkamaya Guna Saharsa</h4>
                         <p class="mb-4" style="text-align: justify;">
                             Arkamaya Guna Saharsa is a technology start-up driven by innovation, dedicated to empowering
@@ -149,14 +148,6 @@
                             technological advancements or reimagining existing solutions to meet evolving industry
                             needs.
                         </p>
-                        <div class="mb-4">
-                            <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Innovative
-                                Technology Solutions</p>
-                            <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Empowering Brands
-                            </p>
-                            <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Commitment to
-                                Excellence</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -164,7 +155,7 @@
     </div>
     <!-- About End -->
 
-    <!-- Feature Start -->
+    <!-- Product Start -->
     <div class="container-fluid feature py-5">
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -174,146 +165,127 @@
                 <h1 class="display-3 mb-4">Elevate your lifestyle with our top-quality solutions.</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded w-100"
-                                style="object-fit: cover; width: 100%; height: 100px;" alt="Image">
-                            <div class="feature-content d-flex flex-column">
-                                <br>
-                                <h5 class="mb-4">Hydraulics & Cement</h5>
-                            </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">See More</a>
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="blog-item rounded">
+                        <div class="blog-img" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
+                            <img src="{{ asset('assets/img/activity-1.jpg') }}"
+                                 class="img-fluid w-100"
+                                 style="transition: transform 0.3s ease;"
+                                 alt=""
+                                 onmouseover="this.style.transform='scale(1.1)'"
+                                 onmouseout="this.style.transform='scale(1)'">
                         </div>
+                        <h5>Hydraulics
+                            <span class="arrow"
+                                  style="display: inline-block; transition: transform 0.3s ease;"
+                                  onmouseover="this.textContent='—>'"
+                                  onmouseout="this.textContent='→'">→</span>
+                        </h5>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded w-100"
-                                style="object-fit: cover; width: 100%; height: 100px;" alt="Image">
-                            <div class="feature-content d-flex flex-column">
-                                <br><h5 class="mb-4">Concrete & Asphalt</h5>
-                            </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">See More</a>
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="blog-item rounded">
+                        <div class="blog-img" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
+                            <img src="{{ asset('assets/img/activity-1.jpg') }}"
+                                 class="img-fluid w-100"
+                                 style="transition: transform 0.3s ease;"
+                                 alt=""
+                                 onmouseover="this.style.transform='scale(1.1)'"
+                                 onmouseout="this.style.transform='scale(1)'">
                         </div>
+                        <h5>Concrete
+                            <span class="arrow"
+                                  style="display: inline-block; transition: transform 0.3s ease;"
+                                  onmouseover="this.textContent='—>'"
+                                  onmouseout="this.textContent='→'">→</span>
+                        </h5>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded w-100"
-                                style="object-fit: cover; width: 100%; height: 100px;" alt="Image">
-                            <div class="feature-content d-flex flex-column">
-                                <br><h5 class="mb-4">Soil & Aggregate</h5>
-                            </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">See More</a>
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="blog-item rounded">
+                        <div class="blog-img" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
+                            <img src="{{ asset('assets/img/activity-1.jpg') }}"
+                                 class="img-fluid w-100"
+                                 style="transition: transform 0.3s ease;"
+                                 alt=""
+                                 onmouseover="this.style.transform='scale(1.1)'"
+                                 onmouseout="this.style.transform='scale(1)'">
                         </div>
+                        <h5>Soil
+                            <span class="arrow"
+                                  style="display: inline-block; transition: transform 0.3s ease;"
+                                  onmouseover="this.textContent='—>'"
+                                  onmouseout="this.textContent='→'">→</span>
+                        </h5>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded w-100"
-                                style="object-fit: cover; width: 100%; height: 100px;" alt="Image">
-                            <div class="feature-content d-flex flex-column">
-                                <br><h6 class="mb-4">Construction & Engineering</h6>
-                            </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">See More</a>
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="blog-item rounded">
+                        <div class="blog-img" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
+                            <img src="{{ asset('assets/img/activity-1.jpg') }}"
+                                 class="img-fluid w-100"
+                                 style="transition: transform 0.3s ease;"
+                                 alt=""
+                                 onmouseover="this.style.transform='scale(1.1)'"
+                                 onmouseout="this.style.transform='scale(1)'">
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded w-100"
-                                style="object-fit: cover; width: 100%; height: 100px;" alt="Image">
-                            <div class="feature-content d-flex flex-column">
-                                <br><h5 class="mb-4">Industrial & Maritime</h5>
-                            </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">See More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded w-100"
-                                style="object-fit: cover; width: 100%; height: 100px;" alt="Image">
-                            <div class="feature-content d-flex flex-column">
-                                <br><h5 class="mb-4">Railway Systems</h5>
-                            </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">See More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded w-100"
-                                style="object-fit: cover; width: 100%; height: 100px;" alt="Image">
-                            <div class="feature-content d-flex flex-column">
-                                <br><h5 class="mb-4">Geotechnics</h5>
-                            </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">See More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <img src="{{ asset('assets/img/about-2.jpg') }}" class="img-fluid rounded w-100"
-                                style="object-fit: cover; width: 100%; height: 100px;" alt="Image">
-                            <div class="feature-content d-flex flex-column">
-                                <br><h6 class="mb-4">Electronics & Machinery</h6>
-                            </div>
-                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">See More</a>
-                        </div>
+                        <h5>Asphalt
+                            <span class="arrow"
+                                  style="display: inline-block; transition: transform 0.3s ease;"
+                                  onmouseover="this.textContent='—>'"
+                                  onmouseout="this.textContent='→'">→</span>
+                        </h5>
                     </div>
                 </div>
                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                    <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">More Products</a>
+                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="/about">All Product</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Feature End -->
+    <!-- Product End -->
 
-
-    <!-- Team Start -->
-    <div class="container-fluid team py-5">
+    <!-- Ecommerce Start -->
+    <div class="container-fluid service py-5">
         <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Our E-Commerce</h4>
+                    <h4 class="sub-title px-3 mb-0">Our E-commerce</h4>
                 </div>
-                <h1 class="display-3 mb-4">Explore More About Our Product</h1>
+                <h1 class="display-3 mb-4">Explore more our product</h1>
             </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item rounded">
-                        <div class="team-img rounded-top h-100">
-                            <img src="{{ asset ('assets/img/about-2.jpg')}}" class="img-fluid rounded-top w-100" alt="">
-                        </div>
-                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
-                            <h5>Full Name</h5>
-                            <p class="mb-0">Message Physio Therapist</p>
+            <div class="row">
+                <div class="col-lg-5 mb-4">
+                    <h4 class="mb-3">E-commerce Labtek :</h4>
+                    <div class="row g-3">
+                        <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-item rounded">
+                                <div class="service-img rounded-top">
+                                    <img src="{{ asset('assets/img/about/brand-1.png') }}" class="img-fluid w-100"
+                                        style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                        alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item rounded">
-                        <div class="team-img rounded-top h-100">
-                            <img src="{{ asset ('assets/img/about-2.jpg')}}" class="img-fluid rounded-top w-100" alt="">
-                        </div>
-                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
-                            <h5>Full Name</h5>
-                            <p class="mb-0">Rehabilitation Therapist</p>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 mb-4">
+                    <h4 class="mb-3">E-commerce Labverse :</h4>
+                    <div class="row g-3">
+                        <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-item rounded">
+                                <div class="service-img rounded-top">
+                                    <img src="{{ asset('assets/img/about/brand-2.png') }}" class="img-fluid w-100"
+                                        style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                        alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Team End -->
+    <!-- Ecommerce End -->
 @endsection

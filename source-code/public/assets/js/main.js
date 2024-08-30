@@ -176,3 +176,13 @@
 
 })(jQuery);
 
+// Image Arrow
+document.querySelectorAll('.arrow').forEach(function(arrow) {
+    arrow.addEventListener('mouseover', function() {
+        this.textContent = '—-->';
+    });
+    arrow.addEventListener('mouseout', function() {
+        this.textContent = '->';
+    });
+});
+

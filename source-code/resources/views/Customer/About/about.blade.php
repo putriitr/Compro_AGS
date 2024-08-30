@@ -155,9 +155,8 @@
                         </div>
                         <div class="feature-content d-flex flex-column">
                             <h5 class="mb-4">Independence</h5>
-                            <p class="mb-0">Remain flexible to meet both immediate and long-term customer needs
-                                by making timely decisions, focusing
-                                on growth, and pursuing new opportunities.</p>
+                            <p class="mb-0">Flexibly meet both short- and long-term customer needs by making
+                                timely decisions, focusing on growth, and pursuing new opportunities.</p>
                         </div>
                     </div>
                 </div>
@@ -175,7 +174,7 @@
                         </div>
                         <div class="feature-content d-flex flex-column">
                             <h5 class="mb-4">Quality</h5>
-                            <p class="mb-0">We take pride in providing high-value products and services that
+                            <p class="mb-0">We take pride in providing high-value products and services to
                                 ensure customer satisfaction and the future growth of our employees and company.</p>
                         </div>
                     </div>
