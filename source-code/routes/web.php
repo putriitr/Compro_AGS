@@ -60,3 +60,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 });
 
 
+use App\Http\Controllers\LocationController;
+
+Route::get('/locations', [LocationController::class, 'index']);
