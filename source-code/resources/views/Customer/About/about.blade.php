@@ -394,7 +394,6 @@
     </div>
 </div>
 <!-- Principal End -->
-<!-- Principal End -->
 
 <!-- Activity Start -->
 <div class="container-fluid blog py-5">
@@ -540,14 +539,21 @@
 </div>
 <!-- Sales Channel End -->
 
-<!-- mappp start-->
+<!-- Map Start -->
+<!-- Map Start -->
 <div class="container" style="
     border: 1px solid #ddd; /* Warna border */
     border-radius: 10px; /* Sudut rounded */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
     padding: 20px; /* Ruang dalam box */
-    background-color: #fff; /* Warna latar belakang */ ">
-    <h1>Persebaran Pelanggan</h1>
+    background-color: #fff; /* Warna latar belakang */
+    text-align: center; /* Memusatkan teks */
+">
+    <h5>This is</h5>
+    <h1 style="
+        font-weight: bold; /* Teks tebal */
+        color: blue; /* Warna biru */
+    ">Our Customers</h1>
     <hr>
     <div id="umalo" style="
         width: 100%; 
@@ -555,50 +561,74 @@
         border-radius: 10px; /* Sudut rounded untuk peta */
         overflow: hidden; /* Menghindari konten keluar dari box */
     "></div>
-</div>
-<script src="https://maps.googleapis.com/maps/api/js"></script> <!-- blm pake API Key -->
+</div> <br> <br>
+<!-- Map End -->
+
+<!-- Include Leaflet.js -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 <script>
-    var map;
-    function initialize() {
-        var mapProp = {
-            center: new google.maps.LatLng(-2.548926, 118.0148634), // Indonesia's center
-            zoom: 5,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+    // Inisialisasi peta
+    var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
 
-        map = new google.maps.Map(document.getElementById("umalo"), mapProp);
+    // Tambahkan tile layer dari OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-        fetch('/locations')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(location => {
-                    var latLng = new google.maps.LatLng(location.latitude, location.longitude);
-                    addMarker(latLng, location.name);
-                });
+    // Fungsi untuk menambahkan marker dengan info window
+    function addMarker(lat, lng, title) {
+        var marker = L.marker([lat, lng]).addTo(map);
+
+        // Popup konten marker
+        marker.bindPopup(`<div class="info-window">
+                            <h3>${title}</h3>
+                            <p>Latitude: ${lat}<br>Longitude: ${lng}</p>
+                          </div>`);
+
+        // Menambahkan label kecil yang muncul saat hover
+        marker.bindTooltip(`<div>${title}</div>`, {
+            permanent: false,
+            direction: 'top',
+            offset: [0, -20],
+            className: 'marker-tooltip'
+        });
+
+        // Menampilkan tooltip saat hover
+        marker.on('mouseover', function(e) {
+            this.openTooltip();
+        });
+
+        // Menyembunyikan tooltip saat cursor keluar
+        marker.on('mouseout', function(e) {
+            this.closeTooltip();
+        });
+    }
+
+    // Fetch lokasi dari backend
+    fetch('/locations')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(location => {
+                addMarker(location.latitude, location.longitude, location.name);
             });
-    }
-
-    function addMarker(lokasi, title) {
-        var marker = new google.maps.Marker({
-            position: lokasi,
-            map: map,
-            title: title
         });
 
-        var infowindow = new google.maps.InfoWindow({
-            content: '<div style="font-family: Arial, sans-serif; font-size: 14px; background-color: #d0e7ff; padding: 10px; border-radius: 5px; color: #333;">' +
-                '<i class="fas fa-university" style="margin-right: 8px;"></i>' +
-                '<strong>' + title + '</strong><br>Koordinat: ' + lokasi.lat() + ', ' + lokasi.lng() +
-                '</div>'
-        });
-
-        marker.addListener('click', function () {
-            infowindow.open(map, marker);
-        });
-    }
-
-    window.onload = initialize;
 </script>
-<!-- mappp ends -->
+
+<style>
+    .marker-tooltip {
+        background-color: #b3d9ff; /* Biru muda */
+        border: 1px solid #80b3ff; /* Border biru */
+        padding: 5px;
+        border-radius: 10px; /* Sudut rounded */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        font-size: 12px;
+        color: #333; /* Warna teks */
+    }
+</style> 
+
+<!-- Map End -->
 
 @endsection
