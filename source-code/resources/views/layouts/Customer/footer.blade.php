@@ -23,16 +23,16 @@
             <div class="col-md-6 col-lg-6 col-xl-2">
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">Quick Links</h4>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> About Us</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Our Activity</a>
+                    <a href="/about"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                    <a href="/contact"><i class="fas fa-angle-right me-2"></i> Contact Us</a>
+                    <a href="/about#activity"><i class="fas fa-angle-right me-2"></i> Our Activity</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">Find Product</h4>
-                    <a href="/category"><i class="fas fa-angle-right me-2"></i> Our Product</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Member Login</a>
+                    <a href="/product"><i class="fas fa-angle-right me-2"></i> Our Product</a>
+                    <a href="{{url('/portal')}}"><i class="fas fa-angle-right me-2"></i> Member Portal</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Labtek</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Labverse</a>
                 </div>

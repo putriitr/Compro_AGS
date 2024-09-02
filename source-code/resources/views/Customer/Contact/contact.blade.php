@@ -22,40 +22,32 @@
             </div>
             <h1 class="display-3 mb-4">Contact Us For Any Query</h1>
         </div>
-
-        <!-- Contact Details Start -->
         <div class="container-fluid">
             <div class="row text-center justify-content-center">
-                <!-- Phone -->
                 <div class="col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="bg-transparent rounded">
                         <div class="d-flex flex-column align-items-center text-center mb-2">
-                            <div class="d-flex align-items-center justify-content-center mb-3"
-                                style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF;">
+                            <a href="tel:(021) 85850913" class="d-flex align-items-center justify-content-center mb-3"
+                                style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
                                 <i class="fa fa-phone-alt fa-2x" style="color: white;"></i>
-                            </div>
+                            </a>
                             <h4 class="text-dark">PHONE</h4>
                             <p class="mb-0 text-dark" style="font-weight: bold;">(021) 85850913</p>
                         </div>
                     </div>
                 </div>
-
-
-                <!-- Address -->
                 <div class="col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="bg-transparent rounded">
                         <div class="d-flex flex-column align-items-center text-center mb-2">
-                            <div class="d-flex align-items-center justify-content-center mb-3"
-                                style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF;">
+                            <a href="https://maps.app.goo.gl/tyu8r4ncFS69fCmH7" target="_blank" class="d-flex align-items-center justify-content-center mb-3"
+                                style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
                                 <i class="fa fa-map-marker-alt fa-2x" style="color: white;"></i>
-                            </div>
+                            </a>
                             <h4 class="text-dark">ADDRESS</h4>
                             <p class="mb-0 text-dark" style="font-weight: bold;">Ruko Mitra Matraman A2 No. 3 Jakarta Timur, DKI Jakarta</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Work Time -->
                 <div class="col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="bg-transparent rounded">
                         <div class="d-flex flex-column align-items-center text-center mb-2">
@@ -68,29 +60,25 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Email -->
                 <div class="col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="bg-transparent rounded">
                         <div class="d-flex flex-column align-items-center text-center mb-2">
-                            <div class="d-flex align-items-center justify-content-center mb-3"
-                                style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF;">
+                            <a href="mailto:info@labtek.id" class="d-flex align-items-center justify-content-center mb-3"
+                                style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
                                 <i class="fa fa-envelope-open fa-2x" style="color: white;"></i>
-                            </div>
+                            </a>
                             <h4 class="text-dark">EMAIL</h4>
                             <p class="mb-0 text-dark" style="font-weight: bold;">info@labtek.id</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Website -->
                 <div class="col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="bg-transparent rounded">
                         <div class="d-flex flex-column align-items-center text-center mb-2">
-                            <div class="d-flex align-items-center justify-content-center mb-3"
-                                style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF;">
+                            <a href="https://www.labtek.id" target="_blank" class="d-flex align-items-center justify-content-center mb-3"
+                                style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
                                 <i class="fa fa-globe fa-2x" style="color: white;"></i>
-                            </div>
+                            </a>
                             <h4 class="text-dark">WEBSITE</h4>
                             <p class="mb-0 text-dark" style="font-weight: bold;">www.labtek.id</p>
                         </div>
@@ -108,4 +96,4 @@
     </div>
 </div><br><br><br>
 <!-- Contact End -->
-@endsection<
+@endsection
