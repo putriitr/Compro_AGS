@@ -1,4 +1,4 @@
-@extends('layouts.customer.master')
+@extends('layouts.member.master')
 
 @section('content')
 <div class="container mt-4" style="background-color: #f8f9fa; padding: 20px; border-radius: 5px;">

@@ -81,9 +81,9 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-auto py-0">
-                            <a href="/" class="nav-item nav-link">Home</a>
+                            <a href="{{ route('home') }}" class="nav-item nav-link">Home</a>
                             <a href="/about" class="nav-item nav-link">About</a>
-                            <a href="/product" class="nav-item nav-link">Product</a>
+                            <a href="{{ route('product') }}" class="nav-item nav-link">Product</a>
                             <div class="nav-item dropdown">
                                 <a href="/ecommerce" class="nav-link dropdown-toggle"
                                     data-bs-toggle="dropdown">E-Commerce</a>

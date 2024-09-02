@@ -44,12 +44,15 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="bidang_perusahaan" class="form-label">Bidang Perusahaan:</label>
-                        <input type="text" class="form-control" id="bidang_perusahaan" name="bidang_perusahaan" value="{{ old('bidang_perusahaan') }}">
-                        @if ($errors->has('bidang_perusahaan'))
-                            <small class="text-danger">{{ $errors->first('bidang_perusahaan') }}</small>
-                        @endif
+                        <label for="bidang_perusahaan" class="form-label">Bidang Perusahaan</label>
+                        <select name="bidang_perusahaan" id="bidang_perusahaan" class="form-control">
+                            <option value="" disabled selected>Pilih Bidang Perusahaan</option>
+                            @foreach($bidangPerusahaan as $bidang)
+                                <option value="{{ $bidang->id }}">{{ $bidang->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
+                    
 
                     <div class="form-group mb-3">
                         <label for="no_telp" class="form-label">Nomor Telepon:</label>

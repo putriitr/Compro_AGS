@@ -73,7 +73,7 @@
           <div class="collapse" id="sidebarLayouts">
             <ul class="nav nav-collapse">
               <li>
-                <a href="#">
+                <a href="{{ route('admin.produk.index') }}">
                   <span class="sub-item">Produk</span>
                 </a>
               </li>
@@ -169,7 +169,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="{{ route('admin.kategori.index') }}">
                     <span class="sub-item">Kategori</span>
                   </a>
                 </li>

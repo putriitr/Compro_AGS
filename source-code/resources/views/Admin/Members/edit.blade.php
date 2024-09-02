@@ -28,6 +28,7 @@
                             <small class="text-danger">{{ $errors->first('name') }}</small>
                         @endif
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="email" class="form-label">Email:</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $member->email) }}" required>
@@ -45,11 +46,13 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="bidang_perusahaan" class="form-label">Bidang Perusahaan:</label>
-                        <input type="text" class="form-control" id="bidang_perusahaan" name="bidang_perusahaan" value="{{ old('bidang_perusahaan', $member->bidang_perusahaan) }}">
-                        @if ($errors->has('bidang_perusahaan'))
-                            <small class="text-danger">{{ $errors->first('bidang_perusahaan') }}</small>
-                        @endif
+                        <label for="bidang_perusahaan" class="form-label">Bidang Perusahaan</label>
+                        <select name="bidang_perusahaan" id="bidang_perusahaan" class="form-control">
+                            <option value="" disabled selected>Pilih Bidang Perusahaan</option>
+                            @foreach($bidangPerusahaan as $bidang)
+                                <option value="{{ $bidang->id }}" {{ old('bidang_perusahaan', $member->bidang_perusahaan) == $bidang->id ? 'selected' : '' }}>{{ $bidang->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group mb-3">
@@ -69,22 +72,19 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="password" class="form-label">New Password <small>(leave blank to keep current password)</small></label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password">
+                        <label for="password" class="form-label">Password (Kosongkan jika tidak ingin mengubah):</label>
+                        <input type="password" class="form-control" id="password" name="password">
                         @if ($errors->has('password'))
                             <small class="text-danger">{{ $errors->first('password') }}</small>
                         @endif
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="password_confirmation" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm new password">
-                        @if ($errors->has('password_confirmation'))
-                            <small class="text-danger">{{ $errors->first('password_confirmation') }}</small>
-                        @endif
+                        <label for="password_confirmation" class="form-label">Konfirmasi Password:</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Update Member</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                     <a href="{{ route('members.index') }}" class="btn btn-secondary">Back</a>
                 </form>
             </div>

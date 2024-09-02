@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('no_telp')->nullable();
+            $table->string('alamat')->nullable();
             $table->string('nama_perusahaan')->nullable();
             $table->boolean('type')->default(false); //add type boolean Users: 0=>User, 1=>Admin, 2=>Manager 
             $table->unsignedBigInteger('bidang_id')->nullable(); // Buat kolom ini nullable

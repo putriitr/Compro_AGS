@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\MasterData\BidangPerusahaanController;
+use App\Http\Controllers\Admin\MasterData\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\Member\MemberController;
-
+use App\Http\Controllers\Admin\Produk\ProdukController;
+use App\Http\Controllers\Member\Produk\ProdukMemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +30,11 @@ Route::get('/product', function () {
 });
 
 Route::get('/category', function () {
-    return view('Customer.Category-Product.category');
+    return view('member.Category-Product.category');
 });
 
 Route::get('/detail', function () {
-    return view('Customer.Category-Product.detail');
+    return view('member.Category-Product.detail');
 });
 
 Route::get('/contact', function () {
@@ -71,7 +73,12 @@ Route::get('/instructions', function () {
     return view('Member.Portal.instructions');
 });
 
+
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/product', [ProdukMemberController::class, 'index'])->name('product');
+Route::get('/product/category/{id}', [ProdukMemberController::class, 'productByCategory'])->name('product.by_category');
 
 Auth::routes();
 
@@ -83,10 +90,14 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-    Route::resource('members', MemberController::class);
+    Route::resource('admin/members', MemberController::class);
 
     //masterdata
-    Route::resource('bidangperusahaan', BidangPerusahaanController::class);
+    Route::resource('admin/bidangperusahaan', BidangPerusahaanController::class);
+    Route::resource('admin/kategori', KategoriController::class)->names('admin.kategori');
+
+    //Produk
+    Route::resource('admin/produk', ProdukController::class)->names('admin.produk');
 
 });
 
