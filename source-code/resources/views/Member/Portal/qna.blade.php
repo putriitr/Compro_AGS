@@ -24,11 +24,13 @@
                                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                                     data-bs-parent="#qnaAccordion">
                                     <div class="accordion-body">
-                                        The portal is designed to provide exclusive access to resources, tools, and support
-                                        tailored for our members.
+                                        <p>The portal is designed to provide exclusive access to resources, tools, and support
+                                            tailored for our members.</p>
+                                        <img src="{{asset ('assets/img/portal/katalog.jpeg')}}" alt="Description of Image" class="img-fluid mt-3">
                                     </div>
                                 </div>
                             </div>
+
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
