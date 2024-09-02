@@ -27,28 +27,28 @@
     <h2 class="mt-4">Produk Serupa</h2>
     <div class="row">
         <div class="col-md-3 mb-4" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
-            <a href="/detail" target="">
+            <a href="{{url('/detail')}}" target="">
                 <img src="{{ asset('assets/img/product/product-1.jpeg')}}" class="img-fluid w-100" alt="Product 1" style="transition: transform 0.3s ease;"
                 onmouseover="this.style.transform='scale(1.1)'"
                 onmouseout="this.style.transform='scale(1)'">
             </a>
         </div>
         <div class="col-md-3 mb-4" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
-            <a href="/detail" target="">
+            <a href="{{url('/detail')}}" target="">
                 <img src="{{ asset('assets/img/product/product-1.jpeg')}}" class="img-fluid w-100" alt="Product 1" style="transition: transform 0.3s ease;"
                 onmouseover="this.style.transform='scale(1.1)'"
                 onmouseout="this.style.transform='scale(1)'">
             </a>
         </div>
         <div class="col-md-3 mb-4" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
-            <a href="/detail" target="">
+            <a href="{{url('/detail')}}" target="">
                 <img src="{{ asset('assets/img/product/product-1.jpeg')}}" class="img-fluid w-100" alt="Product 1" style="transition: transform 0.3s ease;"
                 onmouseover="this.style.transform='scale(1.1)'"
                 onmouseout="this.style.transform='scale(1)'">
             </a>
         </div>
         <div class="col-md-3 mb-4" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
-            <a href="/detail" target="">
+            <a href="{{url('/detail')}}" target="">
                 <img src="{{ asset('assets/img/product/product-1.jpeg')}}" class="img-fluid w-100" alt="Product 1" style="transition: transform 0.3s ease;"
                 onmouseover="this.style.transform='scale(1.1)'"
                 onmouseout="this.style.transform='scale(1)'">

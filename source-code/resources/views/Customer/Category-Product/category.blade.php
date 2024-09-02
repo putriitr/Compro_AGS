@@ -21,38 +21,17 @@
             <h1 class="mb-4">Hydraulics</h1>
             <h5>Brand</h5>
             <ul class="list-group mb-4">
-                <li class="list-group-item border rounded text-center py-2 mb-2" style="cursor: pointer;">
-                    Labtek
+                <li class="list-group-item border rounded text-center py-2 mb-3">
+                    <button class="btn btn-primary w-100" style="cursor: pointer;">
+                        Labtek
+                    </button>
                 </li>
-                <li class="list-group-item border rounded text-center py-2 mb-2" style="cursor: pointer;">
-                    Labverse
+                <li class="list-group-item border rounded text-center py-2 mb-3">
+                    <button class="btn btn-primary w-100" style="cursor: pointer;">
+                        Labverse
+                    </button>
                 </li>
             </ul>
-            <h5>Price</h5>
-            <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="price" id="under500" value="500">
-                <label class="form-check-label" for="under500000000">
-                    Under Rp 500,000,000
-                </label>
-            </div>
-            <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="price" id="500to1000" value="1000000000">
-                <label class="form-check-label" for="500to1000">
-                    Rp 500,000,000 - Rp 1,000,000,000
-                </label>
-            </div>
-            <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="price" id="1000to1500" value="1500000000">
-                <label class="form-check-label" for="1000to1500">
-                    Rp 1,000,000,001 - Rp 1,500,000,000
-                </label>
-            </div>
-            <div class="form-check mb-4">
-                <input class="form-check-input" type="radio" name="price" id="over1500" value="over1500000000">
-                <label class="form-check-label" for="over1500">
-                    Over Rp 1,500,000,000
-                </label>
-            </div>
         </div>
 
         <!-- Main Content -->
