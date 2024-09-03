@@ -1,84 +1,155 @@
-<!-- Footer Start -->
-<div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-md-6 col-lg-6 col-xl-4">
-                <div class="footer-item d-flex flex-column">
-                    <div class="feature-icon mb-4">
-                        <div class="p-3 d-inline-flex bg-white rounded">
-                            <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo"
-                                class="img-fluid" style="width: 100%; height: 150px; border-radius: 50%;">
+ <!-- Footer Section Begin -->
+<footer class="footer spad">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Info Section -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="footer__about">
+                    <h3 style="font-weight: bold; font-size: 24px;">{{ __('messages.contact_info') }}</h3><br>
+                    <div class="item" style="display: flex; align-items: flex-start; margin-bottom: 10px;">
+                        <i class="fas fa-home" style="margin-right: 10px; font-size: 16px; margin-top: 2px;"></i>
+                        <span class="address info" style="display: inline-block; max-width: calc(100% - 30px); line-height: 1.5; font-size: 14px;">
+                            {{ __('messages.address') }}
+                        </span>
+                    </div>
+                    <div class="item" style="display: flex; align-items: flex-start; margin-bottom: 10px;">
+                        <i class="fas fa-phone-alt" style="margin-right: 10px; font-size: 16px; margin-top: 2px;"></i>
+                        <span class="phone info" style="display: inline-block; max-width: calc(100% - 30px); line-height: 1.5; font-size: 14px;">
+                            (021) 2204 3144
+                        </span>
+                    </div>
+                    <div class="item" style="display: flex; align-items: flex-start;">
+                        <i class="fas fa-envelope" style="margin-right: 10px; font-size: 16px; margin-top: 2px;"></i>
+                        <span class="email info" style="display: inline-block; max-width: calc(100% - 30px); line-height: 1.5; font-size: 14px;">
+                            info@labtek.id
+                        </span>
+                    </div>
+                    <div class="item" style="display: flex; align-items: flex-start;">
+                        <i class="fas fa-envelope" style="margin-right: 10px; font-size: 16px; margin-top: 2px;"></i>
+                        <span class="email info" style="display: inline-block; max-width: calc(100% - 30px); line-height: 1.5; font-size: 14px;">
+                            sales@labtek.id
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Links Section -->
+            <div class="col-lg-5 col-md-6 col-sm-12 mb-4">
+                <div class="footer__widget">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <h6>{{ __('messages.help_resources') }}</h6>
+                            <ul style="text-decoration: underline;">
+                                <li><a href="{{ route('shop') }}">{{ __('messages.find_product') }}</a></li>
+{{--                                 <li><a href="/sign-up">{{ __('messages.login_member') }}</a></li> --}}
+                                <li>
+                                    @auth
+                                        <!-- Jika pengguna sudah login, tampilkan link ke keranjang -->
+                                        <a href="{{ route('cart.view') }}">{{ __('messages.shopping_cart') }}</a>
+                                        @else
+                                        <!-- Jika pengguna belum login, arahkan ke halaman login -->
+                                        <a href="{{ route('login') }}">{{ __('messages.shopping_cart') }}</a>
+                                    @endauth
+                                </li>
+                                <li><a href="{{ route('home') }}">{{ __('messages.home') }}</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <h6>{{ __('messages.about') }}</h6>
+                            <ul style="text-decoration: underline;">
+{{--                                 <li><a href="/company">{{ __('messages.about_us') }}</a></li>
+                                <li><a href="/company">{{ __('messages.our_brand') }}</a></li>
+                                <li><a href="/company">{{ __('messages.contact_us') }}</a></li>
+ --}}                                <li><a href="{{ route('faq') }}">{{ __('messages.qna') }}</a></li>
+                            </ul>
                         </div>
                     </div>
-                    <h6 class="text-white mb-6">PT Arkamaya Guna Saharsa</h6>
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-share fa-2x text-white me-2"></i>
-                        <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="https://www.instagram.com/lifeatags/"><i
-                                class="fab fa-instagram"></i></a>
-                        <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="https://www.linkedin.com/company/arkamaya-guna-saharsa/"><i
-                                class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Logo Images Section -->
+            <div class="col-lg-3 col-md-12 col-sm-12 d-flex justify-content-center mb-4">
+                <div class="footer__widget">
+                    <div class="footer__about__logo d-flex flex-column align-items-center">
+                        <a href="{{ route('home') }}">
+                            <img src="{{ asset('assets/images/AGS-logo.png') }}" alt="" style="width: 100%; height: 100px; margin-bottom: 10px;">
+                        </a>
+                        <a href="{{ route('home') }}">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="" style="width: 100%; height: 100px;">
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6 col-xl-2">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Quick Links</h4>
-                    <a href="/about"><i class="fas fa-angle-right me-2"></i> About Us</a>
-                    <a href="/contact"><i class="fas fa-angle-right me-2"></i> Contact Us</a>
-                    <a href="/about#activity"><i class="fas fa-angle-right me-2"></i> Our Activity</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-2">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Find Product</h4>
-                    <a href="/product"><i class="fas fa-angle-right me-2"></i> Our Product</a>
-                    <a href="{{url('/portal')}}"><i class="fas fa-angle-right me-2"></i> Member Portal</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Labtek</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Labverse</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-4">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Contact Info</h4>
-                    <a href=""><i class="fa fa-map-marker-alt me-2"></i> Jl. Matraman Raya No.148,
-                        RT.1/RW.4, Kb. Manggis, Kec. Matraman, Kota Jakarta Timur, DKI Jakarta 13150</a>
-                    <a href=""><i class="fas fa-envelope me-2"></i> info@labtek.id</a>
-                    <a href=""><i class="fas fa-phone me-2"></i> (021) 85850913</a>
-                    <a href="" class="mb-3"><i class="fab fa-whatsapp fa-2x"></i> +62 852-1791-1213</a>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <div class="footer__copyright text-center" style="padding: 15px 0;">
+                    <div class="footer__copyright__text" style="font-size: 12px;">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> {{ __('messages.created_by') }} PT Arkamaya Guna Saharsa
+                    </div>
+                    <div class="footer__copyright__payment mt-2">
+                        <img src="img/payment-item.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Footer End -->
+</footer>
+<!-- Footer Section End -->
 
-<!-- Copyright Start -->
-<div class="container-fluid copyright py-4">
-    <div class="container">
-        <div class="row g-4 align-items-center">
-            <div class="col-md-6 text-center text-md-start mb-md-0">
-                <span class="text-white"><a href="#"><i class="fas fa-copyright text-light me-2"></i>2024</a>, PT Arkamaya Guna Saharsa</span>
-            </div>
-            {{-- <div class="col-md-6 text-center text-md-end text-white">
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
-                </div> --}}
-        </div>
-    </div>
-</div>
-<!-- Copyright End -->
 
-<!-- Back to Top -->
-<a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 
-<!-- JavaScript Libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('assets/lib/wow/wow.min.js') }}"></script>
-<script src="{{ asset('assets/lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('assets/lib/waypoints/waypoints.min.js') }}"></script>
-<script src="{{ asset('assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('assets/js/main.js') }}"></script>
+@if(Auth::check())
+   @php
+       $user = Auth::user();
+       $email = $user->email;
+       $no_telepon = $user->userDetail->no_telepone ?? 'N/A'; // Pastikan relasi UserDetail ada
+       $perusahaan = $user->userDetail->perusahaan ?? 'N/A'; // Pastikan relasi UserDetail ada
+   @endphp
 
-</body>
+   <!--Start of Tawk.to Script-->
+   <script type="text/javascript">
+       var Tawk_API = Tawk_API || {};
+       Tawk_API.visitor = {
+           name : '{{ $user->name }}',
+           email : '{{ $email }}',
+           phone : '{{ $no_telepon }}',
+           job_title: '{{ $perusahaan }}'
+       };
 
+       var Tawk_LoadStart = new Date();
+       (function(){
+           var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+           s1.async = true;
+           s1.src = 'https://embed.tawk.to/66d166adea492f34bc0ba27f/1i6gvi641';
+           s1.charset = 'UTF-8';
+           s1.setAttribute('crossorigin', '*');
+           s0.parentNode.insertBefore(s1, s0);
+       })();
+   </script>
+   <!--End of Tawk.to Script-->
+@endif
+
+
+
+
+
+    <!-- Js Plugins -->
+    <script src="{{ asset('ogani/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('ogani/js/bootstrap.bundle.min.js') }}"></script> <!-- Use bootstrap.bundle.min.js for Bootstrap 5 -->
+    <script src="{{ asset('ogani/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('ogani/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('ogani/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('ogani/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('ogani/js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('ogani/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('ogani/js/main.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </body>
 </html>

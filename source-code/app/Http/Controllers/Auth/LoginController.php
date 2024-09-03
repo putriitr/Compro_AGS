@@ -16,7 +16,7 @@ class LoginController extends Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles authenticating users for the application and
-    | redirecting them to your  screen. The controller uses a trait
+    | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
     */
@@ -42,34 +42,36 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-    {
-        // Validate the request input
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-    
-        // Attempt to authenticate the user
-        if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
-            
-            // Get the authenticated user
-            $user = auth()->user();
-            
-            // Check the user's type and redirect accordingly
-            if ($user->type == 'admin') {
-                return redirect()->route('dashboard');
-            } else if ($user->type == 'member') {
-                return redirect('/');
-            }
-        } else {
-            // Authentication failed
-            return redirect()->route('login')
-                ->with('error', 'Email or Password is incorrect.');
+{
+    $input = $request->all();
+
+    $this->validate($request, [
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
+        $user = auth()->user();
+
+        // Use query builder to update last_login_at
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update(['last_login_at' => now()]);
+
+        if ($user->role == 'admin') {
+            return redirect()->route('dashboard');
+        } else if ($user->role == 'costumer') {
+            return redirect()->route('home');
         }
+    } else {
+        return redirect()->route('login')
+            ->with('error', 'Email-Address And Password Are Wrong.');
     }
-    
-    
-    public function logout(Request $request)
+}
+
+
+
+public function logout(Request $request)
 {
     $user = Auth::user();  // Capture the user before logging out
 
@@ -77,13 +79,24 @@ class LoginController extends Controller
     $request->session()->invalidate();  // Invalidate the session
     $request->session()->regenerateToken();  // Regenerate the CSRF token
 
+    // Update the last_login_at to now to indicate they are no longer online
+    if ($user) {
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update(['last_login_at' => now()]);
+    }
+
     // Redirect based on user role
     if ($user->role == 'admin') {
         return redirect('/login');  // Redirect admin users to the login page
-    } elseif ($user->role == 'member') {
-        return redirect('/');  // Redirect customer users to the  page
+    } elseif ($user->role == 'costumer') {
+        return redirect('/');  // Redirect customer users to the home page
     }
 
-    return redirect('/');  // Fallback to  for other roles
+    return redirect('/');  // Fallback to home for other roles
 }
+
+    
+
+
 }
