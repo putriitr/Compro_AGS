@@ -18,7 +18,7 @@
                     <p><strong>Nama Perusahaan:</strong> {{ $member->nama_perusahaan }}</p>
                 </div>
                 <div class="mb-3">
-                    <p><strong>Bidang Perusahaan:</strong> {{ $member->bidang_perusahaan }}</p>
+                    <p><strong>Bidang Perusahaan:</strong> {{ $member->bidangPerusahaan->name ?? '-' }}</p>
                 </div>
                 <div class="mb-3">
                     <p><strong>Nomor Telepon:</strong> {{ $member->no_telp }}</p>
@@ -26,13 +26,29 @@
                 <div class="mb-3">
                     <p><strong>Alamat:</strong> {{ $member->alamat }}</p>
                 </div>
-                
+
                 @if(isset($password))
                     <div class="mb-3">
                         <p><strong>Password:</strong> {{ $password }}</p>
                         <p class="text-danger">Please note: This password will not be shown again.</p>
                     </div>
                 @endif
+
+                <div class="mb-3">
+                    <h4>Products Owned</h4>
+                    @if($member->produks->isEmpty())
+                        <p>This member has no products.</p>
+                    @else
+                        <ul>
+                            @foreach($member->produks as $produk)
+                                <li>
+                                    <strong>{{ $produk->nama }}</strong><br>
+                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" alt="{{ $produk->nama }}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; margin-top: 5px;">
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
 
                 <a href="{{ route('members.index') }}" class="btn btn-secondary">Back to Members List</a>
             </div>

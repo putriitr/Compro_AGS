@@ -41,7 +41,7 @@
             <div class="row">
                 @foreach ($produks as $produk)
                     <div class="col-md-4 mb-4" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
-                        <a href="{{ url('/detail', $produk->id) }}" target="">
+                        <a href="{{ route('product.show', $produk->id) }}">
                             <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
                                  class="img-fluid w-100" alt="{{ $produk->nama }}"
                                  style="transition: transform 0.3s ease;"

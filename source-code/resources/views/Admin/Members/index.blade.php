@@ -2,36 +2,55 @@
 
 @section('content')
 <div class="container">
-    <h1>Produk List</h1>
-    <a href="{{ route('admin.produk.create') }}" class="btn btn-primary mb-3">Add New Produk</a>
+    <h1>Member List</h1>
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <div class="mb-3">
+        <a href="{{ route('members.create') }}" class="btn btn-primary">Add New Member</a>
+    </div>
+
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nama</th>
-                <th>Merk</th>
-                <th>Via</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company Name</th>
+                <th>Phone Number</th>
+                <th>Address</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($produks as $produk)
+            @foreach ($members as $member)
                 <tr>
-                    <td>{{ $produk->id }}</td>
-                    <td>{{ $produk->nama }}</td>
-                    <td>{{ $produk->merk }}</td>
-                    <td>{{ $produk->via }}</td>
+                    <td>{{ $member->name }}</td>
+                    <td>{{ $member->email }}</td>
+                    <td>{{ $member->nama_perusahaan }}</td>
+                    <td>{{ $member->no_telp }}</td>
+                    <td>{{ $member->alamat }}</td>
                     <td>
-                        <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('members.show', $member->id) }}" class="btn btn-info btn-sm">View</a>
+                        <a href="{{ route('members.edit', $member->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('members.destroy', $member->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this member?');">Delete</button>
                         </form>
+                        <a href="{{ route('members.add-products', $member->id) }}" class="btn btn-secondary btn-sm">Add Products</a>
+                        <a href="{{ route('members.edit-products', $member->id) }}" class="btn btn-warning btn-sm">Edit Products</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    <div class="d-flex justify-content-center">
+        {{ $members->links() }}
+    </div>
 </div>
 @endsection

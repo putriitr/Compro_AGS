@@ -6,17 +6,13 @@
     <div class="text-dark p-4 rounded" style="background-color: #f5f5dc;">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h3 class="display-6">Advance Flume Test Open Channel 12.5 M</h3>
+                <h3 class="display-6">{{ $produk->nama }}</h3> <!-- Dynamic product name -->
                 <p class="lead" style="font-size: 0.9rem;">
-                    Alat ini berfungsi untuk mengamati profil muka air peluapan di atas ambang lebar menentukan koefisien debit (cd)
-                    coefficient discharge, menentukan hubungan Cd dengan Hw/L dan Cw dengan Hw/p, serta batas modular bendung/ambang.
+                    {{ $produk->kegunaan }} <!-- Dynamic product usage (kegunaan) -->
                 </p>
-                <a href="#user-manual" class="btn btn-primary">
-                    User Manual <i class="fas fa-download"></i>
-                </a>
             </div>
             <div class="col-md-6 text-center">
-                <img src="{{ asset('assets/img/portal/detail.png') }}" alt="Product Image" class="img-fluid" style="max-height: 350px;">
+                <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" alt="Product Image" class="img-fluid" style="max-height: 350px;">
             </div>
         </div>
     </div>

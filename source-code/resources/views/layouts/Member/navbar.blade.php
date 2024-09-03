@@ -92,7 +92,7 @@
                                     <a href="feature.html" class="dropdown-item">Labverse</a>
                                 </div>
                             </div>
-                            <a href="{{url('/portal')}}" class="nav-item nav-link">My member portal</a>
+                            <a href="{{route('portal')}}" class="nav-item nav-link">My member portal</a>
                             <a href="/contact" class="nav-item nav-link">Contact Us</a>
                         </div>
                     </div>

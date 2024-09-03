@@ -4,40 +4,37 @@
 <!-- Header Start -->
 <div class="container-fluid bg-breadcrumb">
     <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Product Catalog</h1>
-            <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{url('/portal')}}">Portal member</a></li>
-                <li class="breadcrumb-item active text-primary">Product Catalog</li>
-            </ol>
+        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Product Catalog</h3>
+        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('/portal')}}">Portal Member</a></li>
+            <li class="breadcrumb-item active text-primary">Product Catalog</li>
+        </ol>
     </div>
 </div>
 <!-- Header End --><br><br>
 
-<!-- Services Start -->
 <div class="container-fluid service py-5">
     <div class="container py-5">
         <div class="row g-4 justify-content-center">
-            <div class="col-lg-2"></div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="service-img rounded-top">
-                    <img src="{{asset('assets/img/portal/katalog.jpeg')}}" class="img-fluid rounded-top w-100" alt="">
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="service-content rounded-bottom bg-light p-4">
-                    <div class="service-content-inner">
-                        <h5 class="mb-4">Product Catalog</h5>
-                        <p class="mb-4">11.3 MB</p>
-                        <a href="{{asset('assets/img/portal/compro.pdf')}}" download="compro.pdf" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Download PDF</a>
-                        <a href="{{asset('assets/img/portal/compro.pdf')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">View Online</a>
+            @forelse($produks as $produk)
+                <div class="col-md-4 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-img rounded-top border border-secondary" style="border-radius: 10px;">
+                        <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" class="img-fluid rounded-top w-100" alt="{{ $produk->nama }}">
+                        <div class="service-content-inner p-4" style="border-radius: 0 0 10px 10px;">
+                            <h5 class="mb-4">{{ $produk->nama }}</h5>
+                            <p class="mb-4">{{ $produk->kegunaan }}</p>
+                            <a href="{{ route('product.show', $produk->id) }}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">View Details</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-2"></div>
+            @empty
+                <div class="col-12">
+                    <p class="text-center">You don't have any products in your catalog.</p>
+                    <p class="text-center">Member belum memiliki produk yang di-claim oleh admin.</p>
+                </div>
+            @endforelse
         </div>
     </div>
 </div>
-
-<!-- Services End -->
 @endsection

@@ -17,7 +17,7 @@ class ProdukMemberController extends Controller
     }
 
     public function productByCategory($id)
-{
+    {
     // Mengambil kategori berdasarkan ID
     $kategori = Kategori::findOrFail($id);
 
@@ -25,6 +25,16 @@ class ProdukMemberController extends Controller
     $produks = Produk::where('kategori_id', $id)->get();
 
     return view('member.category-Product.category', compact('kategori', 'produks'));
-}
+    }
+
+    public function show($id)
+    {
+            // Mengambil detail produk berdasarkan ID
+            $produk = Produk::findOrFail($id);
+
+            return view('member.category-product.detail', compact('produk'));
+    }
+
+    
 
 }

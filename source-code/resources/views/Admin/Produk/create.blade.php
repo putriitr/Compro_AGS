@@ -29,6 +29,12 @@
                 </div>
 
                 <div class="form-group mb-3">
+                    <label for="kegunaan">Kegunaan Produk:</label>
+                    <textarea name="kegunaan" class="form-control" required>{{ old('kegunaan') }}</textarea>
+                </div>
+                
+
+                <div class="form-group mb-3">
                     <label for="via">Via:</label>
                     <select name="via" class="form-control" required>
                         <option value="labtek" {{ old('via') == 'labtek' ? 'selected' : '' }}>Labtek</option>
@@ -52,6 +58,35 @@
                     <input type="file" name="gambar[]" class="form-control" multiple required>
                     <small class="form-text text-muted">Unggah beberapa gambar produk jika diperlukan.</small>
                 </div>
+
+                <div class="form-group mb-3">
+                    <label for="video">Video Tutorial (MP4, AVI, MKV)</label>
+                    <input type="file" class="form-control" name="video[]" id="video" accept="video/*" multiple>
+                    <small class="form-text text-muted">Unggah beberapa video tutorial produk jika diperlukan.</small>
+                </div>  
+
+                <div class="form-group">
+                    <label for="user_manual">User Manual (PDF/DOC)</label>
+                    <input type="file" class="form-control" name="user_manual" id="user_manual">
+                    @if(isset($produk) && $produk->user_manual)
+                        <a href="{{ asset($produk->user_manual) }}" target="_blank">View Current Manual</a>
+                    @endif
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="control_generation_pdf">Control Generation PDF:</label>
+                    <input type="file" class="form-control" name="control_generation_pdf" id="control_generation_pdf" accept=".pdf">
+                    <small class="form-text text-muted">Unggah Control Generation PDF jika diperlukan.</small>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="document_certification_pdf">Document Certification PDF:</label>
+                    <input type="file" class="form-control" name="document_certification_pdf" id="document_certification_pdf" accept=".pdf">
+                    <small class="form-text text-muted">Unggah Document Certification PDF jika diperlukan.</small>
+                </div>
+
+                              
+                
 
                 <button type="submit" class="btn btn-success">Simpan Produk</button>
                 <a href="{{ route('admin.produk.index') }}" class="btn btn-secondary">Kembali</a>

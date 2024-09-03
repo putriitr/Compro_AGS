@@ -42,7 +42,9 @@
                                         @endforeach
                                     </td>
                                     <td>
+                                        <a href="{{ route('admin.produk.show', $produk->id) }}" class="btn btn-info">Show</a>
                                         <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('admin.faq.index', $produk->id) }}">View FAQs</a>
                                         <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')

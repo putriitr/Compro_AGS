@@ -30,7 +30,7 @@
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
                             <h5 class="mb-4">Product Catalog</h5>
-                            <a href="{{url('/catalog')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <a href="{{route('portal.catalog')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
                             <h5 class="mb-4">Product Photos</h5>
-                            <a href="{{url('/photos')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <a href="{{route('portal.photos')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
                             <h5 class="mb-4">Instructions</h5>
-                            <a href="{{url('/instructions')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <a href="{{route('portal.instructions')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
                             <h5 class="mb-4">Video Tutorials</h5>
-                            <a href="{{url('/video')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <a href="{{route('portal.tutorials')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
                             <h5 class="mb-4">Controller Generations</h5>
-                            <a href="{{url('/cg')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <a href="{{route('portal.controlgenerations')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
                             <h5 class="mb-4">Document And Certifications</h5>
-                            <a href="{{url('/doc')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <a href="{{route('portal.document')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
                             <h5 class="mb-4">Questions And Answer</h5>
-                            <a href="{{url('/qna')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <a href="{{route('portal.qna')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>

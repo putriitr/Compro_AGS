@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\BidangPerusahaan;
+use App\Models\Produk;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -111,4 +112,52 @@ public function update(Request $request, $id)
 
         return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
     }
+
+    // Method to show the form for adding products to a member
+    public function addProducts($id)
+    {
+        $member = User::findOrFail($id);
+        $produks = Produk::all(); // Get all products to choose from
+
+        return view('admin.members.add-products', compact('member', 'produks'));
+    }
+
+    public function storeProducts(Request $request, $id)
+    {
+        $request->validate([
+            'produk_id' => 'required|array',
+            'produk_id.*' => 'exists:produk,id',
+        ]);
+
+        $member = User::findOrFail($id);
+        $member->produks()->sync($request->produk_id); // Attach selected products to the user
+
+        return redirect()->route('members.show', $member->id)->with('success', 'Products added to member successfully.');
+    }
+
+    public function editProducts($id)
+    {
+        $member = User::findOrFail($id);
+        $produks = Produk::all(); // Get all products to choose from
+        $selectedProdukIds = $member->produks->pluck('id')->toArray(); // Get the IDs of the currently associated products
+
+        return view('admin.members.edit-products', compact('member', 'produks', 'selectedProdukIds'));
+    }
+
+    public function updateProducts(Request $request, $id)
+    {
+        $request->validate([
+            'produk_id.*' => 'exists:produk,id',
+        ]);
+    
+        $member = User::findOrFail($id);
+    
+        // If no products are selected, the sync method will detach all products.
+        $member->produks()->sync($request->produk_id ?? []);
+    
+        return redirect()->route('members.show', $member->id)->with('success', 'Products updated successfully.');
+    }
+    
+
+
 }
