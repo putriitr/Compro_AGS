@@ -84,18 +84,18 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-auto py-0">
-                            <a href="/" class="nav-item nav-link">Home</a>
-                            <a href="/about" class="nav-item nav-link">About</a>
-                            <a href="/product" class="nav-item nav-link">Product</a>
-                            <div class="nav-item dropdown">
-                                <a href="/ecommerce" class="nav-link dropdown-toggle"
+                            <a href="{{url('/')}}" class="nav-item nav-link">Home</a>
+                            <a href="{{url('/about')}}" class="nav-item nav-link">About</a>
+                            <a href="{{url('/product')}}" class="nav-item nav-link">Product</a>
+                            <div class="{{url('nav-item dropdown')}}">
+                                <a href="{{url('/ecommerce')}}" class="nav-link dropdown-toggle"
                                     data-bs-toggle="dropdown">E-Commerce</a>
                                 <div class="dropdown-menu m-0">
                                     <a href="appointment.html" class="dropdown-item">Labtek</a>
                                     <a href="feature.html" class="dropdown-item">Labverse</a>
                                 </div>
                             </div>
-                            <a href="/contact" class="nav-item nav-link">Contact Us</a>
+                            <a href="{{url('/contact')}}" class="nav-item nav-link">Contact Us</a>
                         </div>
                     </div>
 

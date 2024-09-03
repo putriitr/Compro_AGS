@@ -796,7 +796,7 @@
 /*** Team End ***/
 
 
-/*** testimonial Start ***/
+/*** Testimonial Start ***/
 .testimonial {
     background: linear-gradient(rgba(65, 107, 191, 0.7), rgba(65, 107, 191, 0.7)), url(../img/activity-2.jpg);
     background-position: center center;
@@ -816,9 +816,10 @@
 
 .testimonial .testimonial-item .testimonial-inner .testimonial-inner-img {
     display: flex;
-    overflow-x: auto;
+    overflow-x: auto; /* Membolehkan scroll horizontal */
     gap: 10px;
     position: relative;
+    padding: 10px; /* Menambahkan padding */
 }
 
 .testimonial .testimonial-item .testimonial-inner .testimonial-inner-img img {
@@ -836,6 +837,7 @@
 .testimonial .testimonial-item .testimonial-inner .testimonial-inner-img img:hover {
     opacity: 0.7;
 }
+
 /* Blue overlay effect */
 .testimonial .testimonial-item .testimonial-inner .testimonial-inner-img img:hover::after {
     content: "";
@@ -844,7 +846,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 255, 5);
+    background: rgba(0, 0, 255, 0.5); /* Perbaiki opacity */
     border-radius: 15px;
     z-index: 1;
 }
@@ -887,76 +889,60 @@
     transition: 0.5s;
 }
 
-
 .testimonial .testimonial-carousel .owl-nav .owl-prev:hover,
 .testimonial .testimonial-carousel .owl-nav .owl-next:hover {
     box-shadow: inset 100px 0 0 0 var(--bs-primary) !important;
     color: var(--bs-white) !important;
 }
 
-
 @media (max-width: 900px) {
     .testimonial .testimonial-carousel .owl-nav .owl-prev {
-        margin-top: -190px;
-        margin-left: 40px;
+        margin-top: -100px; /* Mengurangi jarak margin untuk perangkat kecil */
+        margin-left: 10px; /* Mengurangi jarak margin kiri */
     }
 
     .testimonial .testimonial-carousel .owl-nav .owl-next {
-        margin-top: -190px;
-        margin-right: 40px;
+        margin-top: -100px; /* Mengurangi jarak margin untuk perangkat kecil */
+        margin-right: 10px; /* Mengurangi jarak margin kanan */
     }
+}
 
+@media (max-width: 480px) {
+    .testimonial .testimonial-carousel .owl-nav .owl-prev,
+    .testimonial .testimonial-carousel .owl-nav .owl-next {
+        width: 40px; /* Mengurangi ukuran tombol navigasi */
+        height: 40px; /* Mengurangi ukuran tombol navigasi */
+        font-size: 16px; /* Mengurangi ukuran font pada tombol navigasi */
+    }
 }
 
 .testimonial-carousel .owl-dots {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px; /* Menyesuaikan margin atas */
 }
 
 .testimonial-carousel .owl-dots .owl-dot {
-    width: 20px;
-    height: 20px;
+    width: 15px; /* Mengurangi ukuran dots */
+    height: 15px; /* Mengurangi ukuran dots */
     border-radius: 50%;
-    margin-right: 15px;
+    margin-right: 10px; /* Mengurangi jarak antar dots */
     border: 1px solid var(--bs-white);
     background: transparent;
     transition: 0.5s;
 }
 
 .testimonial-carousel .owl-dots .owl-dot.active {
-    width: 20px;
-    height: 20px;
     background: var(--bs-secondary) !important;
 }
 
-.testimonial-carousel .owl-dots .owl-dot span {
-    position: relative;
-    margin-top: 50%;
-    margin-left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .testimonial-carousel .owl-dots .owl-dot span::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 1px;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    width: 6px; /* Mengurangi ukuran titik aktif */
+    height: 6px; /* Mengurangi ukuran titik aktif */
     background: var(--bs-white);
 }
 
-.testimonial .testimonial-carousel .testimonial-item .testimonial-inner p.fs-7 {
+.testimonial .testimonial-item .testimonial-inner p.fs-7 {
     transition: 0.5s;
 }
 
@@ -966,6 +952,33 @@
     }
 }
 
+@media (max-width: 768px) {
+    .testimonial .section-title h1 {
+        font-size: 1.8rem; /* Ukuran font lebih kecil untuk judul */
+    }
+
+    .testimonial .section-title h4 {
+        font-size: 1rem; /* Ukuran font lebih kecil untuk sub-judul */
+    }
+
+    .testimonial .testimonial-item .testimonial-inner p.fs-7 {
+        font-size: 16px; /* Ukuran font lebih kecil untuk deskripsi */
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial .section-title h1 {
+        font-size: 1.5rem; /* Ukuran font lebih kecil untuk judul */
+    }
+
+    .testimonial .section-title h4 {
+        font-size: 0.9rem; /* Ukuran font lebih kecil untuk sub-judul */
+    }
+
+    .testimonial .testimonial-item .testimonial-inner p.fs-7 {
+        font-size: 14px; /* Ukuran font lebih kecil untuk deskripsi */
+    }
+}
 
 /* Testimonial Section Title Start */
 .testimonial .section-title {
@@ -1036,6 +1049,7 @@
     border: 1px solid var(--bs-white) !important;
 }
 /*** Testimonial End ***/
+
 
 
 /*** Blog Start ***/

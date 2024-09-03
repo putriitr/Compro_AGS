@@ -324,6 +324,7 @@
 <!-- Brand End -->
 
 <!-- Principal Start -->
+
 <div class="container-fluid testimonial py-5 wow zoomInDown" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="section-title mb-5">
@@ -538,29 +539,20 @@
     </div>
 </div>
 <!-- Sales Channel End -->
-
-<!-- Map Start -->
+ 
 <!-- Map Start -->
 <div class="container" style="
-    border: 1px solid #ddd; /* Warna border */
-    border-radius: 10px; /* Sudut rounded */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
-    padding: 20px; /* Ruang dalam box */
-    background-color: #fff; /* Warna latar belakang */
-    text-align: center; /* Memusatkan teks */
-">
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+    text-align: center; ">
+    
     <h5>This is</h5>
-    <h1 style="
-        font-weight: bold; /* Teks tebal */
-        color: blue; /* Warna biru */
-    ">Our Customers</h1>
+    <h1 style="font-weight: bold; color: blue; ">Our Customers</h1>
     <hr>
-    <div id="umalo" style="
-        width: 100%; 
-        height: 600px; 
-        border-radius: 10px; /* Sudut rounded untuk peta */
-        overflow: hidden; /* Menghindari konten keluar dari box */
-    "></div>
+    <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
 </div> <br> <br>
 <!-- Map End -->
 
@@ -572,20 +564,24 @@
     // Inisialisasi peta
     var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
 
-    // Tambahkan tile layer dari OpenStreetMap
+    //tile layer dari OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     // Fungsi untuk menambahkan marker dengan info window
-    function addMarker(lat, lng, title) {
+    function addMarker(lat, lng, title, description, address, image) {
         var marker = L.marker([lat, lng]).addTo(map);
 
         // Popup konten marker
-        marker.bindPopup(`<div class="info-window">
-                            <h3>${title}</h3>
-                            <p>Latitude: ${lat}<br>Longitude: ${lng}</p>
-                          </div>`);
+        marker.bindPopup(`
+            <div class="info-window">
+                <h3 class="popup-title">${title}</h3>
+                <img src="${image}" alt="${title}" class="popup-image">
+                <p class="popup-description">${description}</p>
+                <p class="popup-address">${address}</p>
+            </div>
+        `);
 
         // Menambahkan label kecil yang muncul saat hover
         marker.bindTooltip(`<div>${title}</div>`, {
@@ -594,41 +590,91 @@
             offset: [0, -20],
             className: 'marker-tooltip'
         });
-
-        // Menampilkan tooltip saat hover
         marker.on('mouseover', function(e) {
             this.openTooltip();
         });
-
-        // Menyembunyikan tooltip saat cursor keluar
         marker.on('mouseout', function(e) {
             this.closeTooltip();
         });
     }
 
     // Fetch lokasi dari backend
-    fetch('/locations')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(location => {
-                addMarker(location.latitude, location.longitude, location.name);
-            });
+    fetch("{{url('/locations')}}")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // untuk debugging
+        data.forEach(location => {
+            addMarker(location.latitude, location.longitude, location.name, location.description, location.address, location.image);
         });
-
+    })
+    .catch(error => console.error('Error:', error));
 </script>
 
 <style>
     .marker-tooltip {
-        background-color: #b3d9ff; /* Biru muda */
-        border: 1px solid #80b3ff; /* Border biru */
+        background-color: #b3d9ff;
+        border: 1px solid #80b3ff;
         padding: 5px;
-        border-radius: 10px; /* Sudut rounded */
+        border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         font-size: 12px;
-        color: #333; /* Warna teks */
+        color: #333;
     }
-</style> 
 
+    .info-window img.popup-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+
+    .popup-title {
+        font-size: 20px;
+        color: black;
+        font-weight: bold;
+    }
+
+    .popup-description,
+    .popup-address {
+        font-size: 12px;
+        color: #333;
+        margin-top: 10px;
+        text-align: justify; }
+
+    /* Media query untuk perangkat dengan lebar maksimal 768px */
+    @media (max-width: 768px) {
+        .info-window {
+            padding: 10px; 
+        }
+
+        .popup-title {
+            font-size: 18px;
+        }
+
+        .popup-description,
+        .popup-address {
+            font-size: 10px;
+        }
+
+        .info-window img.popup-image {
+            margin-bottom: 5px
+        }
+    }
+
+    /* Media query untuk perangkat dengan lebar maksimal 480px */
+    @media (max-width: 480px) {
+        .popup-title {
+            font-size: 16px;
+        }
+
+        .popup-description,
+        .popup-address {
+            font-size: 9px;
+        }
+    }
+</style>
 <!-- Map End -->
+
+
 
 @endsection
