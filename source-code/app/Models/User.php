@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
@@ -23,10 +24,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
-        'foto_profile'
-
-
+        'type',
+        'nama_perusahaan',
+        'bidang_perusahaan',
+        'no_telp',
+        'alamat',
+        'bidang_id',
     ];
 
     /**
@@ -46,47 +49,26 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'last_login_at' => 'datetime', 
+        'password' => 'hashed',
     ];
 
-    protected function role(): Attribute
+    protected function type(): Attribute
     {
         return new Attribute(
-            get: fn($value) =>  ["costumer", "admin"][$value],
+            get: fn ($value) =>  ["member", "admin"][$value],
         );
     }
 
-    public function socialite()
+    public function bidangPerusahaan()
     {
-        return $this->hasMany(Socialite::class);
+        return $this->belongsTo(BidangPerusahaan::class, 'bidang_id');
     }
 
-    public function userDetail()
+    public function produks()
     {
-        return $this->hasOne(UserDetail::class);
+        return $this->belongsToMany(Produk::class, 'user_produk', 'user_id', 'produk_id')
+                    ->withPivot('pembelian'); // Ensure that the pembelian field from the pivot table is retrieved
     }
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    // User.php
-    public function seenByAdmins()
-    {
-        return $this->belongsToMany(User::class, 'user_seen_by_admin', 'user_id', 'admin_id')->withTimestamps();
-    }
-
-    public function newUsersSeenByAdmin()
-    {
-        return $this->belongsToMany(User::class, 'user_seen_by_admin', 'admin_id', 'user_id')->withTimestamps();
-    }
-
-    public function addresses()
-    {
-        return $this->hasMany(UserAddress::class);
-    }
-
-    
     
 
 }

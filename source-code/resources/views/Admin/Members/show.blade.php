@@ -43,13 +43,14 @@
                             @foreach($member->produks as $produk)
                                 <li>
                                     <strong>{{ $produk->nama }}</strong><br>
-                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" alt="{{ $produk->nama }}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; margin-top: 5px;">
+                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" alt="{{ $produk->nama }}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; margin-top: 5px;"><br>
+                                    <small><strong>Purchase Date:</strong> {{ $produk->pivot->pembelian ? $produk->pivot->pembelian : 'N/A' }}</small>
                                 </li>
                             @endforeach
                         </ul>
                     @endif
                 </div>
-
+                
                 <a href="{{ route('members.index') }}" class="btn btn-secondary">Back to Members List</a>
             </div>
         </div>

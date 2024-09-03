@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\BidangPerusahaan;
 use App\Models\Produk;
 use App\Models\User;
+use App\Models\UserProduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+
 
 
 class MemberController extends Controller
@@ -60,6 +63,7 @@ class MemberController extends Controller
     {
         $member = User::findOrFail($id);
         $password = session('password'); // Retrieve the password from the session
+        
 
         return view('admin.members.show', compact('member', 'password'));
     }
@@ -117,46 +121,77 @@ public function update(Request $request, $id)
     public function addProducts($id)
     {
         $member = User::findOrFail($id);
-        $produks = Produk::all(); // Get all products to choose from
-
+        $produks = Produk::all(); // Mendapatkan semua produk yang tersedia
+    
         return view('admin.members.add-products', compact('member', 'produks'));
     }
 
     public function storeProducts(Request $request, $id)
     {
         $request->validate([
-            'produk_id' => 'required|array',
             'produk_id.*' => 'exists:produk,id',
+            'pembelian.*' => 'date', // Pastikan setiap tanggal valid
         ]);
-
+    
         $member = User::findOrFail($id);
-        $member->produks()->sync($request->produk_id); // Attach selected products to the user
-
+    
+        foreach ($request->produk_id as $index => $produk_id) {
+            UserProduk::create([
+                'user_id' => $member->id,
+                'produk_id' => $produk_id,
+                'pembelian' => $request->pembelian[$index],
+            ]);
+        }
+    
         return redirect()->route('members.show', $member->id)->with('success', 'Products added to member successfully.');
     }
+    
 
     public function editProducts($id)
     {
-        $member = User::findOrFail($id);
-        $produks = Produk::all(); // Get all products to choose from
-        $selectedProdukIds = $member->produks->pluck('id')->toArray(); // Get the IDs of the currently associated products
-
-        return view('admin.members.edit-products', compact('member', 'produks', 'selectedProdukIds'));
+        // Ambil user beserta produk yang dimiliki
+        $member = User::with('produks')->findOrFail($id);
+    
+        // Ambil semua produk yang tersedia
+        $produks = Produk::all();
+    
+        return view('admin.members.edit-products', compact('member', 'produks'));
     }
+    
 
     public function updateProducts(Request $request, $id)
     {
         $request->validate([
             'produk_id.*' => 'exists:produk,id',
+            'pembelian.*' => 'nullable|date', // Mengizinkan tanggal kosong atau null
         ]);
     
         $member = User::findOrFail($id);
     
-        // If no products are selected, the sync method will detach all products.
-        $member->produks()->sync($request->produk_id ?? []);
+        // Hapus semua produk yang ada terlebih dahulu
+        UserProduk::where('user_id', $member->id)->delete();
+    
+        // Jika ada produk yang dipilih, tambahkan kembali ke dalam database
+        if ($request->has('produk_id')) {
+            foreach ($request->produk_id as $index => $produk_id) {
+                UserProduk::create([
+                    'user_id' => $member->id,
+                    'produk_id' => $produk_id,
+                    'pembelian' => $request->pembelian[$index] ?? null, // Mengisi null jika tanggal tidak diberikan
+                ]);
+            }
+        }
     
         return redirect()->route('members.show', $member->id)->with('success', 'Products updated successfully.');
     }
+    
+
+
+
+
+
+
+
     
 
 
