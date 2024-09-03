@@ -24,7 +24,7 @@ use App\Http\Controllers\Member\Produk\ProdukMemberController;
 */
 
 Route::get('/about', function () {
-    return view('Customer.About.about');
+    return view('customer.About.about');
 });
 
 Route::get('/product', function () {
@@ -92,6 +92,8 @@ Route::get('/portal/document', [PortalController::class, 'Document'])->name('por
 Route::get('/portal/qna', [PortalController::class, 'FaqProduk'])->name('portal.qna');
 
 
+
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 Auth::routes();
 
 //Normal Users Routes List
@@ -100,9 +102,6 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
 
     //Admin Routes List
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
-
-    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-
     Route::resource('admin/members', MemberController::class);
     Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
     Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');
@@ -131,3 +130,6 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
 });
 
 
+use App\Http\Controllers\LocationController;
+
+Route::get('/locations', [LocationController::class, 'index']);

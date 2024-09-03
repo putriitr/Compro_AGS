@@ -1,4 +1,4 @@
-@extends('layouts.customer.master')
+@extends('layouts.member.master')
 
 @section('content')
 <!-- Header Start -->
@@ -113,8 +113,8 @@
                     <div class="col-12">
                         <div class="feature-icon mb-4">
                             <div class="p-3 d-inline-flex bg-white rounded">
-                                <img src="{{ asset('assets/img/about/value (1).png') }}" alt="Icon"
-                                    class="img-fluid" style="width: 80px; height: 80px; border-radius: 50%;">
+                                <img src="{{ asset('assets/img/about/value (1).png') }}" alt="Icon" class="img-fluid"
+                                    style="width: 80px; height: 80px; border-radius: 50%;">
                             </div>
                         </div>
                         <div class="feature-content d-flex flex-column">
@@ -130,8 +130,8 @@
                     <div class="col-12">
                         <div class="feature-icon mb-4">
                             <div class="p-3 d-inline-flex bg-white rounded">
-                                <img src="{{ asset('assets/img/about/value (2).png') }}" alt="Icon"
-                                    class="img-fluid" style="width: 80px; height: 80px; border-radius: 50%;">
+                                <img src="{{ asset('assets/img/about/value (2).png') }}" alt="Icon" class="img-fluid"
+                                    style="width: 80px; height: 80px; border-radius: 50%;">
                             </div>
                         </div>
                         <div class="feature-content d-flex flex-column">
@@ -148,8 +148,8 @@
                     <div class="col-12">
                         <div class="feature-icon mb-4">
                             <div class="p-3 d-inline-flex bg-white rounded">
-                                <img src="{{ asset('assets/img/about/value (3).png') }}" alt="Icon"
-                                    class="img-fluid" style="width: 80px; height: 80px; border-radius: 50%;">
+                                <img src="{{ asset('assets/img/about/value (3).png') }}" alt="Icon" class="img-fluid"
+                                    style="width: 80px; height: 80px; border-radius: 50%;">
                             </div>
                         </div>
                         <div class="feature-content d-flex flex-column">
@@ -167,8 +167,8 @@
                     <div class="col-12">
                         <div class="feature-icon mb-4">
                             <div class="p-3 d-inline-flex bg-white rounded">
-                                <img src="{{ asset('assets/img/about/value (1).png') }}" alt="Icon"
-                                    class="img-fluid" style="width: 80px; height: 80px; border-radius: 50%;">
+                                <img src="{{ asset('assets/img/about/value (1).png') }}" alt="Icon" class="img-fluid"
+                                    style="width: 80px; height: 80px; border-radius: 50%;">
                             </div>
                         </div>
                         <div class="feature-content d-flex flex-column">
@@ -184,8 +184,8 @@
                     <div class="col-12">
                         <div class="feature-icon mb-4">
                             <div class="p-3 d-inline-flex bg-white rounded">
-                                <img src="{{ asset('assets/img/about/value (2).png') }}" alt="Icon"
-                                    class="img-fluid" style="width: 80px; height: 80px; border-radius: 50%;">
+                                <img src="{{ asset('assets/img/about/value (2).png') }}" alt="Icon" class="img-fluid"
+                                    style="width: 80px; height: 80px; border-radius: 50%;">
                             </div>
                         </div>
                         <div class="feature-content d-flex flex-column">
@@ -202,8 +202,8 @@
                     <div class="col-12">
                         <div class="feature-icon mb-4">
                             <div class="p-3 d-inline-flex bg-white rounded">
-                                <img src="{{ asset('assets/img/about/value (3).png') }}" alt="Icon"
-                                    class="img-fluid" style="width: 80px; height: 80px; border-radius: 50%;">
+                                <img src="{{ asset('assets/img/about/value (3).png') }}" alt="Icon" class="img-fluid"
+                                    style="width: 80px; height: 80px; border-radius: 50%;">
                             </div>
                         </div>
                         <div class="feature-content d-flex flex-column">
@@ -236,16 +236,16 @@
                     <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="service-item rounded">
                             <div class="service-img rounded-top">
-                                <img src="{{ asset('assets/img/about/1.png') }}" class="img-fluid w-100"
-                                    alt="" style="border-radius: 40%;">
+                                <img src="{{ asset('assets/img/about/1.png') }}" class="img-fluid w-100" alt=""
+                                    style="border-radius: 40%;">
                             </div>
                         </div>
                     </div>
                     <div class="col-12 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item rounded">
                             <div class="service-img rounded-top">
-                                <img src="{{ asset('assets/img/about/2.png') }}" class="img-fluid w-100"
-                                    alt="" style="border-radius: 40%; ">
+                                <img src="{{ asset('assets/img/about/2.png') }}" class="img-fluid w-100" alt=""
+                                    style="border-radius: 40%; ">
                             </div>
                         </div>
                     </div>
@@ -407,8 +407,7 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="blog-item rounded">
                     <div class="blog-img">
-                        <img src="{{ asset('assets/img/activity-1.jpg') }}" class="img-fluid w-100"
-                            alt="Image">
+                        <img src="{{ asset('assets/img/activity-1.jpg') }}" class="img-fluid w-100" alt="Image">
                     </div>
                     <div class="blog-centent p-4">
                         <div class="d-flex justify-content-between mb-4">
@@ -424,8 +423,7 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="blog-item rounded">
                     <div class="blog-img">
-                        <img src="{{ asset('assets/img/activity-2.jpg') }}" class="img-fluid w-100"
-                            alt="Image">
+                        <img src="{{ asset('assets/img/activity-2.jpg') }}" class="img-fluid w-100" alt="Image">
                     </div>
                     <div class="blog-centent p-4">
                         <div class="d-flex justify-content-between mb-4">
@@ -441,8 +439,7 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="blog-item rounded">
                     <div class="blog-img">
-                        <img src="{{ asset('assets/img/activity-3.jpg') }}" class="img-fluid w-100"
-                            alt="Image">
+                        <img src="{{ asset('assets/img/activity-3.jpg') }}" class="img-fluid w-100" alt="Image">
                     </div>
                     <div class="blog-centent p-4">
                         <div class="d-flex justify-content-between mb-4">
@@ -458,8 +455,7 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="blog-item rounded">
                     <div class="blog-img">
-                        <img src="{{ asset('assets/img/activity-4.jpg') }}" class="img-fluid w-100"
-                            alt="Image">
+                        <img src="{{ asset('assets/img/activity-4.jpg') }}" class="img-fluid w-100" alt="Image">
                     </div>
                     <div class="blog-centent p-4">
                         <div class="d-flex justify-content-between mb-4">
@@ -506,7 +502,8 @@
             <div class="col-md-12 col-lg-6 col-xl-4 d-flex">
                 <div class="team-item rounded flex-fill">
                     <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
-                        <img src="{{ asset('assets/img/e-katalog.png') }}" alt="Whatsapp Contact" style="width: 55%; max-width: 200px;">
+                        <img src="{{ asset('assets/img/e-katalog.png') }}" alt="Whatsapp Contact"
+                            style="width: 55%; max-width: 200px;">
                         <p class="mb-0 mt-3" style="font-weight: bold; font-size: 18px;">Goverment E-Commerce</p>
                     </div>
                 </div>
@@ -541,21 +538,140 @@
 </div>
 <!-- Sales Channel End -->
 
-<!-- Customer Start -->
-<div class="container-fluid team py-5">
-    <div class="container py-5">
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Valued Collaborations</h4>
+<!-- Map Start -->
+<div class="container" style="
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+    text-align: center; ">
+
+    <h5>This is</h5>
+    <h1 style="font-weight: bold; color: blue; ">Our Customers</h1>
+    <hr>
+    <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
+</div> <br> <br>
+<!-- Map End -->
+
+<!-- Include Leaflet.js -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script>
+    // Inisialisasi peta
+    var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
+
+    //tile layer dari OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Fungsi untuk menambahkan marker dengan info window
+    function addMarker(lat, lng, title, description, address, image) {
+        var marker = L.marker([lat, lng]).addTo(map);
+
+        // Popup konten marker
+        marker.bindPopup(`
+            <div class="info-window">
+                <h3 class="popup-title">${title}</h3>
+                <img src="${image}" alt="${title}" class="popup-image">
+                <p class="popup-description">${description}</p>
+                <p class="popup-address">${address}</p>
             </div>
-            <h1 class="display-3 mb-4">Our Customers</h1>
-        </div>
-        <div class="row g-12 justify-content-center d-flex">
-            <div class="col-md-12 col-lg-6 col-xl-6 d-flex">
-                <img src="{{ asset('assets/img/customer.jpg') }}" class="img-fluid w-100" alt="Image">
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Customer End -->
+        `);
+
+        // Menambahkan label kecil yang muncul saat hover
+        marker.bindTooltip(`<div>${title}</div>`, {
+            permanent: false,
+            direction: 'top',
+            offset: [0, -20],
+            className: 'marker-tooltip'
+        });
+        marker.on('mouseover', function (e) {
+            this.openTooltip();
+        });
+        marker.on('mouseout', function (e) {
+            this.closeTooltip();
+        });
+    }
+
+    // Fetch lokasi dari backend
+    fetch("{{url('/locations')}}")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // untuk debugging
+            data.forEach(location => {
+                addMarker(location.latitude, location.longitude, location.name, location.description, location.address, location.image);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+
+<style>
+    .marker-tooltip {
+        background-color: #b3d9ff;
+        border: 1px solid #80b3ff;
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        font-size: 12px;
+        color: #333;
+    }
+
+    .info-window img.popup-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+
+    .popup-title {
+        font-size: 20px;
+        color: black;
+        font-weight: bold;
+    }
+
+    .popup-description,
+    .popup-address {
+        font-size: 12px;
+        color: #333;
+        margin-top: 10px;
+        text-align: justify;
+    }
+
+    /* Media query untuk perangkat dengan lebar maksimal 768px */
+    @media (max-width: 768px) {
+        .info-window {
+            padding: 10px;
+        }
+
+        .popup-title {
+            font-size: 18px;
+        }
+
+        .popup-description,
+        .popup-address {
+            font-size: 10px;
+        }
+
+        .info-window img.popup-image {
+            margin-bottom: 5px
+        }
+    }
+
+    /* Media query untuk perangkat dengan lebar maksimal 480px */
+    @media (max-width: 480px) {
+        .popup-title {
+            font-size: 16px;
+        }
+
+        .popup-description,
+        .popup-address {
+            font-size: 9px;
+        }
+    }
+</style>
+<!-- Map End -->
+
 @endsection
