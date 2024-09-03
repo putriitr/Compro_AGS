@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\BidangPerusahaan;
+use App\Models\Produk;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -19,37 +21,40 @@ class MemberController extends Controller
 
     public function create()
     {
-        return view('admin.members.create');
+        $bidangPerusahaan = BidangPerusahaan::all();
+        return view('admin.members.create', compact('bidangPerusahaan'));
     }
+    
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'nama_perusahaan' => 'nullable|string|max:255',
-            'bidang_perusahaan' => 'nullable|string|max:255',
-            'no_telp' => 'nullable|string|max:20',
-            'alamat' => 'nullable|string|max:255',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'nama_perusahaan' => 'nullable|string|max:255',
+        'bidang_perusahaan' => 'nullable|exists:bidang_perusahaan,id',
+        'no_telp' => 'nullable|string|max:20',
+        'alamat' => 'nullable|string|max:255',
+    ]);
 
-        $randomPassword = Str::random(8);
+    $randomPassword = Str::random(8);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($randomPassword),
-            'type' => 0, // member
-            'nama_perusahaan' => $request->nama_perusahaan,
-            'bidang_perusahaan' => $request->bidang_perusahaan,
-            'no_telp' => $request->no_telp,
-            'alamat' => $request->alamat,
-        ]);
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($randomPassword),
+        'type' => 0, // member
+        'nama_perusahaan' => $request->nama_perusahaan,
+        'bidang_id' => $request->bidang_perusahaan, // Simpan bidang_id ke tabel users
+        'no_telp' => $request->no_telp,
+        'alamat' => $request->alamat,
+    ]);
 
-        session()->flash('password', $randomPassword);
+    session()->flash('password', $randomPassword);
 
-        return redirect()->route('members.show', $user->id);
-    }
+    return redirect()->route('members.show', $user->id);
+}
+
 
     public function show($id)
     {
@@ -61,41 +66,43 @@ class MemberController extends Controller
 
 
     public function edit($id)
-    {
-        $member = User::findOrFail($id);
-        return view('admin.members.edit', compact('member'));
+{
+    $member = User::findOrFail($id);
+    $bidangPerusahaan = BidangPerusahaan::all(); // Assuming this comes from your database
+    return view('admin.members.edit', compact('member', 'bidangPerusahaan'));
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+        'nama_perusahaan' => 'nullable|string|max:255',
+        'bidang_perusahaan' => 'nullable|exists:bidang_perusahaan,id',
+        'no_telp' => 'nullable|string|max:20',
+        'alamat' => 'nullable|string|max:255',
+        'password' => 'nullable|string|min:8|confirmed',
+    ]);
+
+    $member = User::findOrFail($id);
+
+    $member->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'nama_perusahaan' => $request->nama_perusahaan,
+        'bidang_id' => $request->bidang_perusahaan,
+        'no_telp' => $request->no_telp,
+        'alamat' => $request->alamat,
+    ]);
+
+    // Check if password is provided
+    if ($request->filled('password')) {
+        $member->update(['password' => Hash::make($request->password)]);
     }
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'nama_perusahaan' => 'nullable|string|max:255',
-            'bidang_perusahaan' => 'nullable|string|max:255',
-            'no_telp' => 'nullable|string|max:20',
-            'alamat' => 'nullable|string|max:255',
-            'password' => 'nullable|string|min:8|confirmed',
-        ]);
+    return redirect()->route('members.index')->with('success', 'Member updated successfully.');
+}
 
-        $member = User::findOrFail($id);
-
-        $member->name = $request->name;
-        $member->email = $request->email;
-        $member->nama_perusahaan = $request->nama_perusahaan;
-        $member->bidang_perusahaan = $request->bidang_perusahaan;
-        $member->no_telp = $request->no_telp;
-        $member->alamat = $request->alamat;
-
-        // Check if password is provided
-        if ($request->filled('password')) {
-            $member->password = Hash::make($request->password);
-        }
-
-        $member->save();
-
-        return redirect()->route('members.index')->with('success', 'Member updated successfully.');
-    }
     
 
     public function destroy($id)
@@ -105,4 +112,52 @@ class MemberController extends Controller
 
         return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
     }
+
+    // Method to show the form for adding products to a member
+    public function addProducts($id)
+    {
+        $member = User::findOrFail($id);
+        $produks = Produk::all(); // Get all products to choose from
+
+        return view('admin.members.add-products', compact('member', 'produks'));
+    }
+
+    public function storeProducts(Request $request, $id)
+    {
+        $request->validate([
+            'produk_id' => 'required|array',
+            'produk_id.*' => 'exists:produk,id',
+        ]);
+
+        $member = User::findOrFail($id);
+        $member->produks()->sync($request->produk_id); // Attach selected products to the user
+
+        return redirect()->route('members.show', $member->id)->with('success', 'Products added to member successfully.');
+    }
+
+    public function editProducts($id)
+    {
+        $member = User::findOrFail($id);
+        $produks = Produk::all(); // Get all products to choose from
+        $selectedProdukIds = $member->produks->pluck('id')->toArray(); // Get the IDs of the currently associated products
+
+        return view('admin.members.edit-products', compact('member', 'produks', 'selectedProdukIds'));
+    }
+
+    public function updateProducts(Request $request, $id)
+    {
+        $request->validate([
+            'produk_id.*' => 'exists:produk,id',
+        ]);
+    
+        $member = User::findOrFail($id);
+    
+        // If no products are selected, the sync method will detach all products.
+        $member->produks()->sync($request->produk_id ?? []);
+    
+        return redirect()->route('members.show', $member->id)->with('success', 'Products updated successfully.');
+    }
+    
+
+
 }

@@ -59,8 +59,14 @@ class User extends Authenticatable
         );
     }
 
-    public function Bidang()
+    public function bidangPerusahaan()
     {
-        return $this->belongsTo(BidangPerusahaan::class);
+        return $this->belongsTo(BidangPerusahaan::class, 'bidang_id');
     }
+
+    public function produks()
+    {
+        return $this->belongsToMany(Produk::class, 'user_produk', 'user_id', 'produk_id');
+    }
+
 }
