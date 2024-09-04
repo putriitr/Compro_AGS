@@ -62,19 +62,19 @@
           <span class="sidebar-mini-icon">
             <i class="fa fa-ellipsis-h"></i>
           </span>
-          <h4 class="text-section">Produk</h4>
+          <h4 class="text-section">Pantau</h4>
         </li>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#sidebarLayouts">
             <i class="fas fa-box"></i> 
-            <p>Produk</p>
+            <p>Monitoring</p>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="sidebarLayouts">
             <ul class="nav nav-collapse">
               <li>
-                <a href="{{ route('admin.produk.index') }}">
-                  <span class="sub-item">Produk</span>
+                <a href="{{ route('admin.monitoring.index') }}">
+                  <span class="sub-item">Monitoring</span>
                 </a>
               </li>
             </ul>
