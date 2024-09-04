@@ -3,6 +3,8 @@
 @section('content')
     <div class="container">
         <h1>Products for {{ $user->name }}</h1>
+
+
         @if($user->userProduk->isEmpty())
             <p>No products found for this user.</p>
         @else
@@ -20,7 +22,7 @@
                             <td>{{ $userProduk->produk->nama }}</td>
                             <td>{{ $userProduk->pembelian }}</td>
                             <td>
-                                <a href="{{ route('monitoring.detail', ['userId' => $user->id, 'produkId' => $userProduk->produk->id]) }}" class="btn btn-info">Monitoring</a>
+                                <a href="{{ route('monitoring.detail', $userProduk->id) }}" class="btn btn-primary">Show Monitoring Detail</a>
                             </td>
                         </tr>
                     @endforeach

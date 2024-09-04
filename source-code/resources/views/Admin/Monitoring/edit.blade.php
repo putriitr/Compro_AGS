@@ -1,27 +1,27 @@
 @extends('layouts.admin.master')
 
 @section('content')
-    <div class="container">
-        <h1>{{ $monitoring->exists ? 'Edit Monitoring Data' : 'Add Monitoring Data' }}</h1>
+<div class="container">
+    <h1>Edit Monitoring Data for {{ $userProduk->produk->nama }}</h1>
 
-        <form action="{{ $monitoring->exists ? route('monitoring.update', $monitoring->id) : route('monitoring.store') }}" method="POST">
-            @csrf
-            @if($monitoring->exists)
-                @method('PUT')
-            @endif
+    <form action="{{ route('admin.monitoring.update', $monitoring->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-            <div class="form-group">
-                <label for="status_barang">Status Barang</label>
-                <input type="text" class="form-control" id="status_barang" name="status_barang" value="{{ $monitoring->status_barang ?? '' }}" required>
-            </div>
+        <!-- Status Barang input -->
+        <div class="form-group">
+            <label for="status_barang">Status Barang</label>
+            <input type="text" name="status_barang" id="status_barang" class="form-control" value="{{ $monitoring->status_barang }}" required>
+        </div>
 
-            <div class="form-group">
-                <label for="kondisi_terakhir_produk">Kondisi Terakhir Produk</label>
-                <textarea class="form-control" id="kondisi_terakhir_produk" name="kondisi_terakhir_produk" rows="4" required>{{ $monitoring->kondisi_terakhir_produk ?? '' }}</textarea>
-            </div>
+        <!-- Kondisi Terakhir Produk input -->
+        <div class="form-group">
+            <label for="kondisi_terakhir_produk">Kondisi Terakhir Produk</label>
+            <input type="text" name="kondisi_terakhir_produk" id="kondisi_terakhir_produk" class="form-control" value="{{ $monitoring->kondisi_terakhir_produk }}" required>
+        </div>
 
-            <button type="submit" class="btn btn-success">{{ $monitoring->exists ? 'Save Changes' : 'Add Monitoring Data' }}</button>
-            <a href="{{ route('monitoring.detail', $monitoringId) }}" class="btn btn-secondary">Cancel</a>
-        </form>
-    </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Update Monitoring Data</button>
+    </form>
+</div>
 @endsection

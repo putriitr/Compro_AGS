@@ -115,12 +115,16 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
 
 
     Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
-    Route::get('admin/monitoring/{user}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
-    Route::get('monitoring/{userId}/{produkId}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
-    Route::get('monitoring/{monitoring}/edit', [MonitoringController::class, 'edit'])->name('monitoring.edit');
-    Route::put('monitoring/{monitoring}', [MonitoringController::class, 'update'])->name('monitoring.update');
-        
-    
+    Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
+    Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
+    Route::get('admin/monitoring/create/{userProdukId}', [MonitoringController::class, 'create'])->name('admin.monitoring.create');
+    Route::post('admin/monitoring/store', [MonitoringController::class, 'store'])->name('admin.monitoring.store');
+    // Route for editing monitoring data
+Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
+
+// Route for updating monitoring data
+Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
+
     
     
     

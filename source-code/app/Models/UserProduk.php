@@ -20,4 +20,10 @@ class UserProduk extends Pivot
     return $this->hasOne(Monitoring::class, 'user_produk_id');
 }
 
+public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+
+
 }
