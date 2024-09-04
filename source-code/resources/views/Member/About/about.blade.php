@@ -547,9 +547,14 @@
     background-color: #fff;
     text-align: center; ">
 
-    <h5>This is</h5>
-    <h1 style="font-weight: bold; color: blue; ">Our Customers</h1>
+    <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="sub-style">
+            <h4 class="sub-title px-3 mb-0">Presenting Our Esteemed Customer</h4>
+        </div>
+        <h1 class="display-3 mb-4">Our Valued Customer</h1>
+    </div>
     <hr>
+
     <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
 </div> <br> <br>
 <!-- Map End -->
