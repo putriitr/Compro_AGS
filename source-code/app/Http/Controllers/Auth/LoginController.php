@@ -48,13 +48,13 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         // Attempt to authenticate the user
         if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
-            
+
             // Get the authenticated user
             $user = auth()->user();
-            
+
             // Check the user's type and redirect accordingly
             if ($user->type == 'admin') {
                 return redirect()->route('dashboard');
@@ -67,8 +67,8 @@ class LoginController extends Controller
                 ->with('error', 'Email or Password is incorrect.');
         }
     }
-    
-    
+
+
     public function logout(Request $request)
 {
     $user = Auth::user();  // Capture the user before logging out
