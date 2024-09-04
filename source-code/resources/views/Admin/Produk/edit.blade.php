@@ -106,11 +106,12 @@
                 <div class="form-group mb-3">
                     <label for="control_generation_pdf">Control Generation PDF</label>
                     <input type="file" class="form-control" name="control_generation_pdf" id="control_generation_pdf" accept=".pdf">
+                
                     @if($produk->controlGenerationsProduk)
                         <a href="{{ asset($produk->controlGenerationsProduk->pdf) }}" target="_blank" class="btn btn-link">View Current Control Generation PDF</a>
                     @endif
                 </div>
-
+                
                 <!-- Document Certification PDF -->
                 <div class="form-group mb-3">
                     <label for="document_certification_pdf">Document Certification PDF</label>
@@ -119,6 +120,16 @@
                         <a href="{{ asset($produk->documentCertificationsProduk->pdf) }}" target="_blank" class="btn btn-link">View Current Document Certification PDF</a>
                     @endif
                 </div>
+
+                <div class="form-group">
+                    <label for="file">Brosur (PDF/Image)</label>
+                    <input type="file" class="form-control" id="file" name="file">
+                    @if($produk->brosur)
+                        <a href="{{ asset($produk->brosur->file) }}" target="_blank">View Current Brosur</a>
+                    @endif
+                </div>
+                </div>
+                
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-success">Update Produk</button>

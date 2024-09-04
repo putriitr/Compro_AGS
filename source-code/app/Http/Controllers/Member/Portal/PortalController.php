@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -98,20 +99,14 @@ class PortalController extends Controller
         return view('member.portal.document', compact('produks'));
     }
 
-    public function FaqProduk()
-{
-    if (!Auth::check()) {
-        return redirect()->route('login')->with('error', 'Please login to access your FAQs.');
+    public function Faq(){
+        $faqs = Faq::all();
+        return view('member.portal.qna', compact('faqs'));
+
     }
 
-    $user = Auth::user();
-
-    // Fetch all products associated with the authenticated user and their FAQs
-    $produks = $user->produks->load('faqs');
-
-    return view('member.portal.qna', compact('produks'));
-}
-
-
 
 }
+
+
+

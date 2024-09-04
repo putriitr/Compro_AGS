@@ -8,6 +8,7 @@ use App\Models\Produk;
 use App\Models\User;
 use App\Models\UserProduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -62,7 +63,7 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = User::findOrFail($id);
-        $password = session('password'); // Retrieve the password from the session
+        $password = session('password'); 
         
 
         return view('admin.members.show', compact('member', 'password'));
@@ -99,7 +100,6 @@ public function update(Request $request, $id)
         'alamat' => $request->alamat,
     ]);
 
-    // Check if password is provided
     if ($request->filled('password')) {
         $member->update(['password' => Hash::make($request->password)]);
     }
@@ -117,7 +117,6 @@ public function update(Request $request, $id)
         return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
     }
 
-    // Method to show the form for adding products to a member
     public function addProducts($id)
     {
         $member = User::findOrFail($id);
@@ -130,7 +129,7 @@ public function update(Request $request, $id)
     {
         $request->validate([
             'produk_id.*' => 'exists:produk,id',
-            'pembelian.*' => 'date', // Pastikan setiap tanggal valid
+            'pembelian.*' => 'date', 
         ]);
     
         $member = User::findOrFail($id);
@@ -149,13 +148,11 @@ public function update(Request $request, $id)
 
     public function editProducts($id)
     {
-        // Ambil user beserta produk yang dimiliki
-        $member = User::with('produks')->findOrFail($id);
+        $member = User::with('userProduk')->findOrFail($id);
     
-        // Ambil semua produk yang tersedia
-        $produks = Produk::all();
+        $userProduks = $member->userProduk;
     
-        return view('admin.members.edit-products', compact('member', 'produks'));
+        return view('admin.members.edit-products', compact('member', 'userProduks'));
     }
     
 
@@ -184,6 +181,32 @@ public function update(Request $request, $id)
     
         return redirect()->route('members.show', $member->id)->with('success', 'Products updated successfully.');
     }
+
+    public function validatePassword(Request $request)
+{
+    $adminPassword = $request->input('password');
+    
+    if (Hash::check($adminPassword, Auth::user()->password)) {
+        return response()->json(['success' => true]);
+    } else {
+        return response()->json(['success' => false]);
+    }
+}
+
+
+public function updatePassword(Request $request, $id)
+{
+    $request->validate([
+        'password' => 'required|confirmed|min:8',
+    ]);
+
+    $member = User::find($id);
+    $member->password = Hash::make($request->input('password'));
+    $member->save();
+
+    return response()->json(['success' => true]);
+}
+
     
 
 

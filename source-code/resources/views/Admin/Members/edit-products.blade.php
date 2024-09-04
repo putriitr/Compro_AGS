@@ -9,31 +9,19 @@
         @method('PUT')
 
         <div id="product-list">
-            @foreach($produks as $produk)
-                @php
-                    // Periksa apakah user memiliki produk ini
-                    $userProduk = $member->produks->where('id', $produk->id)->first();
-                @endphp
+            @foreach($member->userProduk as $userProduk)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="produk_id[]" value="{{ $produk->id }}"
-                    id="produk_{{ $produk->id }}" 
-                    {{ $userProduk ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" name="produk_id[]" value="{{ $userProduk->produk->id }}"
+                    id="produk_{{ $userProduk->produk->id }}" checked>
                     
-                    <label class="form-check-label" for="produk_{{ $produk->id }}">
-                        {{ $produk->nama }}
+                    <label class="form-check-label" for="produk_{{ $userProduk->produk->id }}">
+                        {{ $userProduk->produk->nama }}
                     </label>
 
-                    @if($userProduk)
-                        <div class="form-group mt-2">
-                            <label for="pembelian_{{ $produk->id }}">Purchase Date</label>
-                            <input type="date" name="pembelian[]" id="pembelian_{{ $produk->id }}" class="form-control" value="{{ $userProduk->pivot->pembelian }}">
-                        </div>
-                    @else
-                        <div class="form-group mt-2">
-                            <label for="pembelian_{{ $produk->id }}">Purchase Date</label>
-                            <input type="date" name="pembelian[]" id="pembelian_{{ $produk->id }}" class="form-control">
-                        </div>
-                    @endif
+                    <div class="form-group mt-2">
+                        <label for="pembelian_{{ $userProduk->produk->id }}">Purchase Date</label>
+                        <input type="date" name="pembelian[]" id="pembelian_{{ $userProduk->produk->id }}" class="form-control" value="{{ $userProduk->pembelian }}">
+                    </div>
                 </div>
             @endforeach
         </div>

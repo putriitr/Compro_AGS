@@ -64,10 +64,9 @@ class User extends Authenticatable
         return $this->belongsTo(BidangPerusahaan::class, 'bidang_id');
     }
 
-    public function produks()
+    public function userProduk()
     {
-        return $this->belongsToMany(Produk::class, 'user_produk', 'user_id', 'produk_id')
-                    ->withPivot('pembelian'); // Ensure that the pembelian field from the pivot table is retrieved
+        return $this->hasMany(UserProduk::class, 'user_id', 'id');
     }
     
 

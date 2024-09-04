@@ -85,6 +85,16 @@
                     <small class="form-text text-muted">Unggah Document Certification PDF jika diperlukan.</small>
                 </div>
 
+
+                <hr>
+                <div class="form-group">
+                    <label for="file">Brosur (PDF/Image)</label>
+                    <input type="file" class="form-control" id="file" name="file" required>
+                    @error('file')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
                               
                 
 

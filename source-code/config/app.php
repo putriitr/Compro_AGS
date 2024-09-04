@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost:8081/Compro_AGS/source-code/public'),
+    'url' => env('APP_URL', 'http://localhost:8081/source-code/public'),
 
     'asset_url' => env('ASSET_URL'),
 

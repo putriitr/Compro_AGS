@@ -36,20 +36,25 @@
 
                 <div class="mb-3">
                     <h4>Products Owned</h4>
-                    @if($member->produks->isEmpty())
+                    @if($member->userProduk->isEmpty())
                         <p>This member has no products.</p>
                     @else
                         <ul>
-                            @foreach($member->produks as $produk)
+                            @foreach($member->userProduk as $userProduk)
                                 <li>
-                                    <strong>{{ $produk->nama }}</strong><br>
-                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" alt="{{ $produk->nama }}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; margin-top: 5px;"><br>
-                                    <small><strong>Purchase Date:</strong> {{ $produk->pivot->pembelian ? $produk->pivot->pembelian : 'N/A' }}</small>
+                                    <strong>{{ $userProduk->produk->nama }}</strong><br>
+                                    @php
+                                        $firstImage = $userProduk->produk->images->first();
+                                        $imageSrc = $firstImage ? $firstImage->gambar : 'assets/img/default.jpg';
+                                    @endphp
+                                    <img src="{{ asset($imageSrc) }}" alt="{{ $userProduk->produk->nama }}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; margin-top: 5px;"><br>
+                                    <small><strong>Purchase Date:</strong> {{ $userProduk->pembelian ? $userProduk->pembelian : 'N/A' }}</small>
                                 </li>
                             @endforeach
                         </ul>
                     @endif
                 </div>
+                
                 
                 <a href="{{ route('members.index') }}" class="btn btn-secondary">Back to Members List</a>
             </div>

@@ -143,7 +143,7 @@
           <div class="collapse" id="faq">
             <ul class="nav nav-collapse">
               <li>
-                <a href="#">
+                <a href="{{ route('admin.faq.index') }}">
                   <span class="sub-item">FAQ</span>
                 </a>
             </ul>

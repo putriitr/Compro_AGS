@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Produk;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brosur;
 use App\Models\ControlGenerationsProduk;
 use App\Models\DocumentCertificationsProduk;
 use App\Models\Kategori;
@@ -49,6 +50,8 @@ class ProdukController extends Controller
             'user_manual' => 'nullable|file|mimes:pdf,doc,docx|max:20000',
             'control_generation_pdf' => 'nullable|file|mimes:pdf|max:20000',
             'document_certification_pdf' => 'nullable|file|mimes:pdf|max:20000',
+            'file' => 'nullable|mimes:pdf,jpeg,png,jpg,gif|max:20000', // Optional for editing
+
     
         ]);
         
@@ -113,6 +116,29 @@ class ProdukController extends Controller
                 $produkImage->save();
             }
         }
+
+         // Handle brosur update
+    if ($request->hasFile('file')) {
+        // Hapus brosur lama jika ada
+        $oldBrosur = Brosur::where('produk_id', $produk->id)->first();
+        if ($oldBrosur && file_exists(public_path($oldBrosur->file))) {
+            unlink(public_path($oldBrosur->file));
+            $oldBrosur->delete();
+        }
+
+        // Upload brosur baru
+        $file = $request->file('file');
+        $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+        $type = $file->getClientOriginalExtension() === 'pdf' ? 'pdf' : 'image';
+        $file->move('uploads/produk/brosur/', $fileName);
+
+        // Simpan brosur baru
+        Brosur::create([
+            'produk_id' => $produk->id,
+            'file' => 'uploads/produk/brosur/' . $fileName,
+            'type' => $type
+        ]);
+    }
     
         return redirect()->route('admin.produk.index')->with('success', 'Produk created successfully.');
     }
@@ -152,6 +178,7 @@ class ProdukController extends Controller
         'user_manual' => 'nullable|file|mimes:pdf,doc,docx|max:20000',
         'control_generation_pdf' => 'nullable|file|mimes:pdf|max:20000',
         'document_certification_pdf' => 'nullable|file|mimes:pdf|max:20000',
+        'file' => 'nullable|mimes:pdf,jpeg,png,jpg,gif|max:20000',
     ]);
 
     $produk = Produk::findOrFail($id);
@@ -206,6 +233,7 @@ class ProdukController extends Controller
         $documentCertification->pdf = 'uploads/produk/document_certifications/' . $documentCertificationPdfName;
         $documentCertification->save();
     }
+    
 
     // Handle video upload
     if ($request->hasFile('video')) {
@@ -234,6 +262,38 @@ class ProdukController extends Controller
             $produkImage->save();
         }
     }
+
+        // Handle brosur update
+        if ($request->hasFile('file')) {
+            // Ambil brosur lama terkait produk
+            $oldBrosur = Brosur::where('produk_id', $produk->id)->first();
+        
+            // Jika brosur lama ada dan file fisik ada di server, hapus file lama
+            if ($oldBrosur && file_exists(public_path($oldBrosur->file))) {
+                unlink(public_path($oldBrosur->file)); // Menghapus file fisik dari server
+            }
+        
+            // Hapus record brosur lama dari database
+            if ($oldBrosur) {
+                $oldBrosur->delete();
+            }
+        
+            // Upload brosur baru
+            $file = $request->file('file');
+            $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+            $type = $file->getClientOriginalExtension() === 'pdf' ? 'pdf' : 'image';
+            $file->move('uploads/produk/brosur/', $fileName);
+        
+            // Simpan brosur baru di database
+            Brosur::create([
+                'produk_id' => $produk->id,
+                'file' => 'uploads/produk/brosur/' . $fileName,
+                'type' => $type
+            ]);
+        }
+        
+
+    
 
     return redirect()->route('admin.produk.index')->with('success', 'Produk updated successfully.');
 }
