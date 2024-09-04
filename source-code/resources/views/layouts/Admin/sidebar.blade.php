@@ -112,7 +112,7 @@
                     <div class="collapse" id="sliders">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="">
+                                <a href="{{ route('admin.slider.index') }}">
                                     <span class="sub-item">Slider</span>
                                 </a>
                             </li>

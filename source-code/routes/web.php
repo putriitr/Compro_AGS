@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\Member\MemberController;
 use App\Http\Controllers\Admin\FAQ\FAQController;
+use App\Http\Controllers\Admin\Monitoring\MonitoringController;
 use App\Http\Controllers\Admin\Produk\ProdukController;
 use App\Http\Controllers\Member\Portal\PortalController;
 use App\Http\Controllers\Member\Produk\ProdukMemberController;

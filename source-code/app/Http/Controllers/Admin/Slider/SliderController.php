@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Section;
+namespace App\Http\Controllers\Admin\Slider;
+
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,13 +13,13 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        return view('section.sliders.index', compact('sliders'));
+        return view('admin.slider.index', compact('sliders'));
     }
 
     // Show form to create a new slider
     public function create()
     {
-        return view('section.sliders.create');
+        return view('admin.slider.create');
     }
 
     // Store new slider
@@ -30,7 +31,7 @@ class SliderController extends Controller
             'subtitle' => 'required|string|max:255',
             'description' => 'required|string',
             'button_text' => 'required|string|max:255',
-            'button_url' => 'required|url',
+            'button_url' => 'required|string',
         ]);
 
         $imagePath = $request->file('image_url')->store('sliders', 'public');
@@ -44,14 +45,14 @@ class SliderController extends Controller
             'button_url' => $request->button_url,
         ]);
 
-        return redirect()->route('sliders.index')->with('success', 'Slider created successfully.');
+        return redirect()->route('admin.slider.index')->with('success', 'Slider created successfully.');
     }
 
     // Show form to edit an existing slider
     public function edit($id)
     {
         $slider = Slider::findOrFail($id);
-        return view('section.sliders.edit', compact('slider'));
+        return view('admin.slider.edit', compact('slider'));
     }
 
     // Update slider
@@ -65,7 +66,7 @@ class SliderController extends Controller
             'subtitle' => 'required|string|max:255',
             'description' => 'required|string',
             'button_text' => 'required|string|max:255',
-            'button_url' => 'required|url',
+            'button_url' => 'required|string',
         ]);
 
         if ($request->hasFile('image_url')) {
@@ -80,7 +81,7 @@ class SliderController extends Controller
         $slider->button_url = $request->button_url;
         $slider->save();
 
-        return redirect()->route('sliders.index')->with('success', 'Slider updated successfully.');
+        return redirect()->route('admin.slider.index')->with('success', 'Slider updated successfully.');
     }
 
     // Delete slider

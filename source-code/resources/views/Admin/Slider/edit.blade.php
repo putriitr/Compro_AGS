@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('content')
-    <form action="{{ route('sliders.update', $slider->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.slider.update', $slider->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="button_url">Button URL</label>
-            <input type="url" class="form-control" id="button_url" name="button_url" value="{{ $slider->button_url }}">
+            <input type="text" class="form-control" id="button_url" name="button_url" value="{{ $slider->button_url }}">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

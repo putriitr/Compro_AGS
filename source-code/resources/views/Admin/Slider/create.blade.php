@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('content')
-    <form action="{{ route('sliders.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="image_url">Image</label>
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label for="button_url">Button URL</label>
-            <input type="url" class="form-control" id="button_url" name="button_url">
+            <input type="text" class="form-control" id="button_url" name="button_url">
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
