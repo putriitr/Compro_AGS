@@ -127,23 +127,30 @@ public function update(Request $request, $id)
 
     public function storeProducts(Request $request, $id)
     {
+        // Validasi input
         $request->validate([
             'produk_id.*' => 'exists:produk,id',
-            'pembelian.*' => 'date', 
+            'pembelian.*' => 'nullable|date', 
         ]);
     
+        // Ambil member terkait
         $member = User::findOrFail($id);
     
-        foreach ($request->produk_id as $index => $produk_id) {
+        // Simpan produk yang dipilih dan tanggal pembelian
+        foreach ($request->produk_id as $produk_id => $value) {
+            $pembelianDate = $request->pembelian[$produk_id] ?? null;
+    
+            // Simpan ke tabel user_produk
             UserProduk::create([
                 'user_id' => $member->id,
                 'produk_id' => $produk_id,
-                'pembelian' => $request->pembelian[$index],
+                'pembelian' => $pembelianDate,
             ]);
         }
     
         return redirect()->route('members.show', $member->id)->with('success', 'Products added to member successfully.');
     }
+    
     
 
     public function editProducts($id)
@@ -207,7 +214,6 @@ public function updatePassword(Request $request, $id)
     return response()->json(['success' => true]);
 }
 
-    
 
 
 
@@ -215,7 +221,6 @@ public function updatePassword(Request $request, $id)
 
 
 
-    
 
 
 }

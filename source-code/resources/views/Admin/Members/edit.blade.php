@@ -45,12 +45,17 @@
                         @endif
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label for="bidang_perusahaan" class="form-label">Bidang Perusahaan</label>
-                        <select name="bidang_perusahaan" id="bidang_perusahaan" class="form-control">
-                            <option value="" disabled selected>Pilih Bidang Perusahaan</option>
-                            @foreach($bidangPerusahaan as $bidang)
-                                <option value="{{ $bidang->id }}" {{ old('bidang_perusahaan', $member->bidang_perusahaan) == $bidang->id ? 'selected' : '' }}>{{ $bidang->name }}</option>
+
+
+                    <div class="form-group">
+                        <label for="bidang_perusahaan">Bidang Perusahaan</label>
+                        <select class="form-control" id="bidang_perusahaan" name="bidang_perusahaan" required>
+                            <option value="" disabled>-- Pilih Bidang Perusahaan --</option>
+                            @foreach ($bidangPerusahaan as $bidang)
+                                <option value="{{ $bidang->id }}"
+                                    {{ $member->bidang_perusahaan == $bidang->id ? 'selected' : '' }}>
+                                    {{ $bidang->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>

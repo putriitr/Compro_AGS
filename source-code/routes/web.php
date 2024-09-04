@@ -102,6 +102,7 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
 
     //Admin Routes List
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('admin/members', MemberController::class);
     Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
     Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');

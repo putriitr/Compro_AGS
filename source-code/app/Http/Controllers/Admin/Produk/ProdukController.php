@@ -48,9 +48,8 @@ class ProdukController extends Controller
             'gambar.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:15000',
             'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000', 
             'user_manual' => 'nullable|file|mimes:pdf,doc,docx|max:20000',
-            'control_generation_pdf' => 'nullable|file|mimes:pdf|max:20000',
-            'document_certification_pdf' => 'nullable|file|mimes:pdf|max:20000',
-            'file' => 'nullable|mimes:pdf,jpeg,png,jpg,gif|max:20000', // Optional for editing
+            'document_certification_pdf.*' => 'nullable|file|mimes:pdf|max:20000',
+            'file.*' => 'nullable|mimes:pdf,jpeg,png,jpg,gif|max:20000', // Optional for editing
 
     
         ]);
@@ -68,26 +67,20 @@ class ProdukController extends Controller
             $produk->save();
         }
 
-        if ($request->hasFile('control_generation_pdf')) {
-            $controlGenerationPdfName = time() . '_' . Str::slug(pathinfo($request->file('control_generation_pdf')->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $request->file('control_generation_pdf')->getClientOriginalExtension();
-            $request->file('control_generation_pdf')->move('uploads/produk/control_generations/', $controlGenerationPdfName);
-    
-            $controlGeneration = new ControlGenerationsProduk;
-            $controlGeneration->produk_id = $produk->id;
-            $controlGeneration->pdf = 'uploads/produk/control_generations/' . $controlGenerationPdfName;
-            $controlGeneration->save();
-        }
-
           // Handle document certification PDF upload
-    if ($request->hasFile('document_certification_pdf')) {
-        $documentCertificationPdfName = time() . '_' . Str::slug(pathinfo($request->file('document_certification_pdf')->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $request->file('document_certification_pdf')->getClientOriginalExtension();
-        $request->file('document_certification_pdf')->move('uploads/produk/document_certifications/', $documentCertificationPdfName);
-
-        $documentCertification = new DocumentCertificationsProduk;
-        $documentCertification->produk_id = $produk->id;
-        $documentCertification->pdf = 'uploads/produk/document_certifications/' . $documentCertificationPdfName;
-        $documentCertification->save();
-    }
+          if ($request->hasFile('document_certification_pdf')) {
+            foreach ($request->file('document_certification_pdf') as $file) {
+                $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+                $file->move('uploads/produk/document_certifications/', $fileName);
+        
+                // Simpan dokumen di database
+                DocumentCertificationsProduk::create([
+                    'produk_id' => $produk->id,
+                    'pdf' => 'uploads/produk/document_certifications/' . $fileName,
+                ]);
+            }
+        }
+        
     
         // Handle video upload
         if ($request->hasFile('video')) {
@@ -118,27 +111,21 @@ class ProdukController extends Controller
         }
 
          // Handle brosur update
-    if ($request->hasFile('file')) {
-        // Hapus brosur lama jika ada
-        $oldBrosur = Brosur::where('produk_id', $produk->id)->first();
-        if ($oldBrosur && file_exists(public_path($oldBrosur->file))) {
-            unlink(public_path($oldBrosur->file));
-            $oldBrosur->delete();
+         if ($request->hasFile('file')) {
+            foreach ($request->file('file') as $file) {
+                $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+                $type = $file->getClientOriginalExtension() === 'pdf' ? 'pdf' : 'image';
+                $file->move('uploads/produk/brosur/', $fileName);
+        
+                // Simpan brosur di database
+                Brosur::create([
+                    'produk_id' => $produk->id,
+                    'file' => 'uploads/produk/brosur/' . $fileName,
+                    'type' => $type,
+                ]);
+            }
         }
-
-        // Upload brosur baru
-        $file = $request->file('file');
-        $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
-        $type = $file->getClientOriginalExtension() === 'pdf' ? 'pdf' : 'image';
-        $file->move('uploads/produk/brosur/', $fileName);
-
-        // Simpan brosur baru
-        Brosur::create([
-            'produk_id' => $produk->id,
-            'file' => 'uploads/produk/brosur/' . $fileName,
-            'type' => $type
-        ]);
-    }
+        
     
         return redirect()->route('admin.produk.index')->with('success', 'Produk created successfully.');
     }
@@ -156,9 +143,10 @@ class ProdukController extends Controller
 
     public function show($id)
     {
-        $produk = Produk::with('images', 'videos', 'controlGenerationsProduk', 'documentCertifications')->findOrFail($id);
+        $produk = Produk::with('images', 'videos', 'documentCertificationsProduk', 'brosur')->findOrFail($id);
         return view('admin.produk.show', compact('produk'));
     }
+    
     
 
 
@@ -176,9 +164,8 @@ class ProdukController extends Controller
         'gambar.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:15000',
         'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000',
         'user_manual' => 'nullable|file|mimes:pdf,doc,docx|max:20000',
-        'control_generation_pdf' => 'nullable|file|mimes:pdf|max:20000',
-        'document_certification_pdf' => 'nullable|file|mimes:pdf|max:20000',
-        'file' => 'nullable|mimes:pdf,jpeg,png,jpg,gif|max:20000',
+        'document_certification_pdf.*' => 'nullable|file|mimes:pdf|max:20000',
+        'file.*' => 'nullable|mimes:pdf,jpeg,png,jpg,gif|max:20000',
     ]);
 
     $produk = Produk::findOrFail($id);
@@ -198,41 +185,32 @@ class ProdukController extends Controller
         $produk->save();
     }
 
-    // Handle control generation PDF upload
-    if ($request->hasFile('control_generation_pdf')) {
-        // Delete the old control generation PDF if exists
-        $oldControlGeneration = ControlGenerationsProduk::where('produk_id', $produk->id)->first();
-        if ($oldControlGeneration && file_exists(public_path($oldControlGeneration->pdf))) {
-            unlink(public_path($oldControlGeneration->pdf));
-            $oldControlGeneration->delete();
+        // Handle document certification PDF upload
+        if ($request->hasFile('document_certification_pdf')) {
+            // Ambil brosur lama terkait produk dan hapus file fisiknya jika diperlukan
+            $oldDocumentCertifications = DocumentCertificationsProduk::where('produk_id', $produk->id)->get();
+            
+            // Menghapus semua dokumen lama
+            foreach ($oldDocumentCertifications as $oldDocument) {
+                if (file_exists(public_path($oldDocument->pdf))) {
+                    unlink(public_path($oldDocument->pdf)); // Menghapus file dari server
+                }
+                $oldDocument->delete(); // Menghapus record dari database
+            }
+        
+            // Upload dan simpan dokumen baru
+            foreach ($request->file('document_certification_pdf') as $file) {
+                $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+                $file->move('uploads/produk/document_certifications/', $fileName);
+        
+                // Simpan dokumen di database
+                DocumentCertificationsProduk::create([
+                    'produk_id' => $produk->id,
+                    'pdf' => 'uploads/produk/document_certifications/' . $fileName
+                ]);
+            }
         }
-
-        $controlGenerationPdfName = time() . '_' . Str::slug(pathinfo($request->file('control_generation_pdf')->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $request->file('control_generation_pdf')->getClientOriginalExtension();
-        $request->file('control_generation_pdf')->move('uploads/produk/control_generations/', $controlGenerationPdfName);
-
-        $controlGeneration = new ControlGenerationsProduk;
-        $controlGeneration->produk_id = $produk->id;
-        $controlGeneration->pdf = 'uploads/produk/control_generations/' . $controlGenerationPdfName;
-        $controlGeneration->save();
-    }
-
-    // Handle document certification PDF upload
-    if ($request->hasFile('document_certification_pdf')) {
-        // Delete the old document certification PDF if exists
-        $oldDocumentCertification = DocumentCertificationsProduk::where('produk_id', $produk->id)->first();
-        if ($oldDocumentCertification && file_exists(public_path($oldDocumentCertification->pdf))) {
-            unlink(public_path($oldDocumentCertification->pdf));
-            $oldDocumentCertification->delete();
-        }
-
-        $documentCertificationPdfName = time() . '_' . Str::slug(pathinfo($request->file('document_certification_pdf')->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $request->file('document_certification_pdf')->getClientOriginalExtension();
-        $request->file('document_certification_pdf')->move('uploads/produk/document_certifications/', $documentCertificationPdfName);
-
-        $documentCertification = new DocumentCertificationsProduk;
-        $documentCertification->produk_id = $produk->id;
-        $documentCertification->pdf = 'uploads/produk/document_certifications/' . $documentCertificationPdfName;
-        $documentCertification->save();
-    }
+        
     
 
     // Handle video upload
@@ -266,31 +244,31 @@ class ProdukController extends Controller
         // Handle brosur update
         if ($request->hasFile('file')) {
             // Ambil brosur lama terkait produk
-            $oldBrosur = Brosur::where('produk_id', $produk->id)->first();
-        
-            // Jika brosur lama ada dan file fisik ada di server, hapus file lama
-            if ($oldBrosur && file_exists(public_path($oldBrosur->file))) {
-                unlink(public_path($oldBrosur->file)); // Menghapus file fisik dari server
-            }
-        
-            // Hapus record brosur lama dari database
-            if ($oldBrosur) {
-                $oldBrosur->delete();
+            $oldBrosur = Brosur::where('produk_id', $produk->id)->get();
+            
+            // Hapus semua file brosur lama
+            foreach ($oldBrosur as $brosur) {
+                if (file_exists(public_path($brosur->file))) {
+                    unlink(public_path($brosur->file)); // Menghapus file fisik dari server
+                }
+                $brosur->delete(); // Hapus dari database
             }
         
             // Upload brosur baru
-            $file = $request->file('file');
-            $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
-            $type = $file->getClientOriginalExtension() === 'pdf' ? 'pdf' : 'image';
-            $file->move('uploads/produk/brosur/', $fileName);
-        
-            // Simpan brosur baru di database
-            Brosur::create([
-                'produk_id' => $produk->id,
-                'file' => 'uploads/produk/brosur/' . $fileName,
-                'type' => $type
-            ]);
+            foreach ($request->file('file') as $file) {
+                $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+                $type = $file->getClientOriginalExtension() === 'pdf' ? 'pdf' : 'image';
+                $file->move('uploads/produk/brosur/', $fileName);
+                
+                // Simpan brosur baru di database
+                Brosur::create([
+                    'produk_id' => $produk->id,
+                    'file' => 'uploads/produk/brosur/' . $fileName,
+                    'type' => $type
+                ]);
+            }
         }
+        
         
 
     

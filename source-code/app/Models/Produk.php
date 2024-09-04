@@ -40,17 +40,12 @@ class Produk extends Model
     }
     public function documentCertificationsProduk()
     {
-        return $this->hasOne(DocumentCertificationsProduk::class); // or hasMany() if multiple
+        return $this->hasMany(DocumentCertificationsProduk::class); // or hasMany() if multiple
     }
 
-    public function controlGenerationsProduk()
-    {
-        return $this->hasOne(ControlGenerationsProduk::class);
-    }
-    
     public function brosur()
     {
-        return $this->hasOne(Brosur::class); // or use a different relationship type if necessary
+        return $this->hasMany(Brosur::class); // or use a different relationship type if necessary
     }
 
 
