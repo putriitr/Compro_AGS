@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\Member\MemberController;
 use App\Http\Controllers\Admin\FAQ\FAQController;
-use App\Http\Controllers\Admin\Monitoring\MonitoringController;
 use App\Http\Controllers\Admin\Produk\ProdukController;
 use App\Http\Controllers\Member\Portal\PortalController;
 use App\Http\Controllers\Member\Produk\ProdukMemberController;
+use App\Http\Controllers\Admin\Slider\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +39,10 @@ Route::get('/category', function () {
 Route::get('/detail', function () {
     return view('member.Category-Product.detail');
 });
+
+Route::get('/activity', function () {
+    return view('member.Activity.activity');
+})->name('activity');
 
 Route::get('/contact', function () {
     return view('Customer.Contact.contact');
@@ -113,7 +117,6 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
     Route::post('/admin/validate-password', [MemberController::class, 'validatePassword'])->name('admin.validatePassword');
 
 
-
     Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
     Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
     Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
@@ -125,10 +128,6 @@ Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])-
 // Route for updating monitoring data
 Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
 
-    
-    
-    
-    
 
     //masterdata
     Route::resource('admin/bidangperusahaan', BidangPerusahaanController::class);
@@ -139,10 +138,19 @@ Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->na
 
     //FAQ
     Route::resource('admin/faq', FAQController::class)->names('admin.faq');
-    
+
+    //Slider
+    Route::resource('admin/slider', SliderController::class)->names('admin.slider');
+
 });
 
 
 use App\Http\Controllers\LocationController;
 
 Route::get('/locations', [LocationController::class, 'index']);
+
+
+
+
+    
+    

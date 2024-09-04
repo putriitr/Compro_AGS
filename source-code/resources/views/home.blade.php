@@ -3,33 +3,25 @@
 @section('content')
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel">
-        <div class="header-carousel-item">
-            <img src="{{ asset('assets/img/company-1.jpg') }}" class="img-fluid w-100" alt="Image">
-            <div class="carousel-caption">
-                <div class="carousel-caption-content p-3">
-                    <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">Simplifying Industries
-                    </h5>
-                    <h1 class="display-1 text-capitalize text-white mb-4">Empowering Your Business With Excellence</h1>
-                    <p class="mb-5 fs-5">We optimize your output by delivering innovative, high-quality, advanced technology
-                        and value-added products solutions through new or reimagined technology products and services.</p>
-                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Place an order</a>
+        @foreach ($sliders as $slider)
+            <div class="header-carousel-item">
+                <img src="{{ asset('storage/' . $slider->image_url) }}" class="img-fluid w-100" alt="Image">
+                <div class="carousel-caption">
+                    <div class="carousel-caption-content p-3">
+                        <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                            {{ $slider->subtitle }}
+                        </h5>
+                        <h1 class="display-1 text-capitalize text-white mb-4">
+                            {{ $slider->title }}
+                        </h1>
+                        <p class="mb-5 fs-5">{{ $slider->description }}</p>
+                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ $slider->button_url }}">
+                            {{ $slider->button_text }}
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="header-carousel-item">
-            <img src="{{ asset('assets/img/company.jpg') }}" class="img-fluid w-100" alt="Image">
-            <div class="carousel-caption">
-                <div class="carousel-caption-content p-3">
-                    <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Simplifying Industries
-                    </h5>
-                    <h1 class="display-1 text-capitalize text-white mb-4">Empowering Your Business With Excellence</h1>
-                    <p class="mb-5 fs-5 animated slideInDown">We optimize your output by delivering innovative,
-                        high-quality, advanced technology and value-added products solutions through new or reimagined
-                        technology products and services.</p>
-                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="#">Place an order</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <!-- Carousel End -->
     </div>
@@ -165,22 +157,19 @@
                 <h1 class="display-3 mb-4">Elevate your lifestyle with our top-quality solutions.</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                @foreach($kategori as $kategoris)
+                @foreach ($kategori as $kategoris)
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="blog-item rounded">
-                            <div class="blog-img" style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
-                                <img src="{{ asset($kategoris->gambar) }}"
-                                     class="img-fluid w-100"
-                                     style="transition: transform 0.3s ease;"
-                                     alt="{{ $kategoris->nama }}"
-                                     onmouseover="this.style.transform='scale(1.1)'"
-                                     onmouseout="this.style.transform='scale(1)'">
+                            <div class="blog-img"
+                                style="overflow: hidden; transition: transform 0.3s ease; margin-bottom: 10px;">
+                                <img src="{{ asset($kategoris->gambar) }}" class="img-fluid w-100"
+                                    style="transition: transform 0.3s ease;" alt="{{ $kategoris->nama }}"
+                                    onmouseover="this.style.transform='scale(1.1)'"
+                                    onmouseout="this.style.transform='scale(1)'">
                             </div>
                             <h5>{{ $kategoris->nama }}
-                                <span class="arrow"
-                                      style="display: inline-block; transition: transform 0.3s ease;"
-                                      onmouseover="this.textContent='—>'"
-                                      onmouseout="this.textContent='→'">→</span>
+                                <span class="arrow" style="display: inline-block; transition: transform 0.3s ease;"
+                                    onmouseover="this.textContent='—>'" onmouseout="this.textContent='→'">→</span>
                             </h5>
                         </div>
                     </div>
@@ -191,7 +180,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Product End -->
 
     <!-- Ecommerce Start -->
