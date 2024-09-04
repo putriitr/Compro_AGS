@@ -149,17 +149,6 @@
               </ul>
             </li> --}}
 
-            @php
-    $unseenOrders = \App\Models\Order::whereDoesntHave('seen_by_users', function($query) {
-        $query->where('user_id', Auth::id());
-    })->get();
-
-    $unseenUsers = \App\Models\User::where('role', 0) // Assuming role 0 is for customers
-        ->whereDoesntHave('seenByAdmins', function($query) {
-            $query->where('admin_id', Auth::id());
-        })
-        ->get();
-@endphp
 
 <li class="nav-item topbar-icon dropdown hidden-caret">
     <a
@@ -172,49 +161,43 @@
         aria-expanded="false"
     >
         <i class="fa fa-bell"></i>
-        @if(count($unseenOrders) > 0 || count($unseenUsers) > 0)
-            <span class="notification">{{ count($unseenOrders) + count($unseenUsers) }}</span>
-        @endif
+            <span class="notification">2</span>
     </a>
     <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
         <li>
             <div class="dropdown-title">
-                You have {{ count($unseenOrders) + count($unseenUsers) }} new notifications
+                You have 2 new notifications
             </div>
         </li>
         <li>
             <div class="notif-scroll scrollbar-outer">
                 <div class="notif-center">
                     <!-- Unseen Orders -->
-                    @foreach($unseenOrders as $order)
-                        <a href="{{ route('transaksi.show', $order->id) }}">
+                        <a href="#">
                             <div class="notif-icon notif-primary">
                                 <i class="fa fa-shopping-cart"></i>
                             </div>
                             <div class="notif-content">
-                                <span class="block">New Order #{{ $order->id }} - {{ $order->user->userdetail->perusahaan ?? 'Unknown Company' }}</span>
-                                <span class="time">{{ $order->created_at->diffForHumans() }}</span>
+                                <span class="block">New Order #</span>
+                                <span class="time">10:00 AM</span>
                             </div>
                         </a>
-                    @endforeach
 
                     <!-- Unseen User Registrations -->
-                    @foreach($unseenUsers as $user)
-                        <a href="{{ route('users.show', $user->id) }}">
+                        <a href="#">
                             <div class="notif-icon notif-primary">
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="notif-content">
-                                <span class="block">New User: {{ $user->name }} - {{ $user->userDetail->perusahaan ?? 'Unknown Company' }}</span>
-                                <span class="time">{{ $user->created_at->diffForHumans() }}</span>
+                                <span class="block">New User: Iqbal</span>
+                                <span class="time">11:00 AM</span>
                             </div>
                         </a>
-                    @endforeach
                 </div>
             </div>
         </li>
         <li>
-            <a class="see-all" href="{{ route('transaksi.index') }}">
+            <a class="see-all" href="#">
                 See all notifications<i class="fa fa-angle-right"></i>
             </a>
         </li>
@@ -248,7 +231,7 @@
                         </div>
                       </a>
                     
-                      <a class="col-6 col-md-4 p-0" href="{{ route('transaksi.index') }}">
+                      <a class="col-6 col-md-4 p-0" href="#">
                         <div class="quick-actions-item">
                             <div class="avatar-item bg-warning rounded-circle">
                                 <i class="fas fa-money-bill-wave"></i>
@@ -256,7 +239,7 @@
                             <span class="text">Transaksi</span>
                         </div>
                     </a>                    
-                    <a class="col-6 col-md-4 p-0" href="{{ route('produk.create') }}">
+                    <a class="col-6 col-md-4 p-0" href="#">
                       <div class="quick-actions-item">
                           <div class="avatar-item bg-info rounded-circle">
                               <i class="fas fa-plus-circle"></i>
@@ -265,7 +248,7 @@
                       </div>
                   </a>
                   
-                  <a class="col-6 col-md-4 p-0" href="{{ route('bigsale.index') }}">
+                  <a class="col-6 col-md-4 p-0" href="#">
                     <div class="quick-actions-item">
                         <div class="avatar-item bg-success rounded-circle">
                             <i class="fas fa-tags"></i>
@@ -274,7 +257,7 @@
                     </div>
                 </a>
                 
-                      <a class="col-6 col-md-4 p-0" href="{{ route('users.index') }}">
+                      <a class="col-6 col-md-4 p-0" href="#">
                         <div class="quick-actions-item">
                             <div class="avatar-item bg-primary rounded-circle">
                                 <i class="fas fa-user-check"></i>
@@ -283,7 +266,7 @@
                         </div>
                     </a>
                     
-                    <a class="col-6 col-md-4 p-0" href="{{ route('produk.index') }}">
+                    <a class="col-6 col-md-4 p-0" href="#">
                       <div class="quick-actions-item">
                           <div class="avatar-item bg-secondary rounded-circle">
                               <i class="fas fa-boxes"></i>

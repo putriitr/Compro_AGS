@@ -8,7 +8,7 @@
             src="{{ asset('assets/images/logo.png') }}"
             alt="navbar brand"
             class="navbar-brand"
-            width="200"
+            width="120"
           />
         </a>
         <div class="nav-toggle">
@@ -29,7 +29,7 @@
       <div class="sidebar-content">
         <ul class="nav nav-secondary">
           <li class="nav-item">
-            <a href="{{ url('/dashboard') }}">
+            <a href="/dashboard">
               <i class="fas fa-home"></i>
               <p>Dashboard</p>
              </a>
@@ -38,36 +38,21 @@
             <span class="sidebar-mini-icon">
               <i class="fa fa-ellipsis-h"></i>
             </span>
-            <h4 class="text-section">transaction</h4>
+            <h4 class="text-section">Member</h4>
           </li>
-          @php
-          $userId = Auth::id();
-          $unseenCount = \App\Models\Order::whereDoesntHave('seen_by_users', function($query) use ($userId) {
-              $query->where('user_id', $userId);
-          })->count();
 
-          $unseenUserCount = \App\Models\User::where('role', 0) // Assuming role 0 is for customers
-          ->whereDoesntHave('seenByAdmins', function($query) use ($userId) {
-              $query->where('admin_id', $userId);
-          })
-          ->count();
-      @endphp
-      
-      
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#tables">
               <i class="fas fa-shopping-cart"></i> 
-              <p>Transaksi</p>
-                @if($unseenCount > 0)
-                    <span class="badge badge-success">{{ $unseenCount }}</span>
-                @endif
+              <p>Member</p>
+                    <span class="badge badge-success">3</span>
                 <span class="caret"></span>
             </a>
             <div class="collapse" id="tables">
                 <ul class="nav nav-collapse">
                     <li>
-                        <a href="{{ route('transaksi.index') }}">
-                            <span class="sub-item">Transaksi</span>
+                        <a href="{{ route('members.index') }}">
+                            <span class="sub-item">Member</span>
                         </a>
                     </li>
                 </ul>
@@ -88,7 +73,7 @@
           <div class="collapse" id="sidebarLayouts">
             <ul class="nav nav-collapse">
               <li>
-                <a href="{{ route('produk.index') }}">
+                <a href="{{ route('admin.produk.index') }}">
                   <span class="sub-item">Produk</span>
                 </a>
               </li>
@@ -110,11 +95,11 @@
           <div class="collapse" id="forms">
             <ul class="nav nav-collapse">
               <li>
-                <a href="{{ route('slider.index') }}">
+                <a href="">
                   <span class="sub-item">Slider - Landing Page</span>
                 </a>
               </li><li>
-                <a href="{{ route('bigsale.index') }}">
+                <a href="">
                   <span class="sub-item">BigSale Event</span>
                 </a>
               </li>
@@ -131,15 +116,13 @@
           <a data-bs-toggle="collapse" href="#customer">
             <i class="fas fa-user"></i> <!-- Mengganti ikon menjadi ikon pengguna (user) -->
             <p>Costumer</p>
-            @if($unseenUserCount > 0)
-                            <span class="badge badge-success">{{ $unseenUserCount }}</span>
-                        @endif
+                            <span class="badge badge-success">2</span>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="customer">
             <ul class="nav nav-collapse">
               <li>
-                <a href="{{ route('users.index') }}">
+                <a href="#">
                   <span class="sub-item">User</span>
                 </a>
             </ul>
@@ -160,7 +143,7 @@
           <div class="collapse" id="faq">
             <ul class="nav nav-collapse">
               <li>
-                <a href="{{ route('qas.index') }}">
+                <a href="{{ route('admin.faq.index') }}">
                   <span class="sub-item">FAQ</span>
                 </a>
             </ul>
@@ -181,27 +164,27 @@
             <div class="collapse" id="base">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="{{ route('admin.masterdata.komoditas.index') }}">
-                    <span class="sub-item">Komoditas</span>
+                  <a href="{{ route('bidangperusahaan.index') }}">
+                    <span class="sub-item">Bidang Perusahaan</span>
                   </a>
                 </li>
                 <li>
-                  <a href="{{ route('admin.masterdata.kategori.index') }}">
+                  <a href="{{ route('admin.kategori.index') }}">
                     <span class="sub-item">Kategori</span>
                   </a>
                 </li>
                 <li>
-                  <a href="{{ route('admin.masterdata.subkategori.index') }}">
+                  <a href="#">
                     <span class="sub-item">Sub-Kategori</span>
                   </a>
                 </li>
                 <li>
-                  <a href="{{ route('admin.masterdata.ppn.index') }}">
+                  <a href="#">
                     <span class="sub-item">PPN</span>
                   </a>
                 </li>
                 <li>
-                  <a href="{{ route('admin.masterdata.materai.index') }}">
+                  <a href="#">
                     <span class="sub-item">Materai</span>
                   </a>
                 </li>
