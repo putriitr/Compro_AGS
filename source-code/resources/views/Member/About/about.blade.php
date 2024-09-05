@@ -211,7 +211,7 @@
                         <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="service-item rounded">
                                 <div class="service-img rounded-top">
-                                    <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('assets/img/about.jpeg') }}" 
+                                    <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('assets/img/about.jpeg') }}"
                                         class="img-fluid w-100" alt="Brand Image" style="border-radius: 40%;">
                                 </div>
                             </div>
@@ -229,9 +229,9 @@
                     @foreach ($partners as $partner)
                         <div class="col-md-3 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="service-img rounded-top">
-                                <img src="{{ $partner->gambar ? asset('storage/' . $partner->gambar) : asset('assets/img/about/partner-1.jpg') }}" 
+                                <img src="{{ $partner->gambar ? asset('storage/' . $partner->gambar) : asset('assets/img/about/partner-1.jpg') }}"
                                     class="img-fluid w-100"
-                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;" 
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
                                     alt="Partner Image">
                             </div>
                         </div>
@@ -266,7 +266,7 @@
                 </div>
             @endforeach
         </div>
-        
+
     </div>
 </div>
 <!-- Principal End -->
@@ -289,9 +289,9 @@
                         <a href="{{ $brands->url ?? '#' }}" target="_blank">
                         <div class="service-item rounded" >
                             <div class="service-img rounded-top">
-                                    <img src="{{ $brands->gambar ? asset('storage/' . $brands->gambar) : asset('assets/img/about/brands-1.png') }}" 
+                                    <img src="{{ $brands->gambar ? asset('storage/' . $brands->gambar) : asset('assets/img/about/brands-1.png') }}"
                                          class="img-fluid w-100"
-                                         style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF; " 
+                                         style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF; "
                                          alt="Brand Image">
                             </div>
                         </div>
@@ -300,9 +300,9 @@
                     </div>
                 </div>
             </div>
-            
+
             @endforeach
-        </div>            
+        </div>
     </div>
 </div>
 
@@ -328,7 +328,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="col-md-12 col-lg-6 col-xl-4 d-flex">
                 <div class="team-item rounded flex-fill">
                     <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">

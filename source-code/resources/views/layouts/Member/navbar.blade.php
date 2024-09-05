@@ -30,7 +30,7 @@
                             <i class="fas fa-map-marker-alt text-primary me-2"></i>Office Location Not Available
                         </p>
                     @endif
-                
+
                     <!-- Phone Number -->
                     @if(!empty($compro->no_telepon))
                         <a href="tel:+62{{ $compro->no_telepon }}" class="text-light me-4">
@@ -42,7 +42,7 @@
                             <i class="fas fa-phone-alt text-primary me-2"></i>Phone Number Not Available
                         </p>
                     @endif
-                
+
                     <!-- Email -->
                     @if(!empty($compro->email))
                         <a href="mailto:{{ $compro->email }}" class="text-light me-0">
@@ -55,7 +55,7 @@
                         </p>
                     @endif
                 </div>
-                
+
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-flex align-items-center justify-content-end">
@@ -104,47 +104,30 @@
 
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
-        <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
-            <div class="row col-lg-12 justify-content-center">
-                <!-- Centered Logo, Menu, and Search (col-lg-10) -->
-                <div class="col-lg-12 d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <a href="/" class="navbar-brand p-0">
-                            <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" style="height: 150px; width: 100%;">
-                        </a>
-                        <span class="ms-2" style="font-weight: bold; font-size: 15px;">PT ARKAMAYA <br>GUNA SAHARSA</span>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <div class="navbar-nav mx-auto py-0">
-                            <a href="{{route('home')}}" class="nav-item nav-link">Home</a>
-                            <a href="{{route('about')}}" class="nav-item nav-link">About</a>
-                            <a href="{{route('activity')}}" class="nav-item nav-link">Activity</a>
-                            <a href="{{route('product')}}" class="nav-item nav-link">Product</a>
-                            <div class="nav-item dropdown">
-                                <a href="/ecommerce" class="nav-link dropdown-toggle"
-                                    data-bs-toggle="dropdown">E-Commerce</a>
-                                <div class="dropdown-menu m-0">
-                                    <a href="appointment.html" class="dropdown-item">Labtek</a>
-                                    <a href="feature.html" class="dropdown-item">Labverse</a>
-                                </div>
-                            </div>
-                            <a href="{{route('portal')}}" class="nav-item nav-link">My Portal</a>
-                            <a href="/contact" class="nav-item nav-link">Contact Us</a>
+            <a href="index.html" class="navbar-brand p-0">
+                <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" style="height: 150px; width: 100%;">
+            </a>PT Arkamaya Guna Saharsa
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="service.html" class="nav-item nav-link">Activity</a>
+                    <a href="service.html" class="nav-item nav-link">Product</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">E-Commerce</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="appointment.html" class="dropdown-item">LABTEK</a>
+                            <a href="feature.html" class="dropdown-item">LABVERSE</a>
                         </div>
                     </div>
-
-                    <!-- Search Bar -->
-                    <div class="input-group" style="width: 200px;">
-                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search"
-                            style="background-color: white;">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+                    <a href="contact.html" class="nav-item nav-link">My Portal</a>
+                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                 </div>
             </div>
         </nav>
-    </div>
     </div>
     <!-- Navbar End -->
