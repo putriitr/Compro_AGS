@@ -1,4 +1,14 @@
 <div class="form-group">
+    <label for="nama_perusahaan">Company Name</label>
+    <input type="text" name="nama_perusahaan" class="form-control" value="{{ old('nama_perusahaan', $companyParameter->nama_perusahaan ?? '') }}" required>
+</div>
+
+<div class="form-group">
+    <label for="sejarah_singkat">Short History</label>
+    <textarea name="sejarah_singkat" class="form-control">{{ old('sejarah_singkat', $companyParameter->sejarah_singkat ?? '') }}</textarea>
+</div>
+
+<div class="form-group">
     <label for="email">Email</label>
     <input type="email" name="email" class="form-control" value="{{ old('email', $companyParameter->email ?? '') }}" required>
 </div>
@@ -38,6 +48,14 @@
     <input type="file" name="logo" class="form-control">
     @if(isset($companyParameter->logo))
         <img src="{{ asset('storage/' . $companyParameter->logo) }}" alt="Logo" width="100">
+    @endif
+</div>
+
+<div class="form-group">
+    <label for="about_gambar">About Image</label>
+    <input type="file" name="about_gambar" class="form-control">
+    @if(isset($companyParameter->about_gambar))
+        <img src="{{ asset('storage/' . $companyParameter->about_gambar) }}" alt="About Image" width="100">
     @endif
 </div>
 

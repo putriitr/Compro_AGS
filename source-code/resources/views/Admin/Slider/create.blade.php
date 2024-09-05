@@ -49,7 +49,13 @@
 
             <div class="form-group">
                 <label for="button_url">Button URL</label>
-                <input type="text" name="button_url" class="form-control" value="{{ old('button_url') }}">
+                <select name="button_url" class="form-control">
+                    @foreach ($routes as $name => $url)
+                        <option value="{{ $url }}" {{ old('button_url') == $url ? 'selected' : '' }}>
+                            {{ ucfirst($name) }}
+                        </option>
+                    @endforeach
+                </select>
                 @error('button_url')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror

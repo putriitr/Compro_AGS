@@ -24,6 +24,12 @@ return new class extends Migration
             $table->string('instagram')->nullable();  // Instagram URL
             $table->string('linkedin')->nullable();  // LinkedIn URL (corrected 'linkin' to 'linkedin')
             $table->string('ekatalog')->nullable();  // E-catalog link
+
+            $table->string('nama_perusahaan')->nullable();  // Company name
+            $table->text('sejarah_singkat')->nullable();  // Short history of the company
+            $table->string('about_gambar')->nullable();  // Image for the "About" section
+
+
             $table->timestamps();  // Created at and updated at timestamps
         });
     }

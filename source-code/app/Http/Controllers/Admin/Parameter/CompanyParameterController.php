@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Parameter;
 use App\Http\Controllers\Controller;
 use App\Models\CompanyParameter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyParameterController extends Controller
 {
@@ -31,6 +32,8 @@ class CompanyParameterController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'nama_perusahaan' => 'required|string|max:255',
+            'sejarah_singkat' => 'nullable|string',
             'email' => 'required|email',
             'no_telepon' => 'required|string',
             'no_wa' => 'required|string',
@@ -38,7 +41,8 @@ class CompanyParameterController extends Controller
             'maps' => 'nullable|string',
             'visi' => 'nullable|string',
             'misi' => 'nullable|string',
-            'logo' => 'nullable|image',
+            'logo' => 'nullable|image|max:2048',
+            'about_gambar' => 'nullable|image|max:2048',
             'instagram' => 'nullable|string',
             'linkedin' => 'nullable|string',
             'ekatalog' => 'nullable|string',
@@ -46,6 +50,10 @@ class CompanyParameterController extends Controller
 
         if ($request->hasFile('logo')) {
             $validated['logo'] = $request->file('logo')->store('uploads/parameter', 'public');
+        }
+
+        if ($request->hasFile('about_gambar')) {
+            $validated['about_gambar'] = $request->file('about_gambar')->store('uploads/about', 'public');
         }
 
         CompanyParameter::create($validated);
@@ -77,6 +85,8 @@ class CompanyParameterController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
+            'nama_perusahaan' => 'required|string|max:255',
+            'sejarah_singkat' => 'nullable|string',
             'email' => 'required|email',
             'no_telepon' => 'required|string',
             'no_wa' => 'required|string',
@@ -84,7 +94,8 @@ class CompanyParameterController extends Controller
             'maps' => 'nullable|string',
             'visi' => 'nullable|string',
             'misi' => 'nullable|string',
-            'logo' => 'nullable|image',
+            'logo' => 'nullable|image|max:2048',
+            'about_gambar' => 'nullable|image|max:2048',
             'instagram' => 'nullable|string',
             'linkedin' => 'nullable|string',
             'ekatalog' => 'nullable|string',
@@ -92,13 +103,25 @@ class CompanyParameterController extends Controller
 
         $companyParameter = CompanyParameter::findOrFail($id);
 
+        // Handle logo file upload and removal
         if ($request->hasFile('logo')) {
+            if ($companyParameter->logo) {
+                Storage::delete('public/' . $companyParameter->logo);
+            }
             $validated['logo'] = $request->file('logo')->store('uploads/parameter', 'public');
+        }
+
+        // Handle about_gambar file upload and removal
+        if ($request->hasFile('about_gambar')) {
+            if ($companyParameter->about_gambar) {
+                Storage::delete('public/' . $companyParameter->about_gambar);
+            }
+            $validated['about_gambar'] = $request->file('about_gambar')->store('uploads/about', 'public');
         }
 
         $companyParameter->update($validated);
 
-        return redirect()->route('parameter.index')->with('success', 'Company parameter updated successfully.');
+        return redirect()->route('admin.parameter.index')->with('success', 'Company parameter updated successfully.');
     }
 
     /**
@@ -107,6 +130,17 @@ class CompanyParameterController extends Controller
     public function destroy($id)
     {
         $companyParameter = CompanyParameter::findOrFail($id);
+
+        // Delete logo if exists
+        if ($companyParameter->logo) {
+            Storage::delete('public/' . $companyParameter->logo);
+        }
+
+        // Delete about_gambar if exists
+        if ($companyParameter->about_gambar) {
+            Storage::delete('public/' . $companyParameter->about_gambar);
+        }
+
         $companyParameter->delete();
 
         return redirect()->route('parameter.index')->with('success', 'Company parameter deleted successfully.');

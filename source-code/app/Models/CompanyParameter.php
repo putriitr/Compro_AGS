@@ -24,6 +24,10 @@ class CompanyParameter extends Model
         'instagram',
         'linkedin',
         'ekatalog',
+        'nama_perusahaan',
+        'sejarah_singkat',
+        'about_gambar',
+
     ];
 
 }

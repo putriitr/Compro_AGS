@@ -20,35 +20,18 @@
             <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
                 <div class="section-title text-start mb-5">
                     <h4 class="sub-title pe-3 mb-0">About Us</h4>
-                    <h4 class="display-3 mb-4" style="font-size: 50px;">PT Arkamaya Guna Saharsa</h4>
+                    <h4 class="display-3 mb-4" style="font-size: 50px;">{{ $company->nama_perusahaan }}</h4>
                     <p class="mb-4" style="text-align: justify;">
-                        Arkamaya Guna Saharsa is a technology start-up driven by innovation, dedicated to empowering
-                        industries with
-                        transformative solutions. We specialize in optimizing industry performance through our
-                        brands, Labtek and
-                        Labverse. These products are designed to enhance effectiveness, efficiency, and quality,
-                        providing added value
-                        through cutting-edge technology. Our mission is to deliver superior results by either
-                        introducing new
-                        technological advancements or reimagining existing solutions to meet evolving industry
-                        needs.
+                        {{$company->sejarah_singkat}}
                     </p>
-                    <div class="mb-4">
-                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Innovative
-                            Technology Solutions</p>
-                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Empowering Brands
-                        </p>
-                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Commitment to
-                            Excellence</p>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="about-img pb-5 ps-5">
-                    <img src="{{ asset('assets/img/company-1.jpg') }}" class="img-fluid rounded w-100"
+                    <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/img/about.jpeg') }}" class="img-fluid rounded w-100"
                         style="object-fit: cover;" alt="Image">
                     <div class="about-img-inner">
-                        <img src="{{ asset('assets/img/about.jpeg') }}" class="img-fluid rounded-circle w-100 h-100"
+                        <img src="{{ $company && $company->logo ? asset('storage/' . $company->logo) : asset('assets/img/about.jpeg') }}" class="img-fluid rounded-circle w-100 h-100"
                             alt="Image">
                     </div>
                 </div>
@@ -72,10 +55,7 @@
                 <div class="team-item rounded flex-fill">
                     <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                         <h5>VISION</h5>
-                        <p class="mb-0" style="font-weight: bold;">The technology start-up
-                            that provides innovative solutions for
-                            growing up and adding value to your
-                            industry.</p><br>
+                        <p class="mb-0" style="font-weight: bold;">{{$company->visi}}</p><br>
                     </div>
                 </div>
             </div>
@@ -83,13 +63,7 @@
                 <div class="team-item rounded flex-fill">
                     <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                         <h5>MISSION</h5>
-                        <p class="mb-0" style="font-weight: bold;">By providing the best
-                            service through innovation
-                            so that you get the right
-                            solution in meeting every
-                            need in detail orientation
-                            and also a reliable
-                            guarantee.</p>
+                        <p class="mb-0" style="font-weight: bold;">{{$company->misi}}</p>
                     </div>
                 </div>
             </div>
@@ -233,22 +207,17 @@
             <div class="col-lg-3 mb-4">
                 <h4 class="mb-3">Our Brand:</h4>
                 <div class="row g-3">
-                    <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded">
-                            <div class="service-img rounded-top">
-                                <img src="{{ asset('assets/img/about/1.png') }}" class="img-fluid w-100" alt=""
-                                    style="border-radius: 40%;">
+                    @foreach ($brand as $item)
+                        <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-item rounded">
+                                <div class="service-img rounded-top">
+                                    <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('assets/img/about.jpeg') }}" 
+                                        class="img-fluid w-100" alt="Brand Image" style="border-radius: 40%;">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded">
-                            <div class="service-img rounded-top">
-                                <img src="{{ asset('assets/img/about/2.png') }}" class="img-fluid w-100" alt=""
-                                    style="border-radius: 40%; ">
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
             <div class="col-lg-1"></div>
@@ -257,64 +226,17 @@
                 <h4 class="mb-4">Our Partner:</h4>
                 <div class="row g-4">
                     <!-- First Row -->
-                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-img rounded-top">
-                            <img src="{{ asset('assets/img/about/partner-1.jpg') }}" class="img-fluid w-100"
-                                style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
-                                alt="">
+                    @foreach ($partners as $partner)
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ $partner->gambar ? asset('storage/' . $partner->gambar) : asset('assets/img/about/partner-1.jpg') }}" 
+                                    class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;" 
+                                    alt="Partner Image">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="service-img rounded-top">
-                            <img src="{{ asset('assets/img/about/partner-2.jpg') }}" class="img-fluid w-100"
-                                style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-img rounded-top">
-                            <img src="{{ asset('assets/img/about/partner-3.jpg') }}" class="img-fluid w-100"
-                                style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="service-img rounded-top">
-                            <img src="{{ asset('assets/img/about/partner-4.jpg') }}" class="img-fluid w-100"
-                                style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
-                                alt="">
-                        </div>
-                    </div>
+                    @endforeach
 
-                    <!-- Second Row -->
-                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-img rounded-top">
-                            <img src="{{ asset('assets/img/about/partner-5.jpg') }}" class="img-fluid w-100"
-                                style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-img rounded-top">
-                            <img src="{{ asset('assets/img/about/partner-6.jpg') }}" class="img-fluid w-100"
-                                style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-img rounded-top">
-                            <img src="{{ asset('assets/img/about/partner-7.jpg') }}" class="img-fluid w-100"
-                                style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.8s">
-                        <div class="service-img rounded-top">
-                            <img src="{{ asset('assets/img/about/partner-8.jpg') }}" class="img-fluid w-100"
-                                style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
-                                alt="">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -332,83 +254,58 @@
             <h1 class="display-3 mb-4">Our Principal's</h1>
         </div>
         <div class="testimonial-carousel owl-carousel">
-            <div class="testimonial-item">
-                <div class="testimonial-inner p-5">
-                    <div class="testimonial-inner-img mb-4">
-                        <img src="{{ asset('assets/img/logos/p1.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p2.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p3.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p4.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p5.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p6.png') }}" class="img-fluid" alt="">
+            @foreach($principals->chunk(6) as $principalChunk) <!-- Membagi dalam grup berisi 6 item -->
+                <div class="testimonial-item">
+                    <div class="testimonial-inner p-5">
+                        <div class="testimonial-inner-img mb-4">
+                            @foreach($principalChunk as $principal)
+                                <img src="{{ asset('storage/' . $principal->gambar) }}" class="img-fluid" alt="{{ $principal->nama }}" style="width: 200px; height: auto;">
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-inner p-5">
-                    <div class="testimonial-inner-img mb-4">
-                        <img src="{{ asset('assets/img/logos/p7.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p8.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p9.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p10.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p11.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p12.png') }}" class="img-fluid" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-inner p-5">
-                    <div class="testimonial-inner-img mb-4">
-                        <img src="{{ asset('assets/img/logos/p13.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p14.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p15.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p16.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p17.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p18.png') }}" class="img-fluid" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-inner p-5">
-                    <div class="testimonial-inner-img mb-4">
-                        <img src="{{ asset('assets/img/logos/p19.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p20.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p21.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p22.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p23.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p24.png') }}" class="img-fluid" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-inner p-5">
-                    <div class="testimonial-inner-img mb-4">
-                        <img src="{{ asset('assets/img/logos/p25.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p26.png') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('assets/img/logos/p27.png') }}" class="img-fluid" alt="">
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+        
     </div>
 </div>
 <!-- Principal End -->
 
-<!-- Graphic Start -->
-<div class="container-fluid team py-5">
+<!-- Ecommerce Start -->
+<div class="container-fluid service py-5">
     <div class="container py-5">
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Tracking Our Progress</h4>
+                <h4 class="sub-title px-3 mb-0">Our E-commerce</h4>
             </div>
-            <h1 class="display-3 mb-4">Graphic of Sales Turnover</h1>
+            <h1 class="display-3 mb-4">Explore more our product</h1>
         </div>
-        <div class="row g-12 justify-content-center d-flex">
-            <img src="{{ asset('assets/img/sales.png') }}" class="img-fluid w-100" alt="Image">
-        </div>
+        <div class="row">
+            @foreach ($brand as $brands)
+            <div class="col-lg-6 mb-4">
+                <h4 class="mb-3">E-commerce Labtek :</h4>
+                <div class="row g-3">
+                    <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ $brands->url ?? '#' }}" target="_blank">
+                        <div class="service-item rounded" >
+                            <div class="service-img rounded-top">
+                                    <img src="{{ $brands->gambar ? asset('storage/' . $brands->gambar) : asset('assets/img/about/brands-1.png') }}" 
+                                         class="img-fluid w-100"
+                                         style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF; " 
+                                         alt="Brand Image">
+                            </div>
+                        </div>
+                    </a>
+
+                    </div>
+                </div>
+            </div>
+            
+            @endforeach
+        </div>            
     </div>
 </div>
-<!-- Graphic End -->
+
 
 <!-- Sales Channel Start -->
 <div class="container-fluid team py-5">
@@ -422,13 +319,16 @@
         <div class="row g-12 justify-content-center d-flex">
             <div class="col-md-12 col-lg-6 col-xl-4 d-flex">
                 <div class="team-item rounded flex-fill">
-                    <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
-                        <img src="{{ asset('assets/img/e-katalog.png') }}" alt="Whatsapp Contact"
-                            style="width: 55%; max-width: 200px;">
-                        <p class="mb-0 mt-3" style="font-weight: bold; font-size: 18px;">Goverment E-Commerce</p>
-                    </div>
+                    <a href="{{ $company->ekatalog }}" target="_blank">
+                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
+                            <img src="{{ asset('assets/img/e-katalog.png') }}" alt="Whatsapp Contact"
+                                style="width: 55%; max-width: 200px;">
+                            <p class="mb-0 mt-3" style="font-weight: bold; font-size: 18px;">Goverment E-Commerce</p>
+                        </div>
+                    </a>
                 </div>
             </div>
+            
             <div class="col-md-12 col-lg-6 col-xl-4 d-flex">
                 <div class="team-item rounded flex-fill">
                     <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
@@ -443,16 +343,18 @@
             </div>
 
             <div class="col-md-12 col-lg-6 col-xl-4 d-flex">
+                <a href="{{ $company->no_wa }}">
                 <div class="team-item rounded flex-fill">
                     <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                         <div class="d-flex align-items-center justify-content-center">
                             <i class="fab fa-whatsapp fa-3x text-success text-dark"></i>
-                            <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">+62 852-1791-1213</h5>
+                            <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">{{ $company->no_wa }}</h5>
                         </div>
-                        <p class="mb-0 mt-2" style="font-size: 13px;">Official Whatsapp Arkamaya Guna Saharsa</p>
+                        <p class="mb-0 mt-2" style="font-size: 13px;">Official Whatsapp {{ $company->nama_perusahaan }}</p>
                         <p class="mb-0" style="font-weight: bold; font-size: 18px;">Broadcast Message</p>
                     </div>
                 </div>
+            </a>
             </div>
         </div>
     </div>

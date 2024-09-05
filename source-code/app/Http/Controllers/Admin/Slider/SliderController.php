@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 
 
 class SliderController extends Controller
@@ -21,7 +22,16 @@ class SliderController extends Controller
     // Show form to create a new slider
     public function create()
     {
-        return view('admin.slider.create');
+
+        $routes = [
+            'about' => route('about'),
+            'product' => route('product'),
+            'portal' => route('portal'),
+            'activity' => route('activity'),
+            // Add more routes as needed
+        ];
+
+        return view('admin.slider.create', compact('routes'));
     }
 
     // Store new slider

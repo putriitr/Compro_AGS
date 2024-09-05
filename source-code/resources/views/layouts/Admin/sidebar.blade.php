@@ -143,8 +143,22 @@
                         </ul>
                     </div>
                 </li>
-
-
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#brand-section">
+                        <i class="fas fa-calendar-alt"></i> <!-- Ikon aktivitas -->
+                        <p>brand</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="brand-section">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.brand.index') }}">
+                                    <span class="sub-item">brand</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <!-- Information -->
                 <li class="nav-section">

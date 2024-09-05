@@ -40,12 +40,27 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">Contact Info</h4>
-                    <a href=""><i class="fa fa-map-marker-alt me-2"></i> Jl. Matraman Raya No.148,
-                        RT.1/RW.4, Kb. Manggis, Kec. Matraman, Kota Jakarta Timur, DKI Jakarta 13150</a>
-                    <a href=""><i class="fas fa-envelope me-2"></i> info@labtek.id</a>
-                    <a href=""><i class="fas fa-phone me-2"></i> (021) 85850913</a>
-                    <a href="" class="mb-3"><i class="fab fa-whatsapp fa-2x"></i> +62 852-1791-1213</a>
+                
+                    @php
+                        // Fetch the first record from compro_parameter table
+                        $compro = \App\Models\CompanyParameter::first();
+                    @endphp
+                
+                    <!-- Alamat -->
+                    <a href=""><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat ?? 'Address not available' }}</a>
+                
+                    <!-- Email -->
+                    <a href="mailto:{{ $compro->email }}"><i class="fas fa-envelope me-2"></i> {{ $compro->email ?? 'Email not available' }}</a>
+                
+                    <!-- No Telepon -->
+                    <a href="tel:{{ $compro->no_telepon }}"><i class="fas fa-phone me-2"></i> {{ $compro->no_telepon ?? 'Phone not available' }}</a>
+                
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/{{ $compro->no_wa }}" class="mb-3">
+                        <i class="fab fa-whatsapp fa-2x"></i> +{{ $compro->no_wa ?? 'WhatsApp not available' }}
+                    </a>
                 </div>
+                
             </div>
         </div>
     </div>

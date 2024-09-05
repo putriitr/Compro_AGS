@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BrandPartner;
+use App\Models\CompanyParameter;
 use App\Models\Kategori;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -22,9 +24,15 @@ class HomeController extends Controller
     {
         $kategori = Kategori::all();
         $sliders = Slider::all();
+        $company = CompanyParameter::first();
+        $brand = BrandPartner::where('type', 'brand')->get();
+        $partners = BrandPartner::where('type', 'partner')->get();  // Filter by 'partner'
+        $principals = BrandPartner::where('type', 'principal')->get();  // Filter by 'principal'
         
-        return view('home', compact('kategori', 'sliders'));
+        return view('home', compact('kategori', 'sliders', 'company', 'brand', 'partners', 'principals'));
     }
+    
+    
 
     public function dashboard()
     {
@@ -33,6 +41,12 @@ class HomeController extends Controller
 
     public function about()
     {
-        return view('Member.About.about');
+        $company = CompanyParameter::first();
+        $brand = BrandPartner::where('type', 'brand')->get();
+        $partners = BrandPartner::where('type', 'partner')->get();  // Filter by 'partner'
+        $principals = BrandPartner::where('type', 'principal')->get();  // Filter by 'principal'
+
+
+        return view('Member.About.about', compact('company','brand', 'partners', 'principals'));
     }
 }

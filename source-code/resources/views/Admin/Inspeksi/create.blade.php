@@ -1,9 +1,9 @@
 @extends('layouts.admin.master')
 
 @section('content')
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card shadow-sm">
+                <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">
                         <h4 class="mb-0">Add New Inspection for {{ $userProduk->produk->name }}</h4>
                     </div>
@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary px-4 py-2">Save Inspection</button>
+                                <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Save Inspection</button>
                             </div>
                         </form>
                     </div>
@@ -68,10 +68,12 @@
             height: 200,
             toolbar: [
                 ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
+                ['table', ['table']],
+                ['view', ['fullscreen', 'codeview', 'help']],
             ]
         });
     });

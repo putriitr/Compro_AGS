@@ -8,17 +8,31 @@
         <!-- Spinner End --> --}}
 
     <!-- Topbar Start -->
+
+    @php
+    // Fetch the first record from the compro_parameter table
+    $compro = \App\Models\CompanyParameter::first();
+@endphp
+
+
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="container">
         <div class="row gx-0 align-items-center" style="height: 45px;">
             <div class="col-lg-8 text-center text-lg-start mb-lg-0">
                 <div class="d-flex flex-wrap">
-                    <a href="https://maps.app.goo.gl/SHHrMvswyXJwMa3F6" class="text-light me-4"><i
-                            class="fas fa-map-marker-alt text-primary me-2"></i>Office Location</a>
-                    <a href="tel:+62185850913" class="text-light me-4"><i class="fas fa-phone-alt text-primary me-2"></i>(021)
-                        85850913</a>
-                    <a href="mailto:info@labtek.id" class="text-light me-0"><i
-                            class="fas fa-envelope text-primary me-2"></i>info@labtek.id</a>
+                    <a href="{{ $compro->maps }}" class="text-light me-4" target="_blank">
+                        <i class="fas fa-map-marker-alt text-primary me-2"></i>Office Location
+                    </a>                    
+                            <a href="tel:+62{{ $compro->no_telepon }}" class="text-light me-4">
+                                <i class="fas fa-phone-alt text-primary me-2"></i>
+                                (021) {{ $compro->no_telepon ?? 'Phone Number' }}
+                            </a>
+                        
+                            <!-- Email -->
+                            <a href="mailto:{{ $compro->email }}" class="text-light me-0">
+                                <i class="fas fa-envelope text-primary me-2"></i>
+                                {{ $compro->email ?? 'Email' }}
+                            </a>
                 </div>
             </div>
             <div class="col-lg-4 text-center text-lg-end">
