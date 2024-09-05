@@ -3,7 +3,7 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="/dashboard" class="logo">
+            <a href="{{ route('dashboard') }}" class="logo">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="navbar brand" class="navbar-brand" width="120" />
             </a>
             <div class="nav-toggle">
@@ -56,25 +56,25 @@
                     </div>
                 </li>
 
-                <!-- Customer Manage -->
+                <!-- produk Manage -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Customer Manage</h4>
+                    <h4 class="text-section">Produk</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#customer">
+                    <a data-bs-toggle="collapse" href="#produk">
                         <i class="fas fa-user"></i> <!-- Ikon pengguna (user) -->
-                        <p>Customer</p>
+                        <p>produk</p>
                         <span class="badge badge-success">2</span>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="customer">
+                    <div class="collapse" id="produk">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="#">
-                                    <span class="sub-item">User</span>
+                                <a href="{{ route('admin.produk.index') }}">
+                                    <span class="sub-item">Produk</span>
                                 </a>
                         </ul>
                     </div>

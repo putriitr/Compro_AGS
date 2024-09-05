@@ -50,16 +50,29 @@
             <div class="form-group">
                 <label for="button_url">Button URL</label>
                 <select name="button_url" class="form-control">
+                    <option value="">Select a predefined route or activity</option>
+            
+                    <!-- Predefined Routes -->
                     @foreach ($routes as $name => $url)
                         <option value="{{ $url }}" {{ old('button_url') == $url ? 'selected' : '' }}>
-                            {{ ucfirst($name) }}
+                            {{ ucfirst($name) }} (Predefined)
+                        </option>
+                    @endforeach
+            
+                    <!-- Dynamic Activities -->
+                    @foreach ($activities as $activity)
+                        <option value="{{ route('activity.show', $activity->id) }}" 
+                            {{ old('button_url') == route('activity.show', $activity->id) ? 'selected' : '' }}>
+                            {{ $activity->title }} (Activity)
                         </option>
                     @endforeach
                 </select>
+            
                 @error('button_url')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
+            
 
             <button type="submit" class="btn btn-primary">Create Slider</button>
         </form>

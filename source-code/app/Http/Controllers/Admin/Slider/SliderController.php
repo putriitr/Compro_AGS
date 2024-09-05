@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Slider;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use Illuminate\Support\Facades\File;
@@ -27,11 +28,13 @@ class SliderController extends Controller
             'about' => route('about'),
             'product' => route('product'),
             'portal' => route('portal'),
-            'activity' => route('activity'),
             // Add more routes as needed
         ];
 
-        return view('admin.slider.create', compact('routes'));
+        $activities = Activity::all(); // Fetch all activities for selection
+
+
+        return view('admin.slider.create', compact('routes','activities'));
     }
 
     // Store new slider
@@ -43,14 +46,22 @@ class SliderController extends Controller
             'subtitle' => 'required|string|max:255',
             'description' => 'required|string',
             'button_text' => 'required|string|max:255',
-            'button_url' => 'required|string',
+            'button_url' => 'required|string', // Modify to dynamic URL handling
         ]);
 
-            // Save image to public/uploads/slider
-            $image = $request->file('image_url');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('uploads/slider'), $imageName);
-            $imagePath = 'uploads/slider/' . $imageName;
+        // Save image to public/uploads/slider
+        $image = $request->file('image_url');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('uploads/slider'), $imageName);
+        $imagePath = 'uploads/slider/' . $imageName;
+
+        // Determine if the button URL comes from a pre-defined route or an activity
+        if ($request->filled('activity_id')) {
+            $activity = Activity::find($request->activity_id);
+            $buttonUrl = route('activity.show', $activity->id);
+        } else {
+            $buttonUrl = $request->button_url;
+        }
 
         Slider::create([
             'image_url' => $imagePath,
@@ -58,7 +69,7 @@ class SliderController extends Controller
             'subtitle' => $request->subtitle,
             'description' => $request->description,
             'button_text' => $request->button_text,
-            'button_url' => $request->button_url,
+            'button_url' => $buttonUrl, // Dynamic button URL
         ]);
 
         return redirect()->route('admin.slider.index')->with('success', 'Slider created successfully.');
@@ -68,11 +79,18 @@ class SliderController extends Controller
     public function edit($id)
     {
         $slider = Slider::findOrFail($id);
-        return view('admin.slider.edit', compact('slider'));
+        $activities = Activity::all(); // Fetch activities for editing
+        $routes = [
+            'about' => route('about'),
+            'product' => route('product'),
+            'portal' => route('portal'),
+        ];
+
+        return view('admin.slider.edit', compact('slider', 'routes', 'activities'));
     }
 
     // Update slider
-     public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $slider = Slider::findOrFail($id);
 
@@ -98,11 +116,18 @@ class SliderController extends Controller
             $slider->image_url = 'uploads/slider/' . $imageName;
         }
 
+        // Dynamic button URL handling
+        if ($request->filled('activity_id')) {
+            $activity = Activity::find($request->activity_id);
+            $slider->button_url = route('activity.show', $activity->id);
+        } else {
+            $slider->button_url = $request->button_url;
+        }
+
         $slider->title = $request->title;
         $slider->subtitle = $request->subtitle;
         $slider->description = $request->description;
         $slider->button_text = $request->button_text;
-        $slider->button_url = $request->button_url;
         $slider->save();
 
         return redirect()->route('admin.slider.index')->with('success', 'Slider updated successfully.');

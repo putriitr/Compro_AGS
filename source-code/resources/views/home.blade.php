@@ -1,6 +1,13 @@
 @extends('layouts.member.master')
 
 @section('content')
+
+
+
+
+
+
+
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel">
         @foreach ($sliders as $slider)
@@ -25,6 +32,9 @@
     </div>
 </div>
 
+
+
+
     <!-- About Start -->
     <div class="container-fluid about bg-light py-5">
         <div class="container py-5">
@@ -41,9 +51,9 @@
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
                     <div class="section-title text-start mb-5">
-                        <h4 class="display-3 mb-4" style="font-size: 50px;">{{ $company->nama_perusahaan }}</h4>
+                        <h4 class="display-3 mb-4" style="font-size: 50px;">{{ $company->nama_perusahaan ?? 'Arkamaya Guna Saharsa' }}</h4>
                         <p class="mb-4" style="text-align: justify;">
-                            {{ $company->sejarah_singkat }}
+                            {{ $company->sejarah_singkat ?? ' '}}
                         </p>
                         <div class="col-6 text-center wow fadeInUp" data-wow-delay="0.2s">
                             <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">Abous Us More</a>
@@ -91,116 +101,147 @@
     <!-- Product End -->
 
     <!-- Brand Start -->
-    <div class="container-fluid service py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Work Together</h4>
-                </div>
-                <h1 class="display-3 mb-4">Our Brand & Partner</h1>
+    <!-- Partner Section Start -->
+<div class="container-fluid service">
+    <div class="container">
+        <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Work Together</h4>
             </div>
-            <div class="row">
-                <!-- Our Brand Section -->
-                <div class="col-lg-3 mb-4">
-                    <h4 class="mb-3">Our Brand:</h4>
-                    <div class="row g-3">
-                        @foreach ($brand as $item)
-                            <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="service-item rounded">
-                                    <div class="service-img rounded-top">
-                                        <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('assets/img/about.jpeg') }}" 
-                                            class="img-fluid w-100" alt="Brand Image" style="border-radius: 40%;">
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
-                <div class="col-lg-1"></div>
-                <!-- Our Partner Section -->
-                <div class="col-lg-8">
-                    <h4 class="mb-4">Our Partner:</h4>
-                    <div class="row g-4">
-                        <!-- First Row -->
-                        @foreach ($partners as $partner)
-                            <div class="col-md-3 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="service-img rounded-top">
-                                    <img src="{{ $partner->gambar ? asset('storage/' . $partner->gambar) : asset('assets/img/about/partner-1.jpg') }}" 
-                                        class="img-fluid w-100"
-                                        style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;" 
-                                        alt="Partner Image">
-                                </div>
-                            </div>
-                        @endforeach
+            <h1 class="display-3 mb-4">Our Partner</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-container">
+                    <div class="logo-scroller partner-scroller">
+        @foreach($partners as $pa)
+                        <img src="{{ asset('storage/' .$pa->gambar) }}" alt="Google" class="logo">
+        @endforeach
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Brand End -->
+</div>
+<!-- Partner Section End -->
 
-    <!-- Principal Start -->
-    <div class="container-fluid testimonial py-5 wow zoomInDown" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title mb-5">
-                <div class="sub-style">
-                    <h4 class="sub-title text-white px-3 mb-0">Trusted Collaborations</h4>
-                </div>
-                <h1 class="display-3 mb-4">Our Principal's</h1>
+<!-- Principal Section Start -->
+<div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="section-title">
+            <div class="sub-style">
+                <h4 class="sub-title text-white px-3 mb-0">Trusted Collaborations</h4>
             </div>
-            <div class="testimonial-carousel owl-carousel">
-                @foreach($principals->chunk(6) as $principalChunk) <!-- Membagi dalam grup berisi 6 item -->
-                    <div class="testimonial-item">
-                        <div class="testimonial-inner p-5">
-                            <div class="testimonial-inner-img mb-4">
-                                @foreach($principalChunk as $principal)
-                                    <img src="{{ asset('storage/' . $principal->gambar) }}" class="img-fluid" alt="{{ $principal->nama }}" style="width: 200px; height: auto;">
+            <h1 class="display-3 mb-4">Our Principal's</h1>
+        </div>
+        <div class="logo-container">
+            <div class="logo-scroller principal-scroller">
+        @foreach($principals as $p)
+                <img src="{{ asset('storage/' .$p->gambar) }}" alt="Tesla" class="logo">
+        @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Principal Section End -->
+
+<!-- E-commerce Section Start -->
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Our E-commerce</h4>
+            </div>
+            <h1 class="display-3 mb-4">Explore more our product</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                    <div class="col-12 wow fadeInUp text-center" data-wow-delay="0.1s">
+                        <div class="logo-container text-center">
+                            <div class="logo-static text-center">
+                                @foreach($brand as $b)
+
+                                <a href="{{ $b->url }}">
+                                    <img src="{{ asset('storage/' .$b->gambar) }}" alt="Google" class="logo">
+                                </a>
                                 @endforeach
+
                             </div>
                         </div>
                     </div>
-                @endforeach
             </div>
-            
-        </div>
+        </div>            
     </div>
-    <!-- Principal End -->
+</div>
+<!-- E-commerce Section End -->
 
-    <!-- Ecommerce Start -->
-    <div class="container-fluid service py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Our E-commerce</h4>
-                </div>
-                <h1 class="display-3 mb-4">Explore more our product</h1>
-            </div>
-            <div class="row">
-                @foreach ($brand as $brands)
-                <div class="col-lg-6 mb-4">
-                    <h4 class="mb-3">E-commerce Labtek :</h4>
-                    <div class="row g-3">
-                        <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                            <a href="{{ $brands->url ?? '#' }}" target="_blank">
-                            <div class="service-item rounded" >
-                                <div class="service-img rounded-top">
-                                        <img src="{{ $brands->gambar ? asset('storage/' . $brands->gambar) : asset('assets/img/about/brands-1.png') }}" 
-                                             class="img-fluid w-100"
-                                             style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF; " 
-                                             alt="Brand Image">
-                                </div>
-                            </div>
-                        </a>
+<style>
+    .logo-container {
+        width: 100%;
+        overflow: hidden;
+        background-color: #ffffff;
+        padding: 10px 0;
+    }
+    
+    .logo-scroller {
+        display: flex;
+        width: max-content;
+    }
 
-                        </div>
-                    </div>
-                </div>
-                
-                @endforeach
-            </div>            
-        </div>
-    </div>
+    /* Partner Section Animation */
+    .partner-scroller {
+        animation: scroll-right 10s linear infinite;
+    }
+
+    /* Principal Section Animation */
+    .principal-scroller {
+        animation: scroll-left 10s linear infinite;
+    }
+
+    /* Static section for E-commerce, no animation */
+    .logo-static {
+        display: flex;
+        justify-content: center; /* Center the logos horizontally */
+        align-items: center; /* Vertically align the logos */
+        flex-wrap: wrap; /* Allow logos to wrap in mobile view */
+    }
+
+    .logo {
+        width: 300px;
+        margin-right: 20px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    @keyframes scroll-right {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(100%);
+        }
+    }
+
+    @keyframes scroll-left {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(-100%);
+        }
+    }
+     /* Media query for mobile view */
+     @media (max-width: 768px) {
+        .logo-static {
+            flex-direction: column; /* Stack logos vertically in mobile view */
+        }
+
+        .logo {
+            margin: 10px 0; /* Add vertical spacing between logos in mobile view */
+        }
+    }
+</style>
+
     <!-- Ecommerce End -->
 @endsection

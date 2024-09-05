@@ -105,7 +105,7 @@
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
-            <a href="index.html" class="navbar-brand p-0">
+            <a href="{{ route('home') }}" class="navbar-brand p-0">
                 <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" style="height: 150px; width: 100%;">
             </a>PT Arkamaya Guna Saharsa
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -113,10 +113,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="service.html" class="nav-item nav-link">Activity</a>
-                    <a href="service.html" class="nav-item nav-link">Product</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
+                    <a href="{{ route('activity') }}" class="nav-item nav-link">Activity</a>
+                    <a href="{{ route('product') }}" class="nav-item nav-link">Product</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">E-Commerce</a>
                         <div class="dropdown-menu m-0">
@@ -124,8 +124,8 @@
                             <a href="feature.html" class="dropdown-item">LABVERSE</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">My Portal</a>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="{{ route('portal') }}" class="nav-item nav-link">My Portal</a>
+                    <a href="{{-- {{ route('contact') }} --}}" class="nav-item nav-link">Contact Us</a>
                 </div>
             </div>
         </nav>
