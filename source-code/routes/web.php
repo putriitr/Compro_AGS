@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\Member\MemberController;
 use App\Http\Controllers\Admin\FAQ\FAQController;
 use App\Http\Controllers\Admin\Monitoring\MonitoringController;
+use App\Http\Controllers\Admin\Parameter\CompanyParameterController;
 use App\Http\Controllers\Admin\Produk\ProdukController;
 use App\Http\Controllers\Member\Portal\PortalController;
 use App\Http\Controllers\Member\Produk\ProdukMemberController;
@@ -120,7 +121,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
     Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
-    Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
+        Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
     Route::get('admin/monitoring/create/{userProdukId}', [MonitoringController::class, 'create'])->name('admin.monitoring.create');
     Route::post('admin/monitoring/store', [MonitoringController::class, 'store'])->name('admin.monitoring.store');
     Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
@@ -137,16 +138,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/show/{id}', [MonitoringController::class, 'inspeksiShow'])->name('show');
     });
 
-    // Maintenance Routes
-    Route::prefix('admin/maintenance')->name('admin.maintenance.')->group(function () {
-        Route::get('/{userProdukId}', [MonitoringController::class, 'maintenanceIndex'])->name('index');
-        Route::get('/create/{userProdukId}', [MonitoringController::class, 'maintenanceCreate'])->name('create');
-        Route::post('/store/{userProdukId}', [MonitoringController::class, 'maintenanceStore'])->name('store');
-        Route::get('/edit/{id}', [MonitoringController::class, 'maintenanceEdit'])->name('edit');
-        Route::put('/update/{id}', [MonitoringController::class, 'maintenanceUpdate'])->name('update');
-        Route::delete('/destroy/{id}', [MonitoringController::class, 'maintenanceDestroy'])->name('destroy');
-        Route::get('/show/{id}', [MonitoringController::class, 'maintenanceShow'])->name('show');
-    });
+    Route::resource('admin/parameter', CompanyParameterController::class);
+
+
+
 
 
 

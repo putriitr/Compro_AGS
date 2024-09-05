@@ -17,14 +17,4 @@ class Monitoring extends Model
     {
         return $this->belongsTo(UserProduk::class);
     }
-
-    public function maintenances()
-    {
-        return $this->hasMany(Maintenance::class);
-    }
-
-    public function kunjungans()
-    {
-        return $this->hasMany(Inspeksi::class);
-    }
 }

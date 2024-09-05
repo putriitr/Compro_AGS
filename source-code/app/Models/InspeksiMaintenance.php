@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Inspeksi extends Model
+class InspeksiMaintenance extends Model
 {
     use HasFactory;
 
-    protected $table = 'inspeksi';
+    protected $table = 'inspeksi_maintenance';
 
-    protected $fillable = ['user_produk_id', 'pic', 'waktu', 'gambar', 'judul'];
+    protected $fillable = ['user_produk_id', 'pic', 'waktu', 'gambar', 'judul','deskripsi','status'];
 
     public function userProduk()
     {

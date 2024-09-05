@@ -7,6 +7,7 @@
         <p><strong>PIC:</strong> {{ $inspeksi->pic }}</p>
         <p><strong>Time:</strong> {{ $inspeksi->waktu }}</p>
         <p><strong>Title:</strong> {{ $inspeksi->judul }}</p>
+        <p><strong>Deskripsi :</strong> {!! $inspeksi->deskripsi !!}</p>
         
         @if($inspeksi->gambar)
             <p><strong>Image:</strong></p>

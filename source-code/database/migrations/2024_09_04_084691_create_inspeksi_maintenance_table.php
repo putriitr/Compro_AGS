@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monitoring', function (Blueprint $table) {
+        Schema::create('inspeksi_maintenance', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_produk_id')->constrained('user_produk')->onDelete('cascade');
-            $table->string('status_barang'); // e.g., kadaluarsa, layak pakai
-            $table->text('kondisi_terakhir_produk');
+            $table->string('pic'); // person in charge
+            $table->timestamp('waktu'); // visit time
+            $table->string('gambar')->nullable(); // image path, made nullable
+            $table->string('judul'); 
+            $table->string('deskripsi'); 
+            $table->enum('status', ['Inspeksi', 'Maintenance']);
+
+            
             $table->timestamps();
         });
     }
@@ -25,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monitoring');
+        Schema::dropIfExists('inspeksi_maintenance');
     }
 };

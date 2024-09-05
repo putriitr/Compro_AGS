@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Monitoring;
 
 use App\Http\Controllers\Controller;
 use App\Models\Inspeksi;
+use App\Models\InspeksiMaintenance;
 use App\Models\Maintenance;
 use App\Models\Monitoring;
 use App\Models\User;
@@ -35,10 +36,15 @@ class MonitoringController extends Controller
         $produk = UserProduk::with('user')->findOrFail($id);
         $user = $produk->user;
     
+        // Fetch monitoring data
         $monitoring = $produk->monitoring()->first();
     
-        return view('admin.monitoring.detail', compact('user', 'produk', 'monitoring'));
+        // Fetch all related inspections
+        $inspeksi = InspeksiMaintenance::where('user_produk_id', $id)->get();
+    
+        return view('admin.monitoring.detail', compact('user', 'produk', 'monitoring', 'inspeksi'));
     }
+    
 
     public function create($userProdukId)
     {
@@ -85,9 +91,9 @@ public function update(Request $request, $id)
     return redirect()->route('monitoring.detail', $monitoring->user_produk_id)->with('success', 'Monitoring data successfully updated.');
 }
 
-public function inspeksiIndex($userProdukId)
+    public function inspeksiIndex($userProdukId)
     {
-        $inspeksi = Inspeksi::where('user_produk_id', $userProdukId)->get();
+        $inspeksi = InspeksiMaintenance::where('user_produk_id', $userProdukId)->get();
         $userProduk = UserProduk::findOrFail($userProdukId);
 
         return view('admin.inspeksi.index', compact('inspeksi', 'userProduk'));
@@ -95,7 +101,7 @@ public function inspeksiIndex($userProdukId)
 
     public function inspeksiShow($id)
     {
-        $inspeksi = Inspeksi::with('userProduk')->findOrFail($id);
+        $inspeksi = InspeksiMaintenance::with('userProduk')->findOrFail($id);
 
         return view('admin.inspeksi.show', compact('inspeksi'));
     }
@@ -114,6 +120,8 @@ public function inspeksiIndex($userProdukId)
             'waktu' => 'required|date',
             'gambar' => 'nullable|image',
             'judul' => 'required|string|max:255',
+            'deskripsi' => 'required|string|max:255',
+            'status' => 'required|in:Inspeksi,Maintenance',
         ]);
 
         $validated['user_produk_id'] = $userProdukId;
@@ -123,15 +131,15 @@ public function inspeksiIndex($userProdukId)
             $validated['gambar'] = $imagePath;
         }
 
-        Inspeksi::create($validated);
+        InspeksiMaintenance::create($validated);
 
-        return redirect()->route('admin.inspeksi.index', $userProdukId)->with('success', 'Inspection data successfully created.');
+        return redirect()->route('monitoring.detail', $userProdukId)->with('success', 'Inspection data successfully created.');
     }
 
     // Show form to edit an existing inspection
     public function inspeksiEdit($id)
     {
-        $inspeksi = Inspeksi::findOrFail($id);
+        $inspeksi = InspeksiMaintenance::findOrFail($id);
 
         return view('admin.inspeksi.edit', compact('inspeksi'));
     }
@@ -144,9 +152,11 @@ public function inspeksiIndex($userProdukId)
             'waktu' => 'required|date',
             'gambar' => 'nullable|image',
             'judul' => 'required|string|max:255',
+            'deskripsi' => 'required|string|max:255',
+            'status' => 'required|in:Inspeksi,Maintenance',
         ]);
 
-        $inspeksi = Inspeksi::findOrFail($id);
+        $inspeksi = InspeksiMaintenance::findOrFail($id);
 
         if ($request->hasFile('gambar')) {
             $imagePath = $request->file('gambar')->store('inspeksi', 'public');
@@ -155,98 +165,21 @@ public function inspeksiIndex($userProdukId)
 
         $inspeksi->update($validated);
 
-        return redirect()->route('admin.inspeksi.index', $inspeksi->user_produk_id)->with('success', 'Inspection data successfully updated.');
+        return redirect()->route('monitoring.detail', $inspeksi->user_produk_id)->with('success', 'Inspection data successfully updated.');
     }
 
     // Delete an inspection
     public function inspeksiDestroy($id)
     {
-        $inspeksi = Inspeksi::findOrFail($id);
+        $inspeksi = InspeksiMaintenance::findOrFail($id);
         $userProdukId = $inspeksi->user_produk_id;
         $inspeksi->delete();
 
-        return redirect()->route('admin.inspeksi.index', $userProdukId)->with('success', 'Inspection data successfully deleted.');
+        return redirect()->route('monitoring.detail', $userProdukId)->with('success', 'Inspection data successfully deleted.');
     }
 
-    public function maintenanceIndex($userProdukId)
-    {
-        $maintenance = Maintenance::where('user_produk_id', $userProdukId)->get();
-        $userProduk = UserProduk::findOrFail($userProdukId);
-
-        return view('admin.maintenance.index', compact('maintenance', 'userProduk'));
-    }
-
-    public function maintenanceCreate($userProdukId)
-    {
-        $userProduk = UserProduk::findOrFail($userProdukId);
-
-        return view('admin.maintenance.create', compact('userProduk'));
-    }
-
-    public function maintenanceStore(Request $request, $userProdukId)
-    {
-        $validated = $request->validate([
-            'tanggal_perbaiki' => 'required|date',
-            'maintenance' => 'required|string|max:255',
-            'bukti' => 'nullable|image',
-        ]);
-
-        $validated['user_produk_id'] = $userProdukId;
-
-        if ($request->hasFile('bukti')) {
-            $imagePath = $request->file('bukti')->store('maintenance', 'public');
-            $validated['bukti'] = $imagePath;
-        }
-
-        Maintenance::create($validated);
-
-        return redirect()->route('admin.maintenance.index', $userProdukId)->with('success', 'Maintenance data successfully created.');
-    }
-
-    public function maintenanceEdit($id)
-    {
-        $maintenance = Maintenance::findOrFail($id);
-
-        return view('admin.maintenance.edit', compact('maintenance'));
-    }
-
-    public function maintenanceUpdate(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'tanggal_perbaiki' => 'required|date',
-            'maintenance' => 'required|string|max:255',
-            'bukti' => 'nullable|image',
-        ]);
-
-        $maintenance = Maintenance::findOrFail($id);
-
-        if ($request->hasFile('bukti')) {
-            $imagePath = $request->file('bukti')->store('maintenance', 'public');
-            $validated['bukti'] = $imagePath;
-        }
-
-        $maintenance->update($validated);
-
-        return redirect()->route('admin.maintenance.index', $maintenance->user_produk_id)->with('success', 'Maintenance data successfully updated.');
-    }
-
-    public function maintenanceDestroy($id)
-    {
-        $maintenance = Maintenance::findOrFail($id);
-        $userProdukId = $maintenance->user_produk_id;
-        $maintenance->delete();
-
-        return redirect()->route('admin.maintenance.index', $userProdukId)->with('success', 'Maintenance data successfully deleted.');
-    }
-
-    public function maintenanceShow($id)
-{
-    // Find the maintenance record by ID
-    $maintenance = Maintenance::with('userProduk.produk')->findOrFail($id);
-
-    // Pass the maintenance record to the view
-    return view('admin.maintenance.show', compact('maintenance'));
-}
+    
+    
 
 
 

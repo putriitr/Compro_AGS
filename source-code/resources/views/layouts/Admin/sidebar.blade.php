@@ -210,8 +210,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <span class="sub-item">Sub-Kategori</span>
+                                <a href="{{ route('parameter.index') }}">
+                                    <span class="sub-item">Parameter</span>
                                 </a>
                             </li>
                             <li>
