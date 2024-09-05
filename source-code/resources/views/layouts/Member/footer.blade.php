@@ -47,19 +47,36 @@
                     @endphp
                 
                     <!-- Alamat -->
-                    <a href=""><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat ?? 'Address not available' }}</a>
+                    @if(!empty($compro->alamat))
+                        <a href="#"><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</a>
+                    @else
+                        <p><i class="fa fa-map-marker-alt me-2"></i> Address not available</p>
+                    @endif
                 
                     <!-- Email -->
-                    <a href="mailto:{{ $compro->email }}"><i class="fas fa-envelope me-2"></i> {{ $compro->email ?? 'Email not available' }}</a>
+                    @if(!empty($compro->email))
+                        <a href="mailto:{{ $compro->email }}"><i class="fas fa-envelope me-2"></i> {{ $compro->email }}</a>
+                    @else
+                        <p><i class="fas fa-envelope me-2"></i> Email not available</p>
+                    @endif
                 
                     <!-- No Telepon -->
-                    <a href="tel:{{ $compro->no_telepon }}"><i class="fas fa-phone me-2"></i> {{ $compro->no_telepon ?? 'Phone not available' }}</a>
+                    @if(!empty($compro->no_telepon))
+                        <a href="tel:{{ $compro->no_telepon }}"><i class="fas fa-phone me-2"></i> {{ $compro->no_telepon }}</a>
+                    @else
+                        <p><i class="fas fa-phone me-2"></i> Phone not available</p>
+                    @endif
                 
                     <!-- WhatsApp -->
-                    <a href="https://wa.me/{{ $compro->no_wa }}" class="mb-3">
-                        <i class="fab fa-whatsapp fa-2x"></i> +{{ $compro->no_wa ?? 'WhatsApp not available' }}
-                    </a>
+                    @if(!empty($compro->no_wa))
+                        <a href="https://wa.me/{{ $compro->no_wa }}" class="mb-3">
+                            <i class="fab fa-whatsapp fa-2x"></i> +{{ $compro->no_wa }}
+                        </a>
+                    @else
+                        <p><i class="fab fa-whatsapp fa-2x"></i> WhatsApp not available</p>
+                    @endif
                 </div>
+                
                 
             </div>
         </div>

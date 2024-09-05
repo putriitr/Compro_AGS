@@ -20,20 +20,42 @@
         <div class="row gx-0 align-items-center" style="height: 45px;">
             <div class="col-lg-8 text-center text-lg-start mb-lg-0">
                 <div class="d-flex flex-wrap">
-                    <a href="{{ $compro->maps }}" class="text-light me-4" target="_blank">
-                        <i class="fas fa-map-marker-alt text-primary me-2"></i>Office Location
-                    </a>                    
-                            <a href="tel:+62{{ $compro->no_telepon }}" class="text-light me-4">
-                                <i class="fas fa-phone-alt text-primary me-2"></i>
-                                (021) {{ $compro->no_telepon ?? 'Phone Number' }}
-                            </a>
-                        
-                            <!-- Email -->
-                            <a href="mailto:{{ $compro->email }}" class="text-light me-0">
-                                <i class="fas fa-envelope text-primary me-2"></i>
-                                {{ $compro->email ?? 'Email' }}
-                            </a>
+                    <!-- Maps / Office Location -->
+                    @if(!empty($compro->maps))
+                        <a href="{{ $compro->maps }}" class="text-light me-4" target="_blank">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>Office Location
+                        </a>
+                    @else
+                        <p class="text-light me-4">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>Office Location Not Available
+                        </p>
+                    @endif
+                
+                    <!-- Phone Number -->
+                    @if(!empty($compro->no_telepon))
+                        <a href="tel:+62{{ $compro->no_telepon }}" class="text-light me-4">
+                            <i class="fas fa-phone-alt text-primary me-2"></i>
+                            (021) {{ $compro->no_telepon }}
+                        </a>
+                    @else
+                        <p class="text-light me-4">
+                            <i class="fas fa-phone-alt text-primary me-2"></i>Phone Number Not Available
+                        </p>
+                    @endif
+                
+                    <!-- Email -->
+                    @if(!empty($compro->email))
+                        <a href="mailto:{{ $compro->email }}" class="text-light me-0">
+                            <i class="fas fa-envelope text-primary me-2"></i>
+                            {{ $compro->email }}
+                        </a>
+                    @else
+                        <p class="text-light me-0">
+                            <i class="fas fa-envelope text-primary me-2"></i>Email Not Available
+                        </p>
+                    @endif
                 </div>
+                
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-flex align-items-center justify-content-end">
