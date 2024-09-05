@@ -13,40 +13,30 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
-                        @forelse($produks as $produk)
+                        @forelse($faqs as $faq)
                             <div class="mb-5">
-                                @if($produk->images->isNotEmpty())
-                                <img src="{{ asset($produk->images->first()->gambar) }}" alt="{{ $produk->nama }}" class="img-fluid me-3" style="width: 100px; height: 100px; object-fit: cover;">
-                            @endif
-                                <h2 class="mb-4">{{ $produk->nama }}</h2>
-                                @if($produk->faqs->isEmpty())
-                                    <p>No FAQs available for this product.</p>
-                                @else
-                                    <div class="accordion" id="qnaAccordion-{{ $produk->id }}">
-                                        @foreach($produk->faqs as $faq)
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="heading{{ $faq->id }}">
-                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                                        data-bs-target="#collapse{{ $faq->id }}" aria-expanded="false" aria-controls="collapse{{ $faq->id }}">
-                                                        {{ $faq->pertanyaan }}
-                                                    </button>
-                                                </h2>
-                                                <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $faq->id }}"
-                                                    data-bs-parent="#qnaAccordion-{{ $produk->id }}">
-                                                    <div class="accordion-body">
-                                                        <p>{{ $faq->jawaban }}</p>
-                                                        @if($faq->image) <!-- Check if there is an associated image -->
-                                                            <img src="{{ asset($faq->image) }}" alt="Image related to FAQ" class="img-fluid mt-3">
-                                                        @endif
-                                                    </div>
-                                                </div>
+                                <div class="accordion" id="qnaAccordion-{{ $faq->id }}">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading{{ $faq->id }}">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapse{{ $faq->id }}" aria-expanded="false" aria-controls="collapse{{ $faq->id }}">
+                                                {{ $faq->pertanyaan }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $faq->id }}"
+                                            data-bs-parent="#qnaAccordion-{{ $faq->id }}">
+                                            <div class="accordion-body">
+                                                <p>{{ $faq->jawaban }}</p>
+                                                @if($faq->image) <!-- Check if there is an associated image -->
+                                                    <img src="{{ asset($faq->image) }}" alt="Image related to FAQ" class="img-fluid mt-3">
+                                                @endif
                                             </div>
-                                        @endforeach
+                                        </div>
                                     </div>
-                                @endif
+                                </div>
                             </div>
                         @empty
-                            <p>You don't have any products associated with your account.</p>
+                            <p>No FAQs available.</p>
                         @endforelse
                     </div>
                     <div class="col-lg-2"></div>

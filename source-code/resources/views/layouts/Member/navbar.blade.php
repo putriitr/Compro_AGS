@@ -46,7 +46,7 @@
                         @csrf
                     </form>
                 @else
-                    <a href="{{ route('login') }}"><small class="me-3"><i class="fa fa-sign-in-alt text-primary me-2"></i>Member Login</small></a>
+                <a href="{{ route('login') }}"><small class="btn btn-primary rounded-pill text-white py-1 px-1"><i class="fa fa-sign-in-alt text-white me-2"></i>Member Login</small></a>
                 @endif
                                                     {{-- <div class="dropdown">
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><small><i
@@ -81,9 +81,10 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-auto py-0">
-                            <a href="{{ route('home') }}" class="nav-item nav-link">Home</a>
-                            <a href="/about" class="nav-item nav-link">About</a>
-                            <a href="{{ route('product') }}" class="nav-item nav-link">Product</a>
+                            <a href="{{route('home')}}" class="nav-item nav-link">Home</a>
+                            <a href="{{route('about')}}" class="nav-item nav-link">About</a>
+                            <a href="{{route('activity')}}" class="nav-item nav-link">Activity</a>
+                            <a href="{{route('product')}}" class="nav-item nav-link">Product</a>
                             <div class="nav-item dropdown">
                                 <a href="/ecommerce" class="nav-link dropdown-toggle"
                                     data-bs-toggle="dropdown">E-Commerce</a>
@@ -92,8 +93,8 @@
                                     <a href="feature.html" class="dropdown-item">Labverse</a>
                                 </div>
                             </div>
-                            <a href="{{route('portal')}}" class="nav-item nav-link">My member portal</a>
-                            <a href="/contact" class="nav-item nav-link">Contact Us</a>
+                            <a href="{{route('portal')}}" class="nav-item nav-link">My Portal</a>
+                            <a href="{{url('contact')}}"  class="nav-item nav-link">Contact Us</a>
                         </div>
                     </div>
 

@@ -1,6 +1,2 @@
-# Compro_AGS Pro
-
-1. Clone Github main
-2. DB: compro_ags
-
+# Compro_AGS
 Company Profile of Arkamaya Guna Saharsa

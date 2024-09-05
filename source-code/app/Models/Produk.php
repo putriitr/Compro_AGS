@@ -38,20 +38,16 @@ class Produk extends Model
     {
         return $this->belongsToMany(User::class, 'user_produk', 'produk_id', 'user_id');
     }
-    public function controlGenerationsProduk()
+    public function documentCertificationsProduk()
     {
-        return $this->hasMany(ControlGenerationsProduk::class, 'produk_id');
-    }
-    
-    public function documentCertifications()
-    {
-        return $this->hasMany(DocumentCertificationsProduk::class, 'produk_id');
+        return $this->hasMany(DocumentCertificationsProduk::class); // or hasMany() if multiple
     }
 
-    public function faqs()
-{
-    return $this->hasMany(ProdukFAQ::class, 'produk_id');
-}
+    public function brosur()
+    {
+        return $this->hasMany(Brosur::class); // or use a different relationship type if necessary
+    }
+
 
 
 }

@@ -7,10 +7,17 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\Member\MemberController;
-use App\Http\Controllers\Admin\Produk\FAQController;
+use App\Http\Controllers\Admin\FAQ\FAQController;
+use App\Http\Controllers\Admin\Monitoring\MonitoringController;
 use App\Http\Controllers\Admin\Produk\ProdukController;
 use App\Http\Controllers\Member\Portal\PortalController;
 use App\Http\Controllers\Member\Produk\ProdukMemberController;
+use App\Http\Controllers\Admin\Slider\SliderController;
+use App\Http\Controllers\Admin\Contact\ContactController;
+use App\Http\Controllers\Admin\Locations\LocationController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +31,7 @@ use App\Http\Controllers\Member\Produk\ProdukMemberController;
 */
 
 Route::get('/about', function () {
-    return view('Customer.About.about');
+    return view('customer.About.about');
 });
 
 Route::get('/product', function () {
@@ -39,8 +46,12 @@ Route::get('/detail', function () {
     return view('member.Category-Product.detail');
 });
 
+Route::get('/activity', function () {
+    return view('member.Activity.activity');
+})->name('activity');
+
 Route::get('/contact', function () {
-    return view('Customer.Contact.contact');
+    return view('Member.Contact.contact');
 });
 
 Route::get('/portal', function () {
@@ -89,9 +100,11 @@ Route::get('/portal/instructions', [PortalController::class, 'instructions'])->n
 Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
 Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
 Route::get('/portal/document', [PortalController::class, 'Document'])->name('portal.document');
-Route::get('/portal/qna', [PortalController::class, 'FaqProduk'])->name('portal.qna');
+Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
 
 
+
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 Auth::routes();
 
 //Normal Users Routes List
@@ -100,15 +113,26 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
 
     //Admin Routes List
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
-
-    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('admin/members', MemberController::class);
     Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
     Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');
     Route::get('members/{id}/edit-products', [MemberController::class, 'editProducts'])->name('members.edit-products');
     Route::put('members/{id}/update-products', [MemberController::class, 'updateProducts'])->name('members.update-products');
+    Route::post('/members/{id}/update-password', [MemberController::class, 'updatePassword'])->name('members.updatePassword');
+    Route::post('/admin/validate-password', [MemberController::class, 'validatePassword'])->name('admin.validatePassword');
 
+
+    Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
+    Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
+    Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
+    Route::get('admin/monitoring/create/{userProdukId}', [MonitoringController::class, 'create'])->name('admin.monitoring.create');
+    Route::post('admin/monitoring/store', [MonitoringController::class, 'store'])->name('admin.monitoring.store');
+    // Route for editing monitoring data
+Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
+
+// Route for updating monitoring data
+Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
 
 
     //masterdata
@@ -119,18 +143,22 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
     Route::resource('admin/produk', ProdukController::class)->names('admin.produk');
 
     //FAQ
-    Route::prefix('produk/{produk_id}')->group(function () {
-        Route::get('admin/faq', [FAQController::class, 'index'])->name('admin.faq.index');
-        Route::get('admin/faq/create', [FAQController::class, 'create'])->name('admin.faq.create');
-        Route::post('admin/faq', [FAQController::class, 'store'])->name('admin.faq.store');
-        Route::get('admin/faq/{faq_id}', [FAQController::class, 'show'])->name('admin.faq.show');
-        Route::get('admin/faq/{faq_id}/edit', [FAQController::class, 'edit'])->name('admin.faq.edit');
-        Route::put('admin/faq/{faq_id}', [FAQController::class, 'update'])->name('admin.faq.update');
-        Route::delete('admin/faq/{faq_id}', [FAQController::class, 'destroy'])->name('admin.faq.destroy');
-    });
+    Route::resource('admin/faq', FAQController::class)->names('admin.faq');
+
+    //Slider
+    Route::resource('admin/slider', SliderController::class)->names('admin.slider');
+
+    //contact
+    Route::resource('admin/contact', ContactController::class)->names('admin.contact');
+
+    //contact
+    Route::resource('admin/locations', LocationController::class)->names('admin.locations');
+
 });
 
 
-use App\Http\Controllers\LocationController;
 
-Route::get('/locations', [LocationController::class, 'index']);
+
+
+    
+    

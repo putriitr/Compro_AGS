@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin.master')
 
 @section('content')
 <div class="container">
-    <h2>FAQs for {{ $produk->nama }}</h2>
+    <h2>FAQs</h2>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -10,16 +10,16 @@
         </div>
     @endif
 
-    <a href="{{ route('admin.faq.create', $produk->id) }}" class="btn btn-primary mb-3">Add New FAQ</a>
+    <a href="{{ route('admin.faq.create') }}" class="btn btn-primary mb-3">Add New FAQ</a>
 
     @if($faqs->isEmpty())
-        <p>No FAQs found for this product.</p>
+        <p>No FAQs found.</p>
     @else
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>pertanyaan</th>
-                    <th>jawaban</th>
+                    <th>Pertanyaan</th>
+                    <th>Jawaban</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -29,9 +29,9 @@
                         <td>{{ $faq->pertanyaan }}</td>
                         <td>{{ Str::limit($faq->jawaban, 100) }}</td>
                         <td>
-                            <a href="{{ route('admin.faq.show', [$produk->id, $faq->id]) }}" class="btn btn-info btn-sm">View</a>
-                            <a href="{{ route('admin.faq.edit', [$produk->id, $faq->id]) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('admin.faq.destroy', [$produk->id, $faq->id]) }}" method="POST" style="display:inline-block;">
+                            <a href="{{ route('admin.faq.show', $faq->id) }}" class="btn btn-info btn-sm">View</a>
+                            <a href="{{ route('admin.faq.edit', $faq->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('admin.faq.destroy', $faq->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this FAQ?');">Delete</button>
