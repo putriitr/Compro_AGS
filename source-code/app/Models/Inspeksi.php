@@ -9,10 +9,12 @@ class Inspeksi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['monitoring_id', 'pic', 'waktu', 'gambar', 'judul'];
+    protected $table = 'inspeksi';
 
-    public function monitoring()
+    protected $fillable = ['user_produk_id', 'pic', 'waktu', 'gambar', 'judul'];
+
+    public function userProduk()
     {
-        return $this->belongsTo(Monitoring::class);
+        return $this->belongsTo(UserProduk::class, 'user_produk_id');
     }
 }

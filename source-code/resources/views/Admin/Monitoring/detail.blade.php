@@ -22,8 +22,8 @@
             @else
             <a href="{{ route('admin.monitoring.create', ['userProdukId' => $produk->id]) }}" class="btn btn-success mb-3">Create Monitoring Data</a>
             @endif
-            <a href="#" class="btn btn-primary">Inspeksi</a>
-            <a href="#" class="btn btn-secondary">Maintenance</a>
+            <a href="{{ route('admin.inspeksi.index', ['userProdukId' => $produk->id]) }}" class="btn btn-primary mb-3">Inspeksi</a>
+            <a href="{{ route('admin.maintenance.index', ['userProdukId' => $produk->id]) }}" class="btn btn-secondary mb-3">Maintenance</a>
         </div>
         
     </div>

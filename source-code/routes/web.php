@@ -107,7 +107,7 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
     });
 
     //Admin Routes List
-    Route::middleware(['auth', 'user-access:admin'])->group(function () {
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('admin/members', MemberController::class);
     Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
@@ -123,11 +123,32 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
     Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
     Route::get('admin/monitoring/create/{userProdukId}', [MonitoringController::class, 'create'])->name('admin.monitoring.create');
     Route::post('admin/monitoring/store', [MonitoringController::class, 'store'])->name('admin.monitoring.store');
-    // Route for editing monitoring data
-Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
+    Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
+    Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
 
-// Route for updating monitoring data
-Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
+    // Inspeksi Routes
+    Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
+        Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');
+        Route::get('/create/{userProdukId}', [MonitoringController::class, 'inspeksiCreate'])->name('create');
+        Route::post('/store/{userProdukId}', [MonitoringController::class, 'inspeksiStore'])->name('store');
+        Route::get('/edit/{id}', [MonitoringController::class, 'inspeksiEdit'])->name('edit');
+        Route::put('/update/{id}', [MonitoringController::class, 'inspeksiUpdate'])->name('update');
+        Route::delete('/destroy/{id}', [MonitoringController::class, 'inspeksiDestroy'])->name('destroy');
+        Route::get('/show/{id}', [MonitoringController::class, 'inspeksiShow'])->name('show');
+    });
+
+    // Maintenance Routes
+    Route::prefix('admin/maintenance')->name('admin.maintenance.')->group(function () {
+        Route::get('/{userProdukId}', [MonitoringController::class, 'maintenanceIndex'])->name('index');
+        Route::get('/create/{userProdukId}', [MonitoringController::class, 'maintenanceCreate'])->name('create');
+        Route::post('/store/{userProdukId}', [MonitoringController::class, 'maintenanceStore'])->name('store');
+        Route::get('/edit/{id}', [MonitoringController::class, 'maintenanceEdit'])->name('edit');
+        Route::put('/update/{id}', [MonitoringController::class, 'maintenanceUpdate'])->name('update');
+        Route::delete('/destroy/{id}', [MonitoringController::class, 'maintenanceDestroy'])->name('destroy');
+        Route::get('/show/{id}', [MonitoringController::class, 'maintenanceShow'])->name('show');
+    });
+
+
 
 
     //masterdata

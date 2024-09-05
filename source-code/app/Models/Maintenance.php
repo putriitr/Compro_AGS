@@ -12,10 +12,10 @@ class Maintenance extends Model
     protected $table = 'maintenance';
 
 
-    protected $fillable = ['monitoring_id', 'tanggal_perbaiki', 'maintenance', 'bukti'];
+    protected $fillable = ['user_produk_id', 'tanggal_perbaiki', 'maintenance', 'bukti'];
 
-    public function monitoring()
+    public function userProduk()
     {
-        return $this->belongsTo(Monitoring::class);
+        return $this->belongsTo(UserProduk::class, 'user_produk_id');
     }
 }

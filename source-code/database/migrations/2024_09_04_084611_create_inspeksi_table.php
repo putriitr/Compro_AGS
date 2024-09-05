@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inspeksi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('monitoring_id')->constrained('monitoring')->onDelete('cascade');
+            $table->foreignId('user_produk_id')->constrained('user_produk')->onDelete('cascade');
             $table->string('pic'); // person in charge
             $table->timestamp('waktu'); // visit time
             $table->string('gambar'); // image path

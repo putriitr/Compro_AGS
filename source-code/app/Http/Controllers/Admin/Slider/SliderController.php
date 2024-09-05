@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Admin\Slider;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use Illuminate\Support\Facades\File;
+
 
 class SliderController extends Controller
 {
@@ -34,7 +36,11 @@ class SliderController extends Controller
             'button_url' => 'required|string',
         ]);
 
-        $imagePath = $request->file('image_url')->store('sliders', 'public');
+            // Save image to public/uploads/slider
+            $image = $request->file('image_url');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('uploads/slider'), $imageName);
+            $imagePath = 'uploads/slider/' . $imageName;
 
         Slider::create([
             'image_url' => $imagePath,
@@ -56,7 +62,7 @@ class SliderController extends Controller
     }
 
     // Update slider
-    public function update(Request $request, $id)
+     public function update(Request $request, $id)
     {
         $slider = Slider::findOrFail($id);
 
@@ -70,8 +76,16 @@ class SliderController extends Controller
         ]);
 
         if ($request->hasFile('image_url')) {
-            $imagePath = $request->file('image_url')->store('sliders', 'public');
-            $slider->image_url = $imagePath;
+            // Delete the old image
+            if (File::exists(public_path($slider->image_url))) {
+                File::delete(public_path($slider->image_url));
+            }
+
+            // Save new image to public/uploads/slider
+            $image = $request->file('image_url');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('uploads/slider'), $imageName);
+            $slider->image_url = 'uploads/slider/' . $imageName;
         }
 
         $slider->title = $request->title;
@@ -88,8 +102,14 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::findOrFail($id);
+
+        // Delete the image file
+        if (File::exists(public_path($slider->image_url))) {
+            File::delete(public_path($slider->image_url));
+        }
+
         $slider->delete();
 
-        return redirect()->route('sliders.index')->with('success', 'Slider deleted successfully.');
+        return redirect()->route('admin.slider.index')->with('success', 'Slider deleted successfully.');
     }
 }
