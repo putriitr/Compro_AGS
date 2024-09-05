@@ -23,19 +23,21 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
+                <!-- Dashboard -->
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+
+                <!-- Member -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
                     <h4 class="text-section">Member</h4>
                 </li>
-
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#tables">
                         <i class="fas fa-shopping-cart"></i>
@@ -53,28 +55,32 @@
                         </ul>
                     </div>
                 </li>
+
+                <!-- Customer Manage -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Produk</h4>
+                    <h4 class="text-section">Customer Manage</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                        <i class="fas fa-box"></i>
-                        <p>Produk</p>
+                    <a data-bs-toggle="collapse" href="#customer">
+                        <i class="fas fa-user"></i> <!-- Ikon pengguna (user) -->
+                        <p>Customer</p>
+                        <span class="badge badge-success">2</span>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="sidebarLayouts">
+                    <div class="collapse" id="customer">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ route('admin.produk.index') }}">
-                                    <span class="sub-item">Produk</span>
+                                <a href="#">
+                                    <span class="sub-item">User</span>
                                 </a>
-                            </li>
                         </ul>
                     </div>
                 </li>
+
+                <!-- Pantau -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
@@ -97,28 +103,8 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-section">
-                    <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <h4 class="text-section">Information</h4>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#contact">
-                        <i class="fas fa-phone"></i> <!-- Ikon kalender -->
-                        <p>Contact</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="contact">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="">
-                                    <span class="sub-item">Contact</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+
+                <!-- Section -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
@@ -126,12 +112,12 @@
                     <h4 class="text-section">Section</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#sliders">
-                        <i class="fas fa-sliders-hw"></i> <!-- Ikon kalender -->
+                    <a data-bs-toggle="collapse" href="#sliders-section">
+                        <i class="fas fa-sliders-h"></i> <!-- Ikon slider -->
                         <p>Slider</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="sliders">
+                    <div class="collapse" id="sliders-section">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.slider.index') }}">
@@ -141,28 +127,49 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#activity-section">
+                        <i class="fas fa-calendar-alt"></i> <!-- Ikon aktivitas -->
+                        <p>Activity</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="activity-section">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.activity.index') }}">
+                                    <span class="sub-item">Activity</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+
+                <!-- Information -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Costumer Manage</h4>
+                    <h4 class="text-section">Information</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#customer">
-                        <i class="fas fa-user"></i> <!-- Mengganti ikon menjadi ikon pengguna (user) -->
-                        <p>Costumer</p>
-                        <span class="badge badge-success">2</span>
+                    <a data-bs-toggle="collapse" href="#contact">
+                        <i class="fas fa-phone"></i> <!-- Ikon telepon -->
+                        <p>Contact</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="customer">
+                    <div class="collapse" id="contact">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="#">
-                                    <span class="sub-item">User</span>
+                                    <span class="sub-item">Contact</span>
                                 </a>
                         </ul>
                     </div>
                 </li>
+
+                <!-- FAQ -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
@@ -172,7 +179,6 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#faq">
                         <i class="fas fa-question-circle"></i>
-                        <!-- Mengganti ikon menjadi ikon FAQ (question circle) -->
                         <p>FAQ</p>
                         <span class="caret"></span>
                     </a>
@@ -185,6 +191,8 @@
                         </ul>
                     </div>
                 </li>
+
+                <!-- Master Data -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
@@ -193,7 +201,7 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#base">
-                        <i class="fas fa-database"></i> <!-- Mengganti ikon menjadi ikon database -->
+                        <i class="fas fa-database"></i> <!-- Ikon database -->
                         <p>Master Data</p>
                         <span class="caret"></span>
                     </a>
@@ -227,8 +235,6 @@
                         </ul>
                     </div>
                 </li>
-
-
             </ul>
         </div>
     </div>

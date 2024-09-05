@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Produk\ProdukController;
 use App\Http\Controllers\Member\Portal\PortalController;
 use App\Http\Controllers\Member\Produk\ProdukMemberController;
 use App\Http\Controllers\Admin\Slider\SliderController;
+use App\Http\Controllers\Admin\Activity\ActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,10 @@ Route::get('/detail', function () {
 Route::get('/activity', function () {
     return view('member.Activity.activity');
 })->name('activity');
+
+Route::get('/detail-act', function () {
+    return view('member.Activity.detail-act');
+})->name('detail-act');
 
 Route::get('/contact', function () {
     return view('Customer.Contact.contact');
@@ -141,11 +146,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('admin/parameter', CompanyParameterController::class);
 
 
-
-
-
-
-
     //masterdata
     Route::resource('admin/bidangperusahaan', BidangPerusahaanController::class);
     Route::resource('admin/kategori', KategoriController::class)->names('admin.kategori');
@@ -159,6 +159,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     //Slider
     Route::resource('admin/slider', SliderController::class)->names('admin.slider');
 
+    //Activity
+    Route::resource('admin/activity', ActivityController::class)->names('admin.activity');
+
 });
 
 
@@ -169,5 +172,4 @@ Route::get('/locations', [LocationController::class, 'index']);
 
 
 
-    
-    
+

@@ -27,90 +27,6 @@
     </div>
     <!-- Navbar & Hero End -->
 
-
-    <!-- Services Start -->
-    <div class="container-fluid service py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">About Us</h4>
-                </div>
-                <h1 class="display-3 mb-4">PT Arkamaya Guna Saharsa</h1>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded">
-                        <div class="service-img rounded-top">
-                            <img src="img/service-1.jpg" class="img-fluid rounded-top w-100" alt="">
-                        </div>
-                        <div class="service-content rounded-bottom bg-light p-4">
-                            <div class="service-content-inner">
-                                <h5 class="mb-4">Our Purpose</h5>
-                                <p class="mb-4">We provide any kind solutions for growing up your industry.
-                                    We prepare two products that will definitely solve
-                                    your problem.</p><br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded">
-                        <div class="service-img rounded-top">
-                            <img src="img/service-2.jpg" class="img-fluid rounded-top w-100" alt="">
-                        </div>
-                        <div class="service-content rounded-bottom bg-light p-4">
-                            <div class="service-content-inner">
-                                <h5 class="mb-4">Our Core Beliefs</h5>
-                                <ul class="mb-4">
-                                    <li>Move Quickly</li>
-                                    <li>Innovation</li>
-                                    <li>Independence</li>
-                                    <li>Quality</li>
-                                    <li>Customer Satisfaction</li>
-                                    <li>Respect</li><br>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded">
-                        <div class="service-img rounded-top">
-                            <img src="img/service-3.jpg" class="img-fluid rounded-top w-100" alt="">
-                        </div>
-                        <div class="service-content rounded-bottom bg-light p-4">
-                            <div class="service-content-inner">
-                                <h5 class="mb-4">Our Partner's</h5>
-                                <p class="mb-4">We build our strong brands and work with trusted partners and principals
-                                    to deliver solutions to enhance your business by ensuring highest quality & innovation
-                                    in every product we offer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item rounded">
-                        <div class="service-img rounded-top">
-                            <img src="img/service-4.jpg" class="img-fluid rounded-top w-100" alt="">
-                        </div>
-                        <div class="service-content rounded-bottom bg-light p-4">
-                            <div class="service-content-inner">
-                                <h5 class="mb-4">Our Activities</h5>
-                                <p class="mb-4">Through exhibitions and presentations, our company has consistently
-                                    showcases many innovative products and creates impactful experiences at various events.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="/about">Abous Us More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Services End -->
-
     <!-- About Start -->
     <div class="container-fluid about bg-light py-5">
         <div class="container py-5">
@@ -140,6 +56,9 @@
                             technological advancements or reimagining existing solutions to meet evolving industry
                             needs.
                         </p>
+                        <div class="col-6 text-center wow fadeInUp" data-wow-delay="0.2s">
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="/about">Abous Us More</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -180,8 +99,182 @@
             </div>
         </div>
     </div>
-
     <!-- Product End -->
+
+    <!-- Brand Start -->
+    <div class="container-fluid service py-5">
+        <div class="container py-5">
+            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="sub-style">
+                    <h4 class="sub-title px-3 mb-0">Work Together</h4>
+                </div>
+                <h1 class="display-3 mb-4">Our Brand & Partner</h1>
+            </div>
+            <div class="row">
+                <!-- Our Brand Section -->
+                <div class="col-lg-3 mb-4">
+                    <h4 class="mb-3">Our Brand:</h4>
+                    <div class="row g-3">
+                        <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-item rounded">
+                                <div class="service-img rounded-top">
+                                    <img src="{{ asset('assets/img/about/1.png') }}" class="img-fluid w-100" alt=""
+                                        style="border-radius: 40%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="service-item rounded">
+                                <div class="service-img rounded-top">
+                                    <img src="{{ asset('assets/img/about/2.png') }}" class="img-fluid w-100" alt=""
+                                        style="border-radius: 40%; ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <!-- Our Partner Section -->
+                <div class="col-lg-8">
+                    <h4 class="mb-4">Our Partner:</h4>
+                    <div class="row g-4">
+                        <!-- First Row -->
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ asset('assets/img/about/partner-1.jpg') }}" class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ asset('assets/img/about/partner-2.jpg') }}" class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ asset('assets/img/about/partner-3.jpg') }}" class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ asset('assets/img/about/partner-4.jpg') }}" class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                    alt="">
+                            </div>
+                        </div>
+
+                        <!-- Second Row -->
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ asset('assets/img/about/partner-5.jpg') }}" class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ asset('assets/img/about/partner-6.jpg') }}" class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.7s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ asset('assets/img/about/partner-7.jpg') }}" class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 wow fadeInUp" data-wow-delay="0.8s">
+                            <div class="service-img rounded-top">
+                                <img src="{{ asset('assets/img/about/partner-8.jpg') }}" class="img-fluid w-100"
+                                    style="border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; border: 2px solid #416BBF;"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Brand End -->
+
+    <!-- Principal Start -->
+    <div class="container-fluid testimonial py-5 wow zoomInDown" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title mb-5">
+                <div class="sub-style">
+                    <h4 class="sub-title text-white px-3 mb-0">Trusted Collaborations</h4>
+                </div>
+                <h1 class="display-3 mb-4">Our Principal's</h1>
+            </div>
+            <div class="testimonial-carousel owl-carousel">
+                <div class="testimonial-item">
+                    <div class="testimonial-inner p-5">
+                        <div class="testimonial-inner-img mb-4">
+                            <img src="{{ asset('assets/img/logos/p1.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p2.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p3.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p4.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p5.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p6.png') }}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-inner p-5">
+                        <div class="testimonial-inner-img mb-4">
+                            <img src="{{ asset('assets/img/logos/p7.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p8.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p9.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p10.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p11.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p12.png') }}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-inner p-5">
+                        <div class="testimonial-inner-img mb-4">
+                            <img src="{{ asset('assets/img/logos/p13.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p14.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p15.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p16.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p17.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p18.png') }}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-inner p-5">
+                        <div class="testimonial-inner-img mb-4">
+                            <img src="{{ asset('assets/img/logos/p19.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p20.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p21.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p22.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p23.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p24.png') }}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-inner p-5">
+                        <div class="testimonial-inner-img mb-4">
+                            <img src="{{ asset('assets/img/logos/p25.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p26.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/logos/p27.png') }}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Principal End -->
 
     <!-- Ecommerce Start -->
     <div class="container-fluid service py-5">
