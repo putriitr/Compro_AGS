@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>All Activities</h1>
+    <h1>Activities</h1>
     <a href="{{ route('admin.activity.create') }}" class="btn btn-primary">Add New Activity</a>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -18,15 +18,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($activity as $activity)
+            @foreach($activities as $activity)
                 <tr>
                     <td><img src="{{ asset('images/'.$activity->image) }}" alt="{{ $activity->title }}" width="100"></td>
                     <td>{{ $activity->date->format('d-m-Y') }}</td>
                     <td>{{ $activity->title }}</td>
                     <td>{{ Str::limit($activity->description, 50) }}</td>
                     <td>
-                        <a href="{{ route('activity.edit', $activity) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('activity.destroy', $activity) }}" method="POST" style="display:inline;">
+
+                        <a href="{{ route('admin.activity.edit', $activity) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('admin.activity.show', $activity) }}" class="btn btn-info">View</a>
+                        <form action="{{ route('admin.activity.destroy', $activity) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

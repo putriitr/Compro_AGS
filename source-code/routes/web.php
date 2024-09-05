@@ -15,6 +15,9 @@ use App\Http\Controllers\Member\Portal\PortalController;
 use App\Http\Controllers\Member\Produk\ProdukMemberController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\Activity\ActivityController;
+use App\Http\Controllers\Member\Activity\ActivityMemberController;
+
+
 use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
 
     /*
@@ -27,145 +30,6 @@ use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
     | be assigned to the "web" middleware group. Make something great!
     |
     */
-
-Route::get('/about', function () {
-    return view('customer.About.about');
-});
-
-Route::get('/product', function () {
-    return view('Customer.Product.product');
-});
-
-Route::get('/category', function () {
-    return view('member.Category-Product.category');
-});
-
-Route::get('/detail', function () {
-    return view('member.Category-Product.detail');
-});
-
-Route::get('/activity', function () {
-    return view('member.Activity.activity');
-})->name('activity');
-
-Route::get('/detail-act', function () {
-    return view('member.Activity.detail-act');
-})->name('detail-act');
-
-Route::get('/contact', function () {
-    return view('Customer.Contact.contact');
-});
-
-Route::get('/portal', function () {
-    return view('Member.Portal.portal');
-});
-
-Route::get('/catalog', function () {
-    return view('Member.Portal.catalog');
-});
-
-Route::get('/doc', function () {
-    return view('Member.Portal.document');
-});
-
-Route::get('/cg', function () {
-    return view('Member.Portal.controller-generations');
-});
-
-Route::get('/qna', function () {
-    return view('Member.Portal.qna');
-});
-
-Route::get('/video', function () {
-    return view('Member.Portal.tutorials');
-});
-
-Route::get('/photos', function () {
-    return view('Member.Portal.photos');
-});
-
-Route::get('/instructions', function () {
-    return view('Member.Portal.instructions');
-});
-
-
-
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/product', [ProdukMemberController::class, 'index'])->name('product');
-Route::get('/product/category/{id}', [ProdukMemberController::class, 'productByCategory'])->name('product.by_category');
-Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
-Route::get('/portal', [PortalController::class, 'index'])->name('portal');
-Route::get('/portal/catalog', [PortalController::class, 'catalog'])->name('portal.catalog');
-Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
-Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
-Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
-Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
-Route::get('/portal/document', [PortalController::class, 'Document'])->name('portal.document');
-Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
-
-
-
-Route::get('/about', [HomeController::class, 'about'])->name('about');
-Auth::routes();
-
-//Normal Users Routes List
-Route::middleware(['auth', 'user-access:member'])->group(function () {
-    });
-
-    Route::get('/product', function () {
-        return view('Customer.Product.product');
-    });
-
-    Route::get('/category', function () {
-        return view('member.Category-Product.category');
-    });
-
-    Route::get('/detail', function () {
-        return view('member.Category-Product.detail');
-    });
-
-    Route::get('/activity', function () {
-        return view('member.Activity.activity');
-    })->name('activity');
-
-    Route::get('/contact', function () {
-        return view('Customer.Contact.contact');
-    });
-
-    Route::get('/portal', function () {
-        return view('Member.Portal.portal');
-    });
-
-    Route::get('/catalog', function () {
-        return view('Member.Portal.catalog');
-    });
-
-    Route::get('/doc', function () {
-        return view('Member.Portal.document');
-    });
-
-    Route::get('/cg', function () {
-        return view('Member.Portal.controller-generations');
-    });
-
-    Route::get('/qna', function () {
-        return view('Member.Portal.qna');
-    });
-
-    Route::get('/video', function () {
-        return view('Member.Portal.tutorials');
-    });
-
-    Route::get('/photos', function () {
-        return view('Member.Portal.photos');
-    });
-
-    Route::get('/instructions', function () {
-        return view('Member.Portal.instructions');
-    });
-
-
 
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -182,12 +46,24 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
     Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
 
 
-
     Route::get('/about', [HomeController::class, 'about'])->name('about');
+    Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
+    Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
+
+
     Auth::routes();
 
     //Normal Users Routes List
     Route::middleware(['auth', 'user-access:member'])->group(function () {
+    Route::get('/portal', [PortalController::class, 'index'])->name('portal');
+    Route::get('/portal/catalog', [PortalController::class, 'catalog'])->name('portal.catalog');
+    Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
+    Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
+    Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
+    Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
+    Route::get('/portal/document', [PortalController::class, 'Document'])->name('portal.document');
+    Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
+
         });
 
         //Admin Routes List

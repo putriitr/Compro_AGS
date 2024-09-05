@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\BrandPartner;
 use App\Models\CompanyParameter;
 use App\Models\Kategori;
@@ -28,11 +29,11 @@ class HomeController extends Controller
         $brand = BrandPartner::where('type', 'brand')->get();
         $partners = BrandPartner::where('type', 'partner')->get();  // Filter by 'partner'
         $principals = BrandPartner::where('type', 'principal')->get();  // Filter by 'principal'
-        
+
         return view('home', compact('kategori', 'sliders', 'company', 'brand', 'partners', 'principals'));
     }
-    
-    
+
+
 
     public function dashboard()
     {
@@ -49,4 +50,7 @@ class HomeController extends Controller
 
         return view('Member.About.about', compact('company','brand', 'partners', 'principals'));
     }
+
+
+
 }

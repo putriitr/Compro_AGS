@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin\Activity;
 
 use App\Http\Controllers\Controller;
-use App\Models\Activity;
 use Illuminate\Http\Request;
+use App\Models\Activity;
 
 class ActivityController extends Controller
 {
     public function index()
     {
-        $activity = Activity::paginate(8); // Gunakan $activity, bukan $activities
-        return view('member.Activity.index', compact('activity')); // Pastikan nama variabel sama
+        $activities = Activity::all();
+        return view('admin.activity.index', compact('activities'));
     }
 
     public function create()
@@ -38,12 +38,17 @@ class ActivityController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('activity.index')->with('success', 'Activity created successfully.');
+        return redirect()->route('admin.activity.index')->with('success', 'Activity created successfully.');
     }
 
     public function edit(Activity $activity)
     {
-        return view('activity.edit', compact('activity'));
+        return view('admin.activity.edit', compact('activity'));
+    }
+
+    public function show(Activity $activity)
+    {
+        return view('admin.activity.show', compact('activity'));
     }
 
     public function update(Request $request, Activity $activity)
@@ -66,7 +71,7 @@ class ActivityController extends Controller
         $activity->description = $request->description;
         $activity->save();
 
-        return redirect()->route('activity.index')->with('success', 'Activity updated successfully.');
+        return redirect()->route('admin.activity.index')->with('success', 'Activity updated successfully.');
     }
 
     public function destroy(Activity $activity)
@@ -75,6 +80,6 @@ class ActivityController extends Controller
             unlink(public_path('images/'.$activity->image));
         }
         $activity->delete();
-        return redirect()->route('activity.index')->with('success', 'Activity deleted successfully.');
+        return redirect()->route('admin.activity.index')->with('success', 'Activity deleted successfully.');
     }
 }
