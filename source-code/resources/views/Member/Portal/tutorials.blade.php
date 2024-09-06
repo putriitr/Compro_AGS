@@ -1,54 +1,97 @@
 @extends('layouts.Member.master')
 
 @section('content')
+
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Tutorial Video</h3>
+        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/portal') }}">Portal Member</a></li>
+            <li class="breadcrumb-item active text-primary">Tutorial Video</li>
+        </ol>
+    </div>
+</div>
+
 <div class="container-fluid team py-5">
     <div class="container py-5">
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">How-To Guides for Our Products</h4>
-            </div>
-            <h1 class="display-3 mb-4">Video Tutorials</h1>
-        </div>
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s"></div>
         <div class="container">
-            @forelse($produks as $produk)
-                <div class="row justify-content-center mb-5">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                            <h4 style="font-size: 1.5rem;" class="mb-4 text-start">{{ $produk->nama }} Tutorials</h4>
-                            <div class="accordion" id="accordion{{ $produk->id }}">
+            <div class="row g-4 justify-content-center">
+                @forelse($uniqueProduks as $produk)
+                <div class="col-md-4 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-img rounded-top border border-secondary" style="border-radius: 10px;">
+                            <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" class="img-fluid rounded-top w-100" alt="{{ $produk->nama }}">
+                            <div class="service-content-inner p-4" style="border-radius: 0 0 10px 10px;">
+                                <h5>{{ $produk->nama }}</h5>
+                                <p class="mb-4">{{ Str::limit($produk->kegunaan, 100) }}</p>
+                                
                                 @forelse($produk->videos as $video)
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading{{ $video->id }}">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $video->id }}" aria-expanded="false" aria-controls="collapse{{ $video->id }}">
-                                                Tutorial {{ $loop->iteration }}
-                                            </button>
-                                        </h2>
-                                        <div id="collapse{{ $video->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $video->id }}" data-bs-parent="#accordion{{ $produk->id }}">
-                                            <div class="accordion-body">
-                                                <video class="w-100" controls>
-                                                    <source src="{{ asset($video->video) }}" type="video/mp4">
-                                                    Your browser does not support the video tag.
-                                                </video>
-                                            </div>
+                                    <div class="mb-3">
+                                        <h6 class="mb-2">Video {{ $loop->iteration }}</h6>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <a href="{{ asset($video->video) }}" download="{{ $produk->nama }}_{{ $loop->iteration }}_tutorial.mp4" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-fill">Download</a>
+                                            <button class="btn btn-secondary rounded-pill text-white py-2 px-4 flex-fill" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="{{ asset($video->video) }}">View</button>
                                         </div>
                                     </div>
                                 @empty
-                                    <p class="text-muted">No tutorials available for this product.</p>
+                                    <p class="text-muted">No video tutorial available</p>
                                 @endforelse
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2"></div>
-                </div>
-            @empty
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <p class="text-center">You don't have any products with video tutorials.</p>
+                @empty
+                    <div class="col-12">
+                        <p class="text-center">You don't have any products associated with your account.</p>
                     </div>
-                </div>
-            @endforelse
+                @endforelse
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Video Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">Video Tutorial</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <video id="modalVideo" class="w-100" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var videoModal = document.getElementById('videoModal');
+        
+        videoModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var videoSrc = button.getAttribute('data-video');
+            var modalVideo = videoModal.querySelector('#modalVideo');
+            var videoSource = modalVideo.querySelector('source');
+
+            if (videoSrc) {
+                videoSource.src = videoSrc;
+                modalVideo.load();
+            }
+        });
+
+        videoModal.addEventListener('hide.bs.modal', function () {
+            var modalVideo = videoModal.querySelector('#modalVideo');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        });
+    });
+</script>
+
+
 @endsection
+

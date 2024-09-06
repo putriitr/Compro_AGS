@@ -189,30 +189,19 @@ public function update(Request $request, $id)
         return redirect()->route('members.show', $member->id)->with('success', 'Products updated successfully.');
     }
 
-    public function validatePassword(Request $request)
-{
-    $adminPassword = $request->input('password');
+    public function updatePassword(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
     
-    if (Hash::check($adminPassword, Auth::user()->password)) {
+        $member = User::findOrFail($id);
+        $member->password = Hash::make($request->password);
+        $member->save();
+    
         return response()->json(['success' => true]);
-    } else {
-        return response()->json(['success' => false]);
     }
-}
-
-
-public function updatePassword(Request $request, $id)
-{
-    $request->validate([
-        'password' => 'required|confirmed|min:8',
-    ]);
-
-    $member = User::find($id);
-    $member->password = Hash::make($request->input('password'));
-    $member->save();
-
-    return response()->json(['success' => true]);
-}
+    
 
 
 

@@ -45,8 +45,6 @@
                         @endif
                     </div>
 
-
-
                     <div class="form-group">
                         <label for="bidang_perusahaan">Bidang Perusahaan</label>
                         <select class="form-control" id="bidang_perusahaan" name="bidang_perusahaan" required>
@@ -76,112 +74,61 @@
                         @endif
                     </div>
 
+                    <!-- Password Fields -->
+                    <div class="form-group mb-3">
+                        <label for="password" class="form-label">Password Baru:</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                        <small class="text-danger" id="password_error"></small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password_confirmation" class="form-label">Konfirmasi Password Baru:</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                        <small class="text-danger" id="password_confirmation_error"></small>
+                    </div>
+
                     <button type="submit" class="btn btn-success">Update</button>
-                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-                    Ubah Password
-                </button>
                     <a href="{{ route('members.index') }}" class="btn btn-secondary">Back</a>
                 </form>
 
-
-
-                <!-- Modal for changing password -->
-                <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="changePasswordModalLabel">Ubah Password</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Admin Password Validation -->
-                                <div class="form-group mb-3">
-                                    <label for="admin_password" class="form-label">Masukkan Password Admin:</label>
-                                    <input type="password" class="form-control" id="admin_password" name="admin_password" required>
-                                    <small class="text-danger" id="admin_password_error"></small>
-                                </div>
-
-                                <!-- New Password Fields -->
-                                <div id="passwordFields" style="display:none;">
-                                    <div class="form-group mb-3">
-                                        <label for="password" class="form-label">Password Baru:</label>
-                                        <input type="password" class="form-control" id="password" name="password">
-                                        <small class="text-danger" id="password_error"></small>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="password_confirmation" class="form-label">Konfirmasi Password Baru:</label>
-                                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-                                        <small class="text-danger" id="password_confirmation_error"></small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-primary" id="validateAdminPassword">Validasi Password Admin</button>
-                                <button type="button" class="btn btn-success" id="updatePassword" style="display:none;">Update Password</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Modal -->
             </div>
         </div>
     </div>
 </div>
 
-
 <script>
     $(document).ready(function() {
-        $('#validateAdminPassword').click(function() {
-            var adminPassword = $('#admin_password').val();
-            var memberId = {{ $member->id }};
+        // Ensure jQuery is properly loaded
+        if (typeof $ === 'undefined') {
+            console.error('jQuery is not loaded');
+            return;
+        }
 
-            $.ajax({
-                url: "{{ route('admin.validatePassword') }}",
-                method: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    password: adminPassword
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $('#admin_password_error').text('');
-                        $('#passwordFields').slideDown();
-                        $('#validateAdminPassword').hide();
-                        $('#updatePassword').show();
-                    } else {
-                        $('#admin_password_error').text('Password Admin salah.');
-                    }
-                }
-            });
-        });
-
-        $('#updatePassword').click(function() {
+        // Handle form submission
+        $('form').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
             var newPassword = $('#password').val();
             var confirmPassword = $('#password_confirmation').val();
-            var memberId = {{ $member->id }};
 
             $.ajax({
-                url: "{{ route('members.updatePassword', $member->id) }}",
-                method: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    password: newPassword,
-                    password_confirmation: confirmPassword
-                },
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
                 success: function(response) {
                     if (response.success) {
-                        alert('Password berhasil diubah');
-                        location.reload();
+                        alert('Member berhasil diperbarui');
+                        window.location.href = "{{ route('members.index') }}";
                     } else {
                         // Handle validation errors
                         $('#password_error').text(response.errors.password || '');
                         $('#password_confirmation_error').text(response.errors.password_confirmation || '');
                     }
+                },
+                error: function(xhr) {
+                    console.error(xhr.responseText);
                 }
             });
         });
     });
 </script>
-
 @endsection

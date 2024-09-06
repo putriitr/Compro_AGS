@@ -4,11 +4,11 @@
 <!-- Header Start -->
 <div class="container-fluid bg-breadcrumb">
     <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Instructions</h3>
+        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">User Manual</h3>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
             <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{url('/portal')}}">Portal Member</a></li>
-            <li class="breadcrumb-item active text-primary">Instructions</li>
+            <li class="breadcrumb-item active text-primary">User Manual</li>
         </ol>
     </div>
 </div>
@@ -23,7 +23,7 @@
                     <div class="service-img rounded-top border border-secondary" style="border-radius: 10px;">
                         <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" class="img-fluid rounded-top w-100" alt="{{ $produk->nama }}">
                         <div class="service-content-inner p-4" style="border-radius: 0 0 10px 10px;">
-                            <h5 class="mb-4">{{ $produk->nama }}</h5>
+                            <h5>{{ $produk->nama }}</h5>
                             <p class="mb-4">{{ Str::limit($produk->kegunaan, 100) }}</p>
                             @if($produk->user_manual)
                                 <a href="{{ asset($produk->user_manual) }}" download="{{ $produk->nama }}_manual.pdf" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Download Manual</a>

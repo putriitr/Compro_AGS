@@ -41,15 +41,6 @@ use App\Http\Controllers\Member\Meta\MetaMemberController;
     Route::get('/product', [ProdukMemberController::class, 'index'])->name('product');
     Route::get('/product/category/{id}', [ProdukMemberController::class, 'productByCategory'])->name('product.by_category');
     Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
-    Route::get('/portal', [PortalController::class, 'index'])->name('portal');
-    Route::get('/portal/catalog', [PortalController::class, 'catalog'])->name('portal.catalog');
-    Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
-    Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
-    Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
-    Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
-    Route::get('/portal/document', [PortalController::class, 'Document'])->name('portal.document');
-    Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
-
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
@@ -63,12 +54,13 @@ use App\Http\Controllers\Member\Meta\MetaMemberController;
     //Normal Users Routes List
     Route::middleware(['auth', 'user-access:member'])->group(function () {
     Route::get('/portal', [PortalController::class, 'index'])->name('portal');
-    Route::get('/portal/catalog', [PortalController::class, 'catalog'])->name('portal.catalog');
+    Route::get('/portal/user-product', [PortalController::class, 'UserProduk'])->name('portal.user-product');
+    Route::get('/product/user-product/{id}', [PortalController::class, 'detailProduk'])->name('user-product.show');
     Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
     Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
     Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
     Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
-    Route::get('/portal/document', [PortalController::class, 'Document'])->name('portal.document');
+    Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
     Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
 
         });

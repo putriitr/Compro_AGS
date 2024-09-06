@@ -172,6 +172,20 @@ class ProdukController extends Controller
     $produk->fill($request->all());
     $produk->save();
 
+    
+    if ($request->has('delete_images')) {
+        $deleteImageIds = $request->input('delete_images');
+        foreach ($deleteImageIds as $imageId) {
+            $image = ProdukImage::find($imageId);
+            if ($image) {
+                if (file_exists(public_path($image->gambar))) {
+                    unlink(public_path($image->gambar));
+                }
+                $image->delete();
+            }
+        }
+    }
+
     // Handle user manual upload
     if ($request->hasFile('user_manual')) {
         // Delete the old manual if exists

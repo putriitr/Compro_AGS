@@ -17,9 +17,6 @@
 <div class="container-fluid service py-5">
     <div class="container py-5">
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Portal Member</h4>
-            </div>
         </div>
         <div class="row g-4 justify-content-center">
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
@@ -29,8 +26,8 @@
                    </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Product Catalog</h5>
-                            <a href="{{route('portal.catalog')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <h5 class="mb-4">My Product</h5>
+                            <a href="{{route('portal.user-product')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -38,12 +35,12 @@
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item rounded">
                    <div class="service-img rounded-top">
-                        <img src="{{ asset ('assets/img/portal/photos.jpg')}}" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset ('assets/img/portal/instructions.jpg')}}" class="img-fluid rounded-top w-100" alt="">
                    </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Product Photos</h5>
-                            <a href="{{route('portal.photos')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <h5 class="mb-4">Product User Manual</h5>
+                            <a href="{{route('portal.instructions')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -51,12 +48,12 @@
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded">
                    <div class="service-img rounded-top">
-                        <img src="{{asset ('assets/img/portal/instructions.jpg')}}" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{asset ('assets/img/portal/sertif.jpg')}}" class="img-fluid rounded-top w-100" alt="">
                    </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Instructions</h5>
-                            <a href="{{route('portal.instructions')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <h6 class="mb-4">Document And Certifications</h6>
+                            <a href="{{route('portal.document')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -74,19 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="service-item rounded">
-                   <div class="service-img rounded-top">
-                        <img src="{{ asset ('assets/img/portal/CG.jpg')}}" class="img-fluid rounded-top w-100" alt="">
-                   </div>
-                    <div class="service-content rounded-bottom bg-light p-4">
-                        <div class="service-content-inner">
-                            <h5 class="mb-4">Controller Generations</h5>
-                            <a href="{{route('portal.controlgenerations')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item rounded">
                    <div class="service-img rounded-top">
@@ -94,7 +79,7 @@
                    </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Document And Certifications</h5>
+                            <h5 class="mb-4">Monitoring</h5>
                             <a href="{{route('portal.document')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
@@ -107,7 +92,7 @@
                    </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Questions And Answer</h5>
+                            <h5 class="mb-4">FAQ</h5>
                             <a href="{{route('portal.qna')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>

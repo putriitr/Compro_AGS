@@ -83,8 +83,9 @@
                                     @foreach($produk->images as $image)
                                     <div class="d-inline-block text-center mb-3">
                                         <img src="{{ asset($image->gambar) }}" alt="Gambar Produk" style="max-width: 100px; margin-right: 10px;">
+                                        <input type="checkbox" name="delete_images[]" value="{{ $image->id }}"> Hapus
                                     </div>
-                                @endforeach    
+                                    @endforeach    
                                 </div>
                             @endif
                         </div>
@@ -177,4 +178,5 @@
         </div>
     </div>
 </div>
+
 @endsection
