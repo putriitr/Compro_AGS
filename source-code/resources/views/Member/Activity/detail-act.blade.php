@@ -20,12 +20,25 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-12 wow fadeInLeft" data-wow-delay="0.2">
                     <div class="section-title text-start">
-                        <h1 class="display-4 mb-4">{{$activity->title}}</h1>
-                        <p class="mb-4">{{$activity->description}}</p>
+                        <h1 class="display-4 mb-4">{{ $activity->title }}</h1>
+                        <p class="mb-4"
+                            style="
+                                font-size: 0.875rem;
+                                color: #6c757d;
+                                margin: 0;
+                                line-height: 1.5;
+                                overflow: hidden;
+                                white-space: normal;
+                                word-wrap: break-word;
+                                text-align: justify;
+                            ">
+                            {{ $activity->description }}
+                        </p>
                         <div class="row g-4">
                             <div class="col-sm-6">
                                 <div class="video h-100">
-                                    <img src="{{ asset('images/' . $activity->image) }}" class="img-fluid rounded w-100 h-100" style="object-fit: cover;" alt="">
+                                    <img src="{{ asset('images/' . $activity->image) }}"
+                                        class="img-fluid rounded w-100 h-100" style="object-fit: cover;" alt="">
                                 </div>
                             </div>
                         </div>
@@ -34,5 +47,4 @@
             </div>
         </div>
     </div>
-
 @endsection

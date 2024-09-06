@@ -45,10 +45,9 @@
                     </div>
                 </div>
             @endforeach
-            
             </div>
         </div>
     </div>
-    
+
     <!-- Product End -->
 @endsection

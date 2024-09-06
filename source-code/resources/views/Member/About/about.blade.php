@@ -51,17 +51,17 @@
             <h1 class="display-3 mb-4">Vision & Mission</h1>
         </div>
         <div class="row g-12 justify-content-center d-flex">
-            <div class="col-md-12 col-lg-6 col-xl-6 d-flex">
-                <div class="team-item rounded flex-fill">
-                    <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
+            <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
+                <div class="team-item rounded flex-fill" style="flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                    <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
                         <h5>VISION</h5>
-                        <p class="mb-0" style="font-weight: bold;">{{$company->visi ?? ' '}}</p><br>
+                        <p class="mb-0" style="font-weight: bold;">{{$company->visi ?? ' '}}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 col-lg-6 col-xl-6 d-flex">
-                <div class="team-item rounded flex-fill">
-                    <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
+            <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
+                <div class="team-item rounded flex-fill" style=" flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                    <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
                         <h5>MISSION</h5>
                         <p class="mb-0" style="font-weight: bold;">{{$company->misi ?? ' '}}</p>
                     </div>
@@ -421,7 +421,7 @@
         background-color: #ffffff;
         padding: 10px 0;
     }
-    
+
     .logo-scroller {
         display: flex;
         width: max-content;

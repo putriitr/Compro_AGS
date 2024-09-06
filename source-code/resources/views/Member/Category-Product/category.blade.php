@@ -19,10 +19,10 @@
             <h5>Brand</h5>
             <ul class="list-group mb-4">
                 <li class="list-group-item border rounded text-center py-2 mb-3" style="cursor: pointer;">
-                    Labtek
+                    LABTEK
                 </li>
                 <li class="list-group-item border rounded text-center py-2 mb-3" style="cursor: pointer;">
-                    Labverse
+                    LABVERSE
                 </li>
             </ul>
         </div>

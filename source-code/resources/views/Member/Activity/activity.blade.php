@@ -20,12 +20,15 @@
             <div class="row mb-4">
                 <!-- Showing X-Y of Z -->
                 <div class="col-md-4 d-flex align-items-center">
-                    <p class="mb-0">Showing {{ $activities->firstItem() }} - {{ $activities->lastItem() }} of {{ $activities->total() }}</p>
+                    <p class="mb-0">Showing {{ $activities->firstItem() }} - {{ $activities->lastItem() }} of
+                        {{ $activities->total() }}</p>
                 </div>
                 <!-- Show per Page and Sort By -->
                 <div class="col-md-8 d-flex justify-content-end align-items-center">
                     <div class="d-flex align-items-center">
-                        <label for="sort-by" class="mb-0 me-2">Sort by:</label>
+                        <label for="sort-by" class="mb-0 me-4" style="display: inline-block; white-space: nowrap;">
+                            Sort by :
+                        </label>
                         <select id="sort-by" class="form-select form-select-sm">
                             <option value="newest">Newest</option>
                             <option value="latest">Latest</option>
@@ -37,23 +40,43 @@
             <!-- Activity Content -->
             <div class="row g-4 justify-content-center">
                 @foreach ($activities as $item)
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="blog-item rounded">
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="blog-item rounded"
+                            style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 15px;">
                             <div class="blog-img">
-                                <img src="{{ asset('images/' . $item->image) }}" class="img-fluid w-100" alt="Image">
+                                <img src="{{ asset('images/' . $item->image) }}" class="img-fluid w-100" alt="Image"
+                                    style="border-radius: 15px; width: 100%; height: 250px; object-fit: cover;">
                             </div>
-                            <div class="blog-content p-4">
+                            <div class="blog-content p-4" style="flex-grow: 1;">
                                 <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-0 text-muted"><i class="fa fa-calendar-alt text-primary"></i> {{ $item->date->format('d M Y') }}</p>
+                                    <p class="mb-0 text-muted" style="font-size: 0.875rem;"><i
+                                            class="fa fa-calendar-alt text-primary"></i> {{ $item->date->format('d M Y') }}
+                                    </p>
                                 </div>
-                                <a href="" class="h4">{{ $item->title }}</a>
-                                <p class="my-4">{{ Str::limit($item->description, 100) }}</p>
-                                <a href="{{ route('activity.show', $item->id) }}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1">Read More</a>
+                                <a href="" class="h4"
+                                    style="font-weight: bold; color: #343a40; text-decoration: none;">{{ $item->title }}</a>
+                                <p class="my-4"
+                                    style="
+                                    font-size: 0.875rem;
+                                    color: #6c757d;
+                                    margin: 0;
+                                    line-height: 1.5;
+                                    overflow: hidden;
+                                    white-space: normal;
+                                    word-wrap: break-word;
+                                ">
+    {{ Str::limit($item->description, 40) }}
+</p>
+
+                                <a href="{{ route('activity.show', $item->id) }}"
+                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"
+                                    style="background-color: #007BFF; border: none;">Read More</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
+
 
             <!-- Pagination -->
             <div class="row mt-4">
