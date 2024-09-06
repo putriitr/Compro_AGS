@@ -210,7 +210,7 @@
     .logo {
         width: 300px;
         margin-right: 20px;
-        height: auto;
+        height: 120px;
         object-fit: contain;
     }
 
