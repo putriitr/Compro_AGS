@@ -112,6 +112,22 @@
                     <h4 class="text-section">Section</h4>
                 </li>
                 <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#meta-section">
+                        <i class="fas fa-meta-h"></i> <!-- Ikon slider -->
+                        <p>Meta</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="meta-section">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.meta.index') }}">
+                                    <span class="sub-item">Meta</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#sliders-section">
                         <i class="fas fa-sliders-h"></i> <!-- Ikon slider -->
                         <p>Slider</p>

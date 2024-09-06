@@ -66,6 +66,13 @@
                             {{ $activity->title }} (Activity)
                         </option>
                     @endforeach
+
+                    @foreach ($metas as $meta)
+            <option value="{{ route('member.meta.show', $meta->slug) }}" 
+                {{ old('button_url') == route('member.meta.show', $meta->slug) ? 'selected' : '' }}>
+                {{ $meta->title }} (Meta)
+            </option>
+        @endforeach
                 </select>
             
                 @error('button_url')

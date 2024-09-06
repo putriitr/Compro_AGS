@@ -102,6 +102,14 @@
     </div>
     <!-- Topbar End -->
 
+    @php
+    $activeMetas = \App\Models\Meta::where('start_date', '<=', today())
+                                    ->where('end_date', '>=', today())
+                                    ->get()
+                                    ->groupBy('type');
+@endphp
+
+
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
@@ -113,7 +121,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link">Home</a>
                     <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
                     <a href="{{ route('activity') }}" class="nav-item nav-link">Activity</a>
                     <a href="{{ route('product') }}" class="nav-item nav-link">Product</a>
@@ -124,7 +132,21 @@
                             <a href="feature.html" class="dropdown-item">LABVERSE</a>
                         </div>
                     </div>
-                    <a href="{{ route('portal') }}" class="nav-item nav-link">My Portal</a>
+                    @foreach($activeMetas as $type => $metas)
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}" aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type)}}</a>
+                        <div class="dropdown-menu m-0 " aria-labelledby="navbarDropdown-{{ $type }}">
+                            @foreach($metas as $meta)
+                            <a href="{{ route('member.meta.show', $meta->slug) }}" class="dropdown-item">{{ $meta->title }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endforeach
+
+                    @auth
+                    <a href="{{ route('portal') }}" class="nav-item nav-link active">Member Portal</a>
+                @endauth
                     <a href="{{-- {{ route('contact') }} --}}" class="nav-item nav-link">Contact Us</a>
                 </div>
             </div>

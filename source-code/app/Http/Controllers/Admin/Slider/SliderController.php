@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Slider;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use App\Models\Meta;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use Illuminate\Support\Facades\File;
@@ -23,19 +24,21 @@ class SliderController extends Controller
     // Show form to create a new slider
     public function create()
     {
-
+        $activities = Activity::all(); // Retrieve all activities
         $routes = [
+            // Define your predefined routes here
+            'home' => route('home'),
             'about' => route('about'),
-            'product' => route('product'),
-            'portal' => route('portal'),
-            // Add more routes as needed
+            // Add other predefined routes as needed
         ];
-
-        $activities = Activity::all(); // Fetch all activities for selection
-
-
-        return view('admin.slider.create', compact('routes','activities'));
+    
+        $metas = Meta::where('start_date', '<=', today())
+                     ->where('end_date', '>=', today())
+                     ->get();
+    
+        return view('admin.slider.create', compact('activities', 'routes', 'metas'));
     }
+    
 
     // Store new slider
     public function store(Request $request)
@@ -59,9 +62,14 @@ class SliderController extends Controller
         if ($request->filled('activity_id')) {
             $activity = Activity::find($request->activity_id);
             $buttonUrl = route('activity.show', $activity->id);
+        } elseif ($request->filled('meta_slug')) {
+            // Use the meta_slug to get the URL for meta data
+            $meta = Meta::where('slug', $request->meta_slug)->firstOrFail();
+            $buttonUrl = route('member.meta.show', $meta->slug);
         } else {
             $buttonUrl = $request->button_url;
         }
+    
 
         Slider::create([
             'image_url' => $imagePath,

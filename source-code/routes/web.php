@@ -19,6 +19,11 @@ use App\Http\Controllers\Member\Activity\ActivityMemberController;
 
 
 use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
+use App\Http\Controllers\Admin\Meta\MetaController;
+
+use App\Http\Controllers\Member\Meta\MetaMemberController;
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -49,6 +54,8 @@ use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
     Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
+    Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');
+    Route::get('/member/meta', [MetaMemberController::class, 'showMeta'])->name('member.meta.index');
 
 
     Auth::routes();
@@ -80,7 +87,7 @@ use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
 
         Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
         Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
-            Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
+        Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
         Route::get('admin/monitoring/create/{userProdukId}', [MonitoringController::class, 'create'])->name('admin.monitoring.create');
         Route::post('admin/monitoring/store', [MonitoringController::class, 'store'])->name('admin.monitoring.store');
         Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
@@ -113,10 +120,14 @@ use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
         //Slider
         Route::resource('admin/slider', SliderController::class)->names('admin.slider');
 
-    //Activity
-    Route::resource('admin/activity', ActivityController::class)->names('admin.activity');
+        //Activity
+        Route::resource('admin/activity', ActivityController::class)->names('admin.activity');
 
-    Route::resource('admin/brand', BrandPartnerController::class)->names('admin.brand');
+        Route::resource('admin/brand', BrandPartnerController::class)->names('admin.brand');
+
+        Route::resource('admin/meta', MetaController::class)->names('admin.meta');
+        Route::post('/froala/upload_image', [MetaController::class, 'uploadImage'])->name('froala.upload_image');
+
 
 
 
