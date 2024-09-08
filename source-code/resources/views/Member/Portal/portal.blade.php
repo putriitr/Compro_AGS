@@ -80,7 +80,7 @@
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
                             <h5 class="mb-4">Monitoring</h5>
-                            <a href="{{route('portal.document')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                            <a href="{{route('portal.monitoring')}}" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
                         </div>
                     </div>
                 </div>

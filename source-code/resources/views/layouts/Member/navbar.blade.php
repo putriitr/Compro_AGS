@@ -17,7 +17,7 @@
 
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="container">
-        <div class="row gx-0 align-items-center" style="height: 45px;">
+         <div class="row gx-0 align-items-center" style="height: 45px;">
             <div class="col-lg-8 text-center text-lg-start mb-lg-0">
                 <div class="d-flex flex-wrap">
                     <!-- Maps / Office Location -->
@@ -111,7 +111,7 @@
 
 
     <!-- Navbar & Hero Start -->
-    <div class="container-fluid position-relative p-0">
+    <div class="container-fluid position-relative p-5 shadow">
         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
             <a href="{{ route('home') }}" class="navbar-brand p-0">
                 <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" style="height: 150px; width: 100%;">

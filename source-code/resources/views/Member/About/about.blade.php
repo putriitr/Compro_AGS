@@ -78,238 +78,111 @@
     <!-- Vision End -->
 
 
-
-    <!-- Brand Start -->
-    <div class="container-fluid service">
-        <div class="container">
-            <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Work Together</h4>
-                </div>
-                <h1 class="display-3 mb-4">Our Partner</h1>
+<!-- Partner Section Start -->
+<div class="container-fluid service mb-5">
+    <div class="container">
+        <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Work Together</h4>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo-container">
-                        <div class="logo-scroller partner-scroller">
-                            @foreach ($partners as $pa)
-                                <img src="{{ asset('storage/' . $pa->gambar) }}" alt="Google" class="logo">
-                            @endforeach
-
-                        </div>
+            <h1 class="display-3 mb-4">Our Partner</h1>
+        </div>
+        <div class="container overflow-hidden">
+            <div class="row gy-4">
+                @foreach ($partners as $key => $p)
+                <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
+                    <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%" height="100" style="object-fit:contain;">
                     </div>
                 </div>
+                @endforeach
             </div>
+            @if($partners->count() > 8)
+            <div class="text-center mt-4">
+                <button id="show-more-partners" class="btn btn-primary">Selanjutnya</button>
+                <button id="show-less-partners" class="btn btn-secondary d-none">Kembali</button>
+            </div>
+            @endif
         </div>
     </div>
-    <!-- Brand End -->
+</div>
+<!-- Partner Section End -->
 
-    <!-- Value Start -->
-    <div class="container-fluid feature py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Our Core Beliefs</h4>
-                </div>
-                <h1 class="display-3 mb-4">Company Value</h1>
+<!-- Value Start -->
+<div class="container-fluid feature py-5">
+    <div class="container py-5">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Our Core Beliefs</h4>
             </div>
+            <h1 class="display-3 mb-4">Company Value</h1>
+        </div>
 
-            <!-- For Desktop -->
-            <div class="row g-4 justify-content-center d-none d-md-flex">
-                <div class="col-md-6 custom-col-7 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <div class="feature-icon mb-4">
-                                <div class="p-3 d-inline-flex bg-white rounded">
-                                    <img src="{{ asset('assets/img/about/value (1).png') }}" alt="Icon"
-                                        style="width: 60px; height: auto; border-radius: 50%;">
-                                </div>
-                            </div>
-                            <div class="feature-content d-flex flex-column">
-                                <h5 class="mb-4">Move Quickly</h5>
-                                <p class="mb-0">Acting with urgency, we remove obstacles that hinder high-priority
-                                    initiatives, addressing your needs today instead of waiting until next week.</p>
-                            </div>
+        <!-- Responsive Values Section -->
+        <div class="row g-4 justify-content-center">
+            @php
+            // Sample data for the loop, replace with dynamic data if necessary
+            $values = [
+                ['title' => 'Move Quickly', 'image' => 'value (1).png', 'description' => 'Acting with urgency, we remove obstacles that hinder high-priority initiatives, addressing your needs today instead of waiting until next week.'],
+                ['title' => 'Innovation', 'image' => 'value (2).png', 'description' => 'Create value through product innovation and improvement and build relationships with customers to better understand and meet their needs.'],
+                ['title' => 'Independence', 'image' => 'value (3).png', 'description' => 'Flexibly meet both short-term and long-term customer needs by making timely decisions, focusing on growth, and pursuing new opportunities.'],
+                ['title' => 'Quality', 'image' => 'value (4).png', 'description' => 'We take pride in providing high-value products and services to ensure customer satisfaction and the future growth of our employees and company.'],
+                ['title' => 'Customer Satisfaction', 'image' => 'value (5).png', 'description' => 'We deliver exceptional service with flexible scheduling, quality products, and innovative solutions, adding value for both customers and the company.'],
+                ['title' => 'Respect', 'image' => 'value (6).png', 'description' => 'We treat everyone with dignity, value diverse perspectives, and create an environment where all ideas and contributions are welcome.'],
+            ];
+            @endphp
+
+            @foreach($values as $key => $value)
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="feature-item p-4 h-100" style="height: 400; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                    <div class="feature-icon mb-4 text-center d-flex align-items-center justify-content-center">
+                        <div class="p-3 d-inline-flex bg-white rounded-circle" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                            <img src="{{ asset('assets/img/about/' . $value['image']) }}" alt="Icon" style="width: 100px; height: 100px; object-fit: cover;">
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 custom-col-7 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <div class="feature-icon mb-4">
-                                <div class="p-3 d-inline-flex bg-white rounded">
-                                    <img src="{{ asset('assets/img/about/value (2).png') }}" alt="Icon"
-                                        style="width: 60px; height: auto; border-radius: 50%;">
-                                </div>
-                            </div>
-                            <div class="feature-content d-flex flex-column">
-                                <h5 class="mb-4">Innovation</h5>
-                                <p class="mb-0">Create value through product innovation and improvement and build
-                                    relationships with customers to better understand and meet their needs.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 custom-col-7 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <div class="feature-icon mb-4">
-                                <div class="p-3 d-inline-flex bg-white rounded">
-                                    <img src="{{ asset('assets/img/about/value (3).png') }}" alt="Icon"
-                                        style="width: 60px; height: auto; border-radius: 50%;">
-                                </div>
-                            </div>
-                            <div class="feature-content d-flex flex-column">
-                                <h5 class="mb-4">Independence</h5>
-                                <p class="mb-0">Flexibly meet both short-term and long-term customer needs by making
-                                    timely decisions, focusing on growth, and pursuing new opportunities.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 custom-col-7 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <div class="feature-icon mb-4">
-                                <div class="p-3 d-inline-flex bg-white rounded">
-                                    <img src="{{ asset('assets/img/about/value (4).png') }}" alt="Icon"
-                                        style="width: 60px; height: auto; border-radius: 50%;">
-                                </div>
-                            </div>
-                            <div class="feature-content d-flex flex-column">
-                                <h5 class="mb-4">Quality</h5>
-                                <p class="mb-0">We take pride in providing high-value products and services to ensure
-                                    customer satisfaction and the future growth of our employees and company.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 custom-col-7 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <div class="feature-icon mb-4">
-                                <div class="p-3 d-inline-flex bg-white rounded">
-                                    <img src="{{ asset('assets/img/about/value (5).png') }}" alt="Icon"
-                                        style="width: 60px; height: auto; border-radius: 50%;">
-                                </div>
-                            </div>
-                            <div class="feature-content d-flex flex-column">
-                                <h5 class="mb-4">Customer Satisfaction</h5>
-                                <p class="mb-0">We deliver exceptional service with flexible scheduling, quality
-                                    products, and innovative solutions, adding value for both customers and the company.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 custom-col-7 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row-cols-1 feature-item p-4">
-                        <div class="col-12">
-                            <div class="feature-icon mb-4">
-                                <div class="p-3 d-inline-flex bg-white rounded">
-                                    <img src="{{ asset('assets/img/about/value (6).png') }}" alt="Icon"
-                                        style="width: 60px; height: auto; border-radius: 50%;">
-                                </div>
-                            </div>
-                            <div class="feature-content d-flex flex-column">
-                                <h5 class="mb-4">Respect</h5>
-                                <p class="mb-0">We treat everyone with dignity, value diverse perspectives, and create an
-                                    environment where all ideas and contributions are welcome.</p>
-                            </div>
-                        </div>
+                    </div>                    
+                    <div class="feature-content text-center">
+                        <h5 class="mb-4 font-weight-bold">{{ $value['title'] }}</h5>
+                        <p class="mb-0">{{ $value['description'] }}</p>
                     </div>
                 </div>
             </div>
-
-            <!-- For Mobile -->
-            <div class="row g-4 justify-content-center d-md-none">
-                <div class="col-12 d-flex flex-column mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-4 me-3">
-                            <div class="d-inline-flex align-items-center justify-content-center p-4 bg-white rounded" style="width: 100px; height: 100px;">
-                                <img src="{{ asset('assets/img/about/value (1).png') }}" alt="Icon"
-                                    style="width: 80px; height: 80px; border-radius: 50%;">
-                            </div>
-                        </div>
-                        <div class="feature-content d-flex flex-column ms-3">
-                            <h5 class="mb-4">Move Quickly</h5>
-                            <p class="mb-0">Acting with urgency, we remove obstacles that hinder high-priority initiatives, addressing your needs today instead of waiting until next week.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 d-flex flex-column mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-4">
-                            <div class="d-inline-flex align-items-center justify-content-center p-4 bg-white rounded" style="width: 100px; height: 100px;">
-                                <img src="{{ asset('assets/img/about/value (2).png') }}" alt="Icon"
-                                    style="width: 80px; height: 80px; border-radius: 50%;">
-                            </div>
-                        </div>
-                        <div class="feature-content d-flex flex-column ms-3">
-                            <h5 class="mb-4">Innovation</h5>
-                            <p class="mb-0">Create value through product innovation and improvement and build relationships with customers to better understand and meet their needs.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 d-flex flex-column mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-4">
-                            <div class="d-inline-flex align-items-center justify-content-center p-4 bg-white rounded" style="width: 100px; height: 100px;">
-                                <img src="{{ asset('assets/img/about/value (3).png') }}" alt="Icon"
-                                    style="width: 80px; height: 80px; border-radius: 50%;">
-                            </div>
-                        </div>
-                        <div class="feature-content d-flex flex-column ms-3">
-                            <h5 class="mb-4">Independence</h5>
-                            <p class="mb-0">Flexibly meet both short-term and long-term customer needs by making timely decisions, focusing on growth, and pursuing new opportunities.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 d-flex flex-column mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-4">
-                            <div class="d-inline-flex align-items-center justify-content-center p-4 bg-white rounded" style="width: 100px; height: 100px;">
-                                <img src="{{ asset('assets/img/about/value (4).png') }}" alt="Icon"
-                                    style="width: 80px; height: 80px; border-radius: 50%;">
-                            </div>
-                        </div>
-                        <div class="feature-content d-flex flex-column ms-3">
-                            <h5 class="mb-4">Quality</h5>
-                            <p class="mb-0">We take pride in providing high-value products and services to ensure customer satisfaction and the future growth of our employees and company.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 d-flex flex-column mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-4">
-                            <div class="d-inline-flex align-items-center justify-content-center p-4 bg-white rounded" style="width: 100px; height: 100px;">
-                                <img src="{{ asset('assets/img/about/value (5).png') }}" alt="Icon"
-                                    style="width: 80px; height: 80px; border-radius: 50%;">
-                            </div>
-                        </div>
-                        <div class="feature-content d-flex flex-column ms-3">
-                            <h5 class="mb-4">Customer Satisfaction</h5>
-                            <p class="mb-0">We deliver exceptional service with flexible scheduling, quality products, and innovative solutions, adding value for both customers and the company.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 d-flex flex-column mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-4">
-                            <div class="d-inline-flex align-items-center justify-content-center p-4 bg-white rounded" style="width: 100px; height: 100px;">
-                                <img src="{{ asset('assets/img/about/value (6).png') }}" alt="Icon"
-                                    style="width: 80px; height: 80px; border-radius: 50%;">
-                            </div>
-                        </div>
-                        <div class="feature-content d-flex flex-column ms-3">
-                            <h5 class="mb-4">Respect</h5>
-                            <p class="mb-0">We treat everyone with dignity, value diverse perspectives, and create an environment where all ideas and contributions are welcome.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
-    <!-- Value End -->
+</div>
+<!-- Value End -->
+
+<!-- Custom CSS -->
+<style>
+    /* Feature item consistent height */
+    .feature-item {
+        background-color: #fff;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Icon and Image styling */
+    .feature-item img {
+        max-width: 100%;
+        object-fit: cover;
+    }
+
+    /* Hover effect on feature items */
+    .feature-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive Behavior */
+    @media (max-width: 768px) {
+        .feature-item {
+            min-height: 300px;
+        }
+    }
+</style>
+
 
     <!-- Sales Channel Start -->
     <div class="container-fluid team py-5">
@@ -512,79 +385,41 @@
     </style>
     <!-- Map End -->
 
-
-    <style>
-        .logo-container {
-            width: 100%;
-            overflow: hidden;
-            background-color: #ffffff;
-            padding: 10px 0;
-        }
-
-        .logo-scroller {
-            display: flex;
-            width: max-content;
-        }
-
-        /* Partner Section Animation */
-        .partner-scroller {
-            animation: scroll-right 10s linear infinite;
-        }
-
-        /* Principal Section Animation */
-        .principal-scroller {
-            animation: scroll-left 10s linear infinite;
-        }
-
-        /* Static section for E-commerce, no animation */
-        .logo-static {
-            display: flex;
-            justify-content: center;
-            /* Center the logos horizontally */
-            align-items: center;
-            /* Vertically align the logos */
-            flex-wrap: wrap;
-            /* Allow logos to wrap in mobile view */
-        }
-
-        .logo {
-            width: 300px;
-            margin-right: 20px;
-            height: auto;
-            object-fit: contain;
-        }
-
-        @keyframes scroll-right {
-            from {
-                transform: translateX(-100%);
-            }
-
-            to {
-                transform: translateX(100%);
-            }
-        }
-
-        @keyframes scroll-left {
-            from {
-                transform: translateX(100%);
-            }
-
-            to {
-                transform: translateX(-100%);
-            }
-        }
-
-        /* Media query for mobile view */
-        @media (max-width: 768px) {
-            .logo-static {
-                flex-direction: column;
-                /* Stack logos vertically in mobile view */
-            }
-
-            .logo {
-                margin: 10px 0;
-                /* Add vertical spacing between logos in mobile view */
-            }
-        }
-    </style>
+    <script>
+        document.getElementById('show-more-partners').addEventListener('click', function() {
+            document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
+                item.classList.remove('d-none');
+            });
+            this.style.display = 'none';
+            document.getElementById('show-less-partners').classList.remove('d-none');
+        });
+    
+        document.getElementById('show-less-partners').addEventListener('click', function() {
+            document.querySelectorAll('.partner-item').forEach(function(item, index) {
+                if (index >= 8) {
+                    item.classList.add('d-none');
+                }
+            });
+            this.classList.add('d-none');
+            document.getElementById('show-more-partners').style.display = 'inline-block';
+        });
+    
+        document.getElementById('show-more-principals').addEventListener('click', function() {
+            document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
+                item.classList.remove('d-none');
+            });
+            this.style.display = 'none';
+            document.getElementById('show-less-principals').classList.remove('d-none');
+        });
+    
+        document.getElementById('show-less-principals').addEventListener('click', function() {
+            document.querySelectorAll('.principal-item').forEach(function(item, index) {
+                if (index >= 10) {
+                    item.classList.add('d-none');
+                }
+            });
+            this.classList.add('d-none');
+            document.getElementById('show-more-principals').style.display = 'inline-block';
+        });
+    </script>
 @endsection

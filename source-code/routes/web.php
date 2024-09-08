@@ -62,6 +62,9 @@ use App\Http\Controllers\Member\Meta\MetaMemberController;
     Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
     Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
     Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
+    Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
+    Route::get('/portal/monitoring/detail/{id}', [PortalController::class, 'showMonitoringDetail'])->name('portal.monitoring.detail');
+    
 
         });
 

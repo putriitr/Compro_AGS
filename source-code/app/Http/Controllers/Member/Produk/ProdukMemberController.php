@@ -11,9 +11,10 @@ class ProdukMemberController extends Controller
 {
     public function index()
     {
+        $produks = Produk::all();
         $kategori = Kategori::all();
 
-        return view('member.product.product' , compact('kategori'));
+        return view('member.product.product' , compact('produks','kategori'));
     }
 
     public function productByCategory($id)
@@ -32,8 +33,12 @@ class ProdukMemberController extends Controller
             // Mengambil detail produk berdasarkan ID
             $produk = Produk::findOrFail($id);
 
-            return view('member.category-product.detail', compact('produk'));
-    }
+            $produkSerupa = Produk::where('kategori_id', $produk->kategori_id)
+            ->where('id', '!=', $id) // Exclude the current product
+            ->take(4) // Limit to 4 similar products
+            ->get();
+    
+        return view('member.product.detail', compact('produk', 'produkSerupa'));    }
 
     
 

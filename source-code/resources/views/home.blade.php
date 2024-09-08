@@ -1,8 +1,9 @@
 @extends('layouts.member.master')
 
 @section('content')
+
     <!-- Carousel Start -->
-    <div class="header-carousel owl-carousel">
+    <div class="header-carousel owl-carousel mb-5">
         @foreach ($sliders as $slider)
             <div class="header-carousel-item">
                 <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="Image">
@@ -99,51 +100,107 @@
 
     <!-- Product End -->
 
-    <!-- Brand Start -->
-    <!-- Partner Section Start -->
-    <div class="container-fluid service">
-        <div class="container">
-            <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Work Together</h4>
-                </div>
-                <h1 class="display-3 mb-4">Our Partner</h1>
+<!-- Partner Section Start -->
+<div class="container-fluid service mb-5">
+    <div class="container">
+        <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Work Together</h4>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo-container">
-                        <div class="logo-scroller partner-scroller">
-                            @foreach ($partners as $pa)
-                                <img src="{{ asset('storage/' . $pa->gambar) }}" alt="Google" class="logo">
-                            @endforeach
-
-                        </div>
+            <h1 class="display-3 mb-4">Our Partner</h1>
+        </div>
+        <div class="container overflow-hidden">
+            <div class="row gy-4">
+                @foreach ($partners as $key => $p)
+                <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
+                    <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%" height="100" style="object-fit:contain;">
                     </div>
                 </div>
+                @endforeach
             </div>
+            @if($partners->count() > 8)
+            <div class="text-center mt-4">
+                <button id="show-more-partners" class="btn btn-primary">Selanjutnya</button>
+                <button id="show-less-partners" class="btn btn-secondary d-none">Kembali</button>
+            </div>
+            @endif
         </div>
     </div>
-    <!-- Partner Section End -->
+</div>
+<!-- Partner Section End -->
 
-    <!-- Principal Section Start -->
-    <div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="section-title">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Trusted Collaborations</h4>
-                </div>
-                <h1 class="display-3 mb-4">Our Principal's</h1>
+<!-- Principal Section Start -->
+<div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="section-title">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Trusted Collaborations</h4>
             </div>
-            <div class="logo-container">
-                <div class="logo-scroller principal-scroller">
-                    @foreach ($principals as $p)
-                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="Tesla" class="logo">
-                    @endforeach
+            <h1 class="display-3 mb-4">Our Principal's</h1>
+        </div>
+        <div class="container overflow-hidden">
+            <div class="row gy-4">
+                @foreach ($principals as $key => $p)
+                <div class="col-6 col-md-4 col-xl-3 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
+                    <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%" height="65">
+                    </div>
                 </div>
+                @endforeach
             </div>
+            @if($principals->count() > 10)
+            <div class="text-center mt-4">
+                <button id="show-more-principals" class="btn btn-primary">Selanjutnya</button>
+                <button id="show-less-principals" class="btn btn-secondary d-none">Kembali</button>
+            </div>
+            @endif
         </div>
     </div>
-    <!-- Principal Section End -->
+</div>
+<!-- Principal Section End -->
+
+<!-- Script to Show More and Show Less Items -->
+<script>
+    document.getElementById('show-more-partners').addEventListener('click', function() {
+        document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
+            item.classList.remove('d-none');
+        });
+        this.style.display = 'none';
+        document.getElementById('show-less-partners').classList.remove('d-none');
+    });
+
+    document.getElementById('show-less-partners').addEventListener('click', function() {
+        document.querySelectorAll('.partner-item').forEach(function(item, index) {
+            if (index >= 8) {
+                item.classList.add('d-none');
+            }
+        });
+        this.classList.add('d-none');
+        document.getElementById('show-more-partners').style.display = 'inline-block';
+    });
+
+    document.getElementById('show-more-principals').addEventListener('click', function() {
+        document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
+            item.classList.remove('d-none');
+        });
+        this.style.display = 'none';
+        document.getElementById('show-less-principals').classList.remove('d-none');
+    });
+
+    document.getElementById('show-less-principals').addEventListener('click', function() {
+        document.querySelectorAll('.principal-item').forEach(function(item, index) {
+            if (index >= 10) {
+                item.classList.add('d-none');
+            }
+        });
+        this.classList.add('d-none');
+        document.getElementById('show-more-principals').style.display = 'inline-block';
+    });
+</script>
+
+
+
 
     <!-- E-commerce Section Start -->
     <div class="container-fluid service py-5">

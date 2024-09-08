@@ -25,5 +25,9 @@ public function user()
     return $this->belongsTo(User::class, 'user_id');
 }
 
+public function inspeksiMaintenance()
+    {
+        return $this->hasOne(InspeksiMaintenance::class, 'user_produk_id');
+    }
 
 }

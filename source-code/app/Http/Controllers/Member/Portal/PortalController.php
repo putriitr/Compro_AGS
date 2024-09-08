@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member\Portal;
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
 use App\Models\Produk;
+use App\Models\UserProduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,6 +101,25 @@ class PortalController extends Controller
         // Mengembalikan tampilan dengan data produk dan dokumen sertifikasi
         return view('member.portal.document', compact('produks'));
     }
+
+    public function Monitoring()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please login to access your monitoring.');
+        }
+    
+        // Fetch all UserProduk records where 'user_id' matches the logged-in user's ID
+        $userProduks = UserProduk::where('user_id', Auth::id())
+                        ->with(['produk', 'monitoring', 'inspeksiMaintenance'])
+                        ->get();
+    
+        return view('member.portal.monitoring', compact('userProduks'));
+    }
+    
+
+
+    
+    
     
     
 
