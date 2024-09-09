@@ -45,7 +45,7 @@
                                     $firstImage = $userProduk->produk->images->first();
                                     $imageSrc = $firstImage ? $firstImage->gambar : 'assets/img/default.jpg';
                                 @endphp
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="card">
                                         <img src="{{ asset($imageSrc) }}" class="card-img-top" alt="{{ $userProduk->produk->nama }}" style="height: 100; object-fit: cover; width:100%;">
                                         <div class="card-body">

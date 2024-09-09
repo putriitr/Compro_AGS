@@ -20,6 +20,7 @@
     use App\Http\Controllers\Member\Meta\MetaMemberController;
     use App\Http\Controllers\Member\Profile\ProfileMemberController;
     use App\Http\Controllers\Admin\Location\LocationController;
+use App\Http\Controllers\Member\Location\LocationMemberController;
 
     /*
     |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@
     Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
     Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');
     Route::get('/member/meta', [MetaMemberController::class, 'showMeta'])->name('member.meta.index');
+    Route::get('/locations', [LocationMemberController::class, 'index']);
 
 
     Auth::routes();
