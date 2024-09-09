@@ -210,16 +210,47 @@
 
                 <div class="col-md-12 col-lg-6 col-xl-4 d-flex" style="margin-bottom: 0.5rem;">
                     <div class="team-item rounded flex-fill">
-                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
-                            <div class="d-flex align-items-center justify-content-center">
-                                <i class="fa fa-globe fa-3x text-success text-dark"></i>
-                                <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">www.labtek.id</h5>
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn p-0 w-100" data-bs-toggle="modal" data-bs-target="#websiteModal">
+                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <i class="fa fa-globe fa-3x text-success text-dark"></i>
+                                    <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">Our Website</h5>
+                                </div>
+                                <p class="mb-0 mt-2" style="font-size: 14px;">Official Website</p>
+                                <p class="mb-0" style="font-weight: bold; font-size: 18px;">Website</p>
                             </div>
-                            <p class="mb-0 mt-2" style="font-size: 14px;">Official Website</p>
-                            <p class="mb-0" style="font-weight: bold; font-size: 18px;">Website</p>
+                        </button>
+                    </div>
+                </div>
+            
+                <!-- Modal Structure for Two Brands -->
+                <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="websiteModalLabel">Website Information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Loop through the first two brands -->
+                                @foreach($brand as $singleBrand)
+                                    <h5>{{ $singleBrand->nama }}</h5>
+                                    <p>Visit the official website of {{ $singleBrand->nama }} at 
+                                        <a href="{{ $singleBrand->url }}" target="_blank">{{ $singleBrand->url }}</a>.
+                                    </p>
+                                    <p>{{ $singleBrand->description ?? 'No additional information available.' }}</p>
+                                    <hr>
+                                @endforeach
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            
+
 
                 <div class="col-md-12 col-lg-6 col-xl-4 d-flex" style="margin-bottom: 0.5rem;">
                     <a href="{{ $company->no_wa ?? ' ' }}">

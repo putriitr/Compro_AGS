@@ -35,6 +35,14 @@
                 @enderror
             </div>
 
+            <div class="form-group">
+                <label for="nama">nama (Optional)</label>
+                <input type="text" name="nama" class="form-control" value="{{ old('nama') }}">
+                @error('nama')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
             <button type="submit" class="btn btn-primary">Create Brand/Partner</button>
         </form>
     </div>

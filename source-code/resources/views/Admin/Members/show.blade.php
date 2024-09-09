@@ -39,21 +39,26 @@
                     @if($member->userProduk->isEmpty())
                         <p>This member has no products.</p>
                     @else
-                        <ul>
+                        <div class="row">
                             @foreach($member->userProduk as $userProduk)
-                                <li>
-                                    <strong>{{ $userProduk->produk->nama }}</strong><br>
-                                    @php
-                                        $firstImage = $userProduk->produk->images->first();
-                                        $imageSrc = $firstImage ? $firstImage->gambar : 'assets/img/default.jpg';
-                                    @endphp
-                                    <img src="{{ asset($imageSrc) }}" alt="{{ $userProduk->produk->nama }}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; margin-top: 5px;"><br>
-                                    <small><strong>Purchase Date:</strong> {{ $userProduk->pembelian ? $userProduk->pembelian : 'N/A' }}</small>
-                                </li>
+                                @php
+                                    $firstImage = $userProduk->produk->images->first();
+                                    $imageSrc = $firstImage ? $firstImage->gambar : 'assets/img/default.jpg';
+                                @endphp
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img src="{{ asset($imageSrc) }}" class="card-img-top" alt="{{ $userProduk->produk->nama }}" style="height: 100; object-fit: cover; width:100%;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $userProduk->produk->nama }}</h5>
+                                            <p class="card-text"><strong>Purchase Date:</strong> {{ $userProduk->pembelian ? $userProduk->pembelian : 'N/A' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
-                        </ul>
+                        </div>
                     @endif
                 </div>
+                
                 
                 
                 <a href="{{ route('members.index') }}" class="btn btn-secondary">Back to Members List</a>

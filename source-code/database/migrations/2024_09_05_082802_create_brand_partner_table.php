@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('brand_partner', function (Blueprint $table) {
-            $table->id(); // Primary key (id)
-            $table->string('gambar'); // Image path or URL
-            $table->enum('type', ['brand', 'partner', 'principal']); // Type: brand, partner, principal
-            $table->string('url')->nullable(); // URL (nullable)
+            $table->id();
+            $table->string('gambar'); 
+            $table->enum('type', ['brand', 'partner', 'principal']); 
+            $table->string('url')->nullable(); 
+            $table->string('nama')->nullable(); 
             $table->timestamps();
         });
     }

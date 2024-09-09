@@ -36,6 +36,7 @@ class BrandPartnerController extends Controller
             'gambar' => 'required|image|max:2048',
             'type' => 'required|in:brand,partner,principal',
             'url' => 'nullable|string',
+            'nama' => 'nullable|string',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -74,6 +75,7 @@ class BrandPartnerController extends Controller
             'gambar' => 'nullable|image|max:2048',
             'type' => 'required|in:brand,partner,principal',
             'url' => 'nullable|string',
+            'nama' => 'nullable|string',
         ]);
 
         $brandPartner = BrandPartner::findOrFail($id);

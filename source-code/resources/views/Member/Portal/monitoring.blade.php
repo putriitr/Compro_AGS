@@ -40,20 +40,8 @@
                         @else
                             <p>No monitoring data available.</p>
                         @endif
-
-                        <!-- Display Inspeksi Maintenance Info -->
-                        @if($userProduk->inspeksiMaintenance)
-                            <h6>Inspeksi Maintenance</h6>
-                            <p>PIC: {{ $userProduk->inspeksiMaintenance->pic }}</p>
-                            <p>Waktu: {{ $userProduk->inspeksiMaintenance->waktu }}</p>
-                            <p>Deskripsi: {{ $userProduk->inspeksiMaintenance->deskripsi }}</p>
-                            <p>Status: {{ $userProduk->inspeksiMaintenance->status }}</p>
-                        @else
-                            <p>No inspeksi maintenance data available.</p>
-                        @endif
-
-                        <a href="{{ route('portal.monitoring.detail', $userProduk->id) }}" class="btn btn-primary">Detail Produk</a>
-                    </div>
+                    <a href="{{ route('portal.monitoring.detail', $userProduk->id) }}" class="btn btn-primary mt-2">Detail Produk</a>
+                </div>
                 </div>
             </div>
             @endforeach

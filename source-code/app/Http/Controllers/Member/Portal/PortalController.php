@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member\Portal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Models\InspeksiMaintenance;
 use App\Models\Produk;
 use App\Models\UserProduk;
 use Illuminate\Http\Request;
@@ -55,8 +56,11 @@ class PortalController extends Controller
         $produks = $userProduks->map(function($userProduk) {
             return $userProduk->produk; // Get the related `Produk` model for each `UserProduk`
         });
+
+        $uniqueProduks = $produks->unique('id');
+
     
-        return view('member.portal.instructions', compact('produks'));
+        return view('member.portal.instructions', compact('uniqueProduks'));
     }
     
 
@@ -97,9 +101,12 @@ class PortalController extends Controller
         $produks = $userProduks->map(function($userProduk) {
             return $userProduk->produk; // Get the related `Produk` model for each `UserProduk`
         });
+
+        $uniqueProduks = $produks->unique('id');
+
     
         // Mengembalikan tampilan dengan data produk dan dokumen sertifikasi
-        return view('member.portal.document', compact('produks'));
+        return view('member.portal.document', compact('uniqueProduks'));
     }
 
     public function Monitoring()
@@ -108,13 +115,22 @@ class PortalController extends Controller
             return redirect()->route('login')->with('error', 'Please login to access your monitoring.');
         }
     
-        // Fetch all UserProduk records where 'user_id' matches the logged-in user's ID
-        $userProduks = UserProduk::where('user_id', Auth::id())
-                        ->with(['produk', 'monitoring', 'inspeksiMaintenance'])
-                        ->get();
+        $userProduks = UserProduk::with(['produk', 'monitoring'])->where('user_id', auth()->id())->get();
+
+        $inspeksi = InspeksiMaintenance::where('user_produk_id', auth()->id())->get();
+
     
         return view('member.portal.monitoring', compact('userProduks'));
     }
+
+    public function showInspeksiMaintenance($id)
+{
+    // Retrieve the specific userProduk with its related InspeksiMaintenance
+    $userProduk = UserProduk::with(['produk', 'inspeksiMaintenance'])->findOrFail($id);
+    
+    return view('member.portal.monitoring-detail', compact('userProduk'));
+}
+
     
 
 

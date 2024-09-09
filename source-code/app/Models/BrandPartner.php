@@ -15,7 +15,8 @@ class BrandPartner extends Model
     protected $fillable = [
         'gambar',
         'type',
-        'url'
+        'url',
+        'nama',
     ];
 
 }

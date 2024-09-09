@@ -18,7 +18,7 @@
 <div class="container-fluid service py-5">
     <div class="container py-5">
         <div class="row g-4 justify-content-center">
-            @forelse($produks as $produk)
+            @forelse($uniqueProduks as $produk)
     <div class="col-md-4 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
         <div class="service-img rounded-top border border-secondary" style="border-radius: 10px;">
             <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" class="img-fluid rounded-top w-100" alt="{{ $produk->nama }}">

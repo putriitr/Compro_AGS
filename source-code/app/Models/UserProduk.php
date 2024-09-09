@@ -26,8 +26,9 @@ public function user()
 }
 
 public function inspeksiMaintenance()
-    {
-        return $this->hasOne(InspeksiMaintenance::class, 'user_produk_id');
-    }
+{
+    return $this->hasMany(InspeksiMaintenance::class, 'user_produk_id');
+}
+
 
 }

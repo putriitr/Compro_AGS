@@ -1,3 +1,8 @@
+@php
+// Fetch the first record from compro_parameter table
+$compro = \App\Models\CompanyParameter::first();
+@endphp
+
 <!-- Footer Start -->
 <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
     <div class="container py-5">
@@ -6,16 +11,16 @@
                 <div class="footer-item d-flex flex-column">
                     <div class="feature-icon mb-4">
                         <div class="p-3 d-inline-flex bg-white rounded">
-                            <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo"
+                            <img src="{{ $compro && $compro->logo ? asset('storage/' . $compro->logo) : asset('assets/img/about.jpeg') }}" alt="Logo"
                                 class="img-fluid" style="width: 100%; height: 150px; border-radius: 50%;">
                         </div>
                     </div>
-                    <h6 class="text-white mb-6">PT Arkamaya Guna Saharsa</h6>
+                    <h6 class="text-white mb-6">{{ $compro->nama_perusahaan??  "PT Arkamaya Guna Saharsa" }}</h6>
                     <div class="d-flex align-items-center">
                         <i class="fas fa-share fa-2x text-white me-2"></i>
-                        <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="https://www.instagram.com/lifeatags/"><i
+                        <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $compro->instagram??  "#" }}"><i
                                 class="fab fa-instagram"></i></a>
-                        <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="https://www.linkedin.com/company/arkamaya-guna-saharsa/"><i
+                        <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $compro->linkedin??  "#" }}"><i
                                 class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -40,12 +45,6 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">Contact Info</h4>
-                
-                    @php
-                        // Fetch the first record from compro_parameter table
-                        $compro = \App\Models\CompanyParameter::first();
-                    @endphp
-                
                     <!-- Alamat -->
                     @if(!empty($compro->alamat))
                         <a href="#"><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</a>
@@ -91,9 +90,6 @@
             <div class="col-md-6 text-center text-md-start mb-md-0">
                 <span class="text-white"><a href="#"><i class="fas fa-copyright text-light me-2"></i>2024</a>, PT Arkamaya Guna Saharsa</span>
             </div>
-            {{-- <div class="col-md-6 text-center text-md-end text-white">
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
-                </div> --}}
         </div>
     </div>
 </div>

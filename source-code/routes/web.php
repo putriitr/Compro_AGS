@@ -22,8 +22,7 @@ use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
 use App\Http\Controllers\Admin\Meta\MetaController;
 
 use App\Http\Controllers\Member\Meta\MetaMemberController;
-
-
+use App\Http\Controllers\Member\Profile\ProfileMemberController;
 
     /*
     |--------------------------------------------------------------------------
@@ -63,8 +62,12 @@ use App\Http\Controllers\Member\Meta\MetaMemberController;
     Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
     Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
     Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
-    Route::get('/portal/monitoring/detail/{id}', [PortalController::class, 'showMonitoringDetail'])->name('portal.monitoring.detail');
+    Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
     
+    Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
+
 
         });
 

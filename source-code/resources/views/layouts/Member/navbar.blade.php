@@ -61,14 +61,20 @@
                 <div class="d-flex align-items-center justify-content-end">
                     {{-- <a href="#"><small class="me-3"><i
                                 class="fa fa-user text-primary me-2"></i>Register</small></a> --}}
-                    <a href="https://www.instagram.com/lifeatags/" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-instagram text-white"></i></a>
-                    <a href="https://www.linkedin.com/company/arkamaya-guna-saharsa/" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-linkedin-in text-white"></i></a>
                     @if(auth()->check())
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <small class=""><i class="fa fa-user text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+                            <!-- Show Profile -->
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                    <i class="fa fa-user me-2"></i>Profile
+                                </a>
+                            </li>
+                            
+                            <!-- Logout -->
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -77,8 +83,9 @@
                             </li>
                         </ul>
                     </div>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    
+                    <!-- Logout Form -->
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 @else
@@ -107,15 +114,20 @@
                                     ->where('end_date', '>=', today())
                                     ->get()
                                     ->groupBy('type');
+
+    $brand = \App\Models\BrandPartner::where('type', 'brand','nama')->get();
+
 @endphp
 
 
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-5 shadow">
         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
-            <a href="{{ route('home') }}" class="navbar-brand p-0">
-                <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" style="height: 150px; width: 100%;">
-            </a>PT Arkamaya Guna Saharsa
+            <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
+                <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" class="me-2" style="height: 50px; width: auto;">
+                <span class="fs-5 text-dark">{{$compro->nama_perusahaan ?? 'PT Arkamaya Guna Saharsa' }}</span>
+            </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
             </button>
@@ -125,13 +137,16 @@
                     <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
                     <a href="{{ route('activity') }}" class="nav-item nav-link">Activity</a>
                     <a href="{{ route('product') }}" class="nav-item nav-link">Product</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">E-Commerce</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="appointment.html" class="dropdown-item">LABTEK</a>
-                            <a href="feature.html" class="dropdown-item">LABVERSE</a>
+                    @if($brand->isNotEmpty())
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">E-Commerce</a>
+                            <div class="dropdown-menu m-0">
+                                @foreach($brand as $singleBrand)
+                                    <a href="{{ $singleBrand->url }}" class="dropdown-item">{{ $singleBrand->nama }}</a>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     @foreach($activeMetas as $type => $metas)
 
                     <div class="nav-item dropdown">
@@ -147,7 +162,6 @@
                     @auth
                     <a href="{{ route('portal') }}" class="nav-item nav-link active">Member Portal</a>
                 @endauth
-                    <a href="{{-- {{ route('contact') }} --}}" class="nav-item nav-link">Contact Us</a>
                 </div>
             </div>
         </nav>
