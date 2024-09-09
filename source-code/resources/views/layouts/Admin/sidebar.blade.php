@@ -268,8 +268,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <span class="sub-item">PPN</span>
+                                <a href="{{ route('admin.visitors') }}">
+                                    <span class="sub-item">Visitor</span>
                                 </a>
                             </li>
                             <li>

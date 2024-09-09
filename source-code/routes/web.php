@@ -20,7 +20,8 @@
     use App\Http\Controllers\Member\Meta\MetaMemberController;
     use App\Http\Controllers\Member\Profile\ProfileMemberController;
     use App\Http\Controllers\Admin\Location\LocationController;
-use App\Http\Controllers\Member\Location\LocationMemberController;
+    use App\Http\Controllers\Admin\Visitor\VisitorController;
+    use App\Http\Controllers\Member\Location\LocationMemberController;
 
     /*
     |--------------------------------------------------------------------------
@@ -124,4 +125,7 @@ use App\Http\Controllers\Member\Location\LocationMemberController;
 
         //Location
         Route::resource('admin/location', LocationController::class)->names('admin.location');
+
+        Route::get('/admin/visitors', [VisitorController::class, 'index'])->name('admin.visitors');
+
     });
