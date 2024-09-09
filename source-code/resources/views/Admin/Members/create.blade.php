@@ -69,6 +69,17 @@
                             <small class="text-danger">{{ $errors->first('alamat') }}</small>
                         @endif
                     </div>
+
+                    <div class="form-group mb-3">
+                    <select name="location_id" class="form-control">
+                        <option value="" disabled selected>Pilih Bidang Perusahaan</option>
+                        @foreach($locations as $location)
+                            <option value="{{ $location->id }}">{{ $location->province }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                    
                     
                     <button type="submit" class="btn btn-success">Submit</button>
                     <a href="{{ route('members.index') }}" class="btn btn-secondary">Back</a>

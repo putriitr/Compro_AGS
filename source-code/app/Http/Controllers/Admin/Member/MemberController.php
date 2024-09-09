@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\BidangPerusahaan;
+use App\Models\Location;
 use App\Models\Produk;
 use App\Models\User;
 use App\Models\UserProduk;
@@ -25,8 +26,9 @@ class MemberController extends Controller
 
     public function create()
     {
+        $locations = Location::all();
         $bidangPerusahaan = BidangPerusahaan::all();
-        return view('admin.members.create', compact('bidangPerusahaan'));
+        return view('admin.members.create', compact('bidangPerusahaan','locations'));
     }
     
 
@@ -39,6 +41,7 @@ class MemberController extends Controller
         'bidang_perusahaan' => 'nullable|exists:bidang_perusahaan,id',
         'no_telp' => 'nullable|string|max:20',
         'alamat' => 'nullable|string|max:255',
+        'location_id' => 'nullable|exists:locations,id',
     ]);
 
     $randomPassword = Str::random(8);
@@ -49,9 +52,11 @@ class MemberController extends Controller
         'password' => Hash::make($randomPassword),
         'type' => 0, // member
         'nama_perusahaan' => $request->nama_perusahaan,
+        'location_id' => $request->location_id,
         'bidang_id' => $request->bidang_perusahaan, // Simpan bidang_id ke tabel users
         'no_telp' => $request->no_telp,
         'alamat' => $request->alamat,
+        
     ]);
 
     session()->flash('password', $randomPassword);

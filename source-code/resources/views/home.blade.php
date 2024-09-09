@@ -236,6 +236,159 @@
     </div>
     <!-- E-commerce Section End -->
 
+        <!-- Map Start -->
+        <div class="container"
+        style="
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+    text-align: center; ">
+
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Presenting Our Esteemed Customer</h4>
+            </div>
+            <h1 class="display-3 mb-4">Our Valued Customer</h1>
+        </div>
+        <hr>
+
+        <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
+    </div> <br> <br>
+    <!-- Map End -->
+
+    <!-- Include Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        // Inisialisasi peta
+        var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
+
+        //tile layer dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        function addMarker(lat, lng, province, userCount, users) {
+        var marker = L.marker([lat, lng]).addTo(map);
+
+        // Build user info HTML
+        let userList = '<ul>';
+        users.forEach(function(user) {
+            userList += `<li>${user.nama_perusahaan} (Created on: ${user.created_at})</li>`;
+        });
+        userList += '</ul>';
+
+        // Popup content for marker
+        marker.bindPopup(`
+            <div class="info-window">
+                <h3 class="popup-title">${province}</h3>
+                <p class="popup-description">Kami memiliki ${userCount} member di ${province}:</p>
+                ${userList}
+            </div>
+        `);
+
+        // Adding tooltip
+        marker.bindTooltip(`<div>${province}</div>`, {
+            permanent: false,
+            direction: 'top',
+            offset: [0, -20],
+            className: 'marker-tooltip'
+        });
+        marker.on('mouseover', function(e) {
+            this.openTooltip();
+        });
+        marker.on('mouseout', function(e) {
+            this.closeTooltip();
+        });
+    }
+
+
+    fetch("{{ url('/locations') }}")
+    .then(response => response.json())
+    .then(data => {
+        console.log("Received Data:", data);  // Debugging to check data
+        data.forEach(location => {
+            if (location.user_count > 0) {
+                console.log("Adding marker for:", location.province, "with", location.user_count, "users.");
+                addMarker(location.latitude, location.longitude, location.province, location.user_count, location.user_data);
+            }
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+
+
+    </script>
+
+    <style>
+        .marker-tooltip {
+            background-color: #b3d9ff;
+            border: 1px solid #80b3ff;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            font-size: 12px;
+            color: #333;
+        }
+
+        .info-window img.popup-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+
+        .popup-title {
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .popup-description,
+        .popup-address {
+            font-size: 12px;
+            color: #333;
+            margin-top: 10px;
+            text-align: justify;
+        }
+
+        /* Media query untuk perangkat dengan lebar maksimal 768px */
+        @media (max-width: 768px) {
+            .info-window {
+                padding: 10px;
+            }
+
+            .popup-title {
+                font-size: 18px;
+            }
+
+            .popup-description,
+            .popup-address {
+                font-size: 10px;
+            }
+
+            .info-window img.popup-image {
+                margin-bottom: 5px
+            }
+        }
+
+        /* Media query untuk perangkat dengan lebar maksimal 480px */
+        @media (max-width: 480px) {
+            .popup-title {
+                font-size: 16px;
+            }
+
+            .popup-description,
+            .popup-address {
+                font-size: 9px;
+            }
+        }
+    </style>
+    <!-- Map End -->
+
     <style>
         .logo-container {
             width: 100%;

@@ -22,13 +22,12 @@ return new class extends Migration
             $table->string('nama_perusahaan')->nullable();
             $table->boolean('type')->default(false); //add type boolean Users: 0=>User, 1=>Admin, 2=>Manager 
             $table->unsignedBigInteger('bidang_id')->nullable(); // Buat kolom ini nullable
+            $table->unsignedBigInteger('location_id')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('bidang_id')
-            ->references('id')
-            ->on('bidang_perusahaan')
-            ->onDelete('cascade');
+            $table->foreign('bidang_id')->references('id')->on('bidang_perusahaan')->onDelete('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
         });
     }
 

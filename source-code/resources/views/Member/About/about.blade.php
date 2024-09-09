@@ -308,46 +308,53 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Fungsi untuk menambahkan marker dengan info window
-        function addMarker(lat, lng, title, description, address, image) {
-            var marker = L.marker([lat, lng]).addTo(map);
+        function addMarker(lat, lng, province, userCount, users) {
+    var marker = L.marker([lat, lng]).addTo(map);
 
-            // Popup konten marker
-            marker.bindPopup(`
-            <div class="info-window">
-                <h3 class="popup-title">${title}</h3>
-                <img src="${image}" alt="${title}" class="popup-image">
-                <p class="popup-description">${description}</p>
-                <p class="popup-address">${address}</p>
-            </div>
-        `);
+    // Build user info HTML
+    let userList = '<ul>';
+    users.forEach(function(user) {
+        userList += `<li>${user.nama_perusahaan} (Created on: ${user.created_at})</li>`;
+    });
+    userList += '</ul>';
 
-            // Menambahkan label kecil yang muncul saat hover
-            marker.bindTooltip(`<div>${title}</div>`, {
-                permanent: false,
-                direction: 'top',
-                offset: [0, -20],
-                className: 'marker-tooltip'
-            });
-            marker.on('mouseover', function(e) {
-                this.openTooltip();
-            });
-            marker.on('mouseout', function(e) {
-                this.closeTooltip();
-            });
-        }
+    // Popup content for marker
+    marker.bindPopup(`
+        <div class="info-window">
+            <h3 class="popup-title">${province}</h3>
+            <p class="popup-description">Kami memiliki ${userCount} member di ${province}:</p>
+            ${userList}
+        </div>
+    `);
+
+    // Adding tooltip
+    marker.bindTooltip(`<div>${province}</div>`, {
+        permanent: false,
+        direction: 'top',
+        offset: [0, -20],
+        className: 'marker-tooltip'
+    });
+    marker.on('mouseover', function(e) {
+        this.openTooltip();
+    });
+    marker.on('mouseout', function(e) {
+        this.closeTooltip();
+    });
+}
+
 
         // Fetch lokasi dari backend
-        fetch("{{ url('/locations') }}")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // untuk debugging
-                data.forEach(location => {
-                    addMarker(location.latitude, location.longitude, location.name, location.description,
-                        location.address, location.image);
-                });
-            })
-            .catch(error => console.error('Error:', error));
+// Fetch lokasi dari backend
+fetch("{{ url('/locations') }}")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // for debugging
+        data.forEach(location => {
+            addMarker(location.latitude, location.longitude, location.province, location.user_count, location.user_data);
+        });
+    })
+    .catch(error => console.error('Error:', error));
+
     </script>
 
     <style>

@@ -14,4 +14,9 @@ class Location extends Model
         'latitude',
         'longitude',
     ];
+
+    public function users()
+{
+    return $this->hasMany(User::class, 'location_id');
+}
 }

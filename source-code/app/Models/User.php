@@ -30,6 +30,7 @@ class User extends Authenticatable
         'no_telp',
         'alamat',
         'bidang_id',
+        'location_id',
     ];
 
     /**
@@ -68,6 +69,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserProduk::class, 'user_id', 'id');
     }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_id');
+    }
+
     
 
 }
