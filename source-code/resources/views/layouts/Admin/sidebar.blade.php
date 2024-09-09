@@ -40,7 +40,7 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#tables">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-user"></i>
                         <p>Member</p>
                         <span class="badge badge-success">3</span>
                         <span class="caret"></span>
@@ -65,7 +65,7 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#produk">
-                        <i class="fas fa-user"></i> <!-- Ikon pengguna (user) -->
+                        <i class="fas fa-shopping-cart"></i> <!-- Ikon pengguna (user) -->
                         <p>Product</p>
                         <span class="badge badge-success">2</span>
                         <span class="caret"></span>
@@ -113,7 +113,7 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#meta-section">
-                        <i class="fas fa-meta-h"></i> <!-- Ikon slider -->
+                        <i class="fas fa-info-circle"></i> <!-- Ikon slider -->
                         <p>Meta</p>
                         <span class="caret"></span>
                     </a>

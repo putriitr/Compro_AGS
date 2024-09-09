@@ -29,8 +29,9 @@ $compro = \App\Models\CompanyParameter::first();
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">Quick Links</h4>
                     <a href=""><i class="fas fa-angle-right me-2"></i> About Us</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Brand & Partner</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Our Activity</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
@@ -51,21 +52,21 @@ $compro = \App\Models\CompanyParameter::first();
                     @else
                         <p><i class="fa fa-map-marker-alt me-2"></i> Address not available</p>
                     @endif
-                
+
                     <!-- Email -->
                     @if(!empty($compro->email))
                         <a href="mailto:{{ $compro->email }}"><i class="fas fa-envelope me-2"></i> {{ $compro->email }}</a>
                     @else
                         <p><i class="fas fa-envelope me-2"></i> Email not available</p>
                     @endif
-                
+
                     <!-- No Telepon -->
                     @if(!empty($compro->no_telepon))
                         <a href="tel:{{ $compro->no_telepon }}"><i class="fas fa-phone me-2"></i> {{ $compro->no_telepon }}</a>
                     @else
                         <p><i class="fas fa-phone me-2"></i> Phone not available</p>
                     @endif
-                
+
                     <!-- WhatsApp -->
                     @if(!empty($compro->no_wa))
                         <a href="https://wa.me/{{ $compro->no_wa }}" class="mb-3">
@@ -75,8 +76,8 @@ $compro = \App\Models\CompanyParameter::first();
                         <p><i class="fab fa-whatsapp fa-2x"></i> WhatsApp not available</p>
                     @endif
                 </div>
-                
-                
+
+
             </div>
         </div>
     </div>
