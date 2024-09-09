@@ -4,20 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-    /**
-     * Run the migrations.
-     */
+class CreateLocationsTable extends Migration
+{
     public function up()
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('latitude', 10, 7);
-            $table->decimal('longitude', 10, 7);
-            $table->text('description');
-            $table->string('address'); 
-            $table->string('image'); 
+            $table->string('province');
+            $table->decimal('latitude', 8, 6); // Latitude dengan presisi 8 dan skala 6
+            $table->decimal('longitude', 9, 6); // Longitude dengan presisi 9 dan skala 6
             $table->timestamps();
         });
     }
@@ -26,5 +21,4 @@ return new class extends Migration {
     {
         Schema::dropIfExists('locations');
     }
-
-};
+}

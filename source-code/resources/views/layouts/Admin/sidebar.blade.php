@@ -61,12 +61,12 @@
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Produk</h4>
+                    <h4 class="text-section">Product</h4>
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#produk">
                         <i class="fas fa-user"></i> <!-- Ikon pengguna (user) -->
-                        <p>produk</p>
+                        <p>Product</p>
                         <span class="badge badge-success">2</span>
                         <span class="caret"></span>
                     </a>
@@ -74,7 +74,7 @@
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.produk.index') }}">
-                                    <span class="sub-item">Produk</span>
+                                    <span class="sub-item">Product</span>
                                 </a>
                         </ul>
                     </div>
@@ -161,15 +161,15 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#brand-section">
-                        <i class="fas fa-calendar-alt"></i> <!-- Ikon aktivitas -->
-                        <p>brand</p>
+                        <i class="fas fa-tag"></i> <!-- Ikon aktivitas -->
+                        <p>Brand</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="brand-section">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.brand.index') }}">
-                                    <span class="sub-item">brand</span>
+                                    <span class="sub-item">Brand</span>
                                 </a>
                             </li>
                         </ul>
@@ -194,6 +194,21 @@
                             <li>
                                 <a href="#">
                                     <span class="sub-item">Contact</span>
+                                </a>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#location">
+                        <i class="fas fa-map-pin"></i> <!-- Ikon telepon -->
+                        <p>Location</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="location">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.location.index') }}">
+                                    <span class="sub-item">Location</span>
                                 </a>
                         </ul>
                     </div>

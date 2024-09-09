@@ -1,28 +1,25 @@
     <?php
 
-use App\Http\Controllers\Admin\MasterData\BidangPerusahaanController;
+    use App\Http\Controllers\Admin\MasterData\BidangPerusahaanController;
     use App\Http\Controllers\Admin\MasterData\KategoriController;
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\HomeController;
     use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\Admin\Member\MemberController;
-use App\Http\Controllers\Admin\FAQ\FAQController;
-use App\Http\Controllers\Admin\Monitoring\MonitoringController;
-use App\Http\Controllers\Admin\Parameter\CompanyParameterController;
-use App\Http\Controllers\Admin\Produk\ProdukController;
-use App\Http\Controllers\Member\Portal\PortalController;
-use App\Http\Controllers\Member\Produk\ProdukMemberController;
-use App\Http\Controllers\Admin\Slider\SliderController;
-use App\Http\Controllers\Admin\Activity\ActivityController;
-use App\Http\Controllers\Member\Activity\ActivityMemberController;
-
-
-use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
-use App\Http\Controllers\Admin\Meta\MetaController;
-
-use App\Http\Controllers\Member\Meta\MetaMemberController;
-use App\Http\Controllers\Member\Profile\ProfileMemberController;
+    use App\Http\Controllers\Admin\Member\MemberController;
+    use App\Http\Controllers\Admin\FAQ\FAQController;
+    use App\Http\Controllers\Admin\Monitoring\MonitoringController;
+    use App\Http\Controllers\Admin\Parameter\CompanyParameterController;
+    use App\Http\Controllers\Admin\Produk\ProdukController;
+    use App\Http\Controllers\Member\Portal\PortalController;
+    use App\Http\Controllers\Member\Produk\ProdukMemberController;
+    use App\Http\Controllers\Admin\Slider\SliderController;
+    use App\Http\Controllers\Admin\Activity\ActivityController;
+    use App\Http\Controllers\Member\Activity\ActivityMemberController;
+    use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
+    use App\Http\Controllers\Admin\Meta\MetaController;
+    use App\Http\Controllers\Member\Meta\MetaMemberController;
+    use App\Http\Controllers\Member\Profile\ProfileMemberController;
+    use App\Http\Controllers\Admin\Location\LocationController;
 
     /*
     |--------------------------------------------------------------------------
@@ -52,26 +49,24 @@ use App\Http\Controllers\Member\Profile\ProfileMemberController;
 
     //Normal Users Routes List
     Route::middleware(['auth', 'user-access:member'])->group(function () {
-    Route::get('/portal', [PortalController::class, 'index'])->name('portal');
-    Route::get('/portal/user-product', [PortalController::class, 'UserProduk'])->name('portal.user-product');
-    Route::get('/product/user-product/{id}', [PortalController::class, 'detailProduk'])->name('user-product.show');
-    Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
-    Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
-    Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
-    Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
-    Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
-    Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
-    Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
-    Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
-    
-    Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
-    Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
+        Route::get('/portal', [PortalController::class, 'index'])->name('portal');
+        Route::get('/portal/user-product', [PortalController::class, 'UserProduk'])->name('portal.user-product');
+        Route::get('/product/user-product/{id}', [PortalController::class, 'detailProduk'])->name('user-product.show');
+        Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
+        Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
+        Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
+        Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
+        Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
+        Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
+        Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
+        Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
 
+        Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
+    });
 
-        });
-
-        //Admin Routes List
+    //Admin Routes List
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
         Route::resource('admin/members', MemberController::class);
@@ -104,10 +99,9 @@ use App\Http\Controllers\Member\Profile\ProfileMemberController;
 
         Route::resource('admin/parameter', CompanyParameterController::class);
 
-
-    //masterdata
-    Route::resource('admin/bidangperusahaan', BidangPerusahaanController::class);
-    Route::resource('admin/kategori', KategoriController::class)->names('admin.kategori');
+        //masterdata
+        Route::resource('admin/bidangperusahaan', BidangPerusahaanController::class);
+        Route::resource('admin/kategori', KategoriController::class)->names('admin.kategori');
 
         //Produk
         Route::resource('admin/produk', ProdukController::class)->names('admin.produk');
@@ -126,16 +120,6 @@ use App\Http\Controllers\Member\Profile\ProfileMemberController;
         Route::resource('admin/meta', MetaController::class)->names('admin.meta');
         Route::post('/froala/upload_image', [MetaController::class, 'uploadImage'])->name('froala.upload_image');
 
-
-
-
-});
-
-
-    use App\Http\Controllers\LocationController;
-
-    Route::get('/locations', [LocationController::class, 'index']);
-
-
-
-
+        //Location
+        Route::resource('admin/location', LocationController::class)->names('admin.location');
+    });
