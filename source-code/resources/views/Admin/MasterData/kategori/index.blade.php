@@ -1,42 +1,42 @@
 @extends('layouts.admin.master')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary mb-3">Add New Kategori</a>
-            <div class="card">
-                <div class="card-header">
+            <div class="card shadow-lg">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h3>Kategori List</h3>
+                    <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary">Add New Kategori</a>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nama</th>
-                                <th>Gambar</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($kategoris as $kategori)
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <td>{{ $kategori->id }}</td>
-                                    <td>{{ $kategori->nama }}</td>
-                                    <td><img src="{{ asset($kategori->gambar) }}" width="100" alt="{{ $kategori->nama }}"></td>
-                                    <td>
-                                        <a href="{{ route('admin.kategori.edit', $kategori->id) }}" class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('admin.kategori.destroy', $kategori->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                        </form>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Nama</th>
+                                    <th>Actions</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach($kategoris as $kategori)
+                                    <tr>
+                                        <td>{{ $kategori->id }}</td>
+                                        <td>{{ $kategori->nama }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.kategori.edit', $kategori->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="{{ route('admin.kategori.destroy', $kategori->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

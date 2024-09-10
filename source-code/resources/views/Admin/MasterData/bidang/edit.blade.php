@@ -2,28 +2,34 @@
 
 @section('content')
 
-<div class="container">
-    <h1>Edit Bidang Perusahaan</h1>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <h2 class="h4">Edit Bidang Perusahaan</h2>
         </div>
-    @endif
 
-    <form action="{{ route('bidangperusahaan.update', $bidangPerusahaan->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-            <label for="name">Nama Bidang Perusahaan:</label>
-            <input type="text" name="name" class="form-control" id="name" value="{{ $bidangPerusahaan->name }}">
+        <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('bidangperusahaan.update', $bidang->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group mb-3">
+                    <label for="name">Nama Bidang Perusahaan:</label>
+                    <input type="text" name="name" class="form-control" id="name" value="{{ $bidang->name }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Update</button>
-    </form>
+    </div>
 </div>
 
 @endsection

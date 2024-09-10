@@ -1,32 +1,59 @@
 @extends('layouts.admin.master')
 
 @section('content')
-<div class="container">
-    <h2>Edit Products for {{ $member->name }}</h2>
-
-    <form action="{{ route('members.update-products', $member->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-
-        <div id="product-list">
-            @foreach($member->userProduk as $userProduk)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="produk_id[]" value="{{ $userProduk->produk->id }}"
-                    id="produk_{{ $userProduk->produk->id }}" checked>
-                    
-                    <label class="form-check-label" for="produk_{{ $userProduk->produk->id }}">
-                        {{ $userProduk->produk->nama }}
-                    </label>
-
-                    <div class="form-group mt-2">
-                        <label for="pembelian_{{ $userProduk->produk->id }}">Purchase Date</label>
-                        <input type="date" name="pembelian[]" id="pembelian_{{ $userProduk->produk->id }}" class="form-control" value="{{ $userProduk->pembelian }}">
-                    </div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h2>Edit Products for {{ $member->name }}</h2>
                 </div>
-            @endforeach
-        </div>
+                <div class="card-body">
+                    <form action="{{ route('members.update-products', $member->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-        <button type="submit" class="btn btn-primary mt-3">Update Products</button>
-    </form>
+                        <div class="row">
+                            @foreach($member->userProduk as $userProduk)
+                                <div class="col-md-4 mb-4">
+                                    <div class="card shadow-sm h-100">
+                                        <div class="card-body d-flex flex-column">
+                                            <!-- Display the first product image if available -->
+                                            @if($userProduk->produk->images->isNotEmpty())
+                                                <div class="mb-3 text-center">
+                                                    @php
+                                                        $firstImage = $userProduk->produk->images->first();
+                                                    @endphp
+                                                    <img src="{{ asset($firstImage->gambar) }}" class="img-fluid mb-3" alt="{{ $userProduk->produk->nama }}" style="max-height: 150px; object-fit: cover;">
+                                                </div>
+                                            @else
+                                                <div class="mb-3 text-center">
+                                                    <img src="{{ asset('assets/img/default.jpg') }}" class="img-fluid mb-3" alt="Default Image" style="max-height: 150px; object-fit: cover;">
+                                                </div>
+                                            @endif
+
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" name="produk_id[]" value="{{ $userProduk->produk->id }}" id="produk_{{ $userProduk->produk->id }}" checked>
+                                                <label class="form-check-label" for="produk_{{ $userProduk->produk->id }}">
+                                                    {{ $userProduk->produk->nama }}
+                                                </label>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="pembelian_{{ $userProduk->produk->id }}">Purchase Date</label>
+                                                <input type="date" name="pembelian[]" id="pembelian_{{ $userProduk->produk->id }}" class="form-control" value="{{ $userProduk->pembelian }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                            <button type="submit" class="btn btn-primary btn-sm">Update Products</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

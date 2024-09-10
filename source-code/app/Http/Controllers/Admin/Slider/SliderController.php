@@ -94,7 +94,11 @@ class SliderController extends Controller
             'portal' => route('portal'),
         ];
 
-        return view('admin.slider.edit', compact('slider', 'routes', 'activities'));
+        $metas = Meta::where('start_date', '<=', today())
+                     ->where('end_date', '>=', today())
+                     ->get();
+
+        return view('admin.slider.edit', compact('slider', 'routes', 'activities','metas'));
     }
 
     // Update slider

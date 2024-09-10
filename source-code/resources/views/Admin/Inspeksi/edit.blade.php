@@ -1,86 +1,91 @@
 @extends('layouts.admin.master')
 
 @section('content')
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">Edit Inspection for {{ $inspeksi->userProduk->produk->nama }}</h4>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('admin.inspeksi.update', $inspeksi->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card shadow-lg">
+                <div class="card-header">
+                    <h4 class="mb-0">Edit Inspection for {{ $inspeksi->userProduk->produk->name }}</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.inspeksi.update', $inspeksi->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-                            <div class="form-group">
-                                <label for="pic" class="font-weight-bold">PIC (Person in Charge)</label>
-                                <input type="text" name="pic" class="form-control" value="{{ old('pic', $inspeksi->pic) }}" placeholder="Enter PIC" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="pic" class="font-weight-bold">PIC (Person in Charge)</label>
+                            <input type="text" name="pic" class="form-control" placeholder="Enter PIC" value="{{ old('pic', $inspeksi->pic) }}" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="waktu" class="font-weight-bold">Time</label>
-                                <input type="datetime-local" name="waktu" class="form-control" value="{{ old('waktu', date('Y-m-d\TH:i', strtotime($inspeksi->waktu))) }}" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="waktu" class="font-weight-bold">Time</label>
+                            <input type="datetime-local" name="waktu" class="form-control" value="{{ old('waktu', date('Y-m-d\TH:i', strtotime($inspeksi->waktu))) }}" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="judul" class="font-weight-bold">Title</label>
-                                <input type="text" name="judul" class="form-control" value="{{ old('judul', $inspeksi->judul) }}" placeholder="Enter title" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="judul" class="font-weight-bold">Title</label>
+                            <input type="text" name="judul" class="form-control" placeholder="Enter title" value="{{ old('judul', $inspeksi->judul) }}" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="deskripsi" class="font-weight-bold">Description</label>
-                                <textarea name="deskripsi" id="summernote" class="form-control" rows="4" placeholder="Enter description..." required>{{ old('deskripsi', $inspeksi->deskripsi) }}</textarea>
-                            </div>
+                        <textarea id="froala-editor" name="deskripsi">{{ old('deskripsi', $inspeksi->deskripsi) }}</textarea>
 
-                            <div class="form-group">
-                                <label for="status" class="font-weight-bold">Status</label>
-                                <select name="status" class="form-control" required>
-                                    <option value="Inspeksi" {{ $inspeksi->status == 'Inspeksi' ? 'selected' : '' }}>Inspeksi</option>
-                                    <option value="Maintenance" {{ $inspeksi->status == 'Maintenance' ? 'selected' : '' }}>Maintenance</option>
-                                </select>
-                            </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                new FroalaEditor('#froala-editor', {
+                                    toolbarButtons: [
+                                        'bold', 'italic', 'underline', 'strikeThrough', 'align', 'formatOL', 'formatUL', 
+                                        'insertLink', 'insertImage', 'insertVideo', 'insertTable', 'html', 'undo', 'redo',
+                                        'paragraphFormat', 'paragraphStyle', 'quote', 'fontFamily', 'fontSize', 
+                                        'textColor', 'backgroundColor', 'inlineStyle', 'subscript', 'superscript', 
+                                        'outdent', 'indent', 'clearFormatting', 'insertHR', 'fullscreen'
+                                    ],
+                                    heightMin: 300,
+                                    heightMax: 500,
+                                    imageUpload: true,
+                                    videoUpload: true,
+                                    quickInsertButtons: ['image', 'video', 'table', 'ul', 'ol', 'hr'],
+                                    videoUploadURL: '/upload_video',  // Video upload URL (you should set this on your backend)
+                                    events: {
+                                        'image.beforeUpload': function (images) {
+                                            // Custom image upload handler
+                                        },
+                                        'video.beforeUpload': function (video) {
+                                            // Custom video upload handler
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
 
-                            <div class="form-group">
-                                <label for="gambar" class="font-weight-bold">Image (optional)</label>
-                                <input type="file" name="gambar" class="form-control-file">
-                                @if($inspeksi->gambar)
-                                    <div class="mt-2">
-                                        <img src="{{ asset('storage/' . $inspeksi->gambar) }}" alt="Inspection Image" width="100">
-                                    </div>
-                                @endif
-                            </div>
+                        <div class="form-group">
+                            <label for="status" class="font-weight-bold">Status</label>
+                            <select name="status" class="form-control" required>
+                                <option value="Inspeksi" {{ $inspeksi->status == 'Inspeksi' ? 'selected' : '' }}>Inspeksi</option>
+                                <option value="Maintenance" {{ $inspeksi->status == 'Maintenance' ? 'selected' : '' }}>Maintenance</option>
+                            </select>
+                        </div>
 
-                            <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Update Inspection</button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            <label for="gambar" class="font-weight-bold">Image (optional)</label>
+                            @if ($inspeksi->gambar)
+                                <div class="mb-3">
+                                    <img src="{{ asset('storage/' . $inspeksi->gambar) }}" alt="Inspection Image" class="img-fluid" width="150">
+                                </div>
+                            @endif
+                            <input type="file" name="gambar" class="form-control-file">
+                        </div>
+
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Update Inspection</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 @endsection
 
-<!-- jQuery and Summernote Scripts -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
-
-<!-- Initialize Summernote -->
-<script>
-    $(document).ready(function() {
-        $('#summernote').summernote({
-            placeholder: 'Enter description here...',
-            tabsize: 2,
-            height: 200,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['fontname', ['fontname']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['view', ['fullscreen', 'codeview', 'help']],
-            ]
-        });
-    });
-</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.12/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.12/js/froala_editor.pkgd.min.js"></script>

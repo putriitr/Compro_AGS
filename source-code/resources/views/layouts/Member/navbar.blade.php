@@ -34,7 +34,7 @@
                         @if (!empty($compro->no_telepon))
                             <a href="tel:+62{{ $compro->no_telepon }}" class="text-light me-4">
                                 <i class="fas fa-phone-alt text-primary me-2"></i>
-                                (021) {{ $compro->no_telepon }}
+                                {{ $compro->no_telepon }}
                             </a>
                         @else
                             <p class="text-light me-4">
@@ -139,7 +139,7 @@
                     <a href="{{ route('home') }}" class="nav-item nav-link">Home</a>
                     <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
                     <a href="{{ route('activity') }}" class="nav-item nav-link">Activity</a>
-                    <a href="{{ route('product') }}" class="nav-item nav-link">Product</a>
+                    <a href="{{ route('product.index') }}" class="nav-item nav-link">Product</a>
                     @if ($brand->isNotEmpty())
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">E-Commerce</a>

@@ -4,21 +4,42 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
+            <div class="card p-3 shadow">
             <h2>Detail Produk: {{ $produk->nama }}</h2>
 
-            <div class="card mt-4">
+            <div class="card mt-4 shadow">
                 <div class="card-body">
                     <h5 class="card-title">Informasi Produk</h5>
-                    <p><strong>Nama:</strong> {{ $produk->nama }}</p>
-                    <p><strong>Merk:</strong> {{ $produk->merk }}</p>
-                    <p><strong>Kegunaan:</strong> {{ $produk->kegunaan }}</p>
-                    <p><strong>Via:</strong> {{ ucfirst($produk->via) }}</p>
-                    <p><strong>Kategori:</strong> {{ $produk->kategori->nama }}</p>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Nama</th>
+                                <td>{{ $produk->nama }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Merk</th>
+                                <td>{{ $produk->merk }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kegunaan</th>
+                                <td>{{ $produk->kegunaan }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Via</th>
+                                <td>{{ ucfirst($produk->via) }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kategori</th>
+                                <td>{{ $produk->kategori->nama }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                
             </div>
 
             <!-- Gambar Produk -->
-            <div class="card mt-4">
+            <div class="card mt-4 shadow">
                 <div class="card-body">
                     <h5 class="card-title">Gambar Produk</h5>
                     @if($produk->images->count())
@@ -36,7 +57,7 @@
             </div>
 
             <!-- Video Produk -->
-            <div class="card mt-4">
+            <div class="card mt-4 shadow">
                 <div class="card-body">
                     <h5 class="card-title">Video Produk</h5>
                     @if($produk->videos->count())
@@ -57,7 +78,7 @@
             </div>
 
             <!-- Document Certification Produk -->
-            <div class="card mt-4">
+            <div class="card mt-4 shadow">
                 <div class="card-body">
                     <h5 class="card-title">Document Certification</h5>
                     @if($produk->documentCertificationsProduk->count())
@@ -75,7 +96,7 @@
             </div>
 
             <!-- Brosur Produk -->
-            <div class="card mt-4">
+            <div class="card mt-4 shadow">
                 <div class="card-body">
                     <h5 class="card-title">Brosur</h5>
                     @if($produk->brosur->count())
@@ -100,6 +121,7 @@
             <div class="mt-4">
                 <a href="{{ route('admin.produk.index') }}" class="btn btn-secondary">Kembali ke Daftar Produk</a>
             </div>
+        </div>
         </div>
     </div>
 </div>

@@ -1,30 +1,38 @@
 @extends('layouts.admin.master')
 
 @section('content')
-<div class="container">
-    <h2>Add New FAQ</h2>
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <h2 class="h4">Add New FAQ</h2>
+        </div>
 
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+        <div class="card-body">
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-    <form action="{{ route('admin.faq.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="pertanyaan">Pertanyaan</label>
-            <input type="text" class="form-control" id="pertanyaan" name="pertanyaan" value="{{ old('pertanyaan') }}" required>
+            <form action="{{ route('admin.faq.store') }}" method="POST">
+                @csrf
+                <div class="form-group mb-3">
+                    <label for="pertanyaan">Pertanyaan</label>
+                    <input type="text" class="form-control" id="pertanyaan" name="pertanyaan" value="{{ old('pertanyaan') }}" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="jawaban">Jawaban</label>
+                    <textarea class="form-control" id="jawaban" name="jawaban" rows="5" required>{{ old('jawaban') }}</textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Add FAQ</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="jawaban">Jawaban</label>
-            <textarea class="form-control" id="jawaban" name="jawaban" rows="5" required>{{ old('jawaban') }}</textarea>
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Add FAQ</button>
-    </form>
+    </div>
 </div>
 @endsection

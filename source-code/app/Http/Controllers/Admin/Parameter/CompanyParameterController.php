@@ -121,7 +121,7 @@ class CompanyParameterController extends Controller
 
         $companyParameter->update($validated);
 
-        return redirect()->route('admin.parameter.index')->with('success', 'Company parameter updated successfully.');
+        return redirect()->route('parameter.index')->with('success', 'Company parameter updated successfully.');
     }
 
     /**

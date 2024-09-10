@@ -1,10 +1,11 @@
 @extends('layouts.admin.master')
 
 @section('content')
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-lg">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header">
                     <h4 class="mb-0">Edit Meta</h4>
                 </div>
                 <div class="card-body">
@@ -71,6 +72,7 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.12/css/froala_editor.pkgd.min.css" rel="stylesheet" />

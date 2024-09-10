@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             LocationsSeeder::class,
             BidangPerusahaanSeeder::class,
+            CategoriesSeeder::class,
+            CompanyParameterSeeder::class,
         ]);
     }
 }

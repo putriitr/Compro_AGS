@@ -1,31 +1,69 @@
 @extends('layouts.admin.master')
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
+<div class="container mt-5">
+
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@elseif (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@elseif (session('info'))
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{ session('info') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
         <div class="card">
             <div class="card-header">
                 <h2>Member Detail</h2>
             </div>
             <div class="card-body">
-                <div class="mb-3">
-                    <p><strong>Nama:</strong> {{ $member->name }}</p>
-                </div>
-                <div class="mb-3">
-                    <p><strong>Email:</strong> {{ $member->email }}</p>
-                </div>
-                <div class="mb-3">
-                    <p><strong>Nama Perusahaan:</strong> {{ $member->nama_perusahaan }}</p>
-                </div>
-                <div class="mb-3">
-                    <p><strong>Bidang Perusahaan:</strong> {{ $member->bidangPerusahaan->name ?? '-' }}</p>
-                </div>
-                <div class="mb-3">
-                    <p><strong>Nomor Telepon:</strong> {{ $member->no_telp }}</p>
-                </div>
-                <div class="mb-3">
-                    <p><strong>Alamat:</strong> {{ $member->alamat }}</p>
-                </div>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ $member->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ $member->email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Company Name</th>
+                            <td>{{ $member->nama_perusahaan }}</td>
+                        </tr>
+                        <tr>
+                            <th>Company Sector</th>
+                            <td>{{ $member->bidangPerusahaan->name ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone Number</th>
+                            <td>{{ $member->no_telp }}</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>{{ $member->alamat }}</td>
+                        </tr>
+                        @if(isset($password))
+                            <tr>
+                                <th>Password</th>
+                                <td>
+                                    {{ $password }}
+                                    <p class="text-danger">Please note: This password will not be shown again.</p>
+                                </td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
 
                 @if(isset($password))
                     <div class="mb-3">
@@ -35,7 +73,11 @@
                 @endif
 
                 <div class="mb-3">
+                    <div class="card p-4 shadow">
+                        <div class="card-header">
                     <h4>Products Owned</h4>
+                </div>
+                <div class="card-body">
                     @if($member->userProduk->isEmpty())
                         <p>This member has no products.</p>
                     @else
@@ -58,6 +100,8 @@
                         </div>
                     @endif
                 </div>
+                </div>
+                </div>
                 
                 
                 
@@ -65,5 +109,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

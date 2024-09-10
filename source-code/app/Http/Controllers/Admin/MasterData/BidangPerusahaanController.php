@@ -47,7 +47,7 @@ class BidangPerusahaanController extends Controller
     {
         $bidang = BidangPerusahaan::findOrFail($id);
 
-        return view('admin.masterdata.bidangperusahaan.show', compact('bidang'));
+        return view('admin.masterdata.bidang.show', compact('bidang'));
 
     }
 
@@ -57,7 +57,7 @@ class BidangPerusahaanController extends Controller
     public function edit(string $id)
     {
         $bidang = BidangPerusahaan::findOrFail($id);
-        return view('admin.masterdata.edit', compact('bidang'));
+        return view('admin.masterdata.bidang.edit', compact('bidang'));
     }
 
     /**

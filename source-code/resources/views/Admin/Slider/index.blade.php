@@ -2,8 +2,14 @@
 
 @section('content')
     <div class="container">
-        <h1>All Sliders</h1>
-        <a href="{{ route('admin.slider.create') }}" class="btn btn-primary mb-3">Add New Slider</a>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center mb-3">
+            <h1 class="h3">All Sliders</h1>
+            <a href="{{ route('admin.slider.create') }}" class="btn btn-primary">Add New Slider</a>
+        </div>
+        <div class="card-body">
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -11,40 +17,48 @@
             </div>
         @endif
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Title</th>
-                    <th>Subtitle</th>
-                    <th>Description</th>
-                    <th>Button Text</th>
-                    <th>Button URL</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($sliders as $slider)
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
                     <tr>
-                        <td>{{ $slider->id }}</td>
-                        <td><img src="{{ asset($slider->image_url) }}" alt="slider image" width="100"></td>
-                        <td>{{ $slider->title }}</td>
-                        <td>{{ $slider->subtitle }}</td>
-                        <td>{{ $slider->description }}</td>
-                        <td>{{ $slider->button_text }}</td>
-                        <td>{{ $slider->button_url }}</td>
-                        <td>
-                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('admin.slider.destroy', $slider->id) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this slider?')">Delete</button>
-                            </form>
-                        </td>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Subtitle</th>
+                        <th>Description</th>
+                        <th>Button Text</th>
+                        <th>Button URL</th>
+                        <th class="text-center">Actions</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach($sliders as $slider)
+                        <tr>
+                            <td>{{ $slider->id }}</td>
+                            <td><img src="{{ asset($slider->image_url) }}" alt="slider image" class="img-thumbnail" style="max-width: 100px; height: auto;"></td>
+                            <td>{{ $slider->title }}</td>
+                            <td>{{ $slider->subtitle }}</td>
+                            <td class="text-truncate" style="max-width: 200px;">{{ Str::limit($slider->description, 50) }}</td>
+                            <td>{{ $slider->button_text }}</td>
+                            <td>{{ $slider->button_url }}</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form action="{{ route('admin.slider.destroy', $slider->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this slider?')">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
+    </div>
+</div>
+    </div>
+</div>
 @endsection

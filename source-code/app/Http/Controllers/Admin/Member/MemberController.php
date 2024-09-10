@@ -131,30 +131,34 @@ public function update(Request $request, $id)
     }
 
     public function storeProducts(Request $request, $id)
-    {
-        // Validasi input
-        $request->validate([
-            'produk_id.*' => 'exists:produk,id',
-            'pembelian.*' => 'nullable|date', 
+{
+    // Validate the input
+    $request->validate([
+        'produk_id' => 'required|array|min:1', // Ensure at least one product is selected
+        'produk_id.*' => 'exists:produk,id', // Validate that each selected product exists
+        'pembelian.*' => 'nullable|date', // Optional date validation
+    ],[
+        'produk_id.required' => 'Please select at least one product.',
+    ]);
+
+    // Find the member
+    $member = User::findOrFail($id);
+
+    // Save the selected products and purchase dates
+    foreach ($request->produk_id as $produk_id) {
+        $pembelianDate = $request->pembelian[$produk_id] ?? null;
+
+        // Save the product to the user_produk table
+        UserProduk::create([
+            'user_id' => $member->id,
+            'produk_id' => $produk_id,
+            'pembelian' => $pembelianDate,
         ]);
-    
-        // Ambil member terkait
-        $member = User::findOrFail($id);
-    
-        // Simpan produk yang dipilih dan tanggal pembelian
-        foreach ($request->produk_id as $produk_id => $value) {
-            $pembelianDate = $request->pembelian[$produk_id] ?? null;
-    
-            // Simpan ke tabel user_produk
-            UserProduk::create([
-                'user_id' => $member->id,
-                'produk_id' => $produk_id,
-                'pembelian' => $pembelianDate,
-            ]);
-        }
-    
-        return redirect()->route('members.show', $member->id)->with('success', 'Products added to member successfully.');
     }
+
+    return redirect()->route('members.show', $member->id)->with('success', 'Products added to member successfully.');
+}
+
     
     
 
@@ -169,43 +173,70 @@ public function update(Request $request, $id)
     
 
     public function updateProducts(Request $request, $id)
-    {
-        $request->validate([
-            'produk_id.*' => 'exists:produk,id',
-            'pembelian.*' => 'nullable|date', // Mengizinkan tanggal kosong atau null
-        ]);
-    
-        $member = User::findOrFail($id);
-    
-        // Hapus semua produk yang ada terlebih dahulu
-        UserProduk::where('user_id', $member->id)->delete();
-    
-        // Jika ada produk yang dipilih, tambahkan kembali ke dalam database
-        if ($request->has('produk_id')) {
-            foreach ($request->produk_id as $index => $produk_id) {
-                UserProduk::create([
-                    'user_id' => $member->id,
-                    'produk_id' => $produk_id,
-                    'pembelian' => $request->pembelian[$index] ?? null, // Mengisi null jika tanggal tidak diberikan
-                ]);
-            }
+{
+    $request->validate([
+        'produk_id.*' => 'exists:produk,id',
+        'pembelian.*' => 'nullable|date', // Allow null or valid date
+    ]);
+
+    $member = User::findOrFail($id);
+
+    // Get existing products and purchase dates for comparison
+    $existingProducts = $member->userProduk->pluck('produk_id')->toArray();
+    $existingPurchases = $member->userProduk->pluck('pembelian', 'produk_id')->toArray();
+
+    // Prepare submitted products and purchases
+    $submittedProducts = $request->produk_id ?? [];
+    $submittedPurchases = $request->pembelian ?? [];
+
+    // Compare existing and submitted products
+    $productsChanged = array_diff($existingProducts, $submittedProducts) || array_diff($submittedProducts, $existingProducts);
+    $purchasesChanged = false;
+
+    foreach ($submittedProducts as $index => $produk_id) {
+        $submittedPurchaseDate = $submittedPurchases[$index] ?? null;
+        $existingPurchaseDate = $existingPurchases[$produk_id] ?? null;
+
+        if ($submittedPurchaseDate != $existingPurchaseDate) {
+            $purchasesChanged = true;
+            break;
         }
-    
-        return redirect()->route('members.show', $member->id)->with('success', 'Products updated successfully.');
     }
 
-    public function updatePassword(Request $request, $id)
-    {
-        $request->validate([
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-    
-        $member = User::findOrFail($id);
-        $member->password = Hash::make($request->password);
-        $member->save();
-    
-        return response()->json(['success' => true]);
+    // If no changes were made, return with a message
+    if (!$productsChanged && !$purchasesChanged) {
+        return redirect()->route('members.show', $member->id)->with('info', 'No changes were made.');
     }
+
+    // If changes detected, remove old products and insert new ones
+    UserProduk::where('user_id', $member->id)->delete();
+
+    if ($request->has('produk_id')) {
+        foreach ($submittedProducts as $index => $produk_id) {
+            UserProduk::create([
+                'user_id' => $member->id,
+                'produk_id' => $produk_id,
+                'pembelian' => $submittedPurchases[$index] ?? null,
+            ]);
+        }
+    }
+
+    return redirect()->route('members.show', $member->id)->with('success', 'Products updated successfully.');
+}
+
+public function updatePassword(Request $request, $id)
+{
+    $request->validate([
+        'password' => 'required|min:8|confirmed',
+    ]);
+
+    $user = User::findOrFail($id);
+    $user->password = bcrypt($request->password);
+    $user->save();
+
+    return response()->json(['success' => true]);
+}
+
     
 
 

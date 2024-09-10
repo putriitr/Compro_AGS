@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
                     <div class="about-img pb-5 ps-5">
-                        <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/img/about.jpeg') }}"
+                        <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/images/about.jpg') }}"
                             class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
                         <div class="about-img-inner">
                             <img src="{{ $company && $company->logo ? asset('storage/' . $company->logo) : asset('assets/img/about.jpeg') }}"
@@ -79,6 +79,7 @@
 
 
 <!-- Partner Section Start -->
+@if($principals->isNotEmpty())
 <div class="container-fluid service mb-5">
     <div class="container">
         <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
@@ -106,6 +107,7 @@
         </div>
     </div>
 </div>
+@endif
 <!-- Partner Section End -->
 
 <!-- Value Start -->
@@ -253,7 +255,7 @@
 
 
                 <div class="col-md-12 col-lg-6 col-xl-4 d-flex" style="margin-bottom: 0.5rem;">
-                    <a href="{{ $company->no_wa ?? ' ' }}">
+                    <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}" target="_blank">
                         <div class="team-item rounded flex-fill">
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <div class="d-flex align-items-center justify-content-center">
@@ -267,6 +269,7 @@
                             </div>
                         </div>
                     </a>
+                    
                 </div>
             </div>
         </div>

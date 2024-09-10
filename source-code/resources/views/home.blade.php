@@ -4,35 +4,57 @@
 
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel mb-5">
-        @foreach ($sliders as $slider)
+        @if($sliders->isEmpty())
+            <!-- Default Slider if no data -->
             <div class="header-carousel-item">
-                <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="Image">
+                <img src="{{ asset('assets/img/MAS00029.jpg') }}" class="img-fluid w-100" alt="Default Image">
                 <div class="carousel-caption">
                     <div class="carousel-caption-content p-3">
                         <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
-                            {{ $slider->subtitle }}
+                            PT Arkamaya Guna Saharsa
                         </h5>
                         <h1 class="display-1 text-capitalize text-white mb-4">
-                            {{ $slider->title }}
+                            Simplifying Industries
                         </h1>
-                        <p class="mb-5 fs-5">{{ $slider->description }}</p>
-                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ $slider->button_url }}">
-                            {{ $slider->button_text }}
+                        <p class="mb-5 fs-5">Arkamaya Guna Saharsa is the technology start-up that empowered by innovation.</p>
+                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">
+                            About us
                         </a>
                     </div>
                 </div>
             </div>
-        @endforeach
+        @else
+            <!-- Loop through sliders if data exists -->
+            @foreach ($sliders as $slider)
+                <div class="header-carousel-item">
+                    <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="carousel-caption-content p-3">
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                                {{ $slider->subtitle }}
+                            </h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4">
+                                {{ $slider->title }}
+                            </h1>
+                            <p class="mb-5 fs-5">{{ $slider->description }}</p>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ $slider->button_url }}">
+                                {{ $slider->button_text }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
     </div>
-    </div>
+    
 
     <!-- About Start -->
-    <div class="container-fluid about bg-light py-5">
+    <div class="container-fluid about bg-light py-5 mb-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
                     <div class="about-img pb-5 ps-5">
-                        <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/img/about.jpeg') }}"
+                        <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/images/about.jpg') }}"
                             class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
                         <div class="about-img-inner">
                             <img src="{{ $company && $company->logo ? asset('storage/' . $company->logo) : asset('assets/img/about.jpeg') }}"
@@ -59,48 +81,53 @@
     <!-- About End -->
 
     <!-- Product Start -->
+    @if(!$produks->isEmpty())
     <div class="container-fluid feature py-5">
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
                     <h4 class="sub-title px-3 mb-0" style="font-weight: bold;">Our Product</h4>
                 </div>
-                <h1 class="display-3 mb-4" style="font-size: 2.5rem; font-weight: 700;">Elevate your lifestyle with our
-                    top-quality solutions.</h1>
+                <h1 class="display-3 mb-4" style="font-size: 2.5rem; font-weight: 700;">Elevate your lifestyle with our top-quality solutions.</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                @foreach ($kategori as $kategoris)
+                @foreach ($produks as $produk)
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="blog-item rounded"
-                            style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; height: 400px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between;">
-                            <div class="blog-img"
-                                style="overflow: hidden; border-radius: 15px; position: relative; flex: 1;">
-                                <img src="{{ asset($kategoris->gambar) }}" class="img-fluid w-100"
-                                    style="border-radius: 15px; width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;"
-                                    alt="{{ $kategoris->nama }}"
-                                    onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
-                                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                        <!-- Card is now wrapped in a link -->
+                        <a href="{{ route('product.show', $produk->id) }}" style="text-decoration: none;">
+                            <div class="blog-item rounded"
+                                style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; height: 400px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                                <div class="blog-img"
+                                    style="overflow: hidden; border-radius: 15px; position: relative; flex: 1;">
+                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" class="img-fluid w-100"
+                                        style="border-radius: 15px; width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                                        alt="{{ $produk->nama }}"
+                                        onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
+                                        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                                </div>
+                                <h5 style="font-weight: bold; color: #343a40; font-size: 1rem; margin: 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                                    {{ $produk->nama }}
+                                    <span class="arrow" style="display: inline-block; font-size: 1.5rem; color: #007BFF; transition: transform 0.3s ease;"
+                                        onmouseover="this.textContent='—>'" onmouseout="this.textContent='→'">→</span>
+                                </h5>
                             </div>
-                            <h5
-                                style="font-weight: bold; color: #343a40; font-size: 1rem; margin: 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
-                                {{ $kategoris->nama }}
-                                <span class="arrow"
-                                    style="display: inline-block; font-size: 1.5rem; color: #007BFF; transition: transform 0.3s ease;"
-                                    onmouseover="this.textContent='—>'" onmouseout="this.textContent='→'">→</span>
-                            </h5>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('product') }}">See More</a>
+                    <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('product.index') }}">See More</a>
                 </div>
             </div>
         </div>
     </div>
+@endif
+
+    
 
     <!-- Product End -->
 
 <!-- Partner Section Start -->
+@if($partners->isNotEmpty())
 <div class="container-fluid service mb-5">
     <div class="container">
         <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
@@ -128,9 +155,12 @@
         </div>
     </div>
 </div>
+@endif
+
 <!-- Partner Section End -->
 
 <!-- Principal Section Start -->
+@if($principals->isNotEmpty())
 <div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
     <div class="container">
         <div class="section-title">
@@ -158,6 +188,8 @@
         </div>
     </div>
 </div>
+@endif
+
 <!-- Principal Section End -->
 
 <!-- Script to Show More and Show Less Items -->
@@ -203,37 +235,40 @@
 
 
     <!-- E-commerce Section Start -->
-    <div class="container-fluid service py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Our E-commerce</h4>
-                </div>
-                <h1 class="display-3 mb-4">Explore more our product</h1>
+    @if($brand->isNotEmpty())
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Our E-commerce</h4>
             </div>
-            <div class="row">
-                <div class="col-lg-12 mb-4">
-                    <div class="col-12 wow fadeInUp text-center" data-wow-delay="0.1s">
-                        <div class="logo-container text-center">
-                            <div class="logo-static text-center"
-                                style="display: flex; justify-content: center; flex-wrap: wrap;">
-                                @foreach ($brand as $b)
-                                    <a href="{{ $b->url }}"
-                                        style="display: inline-block; margin: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;"
-                                        onmouseover="this.firstElementChild.style.transform='scale(1.2)'; this.firstElementChild.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
-                                        onmouseout="this.firstElementChild.style.transform='scale(1)'; this.firstElementChild.style.boxShadow='none';">
-                                        <img src="{{ asset('storage/' . $b->gambar) }}" alt="{{ $b->type }}"
-                                            class="logo"
-                                            style="width: 400px; height: auto; object-fit: contain; padding: 10px; border-radius: 8px; transition: transform 0.3s ease;">
-                                    </a>
-                                @endforeach
-                            </div>
+            <h1 class="display-3 mb-4">Explore more our product</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="col-12 wow fadeInUp text-center" data-wow-delay="0.1s">
+                    <div class="logo-container text-center">
+                        <div class="logo-static text-center"
+                            style="display: flex; justify-content: center; flex-wrap: wrap;">
+                            @foreach ($brand as $b)
+                                <a href="{{ $b->url }}"
+                                    style="display: inline-block; margin: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                                    onmouseover="this.firstElementChild.style.transform='scale(1.2)'; this.firstElementChild.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
+                                    onmouseout="this.firstElementChild.style.transform='scale(1)'; this.firstElementChild.style.boxShadow='none';">
+                                    <img src="{{ asset('storage/' . $b->gambar) }}" alt="{{ $b->type }}"
+                                        class="logo"
+                                        style="width: 400px; height: auto; object-fit: contain; padding: 10px; border-radius: 8px; transition: transform 0.3s ease;">
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+@endif
+
     <!-- E-commerce Section End -->
 
         <!-- Map Start -->

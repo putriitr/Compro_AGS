@@ -10,17 +10,33 @@ class VisitorController extends Controller
 {
     public function index()
     {
-        // Mengelompokkan data visitor berdasarkan tanggal kunjungan
-        $visitorData = Visitor::selectRaw('DATE(last_visited) as date, COUNT(*) as total_visits')
+        // Fetch all visitor data
+        $visitors = Visitor::all();
+
+        // Group data by date
+        $dailyVisitorData = Visitor::selectRaw('DATE(last_visited) as date, COUNT(*) as total_visits')
             ->groupBy('date')
             ->orderBy('date', 'ASC')
             ->get();
 
-        // Menyusun array untuk tanggal dan jumlah kunjungan
-        $dates = $visitorData->pluck('date')->toArray();
-        $visits = $visitorData->pluck('total_visits')->toArray();
+        // Prepare data for daily chart
+        $dates = $dailyVisitorData->pluck('date')->toArray();
+        $visits = $dailyVisitorData->pluck('total_visits')->toArray();
 
-        // Kirim data ke view
-        return view('admin.visitor.index', compact('dates', 'visits'));
+        // Group data by week
+        $weeklyVisitorData = Visitor::selectRaw('YEAR(last_visited) as year, WEEK(last_visited) as week, COUNT(*) as total_visits')
+            ->groupBy('year', 'week')
+            ->orderBy('year', 'ASC')
+            ->orderBy('week', 'ASC')
+            ->get();
+
+        // Prepare data for weekly chart
+        $weeks = $weeklyVisitorData->map(function ($data) {
+            return "Week {$data->week} of {$data->year}";
+        })->toArray();
+        $weeklyVisits = $weeklyVisitorData->pluck('total_visits')->toArray();
+
+        // Pass data to view
+        return view('admin.visitor.index', compact('visitors', 'dates', 'visits', 'weeks', 'weeklyVisits'));
     }
 }

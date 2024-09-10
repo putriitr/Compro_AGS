@@ -1,8 +1,11 @@
 @extends('layouts.admin.master')
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
         <div class="card">
             <div class="card-header">
                 <h2>Edit Member</h2>
@@ -94,7 +97,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <script>
     $(document).ready(function() {
         // Ensure jQuery is properly loaded

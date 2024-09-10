@@ -4,7 +4,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('admin.kategori.index') }}" class="btn btn-secondary mb-3">Back</a>
             <div class="card">
                 <div class="card-header">
                     <h3>Add New Kategori</h3>
@@ -16,11 +15,9 @@
                             <label for="nama">Nama Kategori</label>
                             <input type="text" name="nama" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label for="gambar">Gambar Kategori</label>
-                            <input type="file" name="gambar" class="form-control">
-                        </div>
                         <button type="submit" class="btn btn-success mt-3">Save</button>
+            <a href="{{ route('admin.kategori.index') }}" class="btn btn-secondary mt-3">Back</a>
+
                     </form>
                 </div>
             </div>

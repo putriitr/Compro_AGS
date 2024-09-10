@@ -23,6 +23,7 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
+
                 <!-- Dashboard -->
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}">
@@ -31,70 +32,50 @@
                     </a>
                 </li>
 
-                <!-- Member -->
+                <!-- Member Management -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Member</h4>
+                    <h4 class="text-section">Member Management</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#tables">
+                    <a data-bs-toggle="collapse" href="#member-management">
                         <i class="fas fa-user"></i>
-                        <p>Member</p>
-                        <span class="badge badge-success">3</span>
+                        <p>Members</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="tables">
+                    <div class="collapse" id="member-management">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('members.index') }}">
-                                    <span class="sub-item">Member</span>
+                                    <span class="sub-item">All Members</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
-                <!-- produk Manage -->
+                <!-- Product Management -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Product</h4>
+                    <h4 class="text-section">Product Management</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#produk">
-                        <i class="fas fa-shopping-cart"></i> <!-- Ikon pengguna (user) -->
-                        <p>Product</p>
-                        <span class="badge badge-success">2</span>
+                    <a data-bs-toggle="collapse" href="#product-management">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Products</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="produk">
+                    <div class="collapse" id="product-management">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.produk.index') }}">
-                                    <span class="sub-item">Product</span>
+                                    <span class="sub-item">All Products</span>
                                 </a>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- Pantau -->
-                <li class="nav-section">
-                    <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <h4 class="text-section">Pantau</h4>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#monitoring">
-                        <i class="fas fa-box"></i>
-                        <p>Monitoring</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="monitoring">
-                        <ul class="nav nav-collapse">
+                            </li>
                             <li>
                                 <a href="{{ route('admin.monitoring.index') }}">
                                     <span class="sub-item">Monitoring</span>
@@ -104,135 +85,70 @@
                     </div>
                 </li>
 
-                <!-- Section -->
+                <!-- Content Management -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Section</h4>
+                    <h4 class="text-section">Content Management</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#meta-section">
-                        <i class="fas fa-info-circle"></i> <!-- Ikon slider -->
-                        <p>Meta</p>
+                    <a data-bs-toggle="collapse" href="#content-management">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Meta & Content</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="meta-section">
+                    <div class="collapse" id="content-management">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.meta.index') }}">
                                     <span class="sub-item">Meta</span>
                                 </a>
                             </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#sliders-section">
-                        <i class="fas fa-sliders-h"></i> <!-- Ikon slider -->
-                        <p>Slider</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="sliders-section">
-                        <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.slider.index') }}">
-                                    <span class="sub-item">Slider</span>
+                                    <span class="sub-item">Sliders</span>
                                 </a>
                             </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#activity-section">
-                        <i class="fas fa-calendar-alt"></i> <!-- Ikon aktivitas -->
-                        <p>Activity</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="activity-section">
-                        <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.activity.index') }}">
-                                    <span class="sub-item">Activity</span>
+                                    <span class="sub-item">Activities</span>
                                 </a>
                             </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#brand-section">
-                        <i class="fas fa-tag"></i> <!-- Ikon aktivitas -->
-                        <p>Brand</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="brand-section">
-                        <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.brand.index') }}">
-                                    <span class="sub-item">Brand</span>
+                                    <span class="sub-item">Brands</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
-                <!-- Information -->
+                <!-- Information & FAQ -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Information</h4>
+                    <h4 class="text-section">Information & FAQ</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#contact">
-                        <i class="fas fa-phone"></i> <!-- Ikon telepon -->
-                        <p>Contact</p>
+                    <a data-bs-toggle="collapse" href="#information-section">
+                        <i class="fas fa-phone"></i>
+                        <p>Information</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="contact">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Contact</span>
-                                </a>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#location">
-                        <i class="fas fa-map-pin"></i> <!-- Ikon telepon -->
-                        <p>Location</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="location">
+                    <div class="collapse" id="information-section">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.location.index') }}">
-                                    <span class="sub-item">Location</span>
+                                    <span class="sub-item">Locations</span>
                                 </a>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- FAQ -->
-                <li class="nav-section">
-                    <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <h4 class="text-section">FAQ</h4>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#faq">
-                        <i class="fas fa-question-circle"></i>
-                        <p>FAQ</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="faq">
-                        <ul class="nav nav-collapse">
+                            </li>
                             <li>
                                 <a href="{{ route('admin.faq.index') }}">
                                     <span class="sub-item">FAQ</span>
                                 </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -245,36 +161,31 @@
                     <h4 class="text-section">Master Data</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#base">
-                        <i class="fas fa-database"></i> <!-- Ikon database -->
+                    <a data-bs-toggle="collapse" href="#master-data">
+                        <i class="fas fa-database"></i>
                         <p>Master Data</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="base">
+                    <div class="collapse" id="master-data">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('bidangperusahaan.index') }}">
-                                    <span class="sub-item">Bidang Perusahaan</span>
+                                    <span class="sub-item">Company Fields</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.kategori.index') }}">
-                                    <span class="sub-item">Kategori</span>
+                                    <span class="sub-item">Categories</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('parameter.index') }}">
-                                    <span class="sub-item">Parameter</span>
+                                    <span class="sub-item">Parameters</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.visitors') }}">
-                                    <span class="sub-item">Visitor</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Materai</span>
+                                    <span class="sub-item">Visitors</span>
                                 </a>
                             </li>
                         </ul>

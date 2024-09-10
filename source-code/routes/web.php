@@ -36,8 +36,8 @@
 
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/product', [ProdukMemberController::class, 'index'])->name('product');
-    Route::get('/product/category/{id}', [ProdukMemberController::class, 'productByCategory'])->name('product.by_category');
+    Route::get('/products', [ProdukMemberController::class, 'index'])->name('product.index');
+    Route::get('/products/category/{id}', [ProdukMemberController::class, 'index'])->name('product.category');
     Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');

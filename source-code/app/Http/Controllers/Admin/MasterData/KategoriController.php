@@ -32,14 +32,11 @@ class KategoriController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $path = $request->file('gambar') ? $request->file('gambar')->move('kategori', $request->file('gambar')->getClientOriginalName()) : null;
 
         Kategori::create([
             'nama' => $request->nama,
-            'gambar' => $path,
         ]);
 
         return redirect()->route('admin.kategori.index')->with('success', 'Kategori created successfully.');
@@ -69,21 +66,10 @@ class KategoriController extends Controller
 {
     $request->validate([
         'nama' => 'required|string|max:255',
-        'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
     $kategori = Kategori::findOrFail($id);
 
-    if ($request->hasFile('gambar')) {
-        // Hapus gambar lama jika ada
-        if ($kategori->gambar && file_exists(public_path($kategori->gambar))) {
-            unlink(public_path($kategori->gambar));
-        }
-
-        // Simpan gambar baru
-        $path = $request->file('gambar')->move('kategori', $request->file('gambar')->getClientOriginalName());
-        $kategori->gambar = $path;
-    }
 
     $kategori->nama = $request->nama;
     $kategori->save();
