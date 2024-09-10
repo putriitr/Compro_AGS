@@ -6,7 +6,6 @@
             </div>
         </div>
         <!-- Spinner End --> --}}
-
     <!-- Topbar Start -->
 
     @php
@@ -165,10 +164,33 @@
                         </div>
                     @endforeach
                     @auth
-                        <a href="{{ route('portal') }}" class="nav-item nav-link active">Member Portal</a>
+                        <a href="{{ route('portal') }}" class="nav-item nav-link">Member Portal</a>
                     @endauth
                 </div>
             </div>
         </nav>
     </div>
     <!-- Navbar End -->
+
+    <style>
+        .navbar-nav .nav-link.active {
+            color: #6196FF !important;
+            border-bottom: 2px solid #6196FF;
+            /* Garis bawah */
+            padding-bottom: 5px;
+            /* Ruang antara teks dan garis */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.navbar-nav .nav-link');
+            const currentUrl = window.location.href;
+
+            links.forEach(link => {
+                if (link.href === currentUrl) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
