@@ -4,10 +4,10 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">About Us</h1>
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Tentang Kami</h1>
                 <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item active text-primary">About</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                    <li class="breadcrumb-item active text-primary">Tentang</li>
                 </ol>
         </div>
     </div>
@@ -19,7 +19,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
                     <div class="section-title text-start mb-5">
-                        <h4 class="sub-title pe-3 mb-0">About Us</h4>
+                        <h4 class="sub-title pe-3 mb-0">Tentang Kami</h4>
                         <h4 class="display-3 mb-4" style="font-size: 50px;">
                             {{ $company->nama_perusahaan ?? 'Arkamaya Guna Saharsa' }}</h4>
                         <p class="mb-4" style="text-align: justify;">
@@ -47,9 +47,9 @@
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Defining Our Purpose</h4>
+                    <h4 class="sub-title px-3 mb-0">Tujuan Kami</h4>
                 </div>
-                <h1 class="display-3 mb-4">Vision & Mission</h1>
+                <h1 class="display-3 mb-4">Visi & Misi Perusahaan</h1>
             </div>
             <div class="row g-12 justify-content-center d-flex">
                 <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
@@ -57,7 +57,7 @@
                         style="flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                         <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
                             style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <h5>VISION</h5>
+                            <h5>VISI</h5>
                             <p class="mb-0" style="font-weight: bold;">{{ $company->visi ?? ' ' }}</p>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         style=" flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                         <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
                             style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <h5>MISSION</h5>
+                            <h5>MISI</h5>
                             <p class="mb-0" style="font-weight: bold;">{{ $company->misi ?? ' ' }}</p>
                         </div>
                     </div>
@@ -78,112 +78,146 @@
     <!-- Vision End -->
 
 
-<!-- Partner Section Start -->
-@if($principals->isNotEmpty())
-<div class="container-fluid service mb-5">
-    <div class="container">
-        <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Work Together</h4>
-            </div>
-            <h1 class="display-3 mb-4">Our Partner</h1>
-        </div>
-        <div class="container overflow-hidden">
-            <div class="row gy-4">
-                @foreach ($partners as $key => $p)
-                <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
-                    <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%" height="100" style="object-fit:contain;">
+    <!-- Partner Section Start -->
+    @if ($principals->isNotEmpty())
+        <div class="container-fluid service mb-5">
+            <div class="container">
+                <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="sub-style">
+                        <h4 class="sub-title px-3 mb-0">Kerja Sama</h4>
                     </div>
+                    <h1 class="display-3 mb-4">Mitra Kami</h1>
                 </div>
+                <div class="container overflow-hidden">
+                    <div class="row gy-4">
+                        @foreach ($partners as $key => $p)
+                            <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
+                                <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%"
+                                        height="100" style="object-fit:contain;">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @if ($partners->count() > 8)
+                        <div class="text-center mt-4">
+                            <button id="show-more-partners" class="btn btn-primary">Selanjutnya</button>
+                            <button id="show-less-partners" class="btn btn-secondary d-none">Kembali</button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    @endif
+    <!-- Partner Section End -->
+
+    <!-- Value Start -->
+    <div class="container-fluid feature py-5">
+        <div class="container py-5">
+            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="sub-style">
+                    <h4 class="sub-title px-3 mb-0">Keyakinan Kami</h4>
+                </div>
+                <h1 class="display-3 mb-4">Keunggulan Perusahaan</h1>
+            </div>
+
+            <!-- Responsive Values Section -->
+            <div class="row g-4 justify-content-center">
+                @php
+                    // Sample data for the loop, replace with dynamic data if necessary
+                    $values = [
+                        [
+                            'title' => 'Bekerja Cepat',
+                            'image' => 'value (1).png',
+                            'description' =>
+                                'Bertindak dengan segera, kami menghilangkan hambatan yang menghalangi inisiatif prioritas tinggi, memenuhi kebutuhan Anda hari ini daripada menunggu hingga minggu depan.',
+                        ],
+                        [
+                            'title' => 'Inovasi',
+                            'image' => 'value (2).png',
+                            'description' =>
+                                'Menciptakan nilai melalui inovasi dan peningkatan produk serta membangun hubungan dengan pelanggan untuk lebih memahami dan memenuhi kebutuhan mereka.',
+                        ],
+                        [
+                            'title' => 'Mandiri',
+                            'image' => 'value (3).png',
+                            'description' =>
+                                'Memenuhi kebutuhan pelanggan jangka pendek dan jangka panjang secara fleksibel dengan membuat keputusan tepat waktu, berfokus pada pertumbuhan, dan mengejar peluang baru.',
+                        ],
+                        [
+                            'title' => 'Kualitas',
+                            'image' => 'value (4).png',
+                            'description' =>
+                                'Kami bangga menyediakan produk dan layanan bernilai tinggi untuk memastikan kepuasan pelanggan dan pertumbuhan masa depan karyawan dan perusahaan kami.',
+                        ],
+                        [
+                            'title' => 'Kepuasan Pelanggan',
+                            'image' => 'value (5).png',
+                            'description' =>
+                                'Kami memberikan layanan yang luar biasa dengan penjadwalan yang fleksibel, produk berkualitas, dan solusi inovatif, yang memberikan nilai tambah bagi pelanggan dan perusahaan.',
+                        ],
+                        [
+                            'title' => 'Rasa Hormat',
+                            'image' => 'value (6).png',
+                            'description' =>
+                                'Kami memperlakukan semua orang dengan bermartabat, menghargai perspektif yang beragam, dan menciptakan lingkungan di mana semua ide dan kontribusi diterima.',
+                        ],
+                    ];
+                @endphp
+
+                @foreach ($values as $key => $value)
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item p-4 h-100"
+                            style="height: 400; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                            <div class="feature-icon mb-4 text-center d-flex align-items-center justify-content-center">
+                                <div class="p-3 d-inline-flex bg-white rounded-circle"
+                                    style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                                    <img src="{{ asset('assets/img/about/' . $value['image']) }}" alt="Icon"
+                                        style="width: 100px; height: 100px; object-fit: cover;">
+                                </div>
+                            </div>
+                            <div class="feature-content text-center">
+                                <h5 class="mb-4 font-weight-bold">{{ $value['title'] }}</h5>
+                                <p class="mb-0">{{ $value['description'] }}</p>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
-            @if($partners->count() > 8)
-            <div class="text-center mt-4">
-                <button id="show-more-partners" class="btn btn-primary">Selanjutnya</button>
-                <button id="show-less-partners" class="btn btn-secondary d-none">Kembali</button>
-            </div>
-            @endif
         </div>
     </div>
-</div>
-@endif
-<!-- Partner Section End -->
+    <!-- Value End -->
 
-<!-- Value Start -->
-<div class="container-fluid feature py-5">
-    <div class="container py-5">
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Our Core Beliefs</h4>
-            </div>
-            <h1 class="display-3 mb-4">Company Value</h1>
-        </div>
-
-        <!-- Responsive Values Section -->
-        <div class="row g-4 justify-content-center">
-            @php
-            // Sample data for the loop, replace with dynamic data if necessary
-            $values = [
-                ['title' => 'Move Quickly', 'image' => 'value (1).png', 'description' => 'Acting with urgency, we remove obstacles that hinder high-priority initiatives, addressing your needs today instead of waiting until next week.'],
-                ['title' => 'Innovation', 'image' => 'value (2).png', 'description' => 'Create value through product innovation and improvement and build relationships with customers to better understand and meet their needs.'],
-                ['title' => 'Independence', 'image' => 'value (3).png', 'description' => 'Flexibly meet both short-term and long-term customer needs by making timely decisions, focusing on growth, and pursuing new opportunities.'],
-                ['title' => 'Quality', 'image' => 'value (4).png', 'description' => 'We take pride in providing high-value products and services to ensure customer satisfaction and the future growth of our employees and company.'],
-                ['title' => 'Customer Satisfaction', 'image' => 'value (5).png', 'description' => 'We deliver exceptional service with flexible scheduling, quality products, and innovative solutions, adding value for both customers and the company.'],
-                ['title' => 'Respect', 'image' => 'value (6).png', 'description' => 'We treat everyone with dignity, value diverse perspectives, and create an environment where all ideas and contributions are welcome.'],
-            ];
-            @endphp
-
-            @foreach($values as $key => $value)
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="feature-item p-4 h-100" style="height: 400; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
-                    <div class="feature-icon mb-4 text-center d-flex align-items-center justify-content-center">
-                        <div class="p-3 d-inline-flex bg-white rounded-circle" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-                            <img src="{{ asset('assets/img/about/' . $value['image']) }}" alt="Icon" style="width: 100px; height: 100px; object-fit: cover;">
-                        </div>
-                    </div>                    
-                    <div class="feature-content text-center">
-                        <h5 class="mb-4 font-weight-bold">{{ $value['title'] }}</h5>
-                        <p class="mb-0">{{ $value['description'] }}</p>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-<!-- Value End -->
-
-<!-- Custom CSS -->
-<style>
-    /* Feature item consistent height */
-    .feature-item {
-        background-color: #fff;
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    /* Icon and Image styling */
-    .feature-item img {
-        max-width: 100%;
-        object-fit: cover;
-    }
-
-    /* Hover effect on feature items */
-    .feature-item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Responsive Behavior */
-    @media (max-width: 768px) {
+    <!-- Custom CSS -->
+    <style>
+        /* Feature item consistent height */
         .feature-item {
-            min-height: 300px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-    }
-</style>
+
+        /* Icon and Image styling */
+        .feature-item img {
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        /* Hover effect on feature items */
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Behavior */
+        @media (max-width: 768px) {
+            .feature-item {
+                min-height: 300px;
+            }
+        }
+    </style>
 
 
     <!-- Sales Channel Start -->
@@ -191,9 +225,9 @@
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Strengthening Partnerships</h4>
+                    <h4 class="sub-title px-3 mb-0">Kemitraan</h4>
                 </div>
-                <h1 class="display-3 mb-4">Our Sales Channel's</h1>
+                <h1 class="display-3 mb-4">Saluran Penjualan</h1>
             </div>
             <div class="row g-12 justify-content-center d-flex">
                 <div class="col-md-12 col-lg-6 col-xl-4 d-flex"style="margin-bottom: 0.5rem;">
@@ -204,7 +238,8 @@
                                     <img src="{{ asset('assets/img/e-katalog.png') }}" alt="Whatsapp Contact"
                                         style="width: 55%; height: 50px; margin-bottom: 10px;">
                                 </div>
-                                <p class="mb-0 mt-3" style="margin-top: 15px; font-weight: bold; font-size: 18px;">Goverment E-Commerce</p>
+                                <p class="mb-0 mt-3" style="margin-top: 15px; font-weight: bold; font-size: 18px;">
+                                    E-Commerce</p>
                             </div>
                         </a>
                     </div>
@@ -213,32 +248,35 @@
                 <div class="col-md-12 col-lg-6 col-xl-4 d-flex" style="margin-bottom: 0.5rem;">
                     <div class="team-item rounded flex-fill">
                         <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn p-0 w-100" data-bs-toggle="modal" data-bs-target="#websiteModal">
+                        <button type="button" class="btn p-0 w-100" data-bs-toggle="modal"
+                            data-bs-target="#websiteModal">
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <i class="fa fa-globe fa-3x text-success text-dark"></i>
-                                    <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">Our Website</h5>
+                                    <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">Website Kami</h5>
                                 </div>
-                                <p class="mb-0 mt-2" style="font-size: 14px;">Official Website</p>
+                                <p class="mb-0 mt-2" style="font-size: 14px;">Website Resmi</p>
                                 <p class="mb-0" style="font-weight: bold; font-size: 18px;">Website</p>
                             </div>
                         </button>
                     </div>
                 </div>
-            
+
                 <!-- Modal Structure for Two Brands -->
-                <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel" aria-hidden="true">
+                <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="websiteModalLabel">Website Information</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <!-- Loop through the first two brands -->
-                                @foreach($brand as $singleBrand)
+                                @foreach ($brand as $singleBrand)
                                     <h5>{{ $singleBrand->nama }}</h5>
-                                    <p>Visit the official website of {{ $singleBrand->nama }} at 
+                                    <p>Visit the official website of {{ $singleBrand->nama }} at
                                         <a href="{{ $singleBrand->url }}" target="_blank">{{ $singleBrand->url }}</a>.
                                     </p>
                                     <p>{{ $singleBrand->description ?? 'No additional information available.' }}</p>
@@ -251,11 +289,12 @@
                         </div>
                     </div>
                 </div>
-            
+
 
 
                 <div class="col-md-12 col-lg-6 col-xl-4 d-flex" style="margin-bottom: 0.5rem;">
-                    <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}" target="_blank">
+                    <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}"
+                        target="_blank">
                         <div class="team-item rounded flex-fill">
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
                                 <div class="d-flex align-items-center justify-content-center">
@@ -263,13 +302,13 @@
                                     <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">
                                         {{ $company->no_wa ?? ' ' }}</h5>
                                 </div>
-                                <p class="mb-0 mt-2" style="font-size: 13px;">Official Whatsapp
+                                <p class="mb-0 mt-2" style="font-size: 13px;">Whatsapp Resmi
                                     {{ $company->nama_perusahaan ?? ' ' }}</p>
-                                <p class="mb-0" style="font-weight: bold; font-size: 18px;">Broadcast Message</p>
+                                <p class="mb-0" style="font-weight: bold; font-size: 18px;">Hubungi Langsung</p>
                             </div>
                         </div>
                     </a>
-                    
+
                 </div>
             </div>
         </div>
@@ -290,7 +329,7 @@
             <div class="sub-style">
                 <h4 class="sub-title px-3 mb-0">Presenting Our Esteemed Customer</h4>
             </div>
-            <h1 class="display-3 mb-4">Our Valued Customer</h1>
+            <h1 class="display-3 mb-4">Pelanggan Kami</h1>
         </div>
         <hr>
 
@@ -312,17 +351,17 @@
         }).addTo(map);
 
         function addMarker(lat, lng, province, userCount, users) {
-    var marker = L.marker([lat, lng]).addTo(map);
+            var marker = L.marker([lat, lng]).addTo(map);
 
-    // Build user info HTML
-    let userList = '<ul>';
-    users.forEach(function(user) {
-        userList += `<li>${user.nama_perusahaan} (Created on: ${user.created_at})</li>`;
-    });
-    userList += '</ul>';
+            // Build user info HTML
+            let userList = '<ul>';
+            users.forEach(function(user) {
+                userList += `<li>${user.nama_perusahaan} (Created on: ${user.created_at})</li>`;
+            });
+            userList += '</ul>';
 
-    // Popup content for marker
-    marker.bindPopup(`
+            // Popup content for marker
+            marker.bindPopup(`
         <div class="info-window">
             <h3 class="popup-title">${province}</h3>
             <p class="popup-description">Kami memiliki ${userCount} member di ${province}:</p>
@@ -330,34 +369,34 @@
         </div>
     `);
 
-    // Adding tooltip
-    marker.bindTooltip(`<div>${province}</div>`, {
-        permanent: false,
-        direction: 'top',
-        offset: [0, -20],
-        className: 'marker-tooltip'
-    });
-    marker.on('mouseover', function(e) {
-        this.openTooltip();
-    });
-    marker.on('mouseout', function(e) {
-        this.closeTooltip();
-    });
-}
+            // Adding tooltip
+            marker.bindTooltip(`<div>${province}</div>`, {
+                permanent: false,
+                direction: 'top',
+                offset: [0, -20],
+                className: 'marker-tooltip'
+            });
+            marker.on('mouseover', function(e) {
+                this.openTooltip();
+            });
+            marker.on('mouseout', function(e) {
+                this.closeTooltip();
+            });
+        }
 
 
         // Fetch lokasi dari backend
-// Fetch lokasi dari backend
-fetch("{{ url('/locations') }}")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data); // for debugging
-        data.forEach(location => {
-            addMarker(location.latitude, location.longitude, location.province, location.user_count, location.user_data);
-        });
-    })
-    .catch(error => console.error('Error:', error));
-
+        // Fetch lokasi dari backend
+        fetch("{{ url('/locations') }}")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // for debugging
+                data.forEach(location => {
+                    addMarker(location.latitude, location.longitude, location.province, location.user_count,
+                        location.user_data);
+                });
+            })
+            .catch(error => console.error('Error:', error));
     </script>
 
     <style>
@@ -434,7 +473,7 @@ fetch("{{ url('/locations') }}")
             this.style.display = 'none';
             document.getElementById('show-less-partners').classList.remove('d-none');
         });
-    
+
         document.getElementById('show-less-partners').addEventListener('click', function() {
             document.querySelectorAll('.partner-item').forEach(function(item, index) {
                 if (index >= 8) {
@@ -444,7 +483,7 @@ fetch("{{ url('/locations') }}")
             this.classList.add('d-none');
             document.getElementById('show-more-partners').style.display = 'inline-block';
         });
-    
+
         document.getElementById('show-more-principals').addEventListener('click', function() {
             document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
                 item.classList.remove('d-none');
@@ -452,7 +491,7 @@ fetch("{{ url('/locations') }}")
             this.style.display = 'none';
             document.getElementById('show-less-principals').classList.remove('d-none');
         });
-    
+
         document.getElementById('show-less-principals').addEventListener('click', function() {
             document.querySelectorAll('.principal-item').forEach(function(item, index) {
                 if (index >= 10) {

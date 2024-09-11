@@ -4,10 +4,10 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb" style="background-color: #f4f4f4;">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Our Products</h1>
+            <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Produk Kami</h1>
             <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-dark">Home</a></li>
-                <li class="breadcrumb-item active text-primary">Products</li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-dark">Beranda</a></li>
+                <li class="breadcrumb-item active text-primary">Produk</li>
             </ol>
         </div>
     </div>
@@ -17,97 +17,97 @@
         <div class="row">
             <!-- Sidebar Start -->
             <div class="col-lg-3">
-                <h4 class="mb-4 text-dark font-weight-bold">Category</h4>
+                <h4 class="mb-4 text-dark font-weight-bold">Kategori</h4>
                 <ul class="list-group mb-4 shadow-sm">
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Hydraulics</strong>
+                        <strong>Hidrolika</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Concrete Technology</strong>
+                        <strong>Semen</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Soil Mechanics</strong>
+                        <strong>Tanah</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Asphalt Technology</strong>
+                        <strong>Aspal</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Aggregate Materials</strong>
+                        <strong>Bebatuan</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Construction Management</strong>
+                        <strong>Manajemen Konstruksi</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Cement Technology</strong>
+                        <strong>Semen</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Geotechnical Engineering</strong>
+                        <strong>Kebumian</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Electrical Engineering</strong>
+                        <strong>Listrik</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Mechanical Engineering</strong>
+                        <strong>Mekanik</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Materials Science</strong>
+                        <strong>Material</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Industrial Engineering</strong>
+                        <strong>Industri</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Fisheries Technology</strong>
+                        <strong>Kelautan</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Marine Shipping</strong>
+                        <strong>Perkapalan</strong>
                     </li>
                     <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                         style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
                         onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
                         onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Railway Engineering</strong>
+                        <strong>Perkeretaapian</strong>
                     </li>
                 </ul>
             </div>
@@ -116,11 +116,11 @@
             <!-- Main Content Start -->
             <div class="col-lg-9">
                 <div class="d-flex justify-content-between mb-4">
-                    <h3 class="font-weight-bold" style="color: #6196FF;">Explore Products</h3>
+                    <h3 class="font-weight-bold" style="color: #6196FF;">Jelajahi Produk</h3>
                     <select class="form-select w-25 border-0 bg-light shadow-sm">
-                        <option selected>Sort by</option>
-                        <option value="1">Newest</option>
-                        <option value="2">Latest</option>
+                        <option selected>Urut berdasarkan</option>
+                        <option value="1">Terbaru</option>
+                        <option value="2">Terlama</option>
                     </select>
                 </div>
 

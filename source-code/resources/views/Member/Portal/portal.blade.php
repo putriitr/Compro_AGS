@@ -4,10 +4,10 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Portal Member</h1>
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Member Portal</h1>
                 <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item active text-primary">My Portal Member</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                    <li class="breadcrumb-item active text-primary">Member Portal</li>
                 </ol>
         </div>
     </div>
@@ -25,9 +25,9 @@
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
-                                <h5 class="mb-4">My Product</h5>
+                                <h5 class="mb-4">Produk Saya</h5>
                                 <a href="{{ route('portal.user-product') }}"
-                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
-                                <h5 class="mb-4">Product User Manual</h5>
+                                <h5 class="mb-4">Panduan Penggunaan Produk</h5>
                                 <a href="{{ route('portal.instructions') }}"
-                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -55,9 +55,9 @@
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
-                                <h6 class="mb-4">Document & Certifications</h6>
+                                <h5 class="mb-4">Dokumen & Sertifikat</h5>
                                 <a href="{{ route('portal.document') }}"
-                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -72,9 +72,9 @@
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
-                                <h5 class="mb-4">Video Tutorials</h5>
+                                <h5 class="mb-4">Video Cara Penggunaan</h5>
                                 <a href="{{ route('portal.tutorials') }}"
-                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -87,9 +87,9 @@
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
-                                <h5 class="mb-4">Monitoring</h5>
+                                <h5 class="mb-4">Pengawasan</h5>
                                 <a href="{{ route('portal.monitoring') }}"
-                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -102,9 +102,9 @@
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
-                                <h5 class="mb-4">FAQ</h5>
+                                <h5 class="mb-4">Pertanyaan & Jawaban</h5>
                                 <a href="{{ route('portal.qna') }}"
-                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Read More</a>
+                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
                             </div>
                         </div>
                     </div>

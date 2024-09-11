@@ -18,7 +18,7 @@
                         </h1>
                         <p class="mb-5 fs-5">Arkamaya Guna Saharsa is the technology start-up that empowered by innovation.</p>
                         <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">
-                            About us
+                            Tentang Kami
                         </a>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             @endforeach
         @endif
     </div>
-    
+
 
     <!-- About Start -->
     <div class="container-fluid about bg-light py-5 mb-5">
@@ -70,8 +70,7 @@
                             {{ $company->sejarah_singkat ?? ' ' }}
                         </p>
                         <div class="col-6 text-center wow fadeInUp" data-wow-delay="0.2s">
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">Abous
-                                Us More</a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">Tentang Kami</a>
                         </div>
                     </div>
                 </div>
@@ -121,10 +120,7 @@
         </div>
     </div>
 @endif
-
-    
-
-    <!-- Product End -->
+<!-- Product End -->
 
 <!-- Partner Section Start -->
 @if($partners->isNotEmpty())
@@ -132,9 +128,9 @@
     <div class="container">
         <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Work Together</h4>
+                <h4 class="sub-title px-3 mb-0">Kerja Sama</h4>
             </div>
-            <h1 class="display-3 mb-4">Our Partner</h1>
+            <h1 class="display-3 mb-4">Mitra Kami</h1>
         </div>
         <div class="container overflow-hidden">
             <div class="row gy-4">
@@ -165,9 +161,9 @@
     <div class="container">
         <div class="section-title">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Trusted Collaborations</h4>
+                <h4 class="sub-title px-3 mb-0">Kolaborasi Terpercaya</h4>
             </div>
-            <h1 class="display-3 mb-4">Our Principal's</h1>
+            <h1 class="display-3 mb-4">Perusahaan Distributor</h1>
         </div>
         <div class="container overflow-hidden">
             <div class="row gy-4">
@@ -240,9 +236,9 @@
     <div class="container py-5">
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Our E-commerce</h4>
+                <h4 class="sub-title px-3 mb-0">E-commerce Kami</h4>
             </div>
-            <h1 class="display-3 mb-4">Explore more our product</h1>
+            <h1 class="display-3 mb-4">Jelajahi Lebih Banyak Produk</h1>
         </div>
         <div class="row">
             <div class="col-lg-12 mb-4">
@@ -283,9 +279,9 @@
 
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Presenting Our Esteemed Customer</h4>
+                <h4 class="sub-title px-3 mb-0">Pelanggan Setia Kami</h4>
             </div>
-            <h1 class="display-3 mb-4">Our Valued Customer</h1>
+            <h1 class="display-3 mb-4">Pelanggan Kami</h1>
         </div>
         <hr>
 

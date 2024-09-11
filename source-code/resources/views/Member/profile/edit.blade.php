@@ -4,7 +4,7 @@
 <div class="container mt-5 mb-5">
     <div class="card shadow-lg border-0 rounded-lg">
         <div class="card-header bg-primary text-white text-center py-4">
-            <h2 class="mb-0">Edit Profile</h2>
+            <h2 class="mb-0">Edit Profil</h2>
         </div>
         <div class="card-body p-4">
             @if(session('success'))
@@ -27,7 +27,7 @@
 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="name" class="form-label fw-bold">Name</label>
+                        <label for="name" class="form-label fw-bold">Nama</label>
                         <input type="text" name="name" class="form-control" value="{{ old('name', $user->name) }}" required>
                     </div>
 
@@ -39,7 +39,7 @@
 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="nama_perusahaan" class="form-label fw-bold">Company Name</label>
+                        <label for="nama_perusahaan" class="form-label fw-bold">Nama Perusahaan</label>
                         <input type="text" name="nama_perusahaan" class="form-control" value="{{ old('nama_perusahaan', $user->nama_perusahaan) }}">
                     </div>
 
@@ -58,18 +58,18 @@
 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="no_telp" class="form-label fw-bold">Phone Number</label>
+                        <label for="no_telp" class="form-label fw-bold">Nomor Telepon</label>
                         <input type="text" name="no_telp" class="form-control" value="{{ old('no_telp', $user->no_telp) }}">
                     </div>
 
                     <div class="col-md-6">
-                        <label for="alamat" class="form-label fw-bold">Address</label>
+                        <label for="alamat" class="form-label fw-bold">Alamat</label>
                         <textarea name="alamat" class="form-control">{{ old('alamat', $user->alamat) }}</textarea>
                     </div>
                 </div>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary px-4 py-2">Update Profile</button>
+                    <button type="submit" class="btn btn-primary px-4 py-2">Perbaharui Profil</button>
                 </div>
             </form>
         </div>

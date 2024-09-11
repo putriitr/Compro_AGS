@@ -22,7 +22,7 @@
                         <!-- Maps / Office Location -->
                         @if (!empty($compro->maps))
                             <a href="{{ $compro->maps }}" class="text-light me-4" target="_blank">
-                                <i class="fas fa-map-marker-alt text-primary me-2"></i>Office Location
+                                <i class="fas fa-map-marker-alt text-primary me-2"></i>Lokasi Kantor
                             </a>
                         @else
                             <p class="text-light me-4">
@@ -71,7 +71,7 @@
                                     <!-- Show Profile -->
                                     <li>
                                         <a class="dropdown-item" href="{{ route('profile.show') }}">
-                                            <i class="fa fa-user me-2"></i>Profile
+                                            <i class="fa fa-user me-2"></i>Profil
                                         </a>
                                     </li>
 
@@ -79,7 +79,7 @@
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out-alt me-2"></i>Logout
+                                            <i class="fa fa-sign-out-alt me-2"></i>Keluar
                                         </a>
                                     </li>
                                 </ul>
@@ -92,7 +92,7 @@
                         @else
                             <a href="{{ route('login') }}"><small
                                     class="btn btn-primary rounded-pill text-white py-1 px-1"><i
-                                        class="fa fa-sign-in-alt text-white me-2"></i>Member Login</small></a>
+                                        class="fa fa-sign-in-alt text-white me-2"></i>Masuk Member</small></a>
                         @endif
                         {{-- <div class="dropdown">
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><small><i
@@ -136,10 +136,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ route('home') }}" class="nav-item nav-link">Home</a>
-                    <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
-                    <a href="{{ route('activity') }}" class="nav-item nav-link">Activity</a>
-                    <a href="{{ route('product.index') }}" class="nav-item nav-link">Product</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link">Beranda</a>
+                    <a href="{{ route('about') }}" class="nav-item nav-link">Tentang</a>
+                    <a href="{{ route('activity') }}" class="nav-item nav-link">Aktivitas</a>
+                    <a href="{{ route('product.index') }}" class="nav-item nav-link">Produk</a>
                     @if ($brand->isNotEmpty())
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">E-Commerce</a>
@@ -164,7 +164,7 @@
                         </div>
                     @endforeach
                     @auth
-                        <a href="{{ route('portal') }}" class="nav-item nav-link">Member Portal</a>
+                        <a href="{{ route('portal') }}" class="nav-item nav-link">Portal Member</a>
                     @endauth
                 </div>
             </div>

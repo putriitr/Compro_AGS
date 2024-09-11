@@ -4,10 +4,10 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Company Activity</h3>
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Aktivitas Perusahaan</h3>
             <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item active text-primary">Activity</li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                <li class="breadcrumb-item active text-primary">Aktivitas</li>
             </ol>
         </div>
     </div>
@@ -20,18 +20,18 @@
             <div class="row mb-4">
                 <!-- Showing X-Y of Z -->
                 <div class="col-md-4 d-flex align-items-center">
-                    <p class="mb-0">Showing {{ $activities->firstItem() }} - {{ $activities->lastItem() }} of
+                    <p class="mb-0">Menampilkan {{ $activities->firstItem() }} - {{ $activities->lastItem() }} dari
                         {{ $activities->total() }}</p>
                 </div>
                 <!-- Show per Page and Sort By -->
                 <div class="col-md-8 d-flex justify-content-end align-items-center">
                     <div class="d-flex align-items-center">
                         <label for="sort-by" class="mb-0 me-4" style="display: inline-block; white-space: nowrap;">
-                            Sort by :
+                            Urut berdasarkan :
                         </label>
                         <select id="sort-by" class="form-select form-select-sm">
-                            <option value="newest">Newest</option>
-                            <option value="latest">Latest</option>
+                            <option value="newest">Terbaru</option>
+                            <option value="latest">Terlama</option>
                         </select>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
 
                                 <a href="{{ route('activity.show', $item->id) }}"
                                     class="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"
-                                    style="background-color: #007BFF; border: none;">Read More</a>
+                                    style="background-color: #007BFF; border: none;">Selengkapnya</a>
                             </div>
                         </div>
                     </div>

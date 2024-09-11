@@ -27,25 +27,24 @@ $compro = \App\Models\CompanyParameter::first();
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Quick Links</h4>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> About Us</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Brand & Partner</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Our Activity</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
+                    <h4 class="mb-4 text-white">Akses Cepat</h4>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Tentang Kami</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Merek & Mitra</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Aktivitas Kami</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Find Product</h4>
-                    <a href="/category"><i class="fas fa-angle-right me-2"></i> Our Product</a>
-                    <a href="{{url('/portal')}}"><i class="fas fa-angle-right me-2"></i> Member Login</a>
+                    <h4 class="mb-4 text-white">Temukan Produk</h4>
+                    <a href="/category"><i class="fas fa-angle-right me-2"></i> Produk Kami</a>
+                    <a href="{{url('/portal')}}"><i class="fas fa-angle-right me-2"></i> Masuk Member</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Labtek</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Labverse</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Contact Info</h4>
+                    <h4 class="mb-4 text-white">Informasi Kontak</h4>
                     <!-- Alamat -->
                     @if(!empty($compro->alamat))
                         <a href="#"><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</a>

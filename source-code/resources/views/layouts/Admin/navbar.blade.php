@@ -167,7 +167,7 @@
                   />
                 </div>
                 <span class="profile-username">
-                  <span class="op-7">Hi,</span>
+                  <span class="op-7">Halo,</span>
                   <span class="fw-bold">{{ Auth::user()->name }}</span>
                 </span>
               </a>
@@ -193,13 +193,13 @@
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
-                     Logout
+                     Keluar
                  </a>
-                 
+
                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                      @csrf
                  </form>
-                 
+
                   </li>
                 </div>
               </ul>

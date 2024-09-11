@@ -4,11 +4,11 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Company Activity</h1>
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Aktivitas Perusahaan</h1>
                 <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('/activity') }}">Activity</a></li>
-                    <li class="breadcrumb-item active text-primary">Detail Activity</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/activity') }}">Aktivitas</a></li>
+                    <li class="breadcrumb-item active text-primary">Detail Aktivitas</li>
                 </ol>
         </div>
     </div>
