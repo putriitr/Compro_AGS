@@ -134,7 +134,7 @@
     position: relative;
     display: inline-block;
     text-transform: uppercase;
-    color: #6196FF !important;
+    color: a;
 }
 
 .sub-title::before {

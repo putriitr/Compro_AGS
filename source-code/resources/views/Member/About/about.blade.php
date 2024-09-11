@@ -75,8 +75,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
     <!-- Vision End -->
 
 
@@ -122,7 +122,7 @@
                 </div>
                 <h1 class="display-3 mb-4">{{ __('messages.keunggulan_perusahaan') }}</h1>
             </div>
-    
+
             <!-- Responsive Values Section -->
             <div class="row g-4 justify-content-center">
                 @php
@@ -160,7 +160,7 @@
                         ],
                     ];
                 @endphp
-    
+
                 @foreach ($values as $key => $value)
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="feature-item p-4 h-100"
@@ -182,7 +182,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Value End -->
 
     <!-- Custom CSS -->
@@ -227,6 +227,7 @@
                 <h1 class="display-3 mb-4">Saluran Penjualan</h1>
             </div>
             <div class="row g-3 justify-content-center">
+                <!-- Card 1 -->
                 <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
                     <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
                         <a href="{{ $company->ekatalog ?? '#' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
@@ -235,72 +236,79 @@
                                     <img src="{{ asset('assets/img/e-katalog.png') }}" alt="E-Commerce" style="width: 55%; height: 50px;">
                                 </div>
                                 <p class="mb-0 font-weight-bold" style="font-size: 18px;">
-                                    {{ __('messages.e_commerce') }}</p>
+                                    {{ __('messages.e_commerce') }}
+                                </p>
                             </div>
                         </a>
                     </div>
                 </div>
-            
+
+                <!-- Card 2 -->
                 <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
                     <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <button type="button" class="btn p-0 w-100 d-flex flex-column flex-grow-1 text-dark" data-bs-toggle="modal" data-bs-target="#websiteModal">
+                        <!-- Card content as a trigger for the modal -->
+                        <div class="p-0 w-100 d-flex flex-column flex-grow-1 text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#websiteModal">
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
                                 <div class="d-flex align-items-center justify-content-center mb-3">
                                     <i class="fa fa-globe fa-3x text-success"></i>
                                     <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
-                                        {{ __('messages.website_kami') }}</h5>
+                                        {{ __('messages.website_kami') }}
+                                    </h5>
                                 </div>
-                                <p class="mb-0" style="font-size: 14px;">{{ __('messages.website_resmi') }}</p>
+                                <p class="mb-0" style="font-size: 15px;">{{ __('messages.website_resmi') }}</p>
                                 <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.website') }}</p>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            
-                <!-- Modal Structure for Two Brands -->
-                <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="websiteModalLabel">{{ __('messages.website_information') }}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Loop through the first two brands -->
-                                @foreach ($brand as $singleBrand)
-                                    <h5>{{ $singleBrand->nama }}</h5>
-                                    <p>{{ __('messages.visit_website', ['name' => $singleBrand->nama, 'url' => $singleBrand->url]) }}</p>
-                                    <p>{{ $singleBrand->description ?? __('messages.no_additional_info') }}</p>
-                                    <hr>
-                                @endforeach
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            
+
+
+                <!-- Card 3 -->
                 <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
-                    <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
-                        <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
+                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
+                        <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
                             <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
                                 <div class="d-flex align-items-center justify-content-center mb-3">
                                     <i class="fab fa-whatsapp fa-3x text-success"></i>
                                     <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
-                                        {{ $company->no_wa ?? ' ' }}</h5>
+                                        {{ $company->no_wa ?? ' ' }}
+                                    </h5>
                                 </div>
                                 <p class="mb-0" style="font-size: 13px;">{{ __('messages.whatsapp_resmi', ['company' => $company->nama_perusahaan ?? '']) }}</p>
                                 <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.hubungi_langsung') }}</p>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="websiteModalLabel">{{ __('messages.website_information') }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Loop through the first two brands -->
+                            @foreach ($brand as $singleBrand)
+                                <h5>{{ $singleBrand->nama }}</h5>
+                                <p>{{ __('messages.visit_website', ['name' => $singleBrand->nama, 'url' => $singleBrand->url]) }}</p>
+                                <p>{{ $singleBrand->description ?? __('messages.no_additional_info') }}</p>
+                                <hr>
+                            @endforeach
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-    
-    
+
     <!-- Sales Channel End -->
 
     <!-- Map Start -->
@@ -315,7 +323,7 @@
 
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Presenting Our Esteemed Customer</h4>
+                <h4 class="sub-title px-3 mb-0">Para Pelanggan Terbaik Kami</h4>
             </div>
             <h1 class="display-3 mb-4">{{ __('messages.our_customers') }}</h1>
         </div>
