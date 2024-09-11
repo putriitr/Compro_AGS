@@ -104,6 +104,33 @@
                 </div>
 
 
+                <style>
+                    <style>
+    .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-img-top {
+        height: 200px; /* Fixed height for the images */
+        object-fit: cover; /* Ensures the image covers the area */
+    }
+
+    .card-body {
+        flex-grow: 1; /* Makes sure card body grows to take remaining space */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Ensures consistent vertical alignment */
+    }
+
+    .card-title {
+        font-size: 1rem; /* Ensures the title text is consistent */
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+                </style>
 
                 <a href="{{ route('members.index') }}" class="btn btn-secondary">Kembali ke Daftar Member</a>
             </div>

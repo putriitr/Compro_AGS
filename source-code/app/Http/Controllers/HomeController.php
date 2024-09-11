@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $produks = Produk::all(); 
+        $produks = Produk::take(6)->get(); 
         $sliders = Slider::all(); 
         $company = CompanyParameter::first(); // Single object, not a collection
         $brand = BrandPartner::where('type', 'brand')->get();
@@ -74,6 +74,7 @@ class HomeController extends Controller
         $totalMonitoredProducts = Monitoring::count(); // Assuming Monitoring model
         $totalActivities = Activity::count(); // Assuming Activity model
     
+        
     
 
         // Return the view with data

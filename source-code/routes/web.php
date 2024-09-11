@@ -101,7 +101,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
             Route::get('/create/{userProdukId}', [MonitoringController::class, 'inspeksiCreate'])->name('create');
             Route::post('/store/{userProdukId}', [MonitoringController::class, 'inspeksiStore'])->name('store');
             Route::get('/edit/{id}', [MonitoringController::class, 'inspeksiEdit'])->name('edit');
-            Route::put('/update/{id}', [MonitoringController::class, 'inspeksiUpdate'])->name('update');
+            Route::put('/update/{id}/{userProdukId}', [MonitoringController::class, 'inspeksiUpdate'])->name('update');
             Route::delete('/destroy/{id}', [MonitoringController::class, 'inspeksiDestroy'])->name('destroy');
             Route::get('/show/{id}', [MonitoringController::class, 'inspeksiShow'])->name('show');
 

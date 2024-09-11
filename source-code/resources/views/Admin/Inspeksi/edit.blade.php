@@ -9,7 +9,7 @@
                     <h4 class="mb-0">Edit Teknisi untuk {{ $inspeksi->userProduk->produk->name }}</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.inspeksi.update', $inspeksi->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.inspeksi.update', ['id' => $inspeksi->id, 'userProdukId' => $inspeksi->userProduk->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -67,14 +67,29 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="gambar" class="font-weight-bold">Gambar (opsional)</label>
+                            <label for="gambar" class="font-weight-bold">Gambar atau PDF (opsional)</label>
+                        
                             @if ($inspeksi->gambar)
                                 <div class="mb-3">
-                                    <img src="{{ asset('storage/' . $inspeksi->gambar) }}" alt="Inspection Image" class="img-fluid" width="150">
+                                    @php
+                                        $fileExtension = pathinfo($inspeksi->gambar, PATHINFO_EXTENSION);
+                                    @endphp
+                        
+                                    @if (in_array($fileExtension, ['jpg', 'jpeg', 'png']))
+                                        <!-- Display image -->
+                                        <img src="{{ asset('storage/' . $inspeksi->gambar) }}" alt="Inspection Image" class="img-fluid" width="150">
+                                    @elseif ($fileExtension === 'pdf')
+                                        <!-- Display PDF with download and view option -->
+                                        <a href="{{ asset('storage/' . $inspeksi->gambar) }}" target="_blank" class="btn btn-info">Lihat PDF</a>
+                                        <embed src="{{ asset('storage/' . $inspeksi->gambar) }}" type="application/pdf" width="100%" height="500px">
+                                    @endif
                                 </div>
                             @endif
+                        
                             <input type="file" name="gambar" class="form-control-file">
                         </div>
+                        
+                        
 
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Perbaharui Teknisi</button>

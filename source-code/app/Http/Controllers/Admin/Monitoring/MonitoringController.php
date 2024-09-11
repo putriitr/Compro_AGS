@@ -10,6 +10,7 @@ use App\Models\Monitoring;
 use App\Models\User;
 use App\Models\UserProduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MonitoringController extends Controller
 {
@@ -118,7 +119,7 @@ public function update(Request $request, $id)
         $validated = $request->validate([
             'pic' => 'required|string|max:255',
             'waktu' => 'required|date',
-            'gambar' => 'nullable|image',
+            'gambar' => 'nullable|file|mimes:jpeg,jpg,png,pdf|max:2048', // Allow images and PDFs
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string|max:255',
             'status' => 'required|in:Inspeksi,Maintenance',
@@ -126,10 +127,20 @@ public function update(Request $request, $id)
 
         $validated['user_produk_id'] = $userProdukId;
 
-        if ($request->hasFile('gambar')) {
-            $imagePath = $request->file('gambar')->store('inspeksi', 'public');
-            $validated['gambar'] = $imagePath;
+ if ($request->hasFile('gambar')) {
+        $file = $request->file('gambar');
+        $extension = $file->getClientOriginalExtension();
+
+        if ($extension === 'pdf') {
+            // Store the PDF in a specific folder
+            $filePath = $file->store('inspeksi/pdf', 'public');
+        } else {
+            // Store the image in a different folder
+            $filePath = $file->store('inspeksi/images', 'public');
         }
+
+        $validated['gambar'] = $filePath;
+    }
 
         InspeksiMaintenance::create($validated);
 
@@ -146,27 +157,52 @@ public function update(Request $request, $id)
 
     // Update inspection data
     public function inspeksiUpdate(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'pic' => 'required|string|max:255',
-            'waktu' => 'required|date',
-            'gambar' => 'nullable|image',
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string|max:255',
-            'status' => 'required|in:Inspeksi,Maintenance',
-        ]);
+{
+    // Find the existing record
+    $inspeksi = InspeksiMaintenance::findOrFail($id);
 
-        $inspeksi = InspeksiMaintenance::findOrFail($id);
+    // Extract the userProdukId from the inspection
+    $userProdukId = $inspeksi->user_produk_id;
 
-        if ($request->hasFile('gambar')) {
-            $imagePath = $request->file('gambar')->store('inspeksi', 'public');
-            $validated['gambar'] = $imagePath;
+    // Validate the request
+    $validated = $request->validate([
+        'pic' => 'required|string|max:255',
+        'waktu' => 'required|date',
+        'gambar' => 'nullable|file|mimes:jpeg,jpg,png,pdf|max:2048', // Allow images and PDFs
+        'judul' => 'required|string|max:255',
+        'deskripsi' => 'required|string|max:255',
+        'status' => 'required|in:Inspeksi,Maintenance',
+    ]);
+
+    // Handle file replacement logic
+    if ($request->hasFile('gambar')) {
+        // Delete the old file if it exists
+        if ($inspeksi->gambar && Storage::disk('public')->exists($inspeksi->gambar)) {
+            Storage::disk('public')->delete($inspeksi->gambar);
         }
 
-        $inspeksi->update($validated);
+        // Handle new file upload
+        $file = $request->file('gambar');
+        $extension = $file->getClientOriginalExtension();
 
-        return redirect()->route('monitoring.detail', $inspeksi->user_produk_id)->with('success', 'Inspection data successfully updated.');
+        // Store the file based on its extension
+        if ($extension === 'pdf') {
+            $filePath = $file->store('inspeksi/pdf', 'public');
+        } else {
+            $filePath = $file->store('inspeksi/images', 'public');
+        }
+
+        $validated['gambar'] = $filePath;
     }
+
+    // Update the inspection record
+    $inspeksi->update($validated);
+
+    // Redirect back with success message
+    return redirect()->route('monitoring.detail', $userProdukId)->with('success', 'Inspection data successfully updated.');
+}
+
+
 
     // Delete an inspection
     public function inspeksiDestroy($id)

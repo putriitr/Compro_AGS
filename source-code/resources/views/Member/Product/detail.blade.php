@@ -57,20 +57,21 @@
     <h2 class="text-center text-uppercase font-weight-bold mb-5 " style="letter-spacing: 2px;">Produk Serupa</h2>
     <div class="bg-light p-5 rounded" style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);">
         <div class="row">
-        @foreach($produkSerupa as $similarProduct)
-        <div class="col-md-3 mb-4">
-            <div class="product-card text-center" style="border-radius: 10px; overflow: hidden; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;">
-                <a href="{{ route('product.show', $similarProduct->id) }}" class="d-block" style="text-decoration: none;">
-                    <img src="{{ asset($similarProduct->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                         class="img-fluid w-100" alt="{{ $similarProduct->nama }}"
-                         style="max-height: 220px; object-fit: cover; transition: transform 0.3s ease;">
-                </a>
-                <div class="p-3" style="background-color: #fff;">
-                    <h5 class="mt-2 text-dark font-weight-bold">{{ $similarProduct->nama }}</h5>
+            @foreach($produkSerupa as $similarProduct)
+            <div class="col-md-3 mb-4">
+                <div class="product-card text-center" style="border-radius: 10px; overflow: hidden; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;">
+                    <a href="{{ route('product.show', $similarProduct->id) }}" class="d-block" style="text-decoration: none;">
+                        <img src="{{ asset($similarProduct->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                             class="img-fluid w-100" alt="{{ $similarProduct->nama }}"
+                             style="max-height: 220px; object-fit: cover; transition: transform 0.3s ease;">
+                    </a>
+                    <div class="p-3" style="background-color: #fff;">
+                        <h5 class="mt-2 text-dark font-weight-bold">{{ $similarProduct->nama }}</h5>
+                    </div>
                 </div>
             </div>
-        </div>
         @endforeach
+        
     </div>
     </div>
 </div>

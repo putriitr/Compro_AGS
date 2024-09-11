@@ -62,14 +62,16 @@
                             <div class="form-group">
                                 <label for="status" class="font-weight-bold">Status</label>
                                 <select name="status" class="form-control" required>
-                                    <option value="Inspeksi">Teknisi</option>
-                                    <option value="Maintenance">Kerusakan</option>
+                                    <option value="Inspeksi">Inspeksi</option>
+                                    <option value="Maintenance">Maintenance</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="gambar" class="font-weight-bold">Gambar (opsional)</label>
+                                <label for="gambar" class="font-weight-bold">Gambar atau PDF (opsional)</label>
                                 <input type="file" name="gambar" class="form-control-file">
+                                <br>
+                                <small class="form-text text-muted">Unggah gambar (jpeg, jpg, png) atau PDF. Maksimal ukuran file 2MB.</small>
                             </div>
 
                             <div class="form-group text-right">
