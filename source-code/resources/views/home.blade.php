@@ -11,18 +11,18 @@
                 <div class="carousel-caption">
                     <div class="carousel-caption-content p-3">
                         <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
-                            PT Arkamaya Guna Saharsa
+                            {{ __('messages.company_name') }}
                         </h5>
                         <h1 class="display-1 text-capitalize text-white mb-4">
-                            Simplifying Industries
+                            {{ __('messages.tagline') }}
                         </h1>
-                        <p class="mb-5 fs-5">Arkamaya Guna Saharsa adalah sebuah perusahaan rintisan teknologi yang diberdayakan oleh inovasi terkemuka.</p>
+                        <p class="mb-5 fs-5">{{ __('messages.description') }}</p>
                         <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">
-                            Tentang Kami
+                            {{ __('messages.about_us') }}
                         </a>
                     </div>
                 </div>
-            </div>
+            </div>            
         @else
             <!-- Loop through sliders if data exists -->
             @foreach ($sliders as $slider)
@@ -70,7 +70,7 @@
                             {{ $company->sejarah_singkat ?? ' ' }}
                         </p>
                         <div class="col-6 text-center wow fadeInUp" data-wow-delay="0.2s">
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">Tentang Kami</a>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">{{ __('messages.about_us') }}</a>
                         </div>
                     </div>
                 </div>
@@ -124,13 +124,14 @@
 
 <!-- Partner Section Start -->
 @if($partners->isNotEmpty())
+<section id="merek-mitra">
 <div class="container-fluid service mb-5">
     <div class="container">
         <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Kerja Sama</h4>
+                <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
             </div>
-            <h1 class="display-3 mb-4">Mitra Kami</h1>
+            <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
         </div>
         <div class="container overflow-hidden">
             <div class="row gy-4">
@@ -144,14 +145,16 @@
             </div>
             @if($partners->count() > 8)
             <div class="text-center mt-4">
-                <button id="show-more-partners" class="btn btn-primary">Selanjutnya</button>
-                <button id="show-less-partners" class="btn btn-secondary d-none">Kembali</button>
+                <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                <button id="show-less-partners" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
             </div>
             @endif
         </div>
     </div>
 </div>
+</section>
 @endif
+
 
 <!-- Partner Section End -->
 
@@ -161,9 +164,9 @@
     <div class="container">
         <div class="section-title">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Kolaborasi Terpercaya</h4>
+                <h4 class="sub-title px-3 mb-0">{{ __('messages.trusted_collaboration') }}</h4>
             </div>
-            <h1 class="display-3 mb-4">Perusahaan Distributor</h1>
+            <h1 class="display-3 mb-4">{{ __('messages.distributor_company') }}</h1>
         </div>
         <div class="container overflow-hidden">
             <div class="row gy-4">
@@ -177,14 +180,15 @@
             </div>
             @if($principals->count() > 10)
             <div class="text-center mt-4">
-                <button id="show-more-principals" class="btn btn-primary">Selanjutnya</button>
-                <button id="show-less-principals" class="btn btn-secondary d-none">Kembali</button>
+                <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                <button id="show-less-principals" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
             </div>
             @endif
         </div>
     </div>
 </div>
 @endif
+
 
 <!-- Principal Section End -->
 
@@ -236,9 +240,9 @@
     <div class="container py-5">
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">E-commerce Kami</h4>
+                <h4 class="sub-title px-3 mb-0">{{ __('messages.ecommerce_title') }}</h4>
             </div>
-            <h1 class="display-3 mb-4">Jelajahi Lebih Banyak Produk</h1>
+            <h1 class="display-3 mb-4">{{ __('messages.explore_more_products') }}</h1>
         </div>
         <div class="row">
             <div class="col-lg-12 mb-4">
@@ -265,6 +269,7 @@
 </div>
 @endif
 
+
     <!-- E-commerce Section End -->
 
         <!-- Map Start -->
@@ -277,12 +282,13 @@
     background-color: #fff;
     text-align: center; ">
 
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Pelanggan Setia Kami</h4>
-            </div>
-            <h1 class="display-3 mb-4">Pelanggan Kami</h1>
-        </div>
+<div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="sub-style">
+        <h4 class="sub-title px-3 mb-0">{{ __('messages.our_loyal_customers') }}</h4>
+    </div>
+    <h1 class="display-3 mb-4">{{ __('messages.our_customers') }}</h1>
+</div>
+
         <hr>
 
         <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
@@ -296,45 +302,55 @@
     <script>
         // Inisialisasi peta
         var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
-
+    
         //tile layer dari OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-
+    
+        // Terjemahan dari server untuk konten popup
+        let translationTemplate = `{{ __('messages.members_in_province', ['count' => ':count', 'province' => ':province']) }}`;
+    
         function addMarker(lat, lng, province, userCount, users) {
-        var marker = L.marker([lat, lng]).addTo(map);
-
-        // Build user info HTML
-        let userList = '<ul>';
-        users.forEach(function(user) {
-            userList += `<li>${user.nama_perusahaan} (Created on: ${user.created_at})</li>`;
-        });
-        userList += '</ul>';
-
-        // Popup content for marker
-        marker.bindPopup(`
-            <div class="info-window">
-                <h3 class="popup-title">${province}</h3>
-                <p class="popup-description">Kami memiliki ${userCount} member di ${province}:</p>
-                ${userList}
-            </div>
-        `);
-
-        // Adding tooltip
-        marker.bindTooltip(`<div>${province}</div>`, {
-            permanent: false,
-            direction: 'top',
-            offset: [0, -20],
-            className: 'marker-tooltip'
-        });
-        marker.on('mouseover', function(e) {
-            this.openTooltip();
-        });
-        marker.on('mouseout', function(e) {
-            this.closeTooltip();
-        });
-    }
+            var marker = L.marker([lat, lng]).addTo(map);
+    
+            // Buat daftar pengguna
+            let userList = '<ul>';
+            users.forEach(function(user) {
+                userList += `<li>${user.nama_perusahaan} (Became a Member on: ${user.created_at})</li>`;
+            });
+            userList += '</ul>';
+    
+            // Terjemahan dinamis
+            let popupText = translationTemplate
+                .replace(':count', userCount)
+                .replace(':province', province);
+    
+            // Konten popup untuk marker
+            marker.bindPopup(`
+                <div class="info-window">
+                    <h3 class="popup-title">${province}</h3>
+                    <p class="popup-description">${popupText}</p>
+                    ${userList}
+                </div>
+            `);
+    
+            // Tooltip
+            marker.bindTooltip(`<div>${province}</div>`, {
+                permanent: false,
+                direction: 'top',
+                offset: [0, -20],
+                className: 'marker-tooltip'
+            });
+    
+            marker.on('mouseover', function(e) {
+                this.openTooltip();
+            });
+            marker.on('mouseout', function(e) {
+                this.closeTooltip();
+            });
+        }
+    
 
 
     fetch("{{ url('/locations') }}")
@@ -494,6 +510,7 @@
             }
         }
     </style>
+
 
     <!-- Ecommerce End -->
 @endsection

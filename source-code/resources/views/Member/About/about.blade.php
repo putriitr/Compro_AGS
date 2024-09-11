@@ -4,10 +4,10 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Tentang Kami</h1>
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.about_us') }}</h1>
                 <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                    <li class="breadcrumb-item active text-primary">Tentang</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+                    <li class="breadcrumb-item active text-primary">{{ __('messages.about_us') }}</li>
                 </ol>
         </div>
     </div>
@@ -19,7 +19,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
                     <div class="section-title text-start mb-5">
-                        <h4 class="sub-title pe-3 mb-0">Tentang Kami</h4>
+                        <h4 class="sub-title pe-3 mb-0">{{ __('messages.about_us') }}</h4>
                         <h4 class="display-3 mb-4" style="font-size: 50px;">
                             {{ $company->nama_perusahaan ?? 'Arkamaya Guna Saharsa' }}</h4>
                         <p class="mb-4" style="text-align: justify;">
@@ -47,27 +47,27 @@
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Tujuan Kami</h4>
+                    <h4 class="sub-title px-3 mb-0">{{ __('messages.tujuan_kami') }}</h4>
                 </div>
-                <h1 class="display-3 mb-4">Visi & Misi Perusahaan</h1>
+                <h1 class="display-3 mb-4">{{ __('messages.visi_misi_perusahaan') }}</h1>
             </div>
             <div class="row g-12 justify-content-center d-flex">
                 <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
                     <div class="team-item rounded flex-fill"
-                        style="flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                        style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                         <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
                             style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <h5>VISI</h5>
+                            <h5>{{ __('messages.visi') }}</h5>
                             <p class="mb-0" style="font-weight: bold;">{{ $company->visi ?? ' ' }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
                     <div class="team-item rounded flex-fill"
-                        style=" flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                        style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                         <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
                             style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <h5>MISI</h5>
+                            <h5>{{ __('messages.misi') }}</h5>
                             <p class="mb-0" style="font-weight: bold;">{{ $company->misi ?? ' ' }}</p>
                         </div>
                     </div>
@@ -75,6 +75,8 @@
             </div>
         </div>
     </div>
+    
+    
     <!-- Vision End -->
 
 
@@ -84,9 +86,9 @@
             <div class="container">
                 <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
                     <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">Kerja Sama</h4>
+                        <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
                     </div>
-                    <h1 class="display-3 mb-4">Mitra Kami</h1>
+                    <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
                 </div>
                 <div class="container overflow-hidden">
                     <div class="row gy-4">
@@ -101,8 +103,8 @@
                     </div>
                     @if ($partners->count() > 8)
                         <div class="text-center mt-4">
-                            <button id="show-more-partners" class="btn btn-primary">Selanjutnya</button>
-                            <button id="show-less-partners" class="btn btn-secondary d-none">Kembali</button>
+                            <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                            <button id="show-less-partners" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
                         </div>
                     @endif
                 </div>
@@ -116,59 +118,53 @@
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Value Perusahaan Kami</h4>
+                    <h4 class="sub-title px-3 mb-0">{{ __('messages.keyakinan_kami') }}</h4>
                 </div>
-                <h1 class="display-3 mb-4">Keunggulan Perusahaan</h1>
+                <h1 class="display-3 mb-4">{{ __('messages.keunggulan_perusahaan') }}</h1>
             </div>
-
+    
             <!-- Responsive Values Section -->
             <div class="row g-4 justify-content-center">
                 @php
                     // Sample data for the loop, replace with dynamic data if necessary
                     $values = [
                         [
-                            'title' => 'Bekerja Cepat',
+                            'title' => __('messages.bekerja_cepat'),
                             'image' => 'value (1).png',
-                            'description' =>
-                                'Bertindak dengan segera, kami menghilangkan hambatan yang menghalangi inisiatif prioritas tinggi, memenuhi kebutuhan Anda hari ini daripada menunggu hingga minggu depan.',
+                            'description' => __('messages.bekerja_cepat_desc'),
                         ],
                         [
-                            'title' => 'Inovasi',
+                            'title' => __('messages.inovasi'),
                             'image' => 'value (2).png',
-                            'description' =>
-                                'Menciptakan nilai melalui inovasi dan peningkatan produk serta membangun hubungan dengan pelanggan untuk lebih memahami dan memenuhi kebutuhan mereka.',
+                            'description' => __('messages.inovasi_desc'),
                         ],
                         [
-                            'title' => 'Mandiri',
+                            'title' => __('messages.mandiri'),
                             'image' => 'value (3).png',
-                            'description' =>
-                                'Memenuhi kebutuhan pelanggan jangka pendek dan jangka panjang secara fleksibel dengan membuat keputusan tepat waktu, berfokus pada pertumbuhan, dan mengejar peluang baru.',
+                            'description' => __('messages.mandiri_desc'),
                         ],
                         [
-                            'title' => 'Kualitas',
+                            'title' => __('messages.kualitas'),
                             'image' => 'value (4).png',
-                            'description' =>
-                                'Kami bangga menyediakan produk dan layanan bernilai tinggi untuk memastikan kepuasan pelanggan dan pertumbuhan masa depan karyawan dan perusahaan kami.',
+                            'description' => __('messages.kualitas_desc'),
                         ],
                         [
-                            'title' => 'Kepuasan Pelanggan',
+                            'title' => __('messages.kepuasan_pelanggan'),
                             'image' => 'value (5).png',
-                            'description' =>
-                                'Kami memberikan layanan yang luar biasa dengan penjadwalan yang fleksibel, produk berkualitas, dan solusi inovatif, yang memberikan nilai tambah bagi pelanggan dan perusahaan.',
+                            'description' => __('messages.kepuasan_pelanggan_desc'),
                         ],
                         [
-                            'title' => 'Rasa Hormat',
+                            'title' => __('messages.rasa_hormat'),
                             'image' => 'value (6).png',
-                            'description' =>
-                                'Kami memperlakukan semua orang dengan bermartabat, menghargai perspektif yang beragam, dan menciptakan lingkungan di mana semua ide dan kontribusi diterima.',
+                            'description' => __('messages.rasa_hormat_desc'),
                         ],
                     ];
                 @endphp
-
+    
                 @foreach ($values as $key => $value)
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="feature-item p-4 h-100"
-                            style="height: 400; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                            style="height: 400px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
                             <div class="feature-icon mb-4 text-center d-flex align-items-center justify-content-center">
                                 <div class="p-3 d-inline-flex bg-white rounded-circle"
                                     style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
@@ -186,6 +182,7 @@
             </div>
         </div>
     </div>
+    
     <!-- Value End -->
 
     <!-- Custom CSS -->
@@ -225,94 +222,85 @@
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Kemitraan</h4>
+                    <h4 class="sub-title px-3 mb-0">{{ __('messages.kemitraan') }}</h4>
                 </div>
-                <h1 class="display-3 mb-4">Saluran Penjualan Kami</h1>
+                <h1 class="display-3 mb-4">Saluran Penjualan</h1>
             </div>
-            <div class="row g-12 justify-content-center d-flex">
-                <div class="col-md-12 col-lg-6 col-xl-4 d-flex"style="margin-bottom: 0.5rem;">
-                    <div class="team-item rounded flex-fill">
-                        <a href="{{ $company->ekatalog ?? ' ' }}" target="_blank">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <img src="{{ asset('assets/img/e-katalog.png') }}" alt="Whatsapp Contact"
-                                        style="width: 55%; height: 50px; margin-bottom: 10px;">
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
+                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
+                        <a href="{{ $company->ekatalog ?? '#' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
+                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <img src="{{ asset('assets/img/e-katalog.png') }}" alt="E-Commerce" style="width: 55%; height: 50px;">
                                 </div>
-                                <p class="mb-0 mt-3" style="margin-top: 15px; font-weight: bold; font-size: 18px;">
-                                    E-Commerce</p>
+                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">
+                                    {{ __('messages.e_commerce') }}</p>
                             </div>
                         </a>
                     </div>
                 </div>
-
-                <div class="col-md-12 col-lg-6 col-xl-4 d-flex" style="margin-bottom: 0.5rem;">
-                    <div class="team-item rounded flex-fill">
-                        <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn p-0 w-100" data-bs-toggle="modal"
-                            data-bs-target="#websiteModal">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-globe fa-3x text-success text-dark"></i>
-                                    <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">Website Kami</h5>
+            
+                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
+                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
+                        <button type="button" class="btn p-0 w-100 d-flex flex-column flex-grow-1 text-dark" data-bs-toggle="modal" data-bs-target="#websiteModal">
+                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <i class="fa fa-globe fa-3x text-success"></i>
+                                    <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
+                                        {{ __('messages.website_kami') }}</h5>
                                 </div>
-                                <p class="mb-0 mt-2" style="font-size: 14px;">Website Resmi</p>
-                                <p class="mb-0" style="font-weight: bold; font-size: 18px;">Website</p>
+                                <p class="mb-0" style="font-size: 14px;">{{ __('messages.website_resmi') }}</p>
+                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.website') }}</p>
                             </div>
                         </button>
                     </div>
                 </div>
-
+            
                 <!-- Modal Structure for Two Brands -->
-                <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="websiteModalLabel">Website Information</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <h5 class="modal-title" id="websiteModalLabel">{{ __('messages.website_information') }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <!-- Loop through the first two brands -->
                                 @foreach ($brand as $singleBrand)
                                     <h5>{{ $singleBrand->nama }}</h5>
-                                    <p>Visit the official website of {{ $singleBrand->nama }} at
-                                        <a href="{{ $singleBrand->url }}" target="_blank">{{ $singleBrand->url }}</a>.
-                                    </p>
-                                    <p>{{ $singleBrand->description ?? 'No additional information available.' }}</p>
+                                    <p>{{ __('messages.visit_website', ['name' => $singleBrand->nama, 'url' => $singleBrand->url]) }}</p>
+                                    <p>{{ $singleBrand->description ?? __('messages.no_additional_info') }}</p>
                                     <hr>
                                 @endforeach
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
-                <div class="col-md-12 col-lg-6 col-xl-4 d-flex" style="margin-bottom: 0.5rem;">
-                    <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}"
-                        target="_blank">
-                        <div class="team-item rounded flex-fill">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <i class="fab fa-whatsapp fa-3x text-success text-dark"></i>
-                                    <h5 style="font-weight: bold; font-size: 28px; margin-left: 15px;">
+            
+                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
+                    <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
+                        <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
+                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <i class="fab fa-whatsapp fa-3x text-success"></i>
+                                    <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
                                         {{ $company->no_wa ?? ' ' }}</h5>
                                 </div>
-                                <p class="mb-0 mt-2" style="font-size: 13px;">Whatsapp Resmi
-                                    {{ $company->nama_perusahaan ?? ' ' }}</p>
-                                <p class="mb-0" style="font-weight: bold; font-size: 18px;">Hubungi Langsung</p>
+                                <p class="mb-0" style="font-size: 13px;">{{ __('messages.whatsapp_resmi', ['company' => $company->nama_perusahaan ?? '']) }}</p>
+                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.hubungi_langsung') }}</p>
                             </div>
                         </div>
                     </a>
-
                 </div>
             </div>
         </div>
     </div>
+    
+    
     <!-- Sales Channel End -->
 
     <!-- Map Start -->
@@ -327,9 +315,9 @@
 
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Penyebaran Pelanggan</h4>
+                <h4 class="sub-title px-3 mb-0">Presenting Our Esteemed Customer</h4>
             </div>
-            <h1 class="display-3 mb-4">Pelanggan Kami</h1>
+            <h1 class="display-3 mb-4">{{ __('messages.our_customers') }}</h1>
         </div>
         <hr>
 

@@ -53,6 +53,17 @@
                                 <i class="fas fa-envelope text-primary me-2"></i>Email Not Available
                             </p>
                         @endif
+{{--                         <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="languageSwitcher" data-bs-toggle="dropdown" aria-expanded="false">
+                              {{ strtoupper(app()->getLocale()) }} <!-- Menampilkan bahasa saat ini -->
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="languageSwitcher">
+                              <li><a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL('id') }}">Indonesia</a></li>
+                              <li><a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a></li>
+                            </ul>
+                          </div>
+ --}}                          
+                        
                     </div>
 
                 </div>
@@ -136,40 +147,82 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ route('home') }}" class="nav-item nav-link">Beranda</a>
-                    <a href="{{ route('about') }}" class="nav-item nav-link">Tentang</a>
-                    <a href="{{ route('activity') }}" class="nav-item nav-link">Aktivitas</a>
-                    <a href="{{ route('product.index') }}" class="nav-item nav-link">Produk</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link">{{ __('messages.home') }}</a>
+                    <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
+                    <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
+                    <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
+                    
                     @if ($brand->isNotEmpty())
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">E-Commerce</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
                             <div class="dropdown-menu m-0">
                                 @foreach ($brand as $singleBrand)
-                                    <a href="{{ $singleBrand->url }}"
-                                        class="dropdown-item">{{ $singleBrand->nama }}</a>
+                                    <a href="{{ $singleBrand->url }}" class="dropdown-item">{{ $singleBrand->nama }}</a>
                                 @endforeach
                             </div>
                         </div>
                     @endif
+                    
                     @foreach ($activeMetas as $type => $metas)
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}"
-                                aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
-                            <div class="dropdown-menu m-0 " aria-labelledby="navbarDropdown-{{ $type }}">
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}" aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
+                            <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
                                 @foreach ($metas as $meta)
-                                    <a href="{{ route('member.meta.show', $meta->slug) }}"
-                                        class="dropdown-item">{{ $meta->title }}</a>
+                                    <a href="{{ route('member.meta.show', $meta->slug) }}" class="dropdown-item">{{ $meta->title }}</a>
                                 @endforeach
                             </div>
                         </div>
                     @endforeach
+                    
                     @auth
-                        <a href="{{ route('portal') }}" class="nav-item nav-link">Portal Member</a>
+                        <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
                     @endauth
+            
+                    <!-- Dropdown for language selection -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            @if(LaravelLocalization::getCurrentLocale() == 'id')
+                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
+                            @elseif(LaravelLocalization::getCurrentLocale() == 'en')
+                                <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
+                            @else
+                                {{ LaravelLocalization::getCurrentLocaleNative() }}
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end m-0">
+                            <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
+                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
+                                {{ __('messages.bahasa') }} 
+                            </a>
+                            <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
+                                <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
+                                {{ __('messages.english') }}
+                            </a>
+                        </div>
+                    </div>
+            
+                    <style>
+                        .dropdown-menu .dropdown-item {
+                            font-size: 15px; /* Atur ukuran teks sesuai keinginan */
+                        }
+                        .dropdown-menu {
+                            left: auto;
+                            right: 0; /* Menempelkan dropdown ke kanan */
+                        }
+
+                        .dropdown-item img {
+                            margin-right: 10px; /* Jarak antara gambar dan teks */
+                            border-right: 1px solid #ccc; /* Garis vertikal antara gambar dan teks */
+                            padding-right: 10px; /* Tambahkan padding agar teks tidak terlalu dekat dengan garis */
+                        }
+
+                    </style>
                 </div>
             </div>
+            
         </nav>
     </div>
+    
     <!-- Navbar End -->
 
     <style>

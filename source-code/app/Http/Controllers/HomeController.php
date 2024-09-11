@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
+use App\Helpers\TranslateHelper;
 use App\Models\Activity;
 use App\Models\BrandPartner;
 use App\Models\CompanyParameter;
@@ -27,15 +29,31 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $produks = Produk::all(); // Fetch all products
-        $sliders = Slider::all();
-        $company = CompanyParameter::first();
+        $produks = Produk::all(); 
+        $sliders = Slider::all(); 
+        $company = CompanyParameter::first(); // Single object, not a collection
         $brand = BrandPartner::where('type', 'brand')->get();
-        $partners = BrandPartner::where('type', 'partner')->get();  // Filter by 'partner'
-        $principals = BrandPartner::where('type', 'principal')->get();  // Filter by 'principal'
-
+        $partners = BrandPartner::where('type', 'partner')->get();  
+        $principals = BrandPartner::where('type', 'principal')->get();  
+        
+        $locale = app()->getLocale(); 
+    
+        // Terjemahkan nama produk
+        foreach ($sliders as $slider) {
+            $slider->title = TranslateHelper::translate($slider->title, $locale);
+            $slider->subtitle = TranslateHelper::translate($slider->subtitle, $locale);
+            $slider->button_text = TranslateHelper::translate($slider->button_text, $locale);
+            $slider->description = TranslateHelper::translate($slider->description, $locale);
+        }
+    
+        if ($company) {
+            $company->sejarah_singkat = TranslateHelper::translate($company->sejarah_singkat, $locale);
+        }
+    
         return view('home', compact('produks', 'sliders', 'company', 'brand', 'partners', 'principals'));
     }
+    
+
 
 
 
@@ -69,6 +87,19 @@ class HomeController extends Controller
         $partners = BrandPartner::where('type', 'partner')->get();  // Filter by 'partner'
         $principals = BrandPartner::where('type', 'principal')->get();  // Filter by 'principal'
 
+        $locale = app()->getLocale(); 
+
+        if ($company) {
+            $company->sejarah_singkat = TranslateHelper::translate($company->sejarah_singkat, $locale);
+        }
+
+        if ($company) {
+            $company->visi = TranslateHelper::translate($company->visi, $locale);
+        }
+
+        if ($company) {
+            $company->misi = TranslateHelper::translate($company->misi, $locale);
+        }
 
         return view('Member.About.about', compact('company','brand', 'partners', 'principals'));
     }

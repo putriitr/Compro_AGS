@@ -9,36 +9,38 @@ use Illuminate\Http\Request;
 
 class ProdukMemberController extends Controller
 {
-    public function index($categoryId = null)
-    {
-        // Get all categories
-        $kategori = Kategori::all();
-    
-        // Check if a category is selected, if so, filter products by that category
-        if ($categoryId) {
-            $produks = Produk::where('kategori_id', $categoryId)->get();
-            $selectedCategory = Kategori::find($categoryId); // To highlight the selected category
-        } else {
-            $produks = Produk::all();
-            $selectedCategory = null;
-        }
-    
-        return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
+    // Controller
+public function index($categoryId = null)
+{
+    // Get all categories
+    $kategori = Kategori::all();
+
+    // Check if a category is selected, if so, filter products by that category
+    if ($categoryId) {
+        $produks = Produk::where('kategori_id', $categoryId)->get();
+        $selectedCategory = Kategori::find($categoryId); // To highlight the selected category
+    } else {
+        $produks = Produk::all();
+        $selectedCategory = null;
     }
 
-    public function filterByCategory($id)
-    {
-        // Get all categories for the sidebar
-        $kategori = Kategori::all();
-    
-        // Filter products by the selected category
-        $produks = Produk::where('kategori_id', $id)->get();  // Assuming `kategori_id` is the foreign key in the `Produk` model
-    
-        // Pass the selected category ID for highlighting the active category
-        $selectedCategory = Kategori::find($id);
-    
-        return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
-    }
+    return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
+}
+
+public function filterByCategory($id)
+{
+    // Get all categories for the sidebar
+    $kategori = Kategori::all();
+
+    // Filter products by the selected category
+    $produks = Produk::where('kategori_id', $id)->get();  // Assuming `kategori_id` is the foreign key in the `Produk` model
+
+    // Pass the selected category ID for highlighting the active category
+    $selectedCategory = Kategori::find($id);
+
+    return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
+}
+
 
     public function show($id)
     {

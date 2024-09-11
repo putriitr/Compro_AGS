@@ -22,36 +22,40 @@
     use App\Http\Controllers\Admin\Location\LocationController;
     use App\Http\Controllers\Admin\Visitor\VisitorController;
     use App\Http\Controllers\Member\Location\LocationMemberController;
+    use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
     /*
     |--------------------------------------------------------------------------
     | Web Routes
     |--------------------------------------------------------------------------
-    |
-    | Here is where you can register web routes for your application. These
-    | routes are loaded by the RouteServiceProvider and all of them will
-    | be assigned to the "web" middleware group. Make something great!
-    |
     */
 
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/products', [ProdukMemberController::class, 'index'])->name('product.index');
-    Route::get('/products/category/{id}', [ProdukMemberController::class, 'index'])->name('product.category');
-    Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
+    // Guest Routes (No Authentication Required)
 
-    Route::get('/about', [HomeController::class, 'about'])->name('about');
-    Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
-    Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
-    Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');
-    Route::get('/member/meta', [MetaMemberController::class, 'showMeta'])->name('member.meta.index');
-    Route::get('/locations', [LocationMemberController::class, 'index']);
+    Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
+        Route::get('/', [HomeController::class, 'index'])->name('home');
+        Route::get('/about', [HomeController::class, 'about'])->name('about');
+        // Rute lainnya
+        Route::get('/products', [ProdukMemberController::class, 'index'])->name('product.index');
+        Route::get('/products/category/{id}', [ProdukMemberController::class, 'index'])->name('product.category');
+        Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
 
-
+        Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
+        
+        Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
+        Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
+        Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');
+        Route::get('/member/meta', [MetaMemberController::class, 'showMeta'])->name('member.meta.index');
+        Route::get('/locations', [LocationMemberController::class, 'index']);
+        
     Auth::routes();
+    });
 
-    //Normal Users Routes List
-    Route::middleware(['auth', 'user-access:member'])->group(function () {
+
+    // Member Routes (Authenticated Users with "member" role)
+Route::middleware(['auth', 'user-access:member'])->group(function () {
+    Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         Route::get('/portal', [PortalController::class, 'index'])->name('portal');
         Route::get('/portal/user-product', [PortalController::class, 'UserProduk'])->name('portal.user-product');
         Route::get('/product/user-product/{id}', [PortalController::class, 'detailProduk'])->name('user-product.show');
@@ -68,10 +72,14 @@
         Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
     });
+});
 
-    //Admin Routes List
-    Route::middleware(['auth', 'user-access:admin'])->group(function () {
+
+
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+     
         Route::resource('admin/members', MemberController::class);
         Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
         Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');
@@ -79,7 +87,6 @@
         Route::put('members/{id}/update-products', [MemberController::class, 'updateProducts'])->name('members.update-products');
         Route::post('/members/{id}/update-password', [MemberController::class, 'updatePassword'])->name('members.updatePassword');
         Route::post('/admin/validate-password', [MemberController::class, 'validatePassword'])->name('admin.validatePassword');
-
 
         Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
         Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
@@ -89,7 +96,6 @@
         Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
         Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
 
-        // Inspeksi Routes
         Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
             Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');
             Route::get('/create/{userProdukId}', [MonitoringController::class, 'inspeksiCreate'])->name('create');
@@ -98,34 +104,25 @@
             Route::put('/update/{id}', [MonitoringController::class, 'inspeksiUpdate'])->name('update');
             Route::delete('/destroy/{id}', [MonitoringController::class, 'inspeksiDestroy'])->name('destroy');
             Route::get('/show/{id}', [MonitoringController::class, 'inspeksiShow'])->name('show');
+
+
         });
 
-        Route::resource('admin/parameter', CompanyParameterController::class);
-
-        //masterdata
-        Route::resource('admin/bidangperusahaan', BidangPerusahaanController::class);
-        Route::resource('admin/kategori', KategoriController::class)->names('admin.kategori');
-
-        //Produk
-        Route::resource('admin/produk', ProdukController::class)->names('admin.produk');
-
-        //FAQ
-        Route::resource('admin/faq', FAQController::class)->names('admin.faq');
-
-        //Slider
-        Route::resource('admin/slider', SliderController::class)->names('admin.slider');
-
-        //Activity
-        Route::resource('admin/activity', ActivityController::class)->names('admin.activity');
-
-        Route::resource('admin/brand', BrandPartnerController::class)->names('admin.brand');
-
-        Route::resource('admin/meta', MetaController::class)->names('admin.meta');
-        Route::post('/froala/upload_image', [MetaController::class, 'uploadImage'])->name('froala.upload_image');
-
-        //Location
-        Route::resource('admin/location', LocationController::class)->names('admin.location');
-
         Route::get('/admin/visitors', [VisitorController::class, 'index'])->name('admin.visitors');
+        Route::resource('admin/produk', ProdukController::class)->names('admin.produk');
+            Route::resource('admin/parameter', CompanyParameterController::class);
+            Route::resource('admin/bidangperusahaan', BidangPerusahaanController::class);
+            Route::resource('admin/kategori', KategoriController::class)->names('admin.kategori');
+            Route::resource('admin/faq', FAQController::class)->names('admin.faq');
+            Route::resource('admin/slider', SliderController::class)->names('admin.slider');
+            Route::resource('admin/activity', ActivityController::class)->names('admin.activity');
+            Route::resource('admin/brand', BrandPartnerController::class)->names('admin.brand');
+            Route::resource('admin/meta', MetaController::class)->names('admin.meta');
+            Route::post('/froala/upload_image', [MetaController::class, 'uploadImage'])->name('froala.upload_image');
+            Route::resource('admin/location', LocationController::class)->names('admin.location');
+
 
     });
+});
+
+

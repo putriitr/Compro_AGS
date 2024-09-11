@@ -19,98 +19,18 @@
             <div class="col-lg-3">
                 <h4 class="mb-4 text-dark font-weight-bold">Kategori</h4>
                 <ul class="list-group mb-4 shadow-sm">
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Hidrolika</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Semen</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Tanah</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Aspal</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Bebatuan</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Manajemen Konstruksi</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Semen</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Kebumian</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Listrik</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Mekanik</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Material</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Industri</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Kelautan</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Perkapalan</strong>
-                    </li>
-                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                        style="cursor: pointer; background-color: #f8f9fa; transition: background-color 0.3s ease, color 0.3s ease;"
-                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                        onmouseout="this.style.backgroundColor='#f8f9fa'; this.style.color='#000';">
-                        <strong>Perkeretaapian</strong>
-                    </li>
+                    @foreach($kategori as $kat)
+                        <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
+                            style="cursor: pointer; background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; transition: background-color 0.3s ease, color 0.3s ease;"
+                            onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
+                            onmouseout="this.style.backgroundColor='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}'; this.style.color='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }}';"
+                            onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
+                            <strong>{{ $kat->nama }}</strong>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
+            
             <!-- Sidebar End -->
 
             <!-- Main Content Start -->
