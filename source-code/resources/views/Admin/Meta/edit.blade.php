@@ -14,12 +14,12 @@
                         @method('PUT') {{-- Metode PUT untuk meng-update data --}}
 
                         <div class="form-group">
-                            <label for="title" class="font-weight-bold">Title</label>
+                            <label for="title" class="font-weight-bold">Judul</label>
                             <input type="text" name="title" class="form-control" value="{{ $meta->title }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="type" class="font-weight-bold">Type</label>
+                            <label for="type" class="font-weight-bold">Tipe</label>
                             <select name="type" class="form-control" required>
                                 <option value="pengumuman" {{ $meta->type == 'pengumuman' ? 'selected' : '' }}>Pengumuman</option>
                                 <option value="promosi" {{ $meta->type == 'promosi' ? 'selected' : '' }}>Promosi</option>
@@ -28,18 +28,18 @@
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="start_date" class="font-weight-bold">Start Date</label>
+                                <label for="start_date" class="font-weight-bold">Tanggal Mulai</label>
                                 <input type="date" name="start_date" class="form-control" value="{{ $meta->start_date }}" required>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="end_date" class="font-weight-bold">End Date</label>
+                                <label for="end_date" class="font-weight-bold">Tanggal Berakhir</label>
                                 <input type="date" name="end_date" class="form-control" value="{{ $meta->end_date }}" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="content" class="font-weight-bold">Content</label>
+                            <label for="content" class="font-weight-bold">Konten</label>
                             <textarea id="froala-editor" name="content">{{ $meta->content }}</textarea>
                         </div>
 
@@ -51,10 +51,10 @@
                                         _token: '{{ csrf_token() }}'  // Token CSRF untuk keamanan
                                     },
                                     toolbarButtons: [
-                                        'bold', 'italic', 'underline', 'strikeThrough', 'align', 'formatOL', 'formatUL', 
+                                        'bold', 'italic', 'underline', 'strikeThrough', 'align', 'formatOL', 'formatUL',
                                         'insertLink', 'insertImage', 'insertVideo', 'insertTable', 'html', 'undo', 'redo',
-                                        'paragraphFormat', 'paragraphStyle', 'quote', 'fontFamily', 'fontSize', 
-                                        'textColor', 'backgroundColor', 'inlineStyle', 'subscript', 'superscript', 
+                                        'paragraphFormat', 'paragraphStyle', 'quote', 'fontFamily', 'fontSize',
+                                        'textColor', 'backgroundColor', 'inlineStyle', 'subscript', 'superscript',
                                         'outdent', 'indent', 'clearFormatting', 'insertHR', 'fullscreen'
                                     ],
                                     heightMin: 300,
@@ -65,7 +65,7 @@
                         </script>
 
                         <div class="form-group text-right">
-                            <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Update Meta</button>
+                            <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Simpan Meta</button>
                         </div>
                     </form>
                 </div>

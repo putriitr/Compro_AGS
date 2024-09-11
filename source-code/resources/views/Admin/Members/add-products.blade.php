@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h2>Add Products for {{ $member->name }}</h2>
+                    <h2>Tambah Produk untuk {{ $member->name }}</h2>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -49,7 +49,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="pembelian_{{ $produk->id }}">Purchase Date</label>
+                                                <label for="pembelian_{{ $produk->id }}">Tanggal Pembelian</label>
                                                 <input type="date" name="pembelian[{{ $produk->id }}]" id="pembelian_{{ $produk->id }}" class="form-control">
                                             </div>
                                         </div>
@@ -58,7 +58,7 @@
                             @endforeach
                         </div>
 
-                            <button type="submit" class="btn btn-primary btn-sm">Add Products</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Tambah Produk</button>
                     </form>
                 </div>
             </div>

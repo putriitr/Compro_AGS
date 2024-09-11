@@ -14,12 +14,12 @@
                             <img src="{{ asset('images/' . $activity->image) }}" class="img-fluid img-thumbnail" alt="{{ $activity->title }}">
                         </div>
                     @endif
-                    <p><strong>Date:</strong> {{ $activity->date->format('d M Y') }}</p>
-                    <p><strong>Description:</strong></p>
+                    <p><strong>Tanggal :</strong> {{ $activity->date->format('d M Y') }}</p>
+                    <p><strong>Deskripsi :</strong></p>
                     <p>{{ $activity->description }}</p>
                 </div>
                 <div class="card-footer text-end">
-                    <a href="{{ route('admin.activity.index') }}" class="btn btn-primary">Back to Activities</a>
+                    <a href="{{ route('admin.activity.index') }}" class="btn btn-primary">Kembali ke Aktivitas</a>
                 </div>
             </div>
         </div>

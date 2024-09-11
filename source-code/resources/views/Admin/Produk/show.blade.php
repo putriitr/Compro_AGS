@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card p-3 shadow">
-            <h2>Detail Produk: {{ $produk->nama }}</h2>
+            <h2>Detail Produk : {{ $produk->nama }}</h2>
 
             <div class="card mt-4 shadow">
                 <div class="card-body">
@@ -17,7 +17,7 @@
                                 <td>{{ $produk->nama }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Merk</th>
+                                <th scope="row">Merek</th>
                                 <td>{{ $produk->merk }}</td>
                             </tr>
                             <tr>
@@ -35,7 +35,7 @@
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
 
             <!-- Gambar Produk -->
@@ -66,7 +66,7 @@
                                 <div class="col-md-3">
                                     <video width="320" height="240" controls>
                                         <source src="{{ asset($video->video) }}" type="video/mp4">
-                                        Your browser does not support the video tag.
+                                            Browser Anda tidak mendukung tag video.
                                     </video>
                                 </div>
                             @endforeach
@@ -80,17 +80,17 @@
             <!-- Document Certification Produk -->
             <div class="card mt-4 shadow">
                 <div class="card-body">
-                    <h5 class="card-title">Document Certification</h5>
+                    <h5 class="card-title">Sertifikasi Dokumen</h5>
                     @if($produk->documentCertificationsProduk->count())
                         <ul>
                             @foreach($produk->documentCertificationsProduk as $doc)
                                 <li>
-                                    <a href="{{ asset($doc->pdf) }}" target="_blank">View Document Certification PDF</a>
+                                    <a href="{{ asset($doc->pdf) }}" target="_blank">Lihat Sertifikasi Dokumen PDF</a>
                                 </li>
                             @endforeach
                         </ul>
                     @else
-                        <p class="text-muted">Tidak ada document certification untuk produk ini.</p>
+                        <p class="text-muted">Tidak ada Sertifikasi Dokumen untuk produk ini.</p>
                     @endif
                 </div>
             </div>
@@ -104,7 +104,7 @@
                             @foreach($produk->brosur as $brosur)
                                 <li>
                                     @if($brosur->type == 'pdf')
-                                        <a href="{{ asset($brosur->file) }}" target="_blank">View PDF Brosur</a>
+                                        <a href="{{ asset($brosur->file) }}" target="_blank">Lihat PDF Brosur</a>
                                     @else
                                         <img src="{{ asset($brosur->file) }}" class="img-fluid img-thumbnail" alt="Brosur Image">
                                     @endif

@@ -11,23 +11,23 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h1 class="card-title">Member List</h1>
-                    <a href="{{ route('members.create') }}" class="btn btn-primary">Add Member</a>
+                    <h1 class="card-title">Daftar Member</h1>
+                    <a href="{{ route('members.create') }}" class="btn btn-primary">Tambah Member</a>
                 </div>
 
-                
+
 
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Company Name</th>
-                                    <th>Phone Number</th>
-                                    <th>Address</th>
-                                    <th>Actions</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Alamat</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,15 +39,15 @@
                                         <td>{{ $member->no_telp }}</td>
                                         <td>{{ $member->alamat }}</td>
                                         <td>
-                                            <a href="{{ route('members.show', $member->id) }}" class="btn btn-info btn-sm">View</a>
+                                            <a href="{{ route('members.show', $member->id) }}" class="btn btn-info btn-sm">Lihat</a>
                                             <a href="{{ route('members.edit', $member->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                             <form action="{{ route('members.destroy', $member->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this member?');">Delete</button>
                                             </form>
-                                            <a href="{{ route('members.add-products', $member->id) }}" class="btn btn-secondary btn-sm">Add Products</a>
-                                            <a href="{{ route('members.edit-products', $member->id) }}" class="btn btn-warning btn-sm">Edit Products</a>
+                                            <a href="{{ route('members.add-products', $member->id) }}" class="btn btn-secondary btn-sm">Tambah Produk</a>
+                                            <a href="{{ route('members.edit-products', $member->id) }}" class="btn btn-warning btn-sm">Edit Produk</a>
                                         </td>
                                     </tr>
                                 @endforeach

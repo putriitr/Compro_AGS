@@ -22,7 +22,7 @@
             <form action="{{ route('bidangperusahaan.store') }}" method="POST">
                 @csrf
                 <div class="form-group mb-3">
-                    <label for="name">Nama Bidang Perusahaan:</label>
+                    <label for="name">Nama Bidang Perusahaan :</label>
                     <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>

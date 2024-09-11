@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center mb-3">
-            <h1 class="h3">All Sliders</h1>
-            <a href="{{ route('admin.slider.create') }}" class="btn btn-primary">Add New Slider</a>
+            <h1 class="h3">Semua Slider</h1>
+            <a href="{{ route('admin.slider.create') }}" class="btn btn-primary">Tambah Slider Baru</a>
         </div>
         <div class="card-body">
 
@@ -22,13 +22,13 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Subtitle</th>
-                        <th>Description</th>
-                        <th>Button Text</th>
-                        <th>Button URL</th>
-                        <th class="text-center">Actions</th>
+                        <th>Gambar</th>
+                        <th>Judul</th>
+                        <th>Sub-judul</th>
+                        <th>Deskripsi</th>
+                        <th>Teks Tombol</th>
+                        <th>URL Tombol</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +47,7 @@
                                     <form action="{{ route('admin.slider.destroy', $slider->id) }}" method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this slider?')">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this slider?')">Hapus</button>
                                     </form>
                                 </div>
                             </td>

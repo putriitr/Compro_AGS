@@ -30,7 +30,7 @@ $compro = \App\Models\CompanyParameter::first();
                     <h4 class="mb-4 text-white">Akses Cepat</h4>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Tentang Kami</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Merek & Mitra</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Aktivitas Kami</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Aktivitas Perusahaan</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
@@ -69,7 +69,7 @@ $compro = \App\Models\CompanyParameter::first();
                     <!-- WhatsApp -->
                     @if(!empty($compro->no_wa))
                         <a href="https://wa.me/{{ $compro->no_wa }}" class="mb-3">
-                            <i class="fab fa-whatsapp fa-2x"></i> +{{ $compro->no_wa }}
+                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_wa }}
                         </a>
                     @else
                         <p><i class="fab fa-whatsapp fa-2x"></i> WhatsApp not available</p>

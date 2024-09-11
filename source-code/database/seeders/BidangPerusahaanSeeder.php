@@ -15,64 +15,64 @@ class BidangPerusahaanSeeder extends Seeder
     {
         DB::table('bidang_perusahaan')->insert([
             [
-                'name' => 'High School',
+                'name' => 'Sekolah Menengah Atas',
             ],
             [
-                'name' => 'Vocational High School',
+                'name' => 'Sekolah Menengah Kejuruan',
             ],
             [
-                'name' => 'State University',
+                'name' => 'Universitas Negeri',
             ],
             [
-                'name' => 'Private University',
+                'name' => 'Universitas Swasta',
             ],
             [
-                'name' => 'Government School',
+                'name' => 'Sekolah Kedinasan',
             ],
             [
                 'name' => 'Institute of Technology',
             ],
             [
-                'name' => 'Medical Laboratory',
+                'name' => 'Laboratorium Medis',
             ],
             [
-                'name' => 'Research Laboratory',
+                'name' => 'Laboratorium Penelitian',
             ],
             [
-                'name' => 'Lab Equipment Industry',
+                'name' => 'Industri Peralatan Laboratorium',
             ],
             [
-                'name' => 'Hospital',
+                'name' => 'Rumah Sakit',
             ],
             [
-                'name' => 'Pharmacy',
+                'name' => 'Apotek',
             ],
             [
-                'name' => 'Health Clinic',
+                'name' => 'Klinik Kesehatan',
             ],
             [
-                'name' => 'Government',
+                'name' => 'Pemerintahan',
             ],
             [
-                'name' => 'Ministry',
+                'name' => 'Kementerian',
             ],
             [
-                'name' => 'Educational Institution',
+                'name' => 'Lembaga Pendidikan',
             ],
             [
-                'name' => 'Medical Equipment Distribution',
+                'name' => 'Distribusi Peralatan Medis',
             ],
             [
-                'name' => 'Scientific Research',
+                'name' => 'Penelitian Ilmiah',
             ],
             [
-                'name' => 'Chemical Engineering',
+                'name' => 'Teknik Kimia',
             ],
             [
-                'name' => 'Biotechnology',
+                'name' => 'Bioteknologi',
             ],
             [
-                'name' => 'Testing Services',
+                'name' => 'Layanan Pengujian',
             ]
         ]);
     }

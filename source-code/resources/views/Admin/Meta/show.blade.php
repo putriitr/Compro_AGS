@@ -3,8 +3,8 @@
 @section('content')
     <h1>{{ $meta->title }}</h1>
 
-    <p>Start Date: {{ $meta->start_date }}</p>
-    <p>End Date: {{ $meta->end_date }}</p>
+    <p>Tanggal Mulai : {{ $meta->start_date }}</p>
+    <p>Tanggal Berakhir : {{ $meta->end_date }}</p>
 
     <div>
         {!! $meta->content !!}

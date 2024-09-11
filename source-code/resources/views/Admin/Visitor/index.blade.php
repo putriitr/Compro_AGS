@@ -4,15 +4,15 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header bg-primary text-white">
-                <h3>Visitor List</h3>
+                <h3>Daftar Pengunjung</h3>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>IP Address</th>
+                            <th>Alamat IP</th>
                             <th>Browser</th>
-                            <th>Visited At</th>
+                            <th>Dikunjungi pada</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,14 +30,14 @@
 
         <div class="card shadow-lg mt-4">
             <div class="card-body">
-                <h4>Visits Summary (Daily)</h4>
+                <h4>Rangkuman Kunjungan (Harian)</h4>
                 <canvas id="daily-visits-chart"></canvas>
             </div>
         </div>
 
         <div class="card shadow-lg mt-4">
             <div class="card-body">
-                <h4>Visits Summary (Weekly)</h4>
+                <h4>Rangkuman Kunjungan (Mingguan)</h4>
                 <canvas id="weekly-visits-chart"></canvas>
             </div>
         </div>

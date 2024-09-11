@@ -6,64 +6,64 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h2>Monitoring for {{ $produk->produk->nama }}</h2>
+                    <h2>Monitoring untuk {{ $produk->produk->nama }}</h2>
                 </div>
                 <div class="card-body">
-                    <h3 class="mb-4">Product Details</h3>
+                    <h3 class="mb-4">Detail Produk</h3>
                     <div class="mb-3">
                         <table class="table table-bordered mb-4">
                             <tbody>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Nama</th>
                                     <td>{{ $produk->produk->nama }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Purchase Date</th>
+                                    <th>Tanggal Pembelian</th>
                                     <td>{{ $produk->pembelian }}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <h3 class="mb-4">Monitoring Data</h3>
+                    <h3 class="mb-4">Data Monitoring</h3>
                     @if ($monitoring)
                     <table class="table table-borderless mb-3" style="width: auto;">
                         <tbody>
                             <tr>
-                                <th scope="row">Status Barang:</th>
+                                <th scope="row">Status Barang :</th>
                                 <td>{{ $monitoring->status_barang }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Kondisi Terakhir Produk:</th>
+                                <th scope="row">Kondisi Terakhir Produk :</th>
                                 <td>{{ $monitoring->kondisi_terakhir_produk }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    
+
                     @else
-                        <p class="text-muted">No monitoring data available for this product.</p>
+                        <p class="text-muted">Tidak ada data monitoring tersedia untuk produk ini.</p>
                     @endif
 
                     <div class="mb-4">
                         @if ($monitoring)
-                            <a href="{{ route('admin.monitoring.edit', $monitoring->id) }}" class="btn btn-warning">Edit Monitoring Data</a>
+                            <a href="{{ route('admin.monitoring.edit', $monitoring->id) }}" class="btn btn-warning">Edit Data Monitoring</a>
                         @else
-                            <a href="{{ route('admin.monitoring.create', ['userProdukId' => $produk->id]) }}" class="btn btn-success">Create Monitoring Data</a>
+                            <a href="{{ route('admin.monitoring.create', ['userProdukId' => $produk->id]) }}" class="btn btn-success">Buat Data Monitoring</a>
                         @endif
                     </div>
 
                     <h3 class="mb-4">Inspections - Maintenance Produk</h3>
-                    <a href="{{ route('admin.inspeksi.create', ['userProdukId' => $produk->id]) }}" class="btn btn-primary mb-4">Create Inspeksi</a>
+                    <a href="{{ route('admin.inspeksi.create', ['userProdukId' => $produk->id]) }}" class="btn btn-primary mb-4">Buat Teknisi</a>
 
                     @if ($inspeksi->isNotEmpty())
                         <table class="table table-hover">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>PIC</th>
-                                    <th>Time</th>
-                                    <th>Title</th>
+                                    <th>Penanggung Jawab</th>
+                                    <th>Waktu</th>
+                                    <th>Judul</th>
                                     <th>Status</th>
-                                    <th>Actions</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,12 +74,12 @@
                                         <td>{{ $item->judul }}</td>
                                         <td>{{ $item->status }}</td>
                                         <td>
-                                            <a href="{{ route('admin.inspeksi.show', $item->id) }}" class="btn btn-info btn-sm">View</a>
+                                            <a href="{{ route('admin.inspeksi.show', $item->id) }}" class="btn btn-info btn-sm">Lihat</a>
                                             <a href="{{ route('admin.inspeksi.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                             <form action="{{ route('admin.inspeksi.destroy', $item->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this inspection?')">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this inspection?')">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -87,13 +87,13 @@
                             </tbody>
                         </table>
                     @else
-                        <p class="text-muted">No inspections found for this product.</p>
+                        <p class="text-muted">Tidak ada teknisi tersedia untuk produk ini.</p>
                     @endif
                 </div>
             </div>
         </div>
     </div>
-    <a href="{{ route('admin.monitoring.index') }}" class="btn btn-secondary">Back to Monitoring List</a>
+    <a href="{{ route('admin.monitoring.index') }}" class="btn btn-secondary">Kembali ke Daftar Monitoring</a>
 
 </div>
 @endsection

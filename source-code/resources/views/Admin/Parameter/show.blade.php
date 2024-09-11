@@ -4,16 +4,16 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
-            <h2>Detail Produk: {{ $produk->nama }}</h2>
+            <h2>Detail Produk : {{ $produk->nama }}</h2>
 
             <div class="card mt-4">
                 <div class="card-body">
                     <h5 class="card-title">Informasi Produk</h5>
-                    <p><strong>Nama:</strong> {{ $produk->nama }}</p>
-                    <p><strong>Merk:</strong> {{ $produk->merk }}</p>
-                    <p><strong>Kegunaan:</strong> {{ $produk->kegunaan }}</p>
-                    <p><strong>Via:</strong> {{ ucfirst($produk->via) }}</p>
-                    <p><strong>Kategori:</strong> {{ $produk->kategori->nama }}</p>
+                    <p><strong>Nama :</strong> {{ $produk->nama }}</p>
+                    <p><strong>Merk :</strong> {{ $produk->merk }}</p>
+                    <p><strong>Kegunaan :</strong> {{ $produk->kegunaan }}</p>
+                    <p><strong>Via :</strong> {{ ucfirst($produk->via) }}</p>
+                    <p><strong>Kategori :</strong> {{ $produk->kategori->nama }}</p>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                                 <div class="col-md-3">
                                     <video width="320" height="240" controls>
                                         <source src="{{ asset($video->video) }}" type="video/mp4">
-                                        Your browser does not support the video tag.
+                                            Browser Anda tidak mendukung tag video.
                                     </video>
                                 </div>
                             @endforeach
@@ -59,17 +59,17 @@
             <!-- Document Certification Produk -->
             <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="card-title">Document Certification</h5>
+                    <h5 class="card-title">Sertifikasi Dokumen</h5>
                     @if($produk->documentCertificationsProduk->count())
                         <ul>
                             @foreach($produk->documentCertificationsProduk as $doc)
                                 <li>
-                                    <a href="{{ asset($doc->pdf) }}" target="_blank">View Document Certification PDF</a>
+                                    <a href="{{ asset($doc->pdf) }}" target="_blank">Lihat PDF Sertifikasi Dokumen</a>
                                 </li>
                             @endforeach
                         </ul>
                     @else
-                        <p class="text-muted">Tidak ada document certification untuk produk ini.</p>
+                        <p class="text-muted">Tidak ada sertifikasi dokumen untuk produk ini.</p>
                     @endif
                 </div>
             </div>
@@ -83,7 +83,7 @@
                             @foreach($produk->brosur as $brosur)
                                 <li>
                                     @if($brosur->type == 'pdf')
-                                        <a href="{{ asset($brosur->file) }}" target="_blank">View PDF Brosur</a>
+                                        <a href="{{ asset($brosur->file) }}" target="_blank">Lihat PDF Brosur</a>
                                     @else
                                         <img src="{{ asset($brosur->file) }}" class="img-fluid img-thumbnail" alt="Brosur Image">
                                     @endif

@@ -16,7 +16,7 @@
                         <h1 class="display-1 text-capitalize text-white mb-4">
                             Simplifying Industries
                         </h1>
-                        <p class="mb-5 fs-5">Arkamaya Guna Saharsa is the technology start-up that empowered by innovation.</p>
+                        <p class="mb-5 fs-5">Arkamaya Guna Saharsa adalah sebuah perusahaan rintisan teknologi yang diberdayakan oleh inovasi terkemuka.</p>
                         <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">
                             Tentang Kami
                         </a>

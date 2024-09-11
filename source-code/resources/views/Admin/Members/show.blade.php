@@ -24,13 +24,13 @@
         <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h2>Member Detail</h2>
+                <h2>Detail Member</h2>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <td>{{ $member->name }}</td>
                         </tr>
                         <tr>
@@ -38,19 +38,19 @@
                             <td>{{ $member->email }}</td>
                         </tr>
                         <tr>
-                            <th>Company Name</th>
+                            <th>Nama Perusahaan</th>
                             <td>{{ $member->nama_perusahaan }}</td>
                         </tr>
                         <tr>
-                            <th>Company Sector</th>
+                            <th>Sektor Perusahaan</th>
                             <td>{{ $member->bidangPerusahaan->name ?? '-' }}</td>
                         </tr>
                         <tr>
-                            <th>Phone Number</th>
+                            <th>Nomor Telepon</th>
                             <td>{{ $member->no_telp }}</td>
                         </tr>
                         <tr>
-                            <th>Address</th>
+                            <th>Alamat</th>
                             <td>{{ $member->alamat }}</td>
                         </tr>
                         @if(isset($password))
@@ -58,7 +58,7 @@
                                 <th>Password</th>
                                 <td>
                                     {{ $password }}
-                                    <p class="text-danger">Please note: This password will not be shown again.</p>
+                                    <p class="text-danger">PEMBERITAHUAN : MOHON AGAR PASSWORD DICATAT KARENA PASSWORD TIDAK ADA DITAMPILKAN KEMBALI.</p>
                                 </td>
                             </tr>
                         @endif
@@ -68,18 +68,18 @@
                 @if(isset($password))
                     <div class="mb-3">
                         <p><strong>Password:</strong> {{ $password }}</p>
-                        <p class="text-danger">Please note: This password will not be shown again.</p>
+                        <p class="text-danger">PEMBERITAHUAN : MOHON AGAR PASSWORD DICATAT KARENA PASSWORD TIDAK ADA DITAMPILKAN KEMBALI.</p>
                     </div>
                 @endif
 
                 <div class="mb-3">
                     <div class="card p-4 shadow">
                         <div class="card-header">
-                    <h4>Products Owned</h4>
+                    <h4>Pemilik Produk</h4>
                 </div>
                 <div class="card-body">
                     @if($member->userProduk->isEmpty())
-                        <p>This member has no products.</p>
+                        <p>Member ini tidak memiliki produk.</p>
                     @else
                         <div class="row">
                             @foreach($member->userProduk as $userProduk)
@@ -92,7 +92,7 @@
                                         <img src="{{ asset($imageSrc) }}" class="card-img-top" alt="{{ $userProduk->produk->nama }}" style="height: 100; object-fit: cover; width:100%;">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $userProduk->produk->nama }}</h5>
-                                            <p class="card-text"><strong>Purchase Date:</strong> {{ $userProduk->pembelian ? $userProduk->pembelian : 'N/A' }}</p>
+                                            <p class="card-text"><strong>Tanggal Pembelian :</strong> {{ $userProduk->pembelian ? $userProduk->pembelian : 'N/A' }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,10 +102,10 @@
                 </div>
                 </div>
                 </div>
-                
-                
-                
-                <a href="{{ route('members.index') }}" class="btn btn-secondary">Back to Members List</a>
+
+
+
+                <a href="{{ route('members.index') }}" class="btn btn-secondary">Kembali ke Daftar Member</a>
             </div>
         </div>
     </div>

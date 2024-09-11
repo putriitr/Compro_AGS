@@ -8,9 +8,9 @@
 
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div class="card-title">
-                    <h1 class="h3">Meta List</h1>
+                    <h1 class="h3">Daftar Meta</h1>
                     </div>
-        <a href="{{ route('admin.meta.create') }}" class="btn btn-primary">Create New Meta</a>
+        <a href="{{ route('admin.meta.create') }}" class="btn btn-primary">Buat Meta Baru</a>
 
     </div>
     @if (session('success'))
@@ -26,11 +26,11 @@
             <table class="table table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Title</th>
+                        <th>Judul</th>
                         <th>Slug</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                            <th class="text-center">Actions</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Berakhir</th>
+                            <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,7 @@
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                 </form>
                             </td>
                         </tr>

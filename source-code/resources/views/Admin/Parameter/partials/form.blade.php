@@ -1,10 +1,10 @@
 <div class="form-group">
-    <label for="nama_perusahaan">Company Name</label>
+    <label for="nama_perusahaan">Nama Perusahaan</label>
     <input type="text" name="nama_perusahaan" class="form-control" value="{{ old('nama_perusahaan', $companyParameter->nama_perusahaan ?? '') }}" required>
 </div>
 
 <div class="form-group">
-    <label for="sejarah_singkat">Short History</label>
+    <label for="sejarah_singkat">Sejarah Singkat</label>
     <textarea name="sejarah_singkat" class="form-control">{{ old('sejarah_singkat', $companyParameter->sejarah_singkat ?? '') }}</textarea>
 </div>
 
@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-group">
-    <label for="no_telepon">Phone</label>
+    <label for="no_telepon">Nomor Telepon</label>
     <input type="text" name="no_telepon" class="form-control" value="{{ old('no_telepon', $companyParameter->no_telepon ?? '') }}" required>
 </div>
 
@@ -24,22 +24,22 @@
 </div>
 
 <div class="form-group">
-    <label for="alamat">Address</label>
+    <label for="alamat">Alamat</label>
     <textarea name="alamat" class="form-control" required>{{ old('alamat', $companyParameter->alamat ?? '') }}</textarea>
 </div>
 
 <div class="form-group">
-    <label for="maps">Maps URL</label>
+    <label for="maps">URL Lokasi</label>
     <input type="text" name="maps" class="form-control" value="{{ old('maps', $companyParameter->maps ?? '') }}">
 </div>
 
 <div class="form-group">
-    <label for="visi">Vision</label>
+    <label for="visi">Visi</label>
     <textarea name="visi" class="form-control">{{ old('visi', $companyParameter->visi ?? '') }}</textarea>
 </div>
 
 <div class="form-group">
-    <label for="misi">Mission</label>
+    <label for="misi">Misi</label>
     <textarea name="misi" class="form-control">{{ old('misi', $companyParameter->misi ?? '') }}</textarea>
 </div>
 
@@ -52,7 +52,7 @@
 </div>
 
 <div class="form-group">
-    <label for="about_gambar">About Image</label>
+    <label for="about_gambar">Gambar Tentang Kami</label>
     <input type="file" name="about_gambar" class="form-control">
     @if(isset($companyParameter->about_gambar))
         <img src="{{ asset('storage/' . $companyParameter->about_gambar) }}" alt="About Image" width="100">
@@ -70,6 +70,6 @@
 </div>
 
 <div class="form-group">
-    <label for="ekatalog">E-Katalog Link</label>
+    <label for="ekatalog">Link E-Katalog</label>
     <input type="text" name="ekatalog" class="form-control" value="{{ old('ekatalog', $companyParameter->ekatalog ?? '') }}">
 </div>

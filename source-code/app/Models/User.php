@@ -75,6 +75,6 @@ class User extends Authenticatable
         return $this->belongsTo(Location::class, 'location_id');
     }
 
-    
+
 
 }

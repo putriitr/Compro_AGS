@@ -24,13 +24,13 @@
                         <!-- Tabs Navigation -->
                         <ul class="nav nav-tabs mb-4" id="productTabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
+                                <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">Umum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="user-manual-tab" data-toggle="tab" href="#user-manual" role="tab" aria-controls="user-manual" aria-selected="false">User Manual</a>
+                                <a class="nav-link" id="user-manual-tab" data-toggle="tab" href="#user-manual" role="tab" aria-controls="user-manual" aria-selected="false">Panduan Penggunaan</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">Documents</a>
+                                <a class="nav-link" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">Dokumen</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="brosur-tab" data-toggle="tab" href="#brosur" role="tab" aria-controls="brosur" aria-selected="false">Brosur</a>
@@ -45,20 +45,20 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="nama">Nama Produk:</label>
+                                                <label for="nama">Nama Produk :</label>
                                                 <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="merk">Merk Produk:</label>
+                                                <label for="merk">Merek Produk :</label>
                                                 <input type="text" name="merk" class="form-control" value="{{ old('merk') }}" required>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <label for="kegunaan">Kegunaan Produk:</label>
+                                        <label for="kegunaan">Kegunaan Produk :</label>
                                         <textarea name="kegunaan" class="form-control" required>{{ old('kegunaan') }}</textarea>
                                     </div>
 
@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="kategori_id">Kategori:</label>
+                                                <label for="kategori_id">Kategori :</label>
                                                 <select name="kategori_id" class="form-control" required>
                                                     @foreach ($kategori as $kategoris)
                                                         <option value="{{ $kategoris->id }}" {{ old('kategori_id') == $kategoris->id ? 'selected' : '' }}>
@@ -87,7 +87,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="gambar">Gambar Produk:</label>
+                                        <label for="gambar">Gambar Produk :</label>
                                         <input type="file" name="gambar[]" class="form-control" multiple required>
                                         <small class="form-text text-muted">Unggah beberapa gambar produk jika diperlukan.</small>
                                     </div>
@@ -104,10 +104,10 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="user_manual">User Manual (PDF/DOC)</label>
+                                        <label for="user_manual">Panduan Penggunaan (PDF/DOC)</label>
                                         <input type="file" class="form-control" name="user_manual" id="user_manual">
                                         @if(isset($produk) && $produk->user_manual)
-                                            <a href="{{ asset($produk->user_manual) }}" target="_blank">View Current Manual</a>
+                                            <a href="{{ asset($produk->user_manual) }}" target="_blank">Lihat Panduan Penggunaan</a>
                                         @endif
                                     </div>
                                 </div>
@@ -117,10 +117,10 @@
                             <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
                                 <div class="card p-3 mb-4">
                                     <div class="form-group">
-                                        <label for="document_certification_pdf">Document Certification PDF:</label>
+                                        <label for="document_certification_pdf">Sertifikasi Dokumen PDF:</label>
                                         <input type="file" class="form-control" name="document_certification_pdf[]" id="document_certification_pdf" accept=".pdf" multiple>
-                                        <small class="form-text text-muted">Unggah beberapa Document Certification PDF jika diperlukan.</small>
-                                    </div>  
+                                        <small class="form-text text-muted">Unggah beberapa Sertifikasi Dokumen PDF jika diperlukan.</small>
+                                    </div>
                                 </div>
                             </div>
 

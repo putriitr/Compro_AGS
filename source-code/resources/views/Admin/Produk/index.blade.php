@@ -47,7 +47,7 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.produk.show', $produk->id) }}" class="btn btn-info btn-sm">Show</a>
+                                                <a href="{{ route('admin.produk.show', $produk->id) }}" class="btn btn-info btn-sm">Tampilkan</a>
                                                 <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" style="display:inline;">
                                                     @csrf
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

@@ -6,24 +6,24 @@
             <div class="col-md-12">
                 <div class="card shadow-lg">
                     <div class="card-header">
-                        <h4 class="mb-0">Add New Inspection for {{ $userProduk->produk->name }}</h4>
+                        <h4 class="mb-0">Tambahkan Teknisi Baru untuk {{ $userProduk->produk->name }}</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.inspeksi.store', $userProduk->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
-                                <label for="pic" class="font-weight-bold">PIC (Person in Charge)</label>
+                                <label for="pic" class="font-weight-bold">Penanggung Jawab</label>
                                 <input type="text" name="pic" class="form-control" placeholder="Enter PIC" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="waktu" class="font-weight-bold">Time</label>
+                                <label for="waktu" class="font-weight-bold">Waktu</label>
                                 <input type="datetime-local" name="waktu" class="form-control" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="judul" class="font-weight-bold">Title</label>
+                                <label for="judul" class="font-weight-bold">Judul</label>
                                 <input type="text" name="judul" class="form-control" placeholder="Enter title" required>
                             </div>
 
@@ -33,10 +33,10 @@
                                 document.addEventListener('DOMContentLoaded', function() {
                                     new FroalaEditor('#froala-editor', {
                                         toolbarButtons: [
-                                            'bold', 'italic', 'underline', 'strikeThrough', 'align', 'formatOL', 'formatUL', 
+                                            'bold', 'italic', 'underline', 'strikeThrough', 'align', 'formatOL', 'formatUL',
                                             'insertLink', 'insertImage', 'insertVideo', 'insertTable', 'html', 'undo', 'redo',
-                                            'paragraphFormat', 'paragraphStyle', 'quote', 'fontFamily', 'fontSize', 
-                                            'textColor', 'backgroundColor', 'inlineStyle', 'subscript', 'superscript', 
+                                            'paragraphFormat', 'paragraphStyle', 'quote', 'fontFamily', 'fontSize',
+                                            'textColor', 'backgroundColor', 'inlineStyle', 'subscript', 'superscript',
                                             'outdent', 'indent', 'clearFormatting', 'insertHR', 'fullscreen'
                                         ],
                                         heightMin: 300,
@@ -56,24 +56,24 @@
                                     });
                                 });
                             </script>
-                              
-                            
+
+
 
                             <div class="form-group">
                                 <label for="status" class="font-weight-bold">Status</label>
                                 <select name="status" class="form-control" required>
-                                    <option value="Inspeksi">Inspeksi</option>
-                                    <option value="Maintenance">Maintenance</option>
+                                    <option value="Inspeksi">Teknisi</option>
+                                    <option value="Maintenance">Kerusakan</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="gambar" class="font-weight-bold">Image (optional)</label>
+                                <label for="gambar" class="font-weight-bold">Gambar (opsional)</label>
                                 <input type="file" name="gambar" class="form-control-file">
                             </div>
 
                             <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Save Inspection</button>
+                                <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Simpan Teknisi</button>
                             </div>
                         </form>
                     </div>

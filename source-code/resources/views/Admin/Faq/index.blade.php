@@ -4,8 +4,8 @@
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h2 class="h4">FAQs</h2>
-            <a href="{{ route('admin.faq.create') }}" class="btn btn-primary">Add New FAQ</a>
+            <h2 class="h4">Pertanyaan</h2>
+            <a href="{{ route('admin.faq.create') }}" class="btn btn-primary">Tambah Pertanyaan Baru</a>
         </div>
 
         <div class="card-body">
@@ -16,7 +16,7 @@
             @endif
 
             @if($faqs->isEmpty())
-                <p>No FAQs found.</p>
+                <p>Tidak ada pertanyaan ditemukan.</p>
             @else
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-bordered">
@@ -24,7 +24,7 @@
                             <tr>
                                 <th>Pertanyaan</th>
                                 <th>Jawaban</th>
-                                <th class="text-center">Actions</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,7 +38,7 @@
                                             <form action="{{ route('admin.faq.destroy', $faq->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this FAQ?');">Delete</button>
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this FAQ?');">Hapus</button>
                                             </form>
                                         </div>
                                     </td>

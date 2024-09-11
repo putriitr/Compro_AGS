@@ -11,17 +11,17 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h1 class="card-title">Member List</h1>
+                    <h1 class="card-title">Data Member</h1>
                 </div>
                 <div class="card-body">
 
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            <thead class="thead-dark">                
+                            <thead class="thead-dark">
                                 <tr>
-                    <th>User Name</th>
+                    <th>Nama Pengguna</th>
                     <th>Email</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
-                            <a href="{{ route('admin.monitoring.show', $user->id) }}" class="btn btn-primary btn-sm">Show</a>
+                            <a href="{{ route('admin.monitoring.show', $user->id) }}" class="btn btn-primary btn-sm">Tampilkan</a>
                         </td>
                     </tr>
                 @endforeach

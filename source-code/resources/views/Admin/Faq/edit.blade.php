@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header">
-            <h2 class="h4">Edit FAQ</h2>
+            <h2 class="h4">Edit Pertanyaan</h2>
         </div>
 
         <div class="card-body">
@@ -32,7 +32,7 @@
                     <textarea class="form-control" id="jawaban" name="jawaban" rows="5" required>{{ old('jawaban', $faq->jawaban) }}</textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3">Update FAQ</button>
+                <button type="submit" class="btn btn-primary mt-3">Perbaharui Pertanyaan</button>
             </form>
         </div>
     </div>

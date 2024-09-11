@@ -7,7 +7,7 @@
             <div class="card shadow-lg">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3>Kategori List</h3>
-                    <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary">Add New Kategori</a>
+                    <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary">Tambah Kategori Baru</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -16,7 +16,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama</th>
-                                    <th>Actions</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,7 +29,7 @@
                                             <form action="{{ route('admin.kategori.destroy', $kategori->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

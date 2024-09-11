@@ -17,49 +17,49 @@ class CategoriesSeeder extends Seeder
     {
         DB::table('kategori')->insert([
             [
-                'nama' => 'Hydraulics',
+                'nama' => 'Hidrolika',
             ],
             [
-                'nama' => 'Concrete Technology',
+                'nama' => 'Semen',
             ],
             [
-                'nama' => 'Soil Mechanics',
+                'nama' => 'Tanah',
             ],
             [
-                'nama' => 'Asphalt Technology',
+                'nama' => 'Aspal',
             ],
             [
-                'nama' => 'Aggregate Materials',
+                'nama' => 'Bebatuan',
             ],
             [
-                'nama' => 'Construction Management',
+                'nama' => 'Manajemen Konstruksi',
             ],
             [
-                'nama' => 'Cement Technology',
+                'nama' => 'Semen',
             ],
             [
-                'nama' => 'Geotechnical Engineering',
+                'nama' => 'Kebumian',
             ],
             [
-                'nama' => 'Electrical Engineering',
+                'nama' => 'Listrik',
             ],
             [
-                'nama' => 'Mechanical Engineering',
+                'nama' => 'Mekanik',
             ],
             [
-                'nama' => 'Materials Science',
+                'nama' => 'Material',
             ],
             [
-                'nama' => 'Industrial Engineering',
+                'nama' => 'Industri',
             ],
             [
-                'nama' => 'Fisheries Technology',
+                'nama' => 'Kelautan',
             ],
             [
-                'nama' => 'Marine Shipping',
+                'nama' => 'Perkapalan',
             ],
             [
-                'nama' => 'Railway Engineering',
+                'nama' => 'Perkeretaapian',
             ],
 
         ]);

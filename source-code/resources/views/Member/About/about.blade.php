@@ -116,7 +116,7 @@
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Keyakinan Kami</h4>
+                    <h4 class="sub-title px-3 mb-0">Value Perusahaan Kami</h4>
                 </div>
                 <h1 class="display-3 mb-4">Keunggulan Perusahaan</h1>
             </div>
@@ -227,7 +227,7 @@
                 <div class="sub-style">
                     <h4 class="sub-title px-3 mb-0">Kemitraan</h4>
                 </div>
-                <h1 class="display-3 mb-4">Saluran Penjualan</h1>
+                <h1 class="display-3 mb-4">Saluran Penjualan Kami</h1>
             </div>
             <div class="row g-12 justify-content-center d-flex">
                 <div class="col-md-12 col-lg-6 col-xl-4 d-flex"style="margin-bottom: 0.5rem;">
@@ -327,7 +327,7 @@
 
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Presenting Our Esteemed Customer</h4>
+                <h4 class="sub-title px-3 mb-0">Penyebaran Pelanggan</h4>
             </div>
             <h1 class="display-3 mb-4">Pelanggan Kami</h1>
         </div>

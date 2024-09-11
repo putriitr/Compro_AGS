@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h2>Edit Produk: {{ $produk->nama }}</h2>
+                    <h2>Edit Produk : {{ $produk->nama }}</h2>
 
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -25,13 +25,13 @@
                         <!-- Tabs Navigation -->
                         <ul class="nav nav-tabs mb-4" id="productTabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
+                                <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">Umum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="user-manual-tab" data-toggle="tab" href="#user-manual" role="tab" aria-controls="user-manual" aria-selected="false">User Manual</a>
+                                <a class="nav-link" id="user-manual-tab" data-toggle="tab" href="#user-manual" role="tab" aria-controls="user-manual" aria-selected="false">Panduan Penggunaan</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">Documents</a>
+                                <a class="nav-link" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">Dokumen</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="brosur-tab" data-toggle="tab" href="#brosur" role="tab" aria-controls="brosur" aria-selected="false">Brosur</a>
@@ -44,22 +44,22 @@
                             <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
                                 <div class="card p-3 mb-4">
                                     <div class="form-group mb-3">
-                                        <label for="nama">Nama Produk:</label>
+                                        <label for="nama">Nama Produk :</label>
                                         <input type="text" name="nama" class="form-control" value="{{ old('nama', $produk->nama) }}" required>
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="merk">Merk Produk:</label>
+                                        <label for="merk">Merk Produk :</label>
                                         <input type="text" name="merk" class="form-control" value="{{ old('merk', $produk->merk) }}" required>
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="kegunaan">Kegunaan Produk:</label>
+                                        <label for="kegunaan">Kegunaan Produk :</label>
                                         <textarea name="kegunaan" class="form-control" required>{{ old('kegunaan', $produk->kegunaan) }}</textarea>
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="via">Via:</label>
+                                        <label for="via">Via :</label>
                                         <select name="via" class="form-control" required>
                                             <option value="labtek" {{ old('via', $produk->via) == 'labtek' ? 'selected' : '' }}>Labtek</option>
                                             <option value="labverse" {{ old('via', $produk->via) == 'labverse' ? 'selected' : '' }}>Labverse</option>
@@ -67,7 +67,7 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="kategori_id">Kategori:</label>
+                                        <label for="kategori_id">Kategori :</label>
                                         <select name="kategori_id" class="form-control" required>
                                             @foreach ($kategori as $kategoris)
                                                 <option value="{{ $kategoris->id }}" {{ old('kategori_id', $produk->kategori_id) == $kategoris->id ? 'selected' : '' }}>
@@ -78,7 +78,7 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="gambar">Gambar Produk:</label>
+                                        <label for="gambar">Gambar Produk :</label>
                                         <input type="file" name="gambar[]" class="form-control" multiple>
                                         <small class="form-text text-muted">Unggah beberapa gambar produk jika diperlukan.</small>
 
@@ -90,7 +90,7 @@
                                                         <img src="{{ asset($image->gambar) }}" alt="Gambar Produk" style="max-width: 100px; margin-right: 10px;">
                                                         <input type="checkbox" name="delete_images[]" value="{{ $image->id }}"> Hapus
                                                     </div>
-                                                @endforeach    
+                                                @endforeach
                                             </div>
                                         @endif
                                     </div>
@@ -112,7 +112,7 @@
                                                     <div class="d-inline-block text-center mb-3">
                                                         <video width="200" controls>
                                                             <source src="{{ asset($video->video) }}" type="video/mp4">
-                                                            Your browser does not support the video tag.
+                                                                Browser Anda tidak mendukung tag video.
                                                         </video>
                                                     </div>
                                                 @endforeach
@@ -121,11 +121,11 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="user_manual">User Manual (PDF/DOC)</label>
+                                        <label for="user_manual">Panduan Penggunaanan (PDF/DOC)</label>
                                         <input type="file" class="form-control" name="user_manual" id="user_manual">
                                         @if($produk->user_manual)
-                                            <a href="{{ asset($produk->user_manual) }}" target="_blank" class="btn btn-link">View Current Manual</a>
-                                        @endif    
+                                            <a href="{{ asset($produk->user_manual) }}" target="_blank" class="btn btn-link">Lihat Panduan Penggunaanan</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -134,21 +134,21 @@
                             <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
                                 <div class="card p-3 mb-4">
                                     <div class="form-group mb-3">
-                                        <label for="document_certification_pdf">Document Certification PDF:</label>
+                                        <label for="document_certification_pdf">Sertifikasi Dokumen PDF:</label>
                                         <input type="file" class="form-control" name="document_certification_pdf[]" id="document_certification_pdf" accept=".pdf" multiple>
-                                        <small class="form-text text-muted">Unggah beberapa Document Certification PDF jika diperlukan.</small>
+                                        <small class="form-text text-muted">Unggah beberapa Sertifikasi Dokumen PDF jika diperlukan.</small>
 
                                         <!-- Display current PDFs -->
                                         @if($produk->documentCertificationsProduk && $produk->documentCertificationsProduk->count())
                                             <ul>
                                                 @foreach($produk->documentCertificationsProduk as $document)
                                                     <li>
-                                                        <a href="{{ asset($document->pdf) }}" target="_blank">View PDF</a>
+                                                        <a href="{{ asset($document->pdf) }}" target="_blank">Lihat PDF</a>
                                                     </li>
                                                 @endforeach
                                             </ul>
                                         @else
-                                            <p class="text-muted">Tidak ada Document Certification PDF yang tersedia.</p>
+                                            <p class="text-muted">Tidak ada Sertifikasi Dokumen PDF yang tersedia.</p>
                                         @endif
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@
                                             <ul>
                                                 @foreach($produk->brosur as $document)
                                                     <li>
-                                                        <a href="{{ asset($document->file) }}" target="_blank">View Brosur</a>
+                                                        <a href="{{ asset($document->file) }}" target="_blank">Lihat Brosur</a>
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -181,7 +181,7 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-success mt-3">Update Produk</button>
+                        <button type="submit" class="btn btn-success mt-3">Perbaharui Produk</button>
                         <a href="{{ route('admin.produk.index') }}" class="btn btn-secondary mt-3">Kembali</a>
                     </form>
                 </div>

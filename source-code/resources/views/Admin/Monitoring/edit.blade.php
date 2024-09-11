@@ -5,9 +5,9 @@
     <div class="row">
 <div class="col-md-12">
     <div class="card">
-        
+
         <div class="card-header">
-            <h1>Edit Monitoring Data for {{ $userProduk->produk->nama }}</h1>
+            <h1>Edit Data Monitoring untuk {{ $userProduk->produk->nama }}</h1>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.monitoring.update', $monitoring->id) }}" method="POST">
@@ -28,7 +28,7 @@
 
                 <!-- Submit Button -->
                 <div class="text-right mt-5">
-                    <button type="submit" class="btn btn-primary">Update Monitoring Data</button>
+                    <button type="submit" class="btn btn-primary">Perbaharui Data Monitoring</button>
                 </div>
             </form>
         </div>

@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header">
-                <h1 class="h4">Edit Brand/Partner</h1>
+                <h1 class="h4">Edit Merek/Brand</h1>
             </div>
 
             <div class="card-body">
@@ -13,7 +13,7 @@
                     @method('PUT')
 
                     <div class="form-group mb-3">
-                        <label for="gambar">Current Image</label>
+                        <label for="gambar">Gambar</label>
                         @if($brandPartner->gambar)
                             <div class="mb-3">
                                 <img src="{{ asset('storage/' . $brandPartner->gambar) }}" alt="Image" class="img-thumbnail" style="max-width: 150px;">
@@ -28,9 +28,9 @@
                     <div class="form-group mb-3">
                         <label for="type">Type</label>
                         <select name="type" class="form-control">
-                            <option value="brand" {{ $brandPartner->type == 'brand' ? 'selected' : '' }}>Brand</option>
-                            <option value="partner" {{ $brandPartner->type == 'partner' ? 'selected' : '' }}>Partner</option>
-                            <option value="principal" {{ $brandPartner->type == 'principal' ? 'selected' : '' }}>Principal</option>
+                            <option value="brand" {{ $brandPartner->type == 'brand' ? 'selected' : '' }}>Merek</option>
+                            <option value="partner" {{ $brandPartner->type == 'partner' ? 'selected' : '' }}>Mitra</option>
+                            <option value="principal" {{ $brandPartner->type == 'principal' ? 'selected' : '' }}>Induk Perusahaan</option>
                         </select>
                         @error('type')
                             <span class="text-danger">{{ $message }}</span>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="url">URL (Optional)</label>
+                        <label for="url">URL (Opsional)</label>
                         <input type="text" name="url" class="form-control" value="{{ old('url', $brandPartner->url) }}">
                         @error('url')
                             <span class="text-danger">{{ $message }}</span>
@@ -46,14 +46,14 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="nama">Nama (Optional)</label>
+                        <label for="nama">Nama (Opsional)</label>
                         <input type="text" name="nama" class="form-control" value="{{ old('nama', $brandPartner->nama) }}">
                         @error('nama')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">Update Brand/Partner</button>
+
+                    <button type="submit" class="btn btn-primary">Perbaharui Merek/Mitra</button>
                 </form>
             </div>
         </div>

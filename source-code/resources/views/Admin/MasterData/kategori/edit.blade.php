@@ -16,8 +16,8 @@
                             <label for="nama">Nama Kategori</label>
                             <input type="text" name="nama" class="form-control" value="{{ $kategori->nama }}" required>
                         </div>
-                        <button type="submit" class="btn btn-success mt-3">Update</button>
-            <a href="{{ route('admin.kategori.index') }}" class="btn btn-secondary mt-3">Back</a>
+                        <button type="submit" class="btn btn-success mt-3">Simpan</button>
+            <a href="{{ route('admin.kategori.index') }}" class="btn btn-secondary mt-3">Kembali</a>
                     </form>
                 </div>
             </div>

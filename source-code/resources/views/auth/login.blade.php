@@ -8,8 +8,8 @@
                     <div class="featured-image mb-3 d-flex justify-content-center">
                         <img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" style="width: 250px;">
                     </div>
-                    <p class="text-dark text-wrap text-center">Your email is already verified.</p>
-                    <p class="text-dark text-wrap text-center">Discover the latest technology with us.</p>
+                    <p class="text-dark text-wrap text-center">Email anda telah terverifikasi.</p>
+                    <p class="text-dark text-wrap text-center">Temukan teknologi terbaru bersama kami.</p>
                 </div>
             </div>
             <div class="col-md-6 right-box">
@@ -23,12 +23,12 @@
                     @csrf
                     <div class="row align-items-center">
                         <div class="header-text mb-4">
-                            <h2 class="text-primary font-weight-bold">Welcome Back!</h2>
-                            <p>We are glad to have you back.</p>    
+                            <h2 class="text-primary font-weight-bold">Selamat Datang Kembali!</h2>
+                            <p>Kami senang Anda kembali.</p>
                         </div>
 
                         <div class="input-group mb-3">
-                            <input id="email" type="email" class="form-control form-control-lg bg-light @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email Address">
+                            <input id="email" type="email" class="form-control form-control-lg bg-light @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Alamat Email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="input-group mb-3">
-                            <input id="password" type="password" class="form-control form-control-lg bg-light @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                            <input id="password" type="password" class="form-control form-control-lg bg-light @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Kata Sandi">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -48,19 +48,19 @@
                         <div class="input-group mb-5 d-flex justify-content-between">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" name="remember" id="formCheck" {{ old('remember') ? 'checked' : '' }}>
-                                <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
+                                <label for="formCheck" class="form-check-label text-secondary"><small>Simpan Akun Saya</small></label>
                             </div>
                             <div class="forgot">
                                 @if (Route::has('password.request'))
-                                    <small><a href="{{ route('password.request') }}" style="color: #5bc0de;">Forgot Your Password?</a></small>
+                                    <small><a href="{{ route('password.request') }}" style="color: #5bc0de;">Lupa Password Anda?</a></small>
                                 @endif
                             </div>
                         </div>
 
                         <div class="input-group mb-3">
-                            <button type="submit" class="btn btn-lg text-white w-100 fs-6" style="background: #5bc0de;">Sign In</button>
+                            <button type="submit" class="btn btn-lg text-white w-100 fs-6" style="background: #5bc0de;">Masuk</button>
                         </div>
-                        
+
                     </div>
                 </form>
             </div>

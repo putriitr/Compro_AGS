@@ -6,7 +6,7 @@
         <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h1>Create Monitoring Data for {{ $userProduk->produk->nama }}</h1>
+            <h1>Buat Data Monitoring untuk {{ $userProduk->produk->nama }}</h1>
         </div>
         <div class="card-body">
             <!-- Form to create monitoring data -->
@@ -18,7 +18,7 @@
 
                 <!-- Display the selected product name (disabled input for product) -->
                 <div class="form-group">
-                    <label for="product_name">Selected Product</label>
+                    <label for="product_name">Produk yang dipilih</label>
                     <input type="text" class="form-control" value="{{ $userProduk->produk->nama }}" disabled>
                 </div>
 
@@ -36,7 +36,7 @@
 
                 <!-- Submit Button -->
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Create Monitoring Data</button>
+                    <button type="submit" class="btn btn-primary">Buat Data Monitoring</button>
                 </div>
             </form>
         </div>

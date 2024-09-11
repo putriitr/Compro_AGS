@@ -4,8 +4,8 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h1 class="h4">Brand & Partner List</h1>
-                <a href="{{ route('admin.brand.create') }}" class="btn btn-primary">Add New Brand/Partner</a>
+                <h1 class="h4">Daftar Merek/Brand/Induk Perusahaan</h1>
+                <a href="{{ route('admin.brand.create') }}" class="btn btn-primary">Tambah Merek/Mitra/Induk Perusahaan Baru</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -13,10 +13,10 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>ID</th>
-                                <th>Image</th>
-                                <th>Type</th>
+                                <th>Gambar</th>
+                                <th>Tipe</th>
                                 <th>URL</th>
-                                <th class="text-center">Actions</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,7 +32,7 @@
                                             <form action="{{ route('admin.brand.destroy', $brandPartner->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Hapus</button>
                                             </form>
                                         </div>
                                     </td>

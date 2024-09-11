@@ -23,10 +23,10 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group mb-3">
-                    <label for="name">Nama Bidang Perusahaan:</label>
+                    <label for="name">Nama Bidang Perusahaan :</label>
                     <input type="text" name="name" class="form-control" id="name" value="{{ $bidang->name }}" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Perbaharui</button>
             </form>
         </div>
     </div>

@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header">
-            <h2 class="h4">Edit Company Parameter</h2>
+            <h2 class="h4">Edit Parameter Perusahaan</h2>
         </div>
 
         <div class="card-body">
@@ -14,7 +14,7 @@
 
                 @include('admin.parameter.partials.form')
 
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Perbaharui</button>
             </form>
         </div>
     </div>

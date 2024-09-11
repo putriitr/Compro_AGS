@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header">
-            <h2 class="h4">Add New Location</h2>
+            <h2 class="h4">Tambah Lokasi Baru</h2>
         </div>
 
         <div class="card-body">
@@ -22,21 +22,21 @@
                 @csrf
 
                 <div class="form-group mb-3">
-                    <label for="province">Province</label>
+                    <label for="province">Provinsi</label>
                     <input type="text" class="form-control" id="province" name="province" value="{{ old('province') }}" required>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="latitude">Latitude</label>
+                    <label for="latitude">Lintang</label>
                     <input type="text" class="form-control" id="latitude" name="latitude" value="{{ old('latitude') }}" required>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="longitude">Longitude</label>
+                    <label for="longitude">Bujur</label>
                     <input type="text" class="form-control" id="longitude" name="longitude" value="{{ old('longitude') }}" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3">Add Location</button>
+                <button type="submit" class="btn btn-primary mt-3">Tambah Lokasi</button>
             </form>
         </div>
     </div>

@@ -4,8 +4,8 @@
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h1 class="h4">Company Parameters</h1>
-            <a href="{{ route('parameter.create') }}" class="btn btn-primary">Add New Parameter</a>
+            <h1 class="h4">Parameter Perusahaan</h1>
+            <a href="{{ route('parameter.create') }}" class="btn btn-primary">Tambah Parameter Baru</a>
         </div>
 
         <div class="card-body">
@@ -18,10 +18,10 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Email</th>
-                            <th>Phone</th>
+                            <th>Nomor Telepon</th>
                             <th>WhatsApp</th>
-                            <th>Address</th>
-                            <th>Actions</th>
+                            <th>Alamat</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@
                                     <form action="{{ route('parameter.destroy', $parameter->id) }}" method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">Hapus</button>
                                     </form>
                                 </td>
                             </tr>

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h2>Edit Products for {{ $member->name }}</h2>
+                    <h2>Edit Produk untuk {{ $member->name }}</h2>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('members.update-products', $member->id) }}" method="POST">
@@ -40,7 +40,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="pembelian_{{ $userProduk->produk->id }}">Purchase Date</label>
+                                                <label for="pembelian_{{ $userProduk->produk->id }}">Tanggal Pembelian</label>
                                                 <input type="date" name="pembelian[]" id="pembelian_{{ $userProduk->produk->id }}" class="form-control" value="{{ $userProduk->pembelian }}">
                                             </div>
                                         </div>
@@ -49,7 +49,7 @@
                             @endforeach
                         </div>
 
-                            <button type="submit" class="btn btn-primary btn-sm">Update Products</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Perbaharui Produk</button>
                     </form>
                 </div>
             </div>

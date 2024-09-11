@@ -78,7 +78,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('admin.monitoring.index') }}">
-                                    <span class="sub-item">Pengawasan</span>
+                                    <span class="sub-item">Monitoring</span>
                                 </a>
                             </li>
                         </ul>
