@@ -20,7 +20,7 @@ class CategoriesSeeder extends Seeder
                 'nama' => 'Hidrolika',
             ],
             [
-                'nama' => 'Semen',
+                'nama' => 'Beton',
             ],
             [
                 'nama' => 'Tanah',
@@ -61,7 +61,6 @@ class CategoriesSeeder extends Seeder
             [
                 'nama' => 'Perkeretaapian',
             ],
-
         ]);
     }
 }

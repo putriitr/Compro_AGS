@@ -86,10 +86,9 @@
             <div class="container py-5">
                 <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0" style="font-weight: bold;">Our Product</h4>
+                        <h4 class="sub-title px-3 mb-0">{{ __('messages.find_products') }}</h4>
                     </div>
-                    <h1 class="display-3 mb-4" style="font-size: 2.5rem; font-weight: 700;">Elevate your lifestyle with our
-                        top-quality solutions.</h1>
+                    <h1 class="display-3 mb-4">{{ __('messages.our_products') }}</h1>
                 </div>
                 <div class="row g-4 justify-content-center">
                     @foreach ($produks as $produk)
