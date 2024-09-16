@@ -62,8 +62,8 @@
                               <li><a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a></li>
                             </ul>
                           </div>
- --}}                          
-                        
+ --}}
+
                     </div>
 
                 </div>
@@ -140,7 +140,7 @@
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
                 <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" class="me-2"
                     style="height: 50px; width: auto;">
-                <span class="fs-5 text-dark">{{ $compro->nama_perusahaan ?? 'PT Arkamaya Guna Saharsa' }}</span>
+                <span class="fs-5 text-dark">PT Arkamaya Guna Saharsa</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -151,7 +151,7 @@
                     <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
                     <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
-                    
+
                     @if ($brand->isNotEmpty())
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
@@ -162,7 +162,7 @@
                             </div>
                         </div>
                     @endif
-                    
+
                     @foreach ($activeMetas as $type => $metas)
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}" aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
@@ -173,11 +173,11 @@
                             </div>
                         </div>
                     @endforeach
-                    
+
                     @auth
                         <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
                     @endauth
-            
+
                     <!-- Dropdown for language selection -->
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
@@ -192,7 +192,7 @@
                         <div class="dropdown-menu dropdown-menu-end m-0">
                             <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
                                 <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
-                                {{ __('messages.bahasa') }} 
+                                {{ __('messages.bahasa') }}
                             </a>
                             <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
                                 <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
@@ -200,7 +200,7 @@
                             </a>
                         </div>
                     </div>
-            
+
                     <style>
                         .dropdown-menu .dropdown-item {
                             font-size: 15px; /* Atur ukuran teks sesuai keinginan */
@@ -219,10 +219,10 @@
                     </style>
                 </div>
             </div>
-            
+
         </nav>
     </div>
-    
+
     <!-- Navbar End -->
 
     <style>

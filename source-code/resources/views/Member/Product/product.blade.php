@@ -1,7 +1,7 @@
 @extends('layouts.member.master')
 
 @section('content')
-    <!-- Header Start -->
+    {{-- <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb" style="background-color: #f4f4f4;">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Produk Kami</h1>
@@ -11,7 +11,7 @@
             </ol>
         </div>
     </div>
-    <!-- Header End -->
+    <!-- Header End --> --}}
 
     <div class="container mt-5">
         <div class="row">
