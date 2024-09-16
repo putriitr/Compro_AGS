@@ -17,7 +17,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     </div>
                     <h6 class="text-white mb-6">{{ $compro->nama_perusahaan??  "PT Arkamaya Guna Saharsa" }}</h6>
                     <div class="d-flex align-items-center">
-                        <i class="fas fa-share fa-2x text-white me-2"></i>
+                        <i class="fas fa-share fa-2x text-white me-2"></i>f
                         <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $compro->instagram??  "#" }}"><i
                                 class="fab fa-instagram"></i></a>
                         <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $compro->linkedin??  "#" }}"><i
