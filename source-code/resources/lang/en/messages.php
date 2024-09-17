@@ -25,7 +25,7 @@ return [
 
     'home' => 'Home',
     'about' => 'About',
-    'activity' => 'Activity',
+    'activity' => 'Company Activity',
     'products' => 'Products',
     'ecommerce' => 'E-Commerce',
     'portal_member' => 'Member Portal',
@@ -77,5 +77,5 @@ return [
     'email_not_available' => 'Email not available',
     'phone_not_available' => 'Phone not available',
     'whatsapp_not_available' => 'WhatsApp not available',
-    
+
 ];

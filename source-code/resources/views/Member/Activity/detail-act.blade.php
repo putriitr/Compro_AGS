@@ -1,7 +1,7 @@
 @extends('layouts.member.master')
 
 @section('content')
-    <!-- Header Start -->
+    {{-- <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Aktivitas Perusahaan</h1>
@@ -12,7 +12,7 @@
                 </ol>
         </div>
     </div>
-    <!-- Header End -->
+    <!-- Header End --> --}}
 
     <!-- Activity 2 Start -->
     <div id="act-1" class="container-fluid appointment py-5">
