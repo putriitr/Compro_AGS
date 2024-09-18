@@ -9,46 +9,46 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
         <div class="row g-5">
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="footer-item d-flex flex-column">
-                    <div class="feature-icon mb-4">
-                        <div class="p-3 d-inline-flex bg-white rounded">
-                            <form action="{{ route('guest-messages.store') }}" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="nama">Nama:</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" required>
+                    <!-- Form Start -->
+                    <form action="{{ route('guest-messages.store') }}" method="POST" class="bg-light p-4 rounded">
+                        @csrf
+                        <h4 class="text-dark mb-4">{{ __('messages.leave_message') }}</h4>
+                        <div class="row g-3">
+                            <!-- First Name and Last Name Side by Side -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="first_name" class="form-label">{{ __('messages.full_name') }} <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">{{ __('messages.email') }} <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="perusahaan">Perusahaan:</label>
-                                    <input type="text" id="perusahaan" name="perusahaan" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="company" class="form-label">{{ __('messages.company') }} <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="company" name="company" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="no_wa">Nomor WhatsApp:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">{{ __('messages.phone') }} <span class="text-danger">*</span></label>
                                     <input type="tel" id="no_wa" name="no_wa" class="form-control" required pattern="\d{10,12}" title="Nomor WhatsApp harus terdiri dari 10 hingga 12 digit angka" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="12">
                                 </div>
-                                                                                                
-                                <div class="form-group">
-                                    <label for="pesan">Pesan:</label>
-                                    <textarea id="pesan" name="pesan" class="form-control" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-                            </form>
-                            
-                            
-                            
+                            </div>
                         </div>
-                    </div>
-                    <h6 class="text-white mb-6">{{ $compro->nama_perusahaan??  "PT Arkamaya Guna Saharsa" }}</h6>
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-share fa-2x text-white me-2"></i>f
-                        <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $compro->instagram??  "#" }}"><i
-                                class="fab fa-instagram"></i></a>
-                        <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href="{{ $compro->linkedin??  "#" }}"><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">{{ __('messages.your_message') }} <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">{{ __('messages.send_message') }}</button>
+                    </form>
+                    <!-- Form End -->
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
@@ -57,6 +57,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.about_us') }}</a>
                     <a href="{{ route('home') }}#merek-mitra"><i class="fas fa-angle-right me-2"></i> {{ __('messages.brands_partners') }}</a>
                     <a href="{{ route('activity') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_activity') }}</a>
+                    <a href="{{ route('portal.qna') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.qna-guest') }}</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
@@ -101,7 +102,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     <!-- WhatsApp -->
                     @if(!empty($compro->no_wa))
                         <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->no_wa) }}" class="mb-3">
-                            <i class="fab fa-whatsapp fa-2x"></i> +{{ $compro->no_wa }}
+                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_wa }}
                         </a>
                     @else
                         <p><i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.whatsapp_not_available') }}</p>

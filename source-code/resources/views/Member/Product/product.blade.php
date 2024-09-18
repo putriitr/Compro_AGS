@@ -17,7 +17,7 @@
         <div class="row">
             <!-- Sidebar Start -->
             <div class="col-lg-3">
-                <h4 class="mb-4 text-dark font-weight-bold">Kategori</h4>
+                <h4 class="mb-4 text-dark font-weight-bold">{{ __('messages.category') }}</h4>
                 <ul class="list-group mb-4 shadow-sm">
                     @foreach($kategori as $kat)
                         <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
@@ -36,11 +36,11 @@
             <!-- Main Content Start -->
             <div class="col-lg-9">
                 <div class="d-flex justify-content-between mb-4">
-                    <h3 class="font-weight-bold" style="color: #6196FF;">Jelajahi Produk</h3>
+                    <h3 class="font-weight-bold" style="color: #6196FF;">{{ __('messages.explore_product') }}</h3>
                     <select class="form-select w-25 border-0 bg-light shadow-sm">
-                        <option selected>Urut berdasarkan</option>
-                        <option value="1">Terbaru</option>
-                        <option value="2">Terlama</option>
+                        <option selected>{{ __('messages.sort_by') }}</option>
+                        <option value="1">{{ __('messages.newest') }}</option>
+                        <option value="2">{{ __('messages.latest') }}</option>
                     </select>
                 </div>
 

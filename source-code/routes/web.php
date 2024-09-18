@@ -43,7 +43,7 @@ use App\Http\Controllers\Member\Location\LocationMemberController;
         Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
 
         Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
-        
+
         Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
         Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
         Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');
@@ -74,6 +74,7 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
         Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
+        Route::get('/guestqna', [PortalController::class, 'Faq'])->name('portal.qna');
     });
 });
 
@@ -82,7 +83,7 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-     
+
         Route::resource('admin/members', MemberController::class);
         Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
         Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');

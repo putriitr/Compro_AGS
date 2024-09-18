@@ -79,4 +79,18 @@ return [
     'phone_not_available' => 'Telepon tidak tersedia',
     'whatsapp_not_available' => 'WhatsApp tidak tersedia',
 
+    'leave_message' => 'Tinggalkan Pesan',
+    'full_name' => 'Nama Lengkap',
+    'email' => 'Email',
+    'company' => 'Perusahaan',
+    'phone' => 'Nomor Telepon',
+    'your_message' => 'Pesan Anda',
+    'send_message' => 'Kirim Pesan',
+    'qna-guest' => 'Pertanyaan',
+
+    'category' => 'Kategori',
+    'sort_by' => 'Urut Berdasarkan',
+    'newest' => 'Terbaru',
+    'latest' => 'Terlama',
+    'explore_product' => 'Jelajahi Produk',
 ];

@@ -78,4 +78,19 @@ return [
     'phone_not_available' => 'Phone not available',
     'whatsapp_not_available' => 'WhatsApp not available',
 
+    'leave_message' => 'Leave Message',
+    'full_name' => 'Full Name',
+    'email' => 'Email',
+    'company' => 'Company',
+    'phone' => 'Phone Number',
+    'your_message' => 'Your Message',
+    'send_message' => 'Send Message',
+    'qna-guest' => 'QnA',
+
+    'category' => 'Category',
+    'sort_by' => 'Sort By',
+    'newest' => 'Newest',
+    'latest' => 'Latest',
+    'explore_product' => 'Explore Product',
+
 ];
