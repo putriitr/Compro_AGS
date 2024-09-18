@@ -11,8 +11,34 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                 <div class="footer-item d-flex flex-column">
                     <div class="feature-icon mb-4">
                         <div class="p-3 d-inline-flex bg-white rounded">
-                            <img src="{{ $compro && $compro->logo ? asset('storage/' . $compro->logo) : asset('assets/img/about.jpeg') }}" alt="Logo"
-                                class="img-fluid" style="width: 100%; height: 150px; border-radius: 50%;">
+                            <form action="{{ route('guest-messages.store') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="nama">Nama:</label>
+                                    <input type="text" id="nama" name="nama" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="perusahaan">Perusahaan:</label>
+                                    <input type="text" id="perusahaan" name="perusahaan" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="no_wa">Nomor WhatsApp:</label>
+                                    <input type="tel" id="no_wa" name="no_wa" class="form-control" required pattern="\d{10,12}" title="Nomor WhatsApp harus terdiri dari 10 hingga 12 digit angka" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="12">
+                                </div>
+                                                                                                
+                                <div class="form-group">
+                                    <label for="pesan">Pesan:</label>
+                                    <textarea id="pesan" name="pesan" class="form-control" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                            </form>
+                            
+                            
+                            
                         </div>
                     </div>
                     <h6 class="text-white mb-6">{{ $compro->nama_perusahaan??  "PT Arkamaya Guna Saharsa" }}</h6>

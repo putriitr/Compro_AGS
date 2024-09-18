@@ -21,7 +21,8 @@
     use App\Http\Controllers\Member\Profile\ProfileMemberController;
     use App\Http\Controllers\Admin\Location\LocationController;
     use App\Http\Controllers\Admin\Visitor\VisitorController;
-    use App\Http\Controllers\Member\Location\LocationMemberController;
+use App\Http\Controllers\Guest\Message\GuestMessageController;
+use App\Http\Controllers\Member\Location\LocationMemberController;
     use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
     /*
@@ -48,7 +49,9 @@
         Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');
         Route::get('/member/meta', [MetaMemberController::class, 'showMeta'])->name('member.meta.index');
         Route::get('/locations', [LocationMemberController::class, 'index']);
-        
+        Route::get('/admin/guest-messages', [GuestMessageController::class, 'index'])->name('admin.guest-messages.index');
+        Route::post('/guest-messages', [GuestMessageController::class, 'store'])->name('guest-messages.store');
+
     Auth::routes();
     });
 
