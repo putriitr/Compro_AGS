@@ -93,4 +93,7 @@ return [
     'newest' => 'Terbaru',
     'latest' => 'Terlama',
     'explore_product' => 'Jelajahi Produk',
+
+    'qna_top' => 'Mendapat masalah?',
+    'qna_bottom' => 'Pertanyaan dan Jawaban',
 ];

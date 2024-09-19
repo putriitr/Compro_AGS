@@ -93,12 +93,12 @@
                     <h4 class="text-section">Pesan Guest</h4>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#product-management">
+                    <a data-bs-toggle="collapse" href="#message-management">
                         <i class="fas fa-shopping-cart"></i>
                         <p>Messages Guest</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="product-management">
+                    <div class="collapse" id="message-management">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.guest-messages.index') }}">
@@ -170,7 +170,12 @@
                             </li>
                             <li>
                                 <a href="{{ route('admin.faq.index') }}">
-                                    <span class="sub-item">Pertanyaan</span>
+                                    <span class="sub-item">QnA Member</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.qnaguest.index') }}">
+                                    <span class="sub-item">QnA Guest</span>
                                 </a>
                             </li>
                         </ul>

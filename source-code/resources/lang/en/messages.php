@@ -93,4 +93,7 @@ return [
     'latest' => 'Latest',
     'explore_product' => 'Explore Product',
 
+    'qna_top' => 'Have Any Problem?',
+    'qna_bottom' => 'Questions and Answers',
+
 ];

@@ -5,9 +5,9 @@
         <div class="container py-5">
             <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">Have any problem?</h4>
+                    <h4 class="sub-title px-3 mb-0">{{ __('messages.qna_top') }}</h4>
                 </div>
-                <h1 class="display-3 mb-4">Questions and Answers</h1>
+                <h1 class="display-3 mb-4">{{ __('messages.qna_bottom') }}</h1>
             </div>
             <div class="container">
                 <div class="row justify-content-center">
