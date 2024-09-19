@@ -140,7 +140,7 @@
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
                 <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" class="me-2"
                     style="height: 50px; width: auto;">
-                <span class="fs-5 text-dark">PT Arkamaya Guna Saharsa</span>
+                <span class="fs-6 text-dark">PT Arkamaya Guna Saharsa</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -173,6 +173,8 @@
                             </div>
                         </div>
                     @endforeach
+
+                    <a href="#footer-section" class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
 
                     @auth
                         <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>

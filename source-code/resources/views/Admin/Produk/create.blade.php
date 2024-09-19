@@ -57,9 +57,34 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tipe">Tipe Produk :</label>
+                                                <input type="text" name="tipe" class="form-control" value="{{ old('tipe') }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="link">Link E-Katalog Produk :</label>
+                                                <input type="text" name="link" class="form-control" value="{{ old('link') }}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="kegunaan">Kegunaan Produk :</label>
                                         <textarea name="kegunaan" class="form-control" required>{{ old('kegunaan') }}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="deskripsi">Deskripsi Produk :</label>
+                                        <textarea name="deskripsi" class="form-control" required>{{ old('deskripsi') }}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="spesifikasi">Spesifikasi Produk :</label>
+                                        <textarea name="spesifikasi" class="form-control" required>{{ old('spesifikasi') }}</textarea>
                                     </div>
 
                                     <div class="row">

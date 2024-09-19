@@ -26,7 +26,7 @@ return [
 
     'home' => 'Beranda',
     'about' => 'Tentang',
-    'activity' => 'Aktivitas Perusahaan',
+    'activity' => 'Kegiatan Perusahaan',
     'products' => 'Produk',
     'ecommerce' => 'E-Commerce',
     'portal_member' => 'Portal Member',
@@ -83,7 +83,7 @@ return [
     'full_name' => 'Nama Lengkap',
     'email' => 'Email',
     'company' => 'Perusahaan',
-    'phone' => 'Nomor Telepon',
+    'phone' => 'Telepon',
     'your_message' => 'Pesan Anda',
     'send_message' => 'Kirim Pesan',
     'qna-guest' => 'Pertanyaan',
@@ -96,4 +96,13 @@ return [
 
     'qna_top' => 'Mendapat masalah?',
     'qna_bottom' => 'Pertanyaan dan Jawaban',
+    'contact_us' => 'Kontak',
+    'similar_product' => 'Produk Serupa',
+
+    'merk' => 'Merek',
+    'type' => 'Tipe',
+    'link' => 'E-Katalog',
+    'description_product' => 'Deskripsi',
+    'specification_product' => 'Spesifikasi',
+    'click_here' => 'Klik Disini',
 ];

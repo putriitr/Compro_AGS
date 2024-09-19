@@ -25,7 +25,7 @@ return [
 
     'home' => 'Home',
     'about' => 'About',
-    'activity' => 'Company Activity',
+    'activity' => 'Company Activities',
     'products' => 'Products',
     'ecommerce' => 'E-Commerce',
     'portal_member' => 'Member Portal',
@@ -82,7 +82,7 @@ return [
     'full_name' => 'Full Name',
     'email' => 'Email',
     'company' => 'Company',
-    'phone' => 'Phone Number',
+    'phone' => 'Phone',
     'your_message' => 'Your Message',
     'send_message' => 'Send Message',
     'qna-guest' => 'QnA',
@@ -95,5 +95,13 @@ return [
 
     'qna_top' => 'Have Any Problem?',
     'qna_bottom' => 'Questions and Answers',
+    'contact_us' => 'Contact',
+    'similar_product' => 'Similar Products',
 
+    'merk' => 'Brand',
+    'type' => 'Type',
+    'link' => 'E-Katalog',
+    'description_product' => 'Description',
+    'specification_product' => 'Specification',
+    'click_here' => 'Click Here',
 ];

@@ -54,8 +54,28 @@
                                     </div>
 
                                     <div class="form-group mb-3">
+                                        <label for="tipe">Tipe Produk :</label>
+                                        <input type="text" name="tipe" class="form-control" value="{{ old('tipe', $produk->tipe) }}" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="link">Link E-Katalog Produk :</label>
+                                        <input type="text" name="link" class="form-control" value="{{ old('link', $produk->link) }}" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
                                         <label for="kegunaan">Kegunaan Produk :</label>
                                         <textarea name="kegunaan" class="form-control" required>{{ old('kegunaan', $produk->kegunaan) }}</textarea>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="deskripsi">Deskripsi Produk :</label>
+                                        <textarea name="deskripsi" class="form-control" required>{{ old('deskripsi', $produk->deskripsi) }}</textarea>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="spesifikasi">Spesifikasi Produk :</label>
+                                        <textarea name="spesifikasi" class="form-control" required>{{ old('spesifikasi', $produk->spesifikasi) }}</textarea>
                                     </div>
 
                                     <div class="form-group mb-3">
