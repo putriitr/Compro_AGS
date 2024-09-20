@@ -26,7 +26,7 @@ return [
 
     'home' => 'Beranda',
     'about' => 'Tentang',
-    'activity' => 'Kegiatan Perusahaan',
+    'activity' => 'Kegiatan Terkini',
     'products' => 'Produk',
     'ecommerce' => 'E-Commerce',
     'portal_member' => 'Portal Member',
