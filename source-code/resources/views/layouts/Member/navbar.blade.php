@@ -53,7 +53,7 @@
                                 <i class="fas fa-envelope text-primary me-2"></i>Email Not Available
                             </p>
                         @endif
-{{--                         <div class="dropdown">
+                        {{--                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="languageSwitcher" data-bs-toggle="dropdown" aria-expanded="false">
                               {{ strtoupper(app()->getLocale()) }} <!-- Menampilkan bahasa saat ini -->
                             </button>
@@ -154,10 +154,12 @@
 
                     @if ($brand->isNotEmpty())
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
+                            <a href="#" class="nav-link dropdown-toggle"
+                                data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
                             <div class="dropdown-menu m-0">
                                 @foreach ($brand as $singleBrand)
-                                    <a href="{{ $singleBrand->url }}" class="dropdown-item">{{ $singleBrand->nama }}</a>
+                                    <a href="{{ $singleBrand->url }}"
+                                        class="dropdown-item">{{ $singleBrand->nama }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -165,25 +167,28 @@
 
                     @foreach ($activeMetas as $type => $metas)
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}" aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}"
+                                aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
                             <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
                                 @foreach ($metas as $meta)
-                                    <a href="{{ route('member.meta.show', $meta->slug) }}" class="dropdown-item">{{ $meta->title }}</a>
+                                    <a href="{{ route('member.meta.show', $meta->slug) }}"
+                                        class="dropdown-item">{{ $meta->title }}</a>
                                 @endforeach
                             </div>
                         </div>
                     @endforeach
 
-                    <a href="#footer-section" class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
-
                     @auth
                         <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
                     @endauth
 
+                    <a href="#footer-section" id="contact-link"
+                        class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
+
                     <!-- Dropdown for language selection -->
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            @if(LaravelLocalization::getCurrentLocale() == 'id')
+                            @if (LaravelLocalization::getCurrentLocale() == 'id')
                                 <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
                             @elseif(LaravelLocalization::getCurrentLocale() == 'en')
                                 <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
@@ -205,19 +210,24 @@
 
                     <style>
                         .dropdown-menu .dropdown-item {
-                            font-size: 15px; /* Atur ukuran teks sesuai keinginan */
+                            font-size: 15px;
+                            /* Atur ukuran teks sesuai keinginan */
                         }
+
                         .dropdown-menu {
                             left: auto;
-                            right: 0; /* Menempelkan dropdown ke kanan */
+                            right: 0;
+                            /* Menempelkan dropdown ke kanan */
                         }
 
                         .dropdown-item img {
-                            margin-right: 10px; /* Jarak antara gambar dan teks */
-                            border-right: 1px solid #ccc; /* Garis vertikal antara gambar dan teks */
-                            padding-right: 10px; /* Tambahkan padding agar teks tidak terlalu dekat dengan garis */
+                            margin-right: 10px;
+                            /* Jarak antara gambar dan teks */
+                            border-right: 1px solid #ccc;
+                            /* Garis vertikal antara gambar dan teks */
+                            padding-right: 10px;
+                            /* Tambahkan padding agar teks tidak terlalu dekat dengan garis */
                         }
-
                     </style>
                 </div>
             </div>
@@ -241,11 +251,24 @@
         document.addEventListener('DOMContentLoaded', function() {
             const links = document.querySelectorAll('.navbar-nav .nav-link');
             const currentUrl = window.location.href;
+            const contactLink = document.getElementById('contact-link'); // Mendapatkan elemen "Contact Us"
 
+            // Menandai link yang aktif berdasarkan URL saat ini
             links.forEach(link => {
                 if (link.href === currentUrl) {
                     link.classList.add('active');
                 }
+            });
+
+            // Menambahkan event listener untuk "Contact Us" di navbar
+            contactLink.addEventListener('click', function() {
+                // Hapus kelas 'active' dari semua link navbar
+                links.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Tambahkan kelas 'active' hanya pada link "Contact Us"
+                contactLink.classList.add('active');
             });
         });
     </script>
