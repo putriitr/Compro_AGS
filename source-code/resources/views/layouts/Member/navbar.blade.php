@@ -250,25 +250,52 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const links = document.querySelectorAll('.navbar-nav .nav-link');
+            const contactLink = document.querySelector('.navbar-nav .nav-link[href="#footer-section"]');
             const currentUrl = window.location.href;
-            const contactLink = document.getElementById('contact-link'); // Mendapatkan elemen "Contact Us"
+            const footerSection = document.querySelector('#footer-section');
 
-            // Menandai link yang aktif berdasarkan URL saat ini
-            links.forEach(link => {
-                if (link.href === currentUrl) {
-                    link.classList.add('active');
+            // Set the active link on page load
+            function setActiveLink() {
+                let foundActive = false;
+
+                // Check if user is near the footer section
+                if (window.scrollY + window.innerHeight >= footerSection.offsetTop) {
+                    links.forEach(link => link.classList.remove('active'));
+                    contactLink.classList.add('active');
+                    foundActive = true;
                 }
-            });
 
-            // Menambahkan event listener untuk "Contact Us" di navbar
-            contactLink.addEventListener('click', function() {
-                // Hapus kelas 'active' dari semua link navbar
-                links.forEach(link => {
-                    link.classList.remove('active');
+                if (!foundActive) {
+                    // If the footer isn't in view, set the active link based on URL
+                    links.forEach(link => {
+                        if (link.href === currentUrl) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            }
+
+            // On click of Contact Us, scroll to footer and make the link active
+            contactLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: footerSection.offsetTop,
+                    behavior: 'smooth'
                 });
 
-                // Tambahkan kelas 'active' hanya pada link "Contact Us"
+                // Manually set Contact Us as active when clicked
+                links.forEach(link => link.classList.remove('active'));
                 contactLink.classList.add('active');
             });
+
+            // Add scroll event listener to manage active link state
+            window.addEventListener('scroll', function() {
+                setActiveLink();
+            });
+
+            // Initial check on page load
+            setActiveLink();
         });
     </script>
