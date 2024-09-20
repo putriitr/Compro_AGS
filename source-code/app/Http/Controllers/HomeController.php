@@ -29,15 +29,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $produks = Produk::take(6)->get(); 
-        $sliders = Slider::all(); 
+        $produks = Produk::take(6)->get();
+        $sliders = Slider::all();
         $company = CompanyParameter::first(); // Single object, not a collection
         $brand = BrandPartner::where('type', 'brand')->get();
-        $partners = BrandPartner::where('type', 'partner')->get();  
-        $principals = BrandPartner::where('type', 'principal')->get();  
-        
-        $locale = app()->getLocale(); 
-    
+        $partners = BrandPartner::where('type', 'partner')->get();
+        $principals = BrandPartner::where('type', 'principal')->get();
+
+        $locale = app()->getLocale();
+
         // Terjemahkan nama produk
         foreach ($sliders as $slider) {
             $slider->title = TranslateHelper::translate($slider->title, $locale);
@@ -45,14 +45,14 @@ class HomeController extends Controller
             $slider->button_text = TranslateHelper::translate($slider->button_text, $locale);
             $slider->description = TranslateHelper::translate($slider->description, $locale);
         }
-    
+
         if ($company) {
             $company->sejarah_singkat = TranslateHelper::translate($company->sejarah_singkat, $locale);
         }
-    
+
         return view('home', compact('produks', 'sliders', 'company', 'brand', 'partners', 'principals'));
     }
-    
+
 
 
 
@@ -73,9 +73,9 @@ class HomeController extends Controller
         $totalProducts = Produk::count(); // Assuming Product model
         $totalMonitoredProducts = Monitoring::count(); // Assuming Monitoring model
         $totalActivities = Activity::count(); // Assuming Activity model
-    
-        
-    
+
+
+
 
         // Return the view with data
         return view('dashboard', compact('dates', 'visits', 'totalMembers', 'totalProducts', 'totalMonitoredProducts', 'totalActivities'));
@@ -88,7 +88,7 @@ class HomeController extends Controller
         $partners = BrandPartner::where('type', 'partner')->get();  // Filter by 'partner'
         $principals = BrandPartner::where('type', 'principal')->get();  // Filter by 'principal'
 
-        $locale = app()->getLocale(); 
+        $locale = app()->getLocale();
 
         if ($company) {
             $company->sejarah_singkat = TranslateHelper::translate($company->sejarah_singkat, $locale);
@@ -102,7 +102,7 @@ class HomeController extends Controller
             $company->misi = TranslateHelper::translate($company->misi, $locale);
         }
 
-        return view('Member.About.about', compact('company','brand', 'partners', 'principals'));
+        return view('member.about.about', compact('company','brand', 'partners', 'principals'));
     }
 
 
