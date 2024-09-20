@@ -46,30 +46,36 @@
 
                 <div class="row">
                     @foreach ($produks as $produk)
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-card border-0 shadow-sm"
-                            style="overflow: hidden; transition: transform 0.3s ease; border-radius: 10px; height: 400;">
-                            <a href="{{ route('product.show', $produk->id) }}">
-                                <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                    class="card-img-top" alt="{{ $produk->nama }}"
-                                    style="object-fit: contain; height: 250; transition: transform 0.3s ease;">
-                            </a>
-                            <div class="card-body text-center">
-                                @php
-                                    $name = $produk->nama;
-                                    $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
-                                @endphp
-                                <h5 class="card-title text-dark font-weight-bold">{{ $limitedName }}</h5>
-                                <a href="{{ route('product.show', $produk->id) }}"
-                                    class="btn btn-outline-primary rounded-pill px-4 py-2 mt-3"
-                                    style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
-                                    View Product →
+                        <div class="col-md-4 mb-4">
+                            <div class="card product-card border-0 shadow-sm"
+                                style="overflow: hidden; transition: transform 0.3s ease; border-radius: 10px; height: 400px;">
+                                <a href="{{ route('product.show', $produk->id) }}">
+                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                        class="card-img-top" alt="{{ $produk->nama }}"
+                                        style="object-fit: contain; height: 250px; transition: transform 0.3s ease;">
                                 </a>
+                                <div class="card-body text-center">
+                                    @php
+                                        $name = $produk->nama;
+                                        $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
+                                    @endphp
+                                    <h5 class="card-title text-dark font-weight-bold">{{ $limitedName }}</h5>
+                                    <a href="{{ route('product.show', $produk->id) }}"
+                                        class="btn btn-outline-primary rounded-pill px-4 py-2 mt-3"
+                                        style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
+                                        View Product →
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
+
+<!-- Pagination Links -->
+<div class="d-flex justify-content-center mt-4">
+    {{ $produks->links() }} <!-- Menampilkan link pagination -->
+</div>
+
             </div>
             <!-- Main Content End -->
         </div>

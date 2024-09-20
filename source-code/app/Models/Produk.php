@@ -48,6 +48,4 @@ class Produk extends Model
         return $this->hasMany(Brosur::class); // or use a different relationship type if necessary
     }
 
-
-
 }

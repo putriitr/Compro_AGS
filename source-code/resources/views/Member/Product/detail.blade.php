@@ -11,11 +11,11 @@
                     <ul style="list-style: none; padding: 0;">
                         <li style="font-weight: bold; color: black;">
                             <b>{{ __('messages.merk') }}</b>
-                            <span style="font-weight: normal; color: #555; margin-left: 52px;">{{ $produk->merk }}</span>
+                            <span style="font-weight: normal; color: #555; margin-left: 54px;">{{ $produk->merk }}</span>
                         </li>
                         <li style="font-weight: bold; color: black;">
                             <b>{{ __('messages.type') }}</b>
-                            <span style="font-weight: normal; color: #555; margin-left: 68px;">{{ $produk->tipe }}</span>
+                            <span style="font-weight: normal; color: #555; margin-left: 66px;">{{ $produk->tipe }}</span>
                         </li>
                         <li style="font-weight: bold; color: black;">
                             <b>{{ __('messages.link') }}</b>
@@ -122,32 +122,36 @@
     <div class="my-5"></div>
 
     <div class="container mt-4 py-5 mb-5"
-        style="background-color: #f9f9f9; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-
-        <!-- Similar Products Section -->
-        <h2 class="text-center text-uppercase font-weight-bold mb-5 " style="letter-spacing: 2px;">
-            {{ __('messages.similar_product') }}</h2>
-        <div class="bg-light p-5 rounded" style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);">
-            <div class="row">
-                @foreach ($produkSerupa as $similarProduct)
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card text-center"
-                            style="border-radius: 10px; overflow: hidden; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;">
-                            <a href="{{ route('product.show', $similarProduct->id) }}" class="d-block"
-                                style="text-decoration: none;">
-                                <img src="{{ asset($similarProduct->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                    class="img-fluid w-100" alt="{{ $similarProduct->nama }}"
-                                    style="max-height: 220px; object-fit: cover; transition: transform 0.3s ease;">
-                            </a>
-                            <div class="p-3" style="background-color: #fff;">
-                                <h5 class="mt-2 text-dark font-weight-bold">{{ $similarProduct->nama }}</h5>
-                            </div>
+    style="background-color: #f9f9f9; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+    <!-- Similar Products Section -->
+    <h2 class="text-center text-uppercase font-weight-bold mb-5" style="letter-spacing: 2px;">
+        {{ __('messages.similar_product') }}</h2>
+    <div class="bg-light p-5 rounded" style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);">
+        <div class="row">
+            @foreach ($produkSerupa as $similarProduct)
+                <div class="col-md-3 mb-4">
+                    <div class="product-card text-center"
+                        style="border-radius: 10px; overflow: hidden; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;">
+                        @php
+                            $name = $similarProduct->nama;
+                            $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '...' : $name;
+                        @endphp
+                        <a href="{{ route('product.show', $similarProduct->id) }}" class="d-block"
+                            style="text-decoration: none;">
+                            <img src="{{ asset($similarProduct->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                class="img-fluid w-100" alt="{{ $similarProduct->nama }}"
+                                style="max-height: 220px; object-fit: cover; transition: transform 0.3s ease;">
+                        </a>
+                        <div class="p-3" style="background-color: #fff;">
+                            <h5 class="mt-2 text-dark font-weight-bold">{{ $limitedName }}</h5>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
     </div>
+</div>
+
     </div>
 
     <!-- Custom CSS -->

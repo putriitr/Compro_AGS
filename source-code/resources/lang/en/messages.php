@@ -25,7 +25,7 @@ return [
 
     'home' => 'Home',
     'about' => 'About',
-    'activity' => 'Ours Activities ',
+    'activity' => 'Our Activities ',
     'products' => 'Products',
     'ecommerce' => 'E-Commerce',
     'portal_member' => 'Member Portal',

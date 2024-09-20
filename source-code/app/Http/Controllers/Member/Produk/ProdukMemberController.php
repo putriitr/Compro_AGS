@@ -18,10 +18,10 @@ class ProdukMemberController extends Controller
 
         // Check if a category is selected, if so, filter products by that category
         if ($categoryId) {
-            $produks = Produk::where('kategori_id', $categoryId)->get();
-            $selectedCategory = Kategori::find($categoryId); // To highlight the selected category
+            $produks = Produk::where('kategori_id', $categoryId)->paginate(9);
+            $selectedCategory = Kategori::find($categoryId);
         } else {
-            $produks = Produk::all();
+            $produks = Produk::paginate(9);
             $selectedCategory = null;
         }
 

@@ -175,7 +175,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        @if ($partners->count() > 8)
+                        @if ($partners->count() > 4)
                             <div class="text-center mt-4">
                                 <button id="show-more-partners"
                                     class="btn btn-primary">{{ __('messages.show_more') }}</button>
@@ -214,7 +214,7 @@
                             </div>
                         @endforeach
                     </div>
-                    @if ($principals->count() > 10)
+                    @if ($principals->count() > 8)
                         <div class="text-center mt-4">
                             <button id="show-more-principals"
                                 class="btn btn-primary">{{ __('messages.show_more') }}</button>
@@ -258,7 +258,7 @@
 
         document.getElementById('show-less-principals').addEventListener('click', function() {
             document.querySelectorAll('.principal-item').forEach(function(item, index) {
-                if (index >= 10) {
+                if (index >= 8) {
                     item.classList.add('d-none');
                 }
             });
