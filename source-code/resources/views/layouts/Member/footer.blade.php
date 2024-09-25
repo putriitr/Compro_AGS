@@ -9,12 +9,10 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
         <div class="row g-5">
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="footer-item d-flex flex-column">
-                    <!-- Form Start -->
                     <form action="{{ route('guest-messages.store') }}" method="POST" class="bg-light p-4 rounded">
                         @csrf
                         <h4 class="text-dark mb-4">{{ __('messages.leave_message') }}</h4>
                         <div class="row g-3">
-                            <!-- First Name and Last Name Side by Side -->
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="first_name" class="form-label">{{ __('messages.full_name') }} <span class="text-danger">*</span></label>
@@ -48,7 +46,6 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                         </div>
                         <button type="submit" class="btn btn-primary w-100">{{ __('messages.send_message') }}</button>
                     </form>
-                    <!-- Form End -->
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">

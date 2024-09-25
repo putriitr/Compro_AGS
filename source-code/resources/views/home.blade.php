@@ -188,8 +188,6 @@
             </div>
         </section>
     @endif
-
-
     <!-- Partner Section End -->
 
     <!-- Principal Section Start -->

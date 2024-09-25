@@ -158,12 +158,13 @@
                                 data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
                             <div class="dropdown-menu m-0">
                                 @foreach ($brand as $singleBrand)
-                                    <a href="{{ $singleBrand->url }}"
+                                    <a href="{{ (strpos($singleBrand->url, 'http://') === 0 || strpos($singleBrand->url, 'https://') === 0) ? $singleBrand->url : 'http://' . $singleBrand->url }}" target="_blank"
                                         class="dropdown-item">{{ $singleBrand->nama }}</a>
                                 @endforeach
                             </div>
                         </div>
                     @endif
+
 
                     @foreach ($activeMetas as $type => $metas)
                         <div class="nav-item dropdown">
