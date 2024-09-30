@@ -6,13 +6,12 @@
             </div>
         </div>
         <!-- Spinner End --> --}}
-    <!-- Topbar Start -->
 
+    <!-- Topbar Start -->
     @php
-        // Fetch the first record from the compro_parameter table
+        // Fetch the first record from the company_parameter table
         $compro = \App\Models\CompanyParameter::first();
     @endphp
-
 
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="container">
@@ -53,29 +52,15 @@
                                 <i class="fas fa-envelope text-primary me-2"></i>Email Not Available
                             </p>
                         @endif
-                        {{--                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="languageSwitcher" data-bs-toggle="dropdown" aria-expanded="false">
-                              {{ strtoupper(app()->getLocale()) }} <!-- Menampilkan bahasa saat ini -->
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="languageSwitcher">
-                              <li><a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL('id') }}">Indonesia</a></li>
-                              <li><a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a></li>
-                            </ul>
-                          </div>
- --}}
-
                     </div>
-
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-flex align-items-center justify-content-end">
-                        {{-- <a href="#"><small class="me-3"><i
-                                class="fa fa-user text-primary me-2"></i>Register</small></a> --}}
                         @if (auth()->check())
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    <small class=""><i
+                                    <small><i
                                             class="fa fa-user text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="companyDropdown">
@@ -101,21 +86,12 @@
                                 @csrf
                             </form>
                         @else
-                            <a href="{{ route('login') }}"><small
-                                    class="btn btn-primary rounded-pill text-white py-1 px-1"><i
-                                        class="fa fa-sign-in-alt text-white me-2"></i>Masuk Member</small></a>
+                            <a href="{{ route('login') }}">
+                                <small class="btn btn-primary rounded-pill text-white py-1 px-1">
+                                    <i class="fa fa-sign-in-alt text-white me-2"></i>Masuk Member
+                                </small>
+                            </a>
                         @endif
-                        {{-- <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><small><i
-                                    class="fa fa-home text-primary me-2"></i> My Dashboard</small></a>
-                        <div class="dropdown-menu rounded">
-                            <a href="#" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
-                            <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
-                            <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
-                            <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
-                            <a href="#" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
-                        </div>
-                    </div> --}}
                     </div>
                 </div>
             </div>
@@ -130,9 +106,7 @@
             ->groupBy('type');
 
         $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
-
     @endphp
-
 
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-5 shadow">
@@ -152,16 +126,21 @@
                     <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
 
+                    <!-- E-commerce Dropdown -->
                     @if ($brand->isNotEmpty())
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
-                            <div class="dropdown-menu m-0">
+                            <a href="#" class="nav-link dropdown-toggle" id="ecommerceDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ __('messages.ecommerce') }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ecommerceDropdown">
                                 @foreach ($brand as $singleBrand)
-                                    <a href="{{ (strpos($singleBrand->url, 'http://') === 0 || strpos($singleBrand->url, 'https://') === 0) ? $singleBrand->url : 'http://' . $singleBrand->url }}" target="_blank"
-                                        class="dropdown-item">{{ $singleBrand->nama }}</a>
+                                    <li>
+                                        <a href="{{ strpos($singleBrand->url, 'http://') === 0 || strpos($singleBrand->url, 'https://') === 0 ? $singleBrand->url : 'http://' . $singleBrand->url }}"
+                                            target="_blank" class="dropdown-item">{{ $singleBrand->nama }}</a>
+                                    </li>
                                 @endforeach
-                            </div>
+                            </ul>
                         </div>
                     @endif
 
@@ -208,95 +187,33 @@
                             </a>
                         </div>
                     </div>
-
-                    <style>
-                        .dropdown-menu .dropdown-item {
-                            font-size: 15px;
-                            /* Atur ukuran teks sesuai keinginan */
-                        }
-
-                        .dropdown-menu {
-                            left: auto;
-                            right: 0;
-                            /* Menempelkan dropdown ke kanan */
-                        }
-
-                        .dropdown-item img {
-                            margin-right: 10px;
-                            /* Jarak antara gambar dan teks */
-                            border-right: 1px solid #ccc;
-                            /* Garis vertikal antara gambar dan teks */
-                            padding-right: 10px;
-                            /* Tambahkan padding agar teks tidak terlalu dekat dengan garis */
-                        }
-                    </style>
                 </div>
             </div>
-
         </nav>
     </div>
-
     <!-- Navbar End -->
 
     <style>
         .navbar-nav .nav-link.active {
             color: #6196FF !important;
             border-bottom: 2px solid #6196FF;
-            /* Garis bawah */
+            /* Underline */
             padding-bottom: 5px;
-            /* Ruang antara teks dan garis */
+            /* Space for the underline */
         }
     </style>
 
     <script>
+        // Activate the current nav item based on the URL
         document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.navbar-nav .nav-link');
-            const contactLink = document.querySelector('.navbar-nav .nav-link[href="#footer-section"]');
-            const currentUrl = window.location.href;
-            const footerSection = document.querySelector('#footer-section');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const currentPath = window.location.pathname;
 
-            // Set the active link on page load
-            function setActiveLink() {
-                let foundActive = false;
-
-                // Check if user is near the footer section
-                if (window.scrollY + window.innerHeight >= footerSection.offsetTop) {
-                    links.forEach(link => link.classList.remove('active'));
-                    contactLink.classList.add('active');
-                    foundActive = true;
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
                 }
-
-                if (!foundActive) {
-                    // If the footer isn't in view, set the active link based on URL
-                    links.forEach(link => {
-                        if (link.href === currentUrl) {
-                            link.classList.add('active');
-                        } else {
-                            link.classList.remove('active');
-                        }
-                    });
-                }
-            }
-
-            // On click of Contact Us, scroll to footer and make the link active
-            contactLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: footerSection.offsetTop,
-                    behavior: 'smooth'
-                });
-
-                // Manually set Contact Us as active when clicked
-                links.forEach(link => link.classList.remove('active'));
-                contactLink.classList.add('active');
             });
-
-            // Add scroll event listener to manage active link state
-            window.addEventListener('scroll', function() {
-                setActiveLink();
-            });
-
-            // Initial check on page load
-            setActiveLink();
         });
     </script>
+</body>
