@@ -2,30 +2,27 @@
 
 @section('content')
 
-<!-- Menampilkan pesan error -->
-@if($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Ada Kesalahan:</h4>
-        <ul class="mb-0">
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    <!-- Menampilkan pesan error -->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Ada Kesalahan:</h4>
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-<!-- Menampilkan pesan sukses -->
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-        <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Berhasil!</h4>
-        <p>{{ session('success') }}</p>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-
-
-
+    <!-- Menampilkan pesan sukses -->
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Berhasil!</h4>
+            <p>{{ session('success') }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel mb-5">
@@ -153,16 +150,16 @@
     <!-- Product End -->
 
     <!-- Partner Section Start -->
-    @if ($partners->isNotEmpty())
-        <section id="merek-mitra">
-            <div class="container-fluid service mb-5">
-                <div class="container">
-                    <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="sub-style">
-                            <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
-                        </div>
-                        <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
+    <section id="merek-mitra">
+        <div class="container-fluid service mb-5">
+            <div class="container">
+                <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="sub-style">
+                        <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
                     </div>
+                    <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
+                </div>
+                @if ($partners->isNotEmpty())
                     <div class="container overflow-hidden">
                         <div class="row gy-4">
                             @foreach ($partners as $key => $p)
@@ -184,22 +181,22 @@
                             </div>
                         @endif
                     </div>
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
     @endif
     <!-- Partner Section End -->
 
     <!-- Principal Section Start -->
-    @if ($principals->isNotEmpty())
-        <div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="section-title">
-                    <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">{{ __('messages.trusted_collaboration') }}</h4>
-                    </div>
-                    <h1 class="display-3 mb-4">{{ __('messages.distributor_company') }}</h1>
+    <div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="section-title">
+                <div class="sub-style">
+                    <h4 class="sub-title px-3 mb-0">{{ __('messages.trusted_collaboration') }}</h4>
                 </div>
+                <h1 class="display-3 mb-4">{{ __('messages.distributor_company') }}</h1>
+            </div>
+            @if ($principals->isNotEmpty())
                 <div class="container overflow-hidden">
                     <div class="row gy-4">
                         @foreach ($principals as $key => $p)
@@ -221,8 +218,8 @@
                         </div>
                     @endif
                 </div>
-            </div>
         </div>
+    </div>
     @endif
     <!-- Principal Section End -->
 

@@ -1,53 +1,82 @@
 @extends('layouts.member.master')
 
 @section('content')
-    {{-- <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb" style="background-color: #f4f4f4;">
-        <div class="container text-center py-5" style="max-width: 900px;">
-            <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Produk Kami</h1>
-            <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-dark">Beranda</a></li>
-                <li class="breadcrumb-item active text-primary">Produk</li>
-            </ol>
-        </div>
-    </div>
-    <!-- Header End --> --}}
-
     <div class="container mt-5">
         <div class="row">
             <!-- Sidebar Start -->
             <div class="col-lg-3">
-                <h4 class="mb-4 text-dark font-weight-bold">{{ __('messages.category') }}</h4>
-                <ul class="list-group mb-4 shadow-sm">
-                    @foreach($kategori as $kat)
-                        <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                            style="cursor: pointer; background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; transition: background-color 0.3s ease, color 0.3s ease;"
-                            onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                            onmouseout="this.style.backgroundColor='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}'; this.style.color='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }}';"
-                            onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
-                            <strong>{{ $kat->nama }}</strong>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+                <div class="d-flex justify-content-between mb-4">
+                    <h4 class="text-dark font-weight-bold">{{ __('messages.category') }}<i
+                            class="fas fa-chevron-down ms-2"></i></h4>
 
+                </div>
+
+                <div class="mb-4 shadow-sm mt-n2">
+                    <!-- Menampilkan 10 kategori pertama -->
+                    <ul class="list-group">
+                        @foreach ($kategori->take(10) as $kat)
+                            <li class="list-group-item category-item text-center py-3 mb-2"
+                                style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }};
+                                    color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
+                                onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
+                                <strong>{{ $kat->nama }}</strong>
+                            </li>
+                        @endforeach
+                    </ul>
+
+                    <!-- Tombol untuk melihat kategori selebihnya -->
+                    @if ($kategori->count() > 10)
+                        <button class="btn btn-link w-100 text-center mt-2" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#moreCategories" aria-expanded="false" aria-controls="moreCategories"
+                            onclick="toggleButtonText(this)">
+                            {{ __('messages.show_all_categories') }}
+                        </button>
+
+                        <!-- Dropdown kategori selebihnya -->
+                        <div class="collapse" id="moreCategories">
+                            <ul class="list-group mt-2">
+                                @foreach ($kategori->slice(10) as $kat)
+                                    <li class="list-group-item category-item text-center py-3 mb-2"
+                                        style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }};
+                                               color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
+                                        onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
+                                        <strong>{{ $kat->nama }}</strong>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
             <!-- Sidebar End -->
 
             <!-- Main Content Start -->
             <div class="col-lg-9">
                 <div class="d-flex justify-content-between mb-4">
-                    <h3 class="font-weight-bold" style="color: #6196FF;">{{ __('messages.explore_product') }}</h3>
-                    <select class="form-select w-25 border-0 bg-light shadow-sm">
-                        <option selected>{{ __('messages.sort_by') }}</option>
-                        <option value="1">{{ __('messages.newest') }}</option>
-                        <option value="2">{{ __('messages.latest') }}</option>
-                    </select>
+                    <div class="col-lg-6">
+                        <form method="POST" action="{{ url('products/search') }}" class="d-flex align-items-center">
+                            @csrf
+                            <input type="text" name="keyword" id="find" placeholder="{{ __('messages.search') }}"
+                                class="form-control bg-light shadow-sm" style="border-radius: 10px; padding: 12px;" />
+                            <button type="submit" class="btn btn-primary ms-2 px-4"
+                                style="margin-left: 10px; padding: 16px; border: none; border-radius: 10px; background-color: ##6196f; color: white;">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 mt-n2">
+                        <select class="form-select border-0 bg-light shadow-sm" style="border-radius: 10px; padding: 12px">
+                            <option selected>{{ __('messages.sort_by') }}</option>
+                            <option value="1">{{ __('messages.newest') }}</option>
+                            <option value="2">{{ __('messages.latest') }}</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="row">
                     @foreach ($produks as $produk)
                         <div class="col-md-4 mb-4">
-                            <div class="card product-card border-0 shadow-sm"
+                            <div class="card product-card shadow-sm"
                                 style="overflow: hidden; transition: transform 0.3s ease; border-radius: 10px; height: 400px;">
                                 <a href="{{ route('product.show', $produk->id) }}">
                                     <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
@@ -71,16 +100,30 @@
                     @endforeach
                 </div>
 
-<!-- Pagination Links -->
-<div class="d-flex justify-content-center mt-4">
-    {{ $produks->links() }} <!-- Menampilkan link pagination -->
-</div>
+                <!-- Pagination Links -->
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $produks->links() }} <!-- Menampilkan link pagination -->
+                </div>
 
             </div>
             <!-- Main Content End -->
         </div>
     </div>
 @endsection
+
+<script>
+    function toggleButtonText(button) {
+        if (button.textContent.trim() === '{{ __('messages.show_all_categories') }}') {
+            button.textContent = '{{ __('messages.show_less_categories') }}';
+            button.classList.add('btn-danger');
+            button.classList.remove('btn-link');
+        } else {
+            button.textContent = '{{ __('messages.show_all_categories') }}';
+            button.classList.add('btn-link');
+            button.classList.remove('btn-danger');
+        }
+    }
+</script>
 
 <!-- Additional Custom CSS -->
 <style>

@@ -20,7 +20,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>a
     <a href="{{ route('admin.location.index') }}" class="btn btn-secondary mb-3">Kembali ke Lokasi</a>
 
 </div>

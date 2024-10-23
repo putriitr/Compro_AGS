@@ -105,4 +105,8 @@ return [
     'description_product' => 'Deskripsi',
     'specification_product' => 'Spesifikasi',
     'click_here' => 'Klik Disini',
+
+    'show_all_categories' => 'Semua Kategori',
+    'show_less_categories' => 'Lihat Lebih Sedikit',
+    'search' => 'Cari Disini ..',
 ];

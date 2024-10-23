@@ -104,4 +104,8 @@ return [
     'description_product' => 'Description',
     'specification_product' => 'Specification',
     'click_here' => 'Click Here',
+
+    'show_all_categories' => 'Show All',
+    'show_less_categories' => 'Show Less',
+    'search' => 'Search Here ..',
 ];

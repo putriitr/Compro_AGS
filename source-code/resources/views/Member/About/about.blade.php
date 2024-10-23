@@ -95,8 +95,8 @@
                         @foreach ($partners as $key => $p)
                             <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
                                 <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%"
-                                        height="100" style="object-fit:contain;">
+                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
+                                        width="100%" height="100" style="object-fit:contain;">
                                 </div>
                             </div>
                         @endforeach
@@ -104,7 +104,8 @@
                     @if ($partners->count() > 8)
                         <div class="text-center mt-4">
                             <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                            <button id="show-less-partners" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                            <button id="show-less-partners"
+                                class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
                         </div>
                     @endif
                 </div>
@@ -230,10 +231,13 @@
                 <!-- Card 1 -->
                 <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
                     <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <a href="{{ $company->ekatalog ?? '#' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
+                        <a href="{{ $company->ekatalog ?? '#' }}" target="_blank"
+                            class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
+                            <div
+                                class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
                                 <div class="d-flex align-items-center justify-content-center mb-3">
-                                    <img src="{{ asset('assets/img/e-katalog.png') }}" alt="E-Commerce" style="width: 55%; height: 50px;">
+                                    <img src="{{ asset('assets/img/e-katalog.png') }}" alt="E-Commerce"
+                                        style="width: 55%; height: 50px;">
                                 </div>
                                 <p class="mb-0 font-weight-bold" style="font-size: 18px;">
                                     {{ __('messages.e_commerce') }}
@@ -247,8 +251,10 @@
                 <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
                     <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
                         <!-- Card content as a trigger for the modal -->
-                        <div class="p-0 w-100 d-flex flex-column flex-grow-1 text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#websiteModal">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
+                        <div class="p-0 w-100 d-flex flex-column flex-grow-1 text-dark text-decoration-none"
+                            data-bs-toggle="modal" data-bs-target="#websiteModal">
+                            <div
+                                class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
                                 <div class="d-flex align-items-center justify-content-center mb-3">
                                     <i class="fa fa-globe fa-3x text-success"></i>
                                     <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
@@ -256,7 +262,8 @@
                                     </h5>
                                 </div>
                                 <p class="mb-0" style="font-size: 15px;">{{ __('messages.website_resmi') }}</p>
-                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.website') }}</p>
+                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.website') }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -266,16 +273,20 @@
                 <!-- Card 3 -->
                 <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
                     <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
+                        <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}"
+                            target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
+                            <div
+                                class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
                                 <div class="d-flex align-items-center justify-content-center mb-3">
                                     <i class="fab fa-whatsapp fa-3x text-success"></i>
                                     <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
                                         {{ $company->no_wa ?? ' ' }}
                                     </h5>
                                 </div>
-                                <p class="mb-0" style="font-size: 13px;">{{ __('messages.whatsapp_resmi', ['company' => $company->nama_perusahaan ?? '']) }}</p>
-                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.hubungi_langsung') }}</p>
+                                <p class="mb-0" style="font-size: 13px;">
+                                    {{ __('messages.whatsapp_resmi', ['company' => $company->nama_perusahaan ?? '']) }}</p>
+                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">
+                                    {{ __('messages.hubungi_langsung') }}</p>
                             </div>
                         </a>
                     </div>
@@ -283,32 +294,34 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel" aria-hidden="true">
+            <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="websiteModalLabel">{{ __('messages.website_information') }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <!-- Loop through the first two brands -->
                             @foreach ($brand as $singleBrand)
                                 <h5>{{ $singleBrand->nama }}</h5>
-                                <p>{{ __('messages.visit_website', ['name' => $singleBrand->nama, 'url' => $singleBrand->url]) }}</p>
+                                <p>{{ __('messages.visit_website', ['name' => $singleBrand->nama, 'url' => $singleBrand->url]) }}
+                                </p>
                                 <p>{{ $singleBrand->description ?? __('messages.no_additional_info') }}</p>
                                 <hr>
                             @endforeach
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">{{ __('messages.close') }}</button>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
     <!-- Sales Channel End -->
 
     <!-- Map Start -->

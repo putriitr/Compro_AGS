@@ -9,38 +9,50 @@ use Illuminate\Http\Request;
 
 class ProdukMemberController extends Controller
 {
-    // Controller
     public function index($categoryId = null)
     {
-        // Get all categories
+        // Ambil semua kategori
         $kategori = Kategori::all();
 
-
-        // Check if a category is selected, if so, filter products by that category
+        // Cek apakah ada kategori yang dipilih, jika iya, filter produk berdasarkan kategori tersebut
         if ($categoryId) {
             $produks = Produk::where('kategori_id', $categoryId)->paginate(9);
             $selectedCategory = Kategori::find($categoryId);
         } else {
-            $produks = Produk::paginate(9);
+            $produks = Produk::paginate(6);
             $selectedCategory = null;
         }
 
         return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
     }
 
+
+    public function search(Request $request)
+    {
+        $kategori = Kategori::all();
+        $keyword = $request->keyword;
+
+        // Ganti get() dengan paginate(9)
+        $produks = Produk::where('nama', 'LIKE', '%' . $keyword . '%')->paginate(9);
+
+        $selectedCategory = null;
+
+        return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
+    }
+
+
     public function filterByCategory($id)
     {
-        // Get all categories for the sidebar
         $kategori = Kategori::all();
 
-        // Filter products by the selected category
-        $produks = Produk::where('kategori_id', $id)->get();  // Assuming kategori_id is the foreign key in the Produk model
+        // Ganti get() dengan paginate(9)
+        $produks = Produk::where('kategori_id', $id)->paginate(9);
 
-        // Pass the selected category ID for highlighting the active category
         $selectedCategory = Kategori::find($id);
 
         return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
     }
+
 
 
     public function show($id)
