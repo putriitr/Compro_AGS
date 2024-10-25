@@ -113,8 +113,10 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
                 <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" class="me-2"
-                    style="height: 50px; width: auto;">
-                <span class="fs-6 text-dark">PT Arkamaya Guna Saharsa</span>
+                    style="height: auto; width: 100px;">
+                    <img src="{{ asset('images/catalogue.png') }}" alt="Logo" class="me-2"
+                    style="height: auto; width: 150px; padding-left: 10px;">
+                <span class="fs-6 text-dark" style="font-weight: bold;">PT Arkamaya Guna Saharsa</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
