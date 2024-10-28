@@ -30,7 +30,7 @@ class MemberController extends Controller
         $bidangPerusahaan = BidangPerusahaan::all();
         return view('admin.members.create', compact('bidangPerusahaan','locations'));
     }
-    
+
 
     public function store(Request $request)
 {
@@ -56,7 +56,7 @@ class MemberController extends Controller
         'bidang_id' => $request->bidang_perusahaan, // Simpan bidang_id ke tabel users
         'no_telp' => $request->no_telp,
         'alamat' => $request->alamat,
-        
+
     ]);
 
     session()->flash('password', $randomPassword);
@@ -68,8 +68,8 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = User::findOrFail($id);
-        $password = session('password'); 
-        
+        $password = session('password');
+
 
         return view('admin.members.show', compact('member', 'password'));
     }
@@ -112,7 +112,7 @@ public function update(Request $request, $id)
     return redirect()->route('members.index')->with('success', 'Member updated successfully.');
 }
 
-    
+
 
     public function destroy($id)
     {
@@ -126,7 +126,7 @@ public function update(Request $request, $id)
     {
         $member = User::findOrFail($id);
         $produks = Produk::all(); // Mendapatkan semua produk yang tersedia
-    
+
         return view('admin.members.add-products', compact('member', 'produks'));
     }
 
@@ -159,18 +159,18 @@ public function update(Request $request, $id)
     return redirect()->route('members.show', $member->id)->with('success', 'Products added to member successfully.');
 }
 
-    
-    
+
+
 
     public function editProducts($id)
     {
         $member = User::with('userProduk')->findOrFail($id);
-    
+
         $userProduks = $member->userProduk;
-    
+
         return view('admin.members.edit-products', compact('member', 'userProduks'));
     }
-    
+
 
     public function updateProducts(Request $request, $id)
 {
@@ -237,7 +237,7 @@ public function updatePassword(Request $request, $id)
     return response()->json(['success' => true]);
 }
 
-    
+
 
 
 
