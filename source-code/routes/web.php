@@ -26,6 +26,10 @@
     use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     use App\Http\Controllers\Admin\QnaGuest\QnaGuestController;
     use App\Http\Controllers\Member\QnaGuest1\QnaGuest1Controller;
+    use App\Http\Controllers\Admin\Ticket\TicketController;
+    use App\Http\Controllers\Member\Ticket\TicketMemberController;
+
+
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -80,6 +84,13 @@
             Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
             Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
             Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
+            // Routes Tiketing Layanan untuk Member
+        Route::get('/tickets', [TicketMemberController::class, 'index'])->name('tickets.index');
+        Route::get('/tickets/create', [TicketMemberController::class, 'create'])->name('tickets.create');
+        Route::post('/tickets', [TicketMemberController::class, 'store'])->name('tickets.store');
+        Route::get('/tickets/{id}', [TicketMemberController::class, 'show'])->name('tickets.show');
+        Route::get('/tickets/{id}/edit', [TicketMemberController::class, 'edit'])->name('tickets.edit');
+        Route::put('/tickets/{id}/cancel', [TicketMemberController::class, 'cancel'])->name('tickets.cancel');
             Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
             Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
 
@@ -101,6 +112,11 @@
             Route::post('/members/{id}/update-password', [MemberController::class, 'updatePassword'])->name('members.updatePassword');
             Route::post('/admin/validate-password', [MemberController::class, 'validatePassword'])->name('admin.validatePassword');
 
+            // Routes Tiketing Layanan untuk Admin
+        Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets.index');
+        Route::put('/admin/tickets/{id}/process', [TicketController::class, 'process'])->name('admin.tickets.process');
+        Route::put('/admin/tickets/{id}/complete', [TicketController::class, 'complete'])->name('admin.tickets.complete');
+        Route::get('/admin/tickets/{id}', [TicketController::class, 'show'])->name('admin.tickets.show');
             Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
             Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
             Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');

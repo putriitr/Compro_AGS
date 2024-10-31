@@ -94,6 +94,22 @@
                         </div>
                     </div>
                 </div>
+                <!-- Ticketing -->
+    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="service-item rounded">
+            <div class="service-img rounded-top"
+                style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
+                <i class='bx bx-receipt' style="font-size: 200px; color: #000000;"></i>
+            </div>
+            <div class="service-content rounded-bottom bg-light p-4">
+                <div class="service-content-inner">
+                    <h5 class="mb-4">Ticketing</h5>
+                    <a href="{{ route('tickets.index') }}"
+                        class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
+                </div>
+            </div>
+        </div>
+    </div>
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item rounded">
                         <div class="service-img rounded-top"
