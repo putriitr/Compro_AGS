@@ -11,6 +11,7 @@ class PermintaanData extends Model
 
     // Tentukan nama tabel jika berbeda dari konvensi default
     protected $table = 'tbl_t_permintaan_data';
+    protected $primaryKey = 'id_permintaan_data';
 
     // Tentukan kolom yang dapat diisi secara massal
     protected $fillable = [

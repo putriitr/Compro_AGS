@@ -76,9 +76,14 @@
                                     <span class="sub-item">Semua Produk</span>
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('admin.monitoring.index') }}">
                                     <span class="sub-item">Monitoring</span>
+                                </a>
+                            </li> --}}
+                            <li>
+                                <a href="{{ route('admin.tickets.index') }}">
+                                    <span class="sub-item">Tiketing Layanan</span>
                                 </a>
                             </li>
                         </ul>

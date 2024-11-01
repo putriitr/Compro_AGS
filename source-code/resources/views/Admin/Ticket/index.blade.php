@@ -1,47 +1,59 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
-<div class="container">
-    <h2>Daftar Tiket Layanan (Admin)</h2>
+<div class="container py-5">
+    <h2 class="mb-4">Daftar Tiket Layanan</h2>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Jenis Layanan</th>
-                <th>Keterangan Pengajuan</th>
-                <th>Tgl Pengajuan</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($tickets as $key => $ticket)
-                <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $ticket->jenis_layanan }}</td>
-                    <td>{{ $ticket->keterangan_layanan }}</td>
-                    <td>{{ $ticket->tgl_pengajuan }}</td>
-                    <td>{{ $ticket->status }}</td>
-                    <td>
-                        <a href="{{ route('admin.tickets.show', $ticket->id_after_sales) }}" class="btn btn-info btn-sm">View</a>
-                        @if($ticket->status == 'open')
-                            <form action="{{ route('admin.tickets.process', $ticket->id_after_sales) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('PUT')
-                                <button type="submit" class="btn btn-primary btn-sm">Proses</button>
-                            </form>
-                        @elseif($ticket->status == 'progress')
-                            <form action="{{ route('admin.tickets.complete', $ticket->id_after_sales) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('PUT')
-                                <button type="submit" class="btn btn-success btn-sm">Selesai</button>
-                            </form>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>{{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <div class="card shadow-sm border-0 rounded">
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead class="table-primary">
+                    <tr>
+                        <th>No</th>
+                        <th>Jenis Layanan</th>
+                        <th>Keterangan</th>
+                        <th>Tanggal Pengajuan</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($tickets as $key => $ticket)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $ticket->jenis_layanan }}</td>
+                            <td>{{ Str::limit($ticket->keterangan_layanan, 30) }}</td>
+                            <td>{{ $ticket->tgl_pengajuan }}</td>
+                            <td>
+                                <span class="badge 
+                                    @if($ticket->status == 'open') bg-success 
+                                    @elseif($ticket->status == 'progress') bg-warning 
+                                    @else bg-secondary @endif">
+                                    {{ ucfirst($ticket->status) }}
+                                </span>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.tickets.show', $ticket->id_after_sales) }}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye me-1"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 @endsection

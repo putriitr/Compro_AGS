@@ -91,6 +91,8 @@
         Route::get('/tickets/{id}', [TicketMemberController::class, 'show'])->name('tickets.show');
         Route::get('/tickets/{id}/edit', [TicketMemberController::class, 'edit'])->name('tickets.edit');
         Route::put('/tickets/{id}/cancel', [TicketMemberController::class, 'cancel'])->name('tickets.cancel');
+        Route::put('/tickets/{id}', [TicketMemberController::class, 'update'])->name('tickets.update');
+
             Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
             Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
 

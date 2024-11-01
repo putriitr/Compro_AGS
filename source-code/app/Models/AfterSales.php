@@ -12,6 +12,8 @@ class AfterSales extends Model
     // Tentukan nama tabel jika berbeda dari konvensi default
     protected $table = 'tbl_t_after_sales';
 
+    protected $primaryKey = 'id_after_sales';
+
     // Tentukan kolom yang dapat diisi secara massal
     protected $fillable = [
         'jenis_layanan',
@@ -27,9 +29,7 @@ class AfterSales extends Model
         'tim_teknis',
     ];
 
-    // Jika ingin menggunakan timestamps (created_at, updated_at), tidak perlu menambahkan apa-apa.
-    // Jika timestamps tidak digunakan, bisa ditambahkan seperti ini:
-    public $timestamps = false;
+    public $timestamps = true;
 
     // Relasi dengan user (misalnya satu AfterSales dibuat oleh satu user)
     public function user()
