@@ -37,12 +37,12 @@
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Kelola Member</h4>
+                    <h4 class="text-section">Kelola Member & Distributor</h4>
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#member-management">
                         <i class="fas fa-user"></i>
-                        <p>Member</p>
+                        <p>Member & Distributor</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="member-management">
@@ -52,6 +52,12 @@
                                     <span class="sub-item">Semua Member</span>
                                 </a>
                             </li>
+                             <!-- Approve Distributor Link -->
+            <li>
+                <a href="{{ route('admin.distributors.index') }}">
+                    <span class="sub-item">Semua Distributor</span>
+                </a>
+            </li>
                         </ul>
                     </div>
                 </li>

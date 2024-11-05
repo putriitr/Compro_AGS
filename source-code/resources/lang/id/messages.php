@@ -32,6 +32,7 @@ return [
     'portal_member' => 'Portal Member',
     'bahasa' => 'Bahasa',
     'english' => 'English',
+    'portal_distibution' => 'Portal Distributor',
 
     'tujuan_kami' => 'Tujuan Kami',
     'visi_misi_perusahaan' => 'Visi & Misi Perusahaan',

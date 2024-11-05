@@ -159,10 +159,25 @@
                             </div>
                         </div>
                     @endforeach
-
                     @auth
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="memberDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ __('Portal') }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="memberDropdown">
+                            <li>
+                                <a href="{{ route('portal') }}" class="dropdown-item">{{ __('messages.portal_member') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('distribution') }}" class="dropdown-item">{{ __('messages.portal_distribution') }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                @endauth
+                
+                    {{-- @auth
                         <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
-                    @endauth
+                    @endauth --}}
 
                     <a href="#footer-section" id="contact-link"
                         class="nav-item nav-link">{{ __('messages.contact_us') }}</a>

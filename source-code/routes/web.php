@@ -5,6 +5,7 @@
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\HomeController;
     use Illuminate\Support\Facades\Auth;
+    use App\Http\Controllers\Auth\RegisterController;
     use App\Http\Controllers\Admin\Member\MemberController;
     use App\Http\Controllers\Admin\FAQ\FAQController;
     use App\Http\Controllers\Admin\Monitoring\MonitoringController;
@@ -28,6 +29,10 @@
     use App\Http\Controllers\Member\QnaGuest1\QnaGuest1Controller;
     use App\Http\Controllers\Admin\Ticket\TicketController;
     use App\Http\Controllers\Member\Ticket\TicketMemberController;
+    use App\Http\Controllers\Admin\Distributor\DistributorApprovalController;
+    use App\Http\Controllers\Distribution\Portal\DistributionController;
+
+
 
 
     /*
@@ -62,7 +67,12 @@
 
         // Member QnA Guest
         Route::get('/qnaguest1', [QnaGuest1Controller::class, 'index'])->name('qnaguest1');
-
+        // Distributor Registration
+        Route::get('/distributors/register', [RegisterController::class, 'showDistributorRegistrationForm'])->name('distributors.register');
+        Route::post('/distributors/register', [RegisterController::class, 'registerDistributor']);
+        Route::get('/distributors/waiting', function () {
+            return view('auth.distributor_waiting');
+        })->name('distributors.waiting');
         // Admin Qna Guest
         Route::prefix('admin')->name('admin.')->group(function () {
             Route::resource('qnaguest', QnaGuestController::class);
@@ -84,14 +94,19 @@
             Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
             Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
             Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
+            // Distributor Portal Route
+            Route::get('/distribution', [DistributionController::class, 'index'])->name('distribution');
+            Route::get('/distribution/request-quotation', [DistributionController::class, 'requestQuotation'])->name('distribution.request-quotation');
+            Route::get('/distribution/create-po', [DistributionController::class, 'createPO'])->name('distribution.create-po');
+            Route::get('/distribution/invoices', [DistributionController::class, 'invoices'])->name('distribution.invoices'); 
             // Routes Tiketing Layanan untuk Member
-        Route::get('/tickets', [TicketMemberController::class, 'index'])->name('tickets.index');
-        Route::get('/tickets/create', [TicketMemberController::class, 'create'])->name('tickets.create');
-        Route::post('/tickets', [TicketMemberController::class, 'store'])->name('tickets.store');
-        Route::get('/tickets/{id}', [TicketMemberController::class, 'show'])->name('tickets.show');
-        Route::get('/tickets/{id}/edit', [TicketMemberController::class, 'edit'])->name('tickets.edit');
-        Route::put('/tickets/{id}/cancel', [TicketMemberController::class, 'cancel'])->name('tickets.cancel');
-        Route::put('/tickets/{id}', [TicketMemberController::class, 'update'])->name('tickets.update');
+            Route::get('/tickets', [TicketMemberController::class, 'index'])->name('tickets.index');
+            Route::get('/tickets/create', [TicketMemberController::class, 'create'])->name('tickets.create');
+            Route::post('/tickets', [TicketMemberController::class, 'store'])->name('tickets.store');
+            Route::get('/tickets/{id}', [TicketMemberController::class, 'show'])->name('tickets.show');
+            Route::get('/tickets/{id}/edit', [TicketMemberController::class, 'edit'])->name('tickets.edit');
+            Route::put('/tickets/{id}/cancel', [TicketMemberController::class, 'cancel'])->name('tickets.cancel');
+            Route::put('/tickets/{id}', [TicketMemberController::class, 'update'])->name('tickets.update');
 
             Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
             Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
@@ -105,6 +120,9 @@
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+            Route::get('/admin/distributors', [DistributorApprovalController::class, 'index'])->name('admin.distributors.index');
+            Route::post('/admin/distributors/{id}/approve', [DistributorApprovalController::class, 'approve'])->name('admin.distributors.approve');
+            Route::get('/admin/distributors/{id}', [DistributorApprovalController::class, 'show'])->name('admin.distributors.show'); // Route for viewing details
 
             Route::resource('admin/members', MemberController::class);
             Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
@@ -115,10 +133,10 @@
             Route::post('/admin/validate-password', [MemberController::class, 'validatePassword'])->name('admin.validatePassword');
 
             // Routes Tiketing Layanan untuk Admin
-        Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets.index');
-        Route::put('/admin/tickets/{id}/process', [TicketController::class, 'process'])->name('admin.tickets.process');
-        Route::put('/admin/tickets/{id}/complete', [TicketController::class, 'complete'])->name('admin.tickets.complete');
-        Route::get('/admin/tickets/{id}', [TicketController::class, 'show'])->name('admin.tickets.show');
+            Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets.index');
+            Route::put('/admin/tickets/{id}/process', [TicketController::class, 'process'])->name('admin.tickets.process');
+            Route::put('/admin/tickets/{id}/complete', [TicketController::class, 'complete'])->name('admin.tickets.complete');
+            Route::get('/admin/tickets/{id}', [TicketController::class, 'show'])->name('admin.tickets.show');
             Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
             Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
             Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
