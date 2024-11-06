@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Quotation;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
@@ -82,6 +83,10 @@ class User extends Authenticatable
     public function isVerifiedDistributor(): bool
     {
         return $this->type === 'distributor' && $this->verified;
+    }
+    public function quotations()
+    {
+        return $this->hasMany(Quotation::class);
     }
 
 

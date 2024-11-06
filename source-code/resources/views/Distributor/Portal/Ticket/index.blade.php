@@ -6,7 +6,7 @@
         <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Daftar Tiket Layanan</h3>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/portal') }}">Portal Member</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
             <li class="breadcrumb-item active text-primary">Daftar Tiket Layanan</li>
         </ol>
     </div>
@@ -15,7 +15,7 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0">Tiket Layanan Anda</h4>
-        <a href="{{ route('tickets.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle me-2"></i>Buat Tiket Baru</a>
+        <a href="{{ route('distribution.tickets.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle me-2"></i>Buat Tiket Baru</a>
     </div>
 
     <div class="card shadow-sm border-0 rounded">
@@ -59,10 +59,10 @@
                             </td>
                             
                             <td>
-                                <a href="{{ route('tickets.show', $ticket->id_after_sales) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> View</a>
+                                <a href="{{ route('distribution.tickets.show', $ticket->id_after_sales) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> View</a>
                                 @if($ticket->status == 'open')
-                                    <a href="{{ route('tickets.edit', $ticket->id_after_sales) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                                    <form action="{{ route('tickets.cancel', $ticket->id_after_sales) }}" method="POST" style="display:inline;">
+                                    <a href="{{ route('distribution.tickets.edit', $ticket->id_after_sales) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                    <form action="{{ route('distribution.tickets.cancel', $ticket->id_after_sales) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i> Batal</button>

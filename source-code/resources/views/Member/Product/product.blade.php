@@ -94,6 +94,16 @@
                                         style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
                                         View Product →
                                     </a>
+
+                   <!-- Ajukan Quotation Button for Distributor Users Only -->
+@if(auth()->user() && auth()->user()->type === 'distributor')
+<form action="{{ route('Distributor.product.addToQuotation', $produk->id) }}" method="POST" class="mt-2 d-inline">
+    @csrf
+    <button type="submit" class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Ajukan Quotation">
+        <i class="fas fa-file-invoice-dollar" style="font-size: 1.5em; color: #007bff;"></i>
+    </button>
+</form>
+@endif
                                 </div>
                             </div>
                         </div>

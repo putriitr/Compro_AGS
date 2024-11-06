@@ -31,7 +31,7 @@ return [
     'portal_member' => 'Member Portal',
     'bahasa' => 'Bahasa',
     'english' => 'English',
-    'portal_distribution' => 'Distribution Portal',
+    'portal_distribution' => 'Distributor Portal',
 
     'tujuan_kami' => 'Our Goals',
     'visi_misi_perusahaan' => 'Company Vision & Mission',
