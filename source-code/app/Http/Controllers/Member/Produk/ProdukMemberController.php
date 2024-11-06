@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Quotation;
 
 
 class ProdukMemberController extends Controller
@@ -71,48 +72,51 @@ class ProdukMemberController extends Controller
     }
     public function addToQuotation(Request $request, $id)
 {
-    // Check if the product exists by ID
-    $produk = DB::table('produk')->where('id', $id)->first();
-    
+    // Find the product by ID using the Produk model
+    $produk = Produk::find($id);
+
     if (!$produk) {
         // Redirect back with an error message if the product doesn't exist
         return redirect()->back()->with('error', 'Produk tidak ditemukan.');
     }
 
-    // Get the authenticated user's ID
-    $userId = auth()->id();
+    // Get the authenticated user
+    $user = auth()->user();
 
-    // Check if a quotation request already exists for this user and product
-    $existingQuotation = DB::table('quotations')
-        ->where('user_id', $userId)
-        ->where('product_id', $id)
-        ->first();
-
-    if ($existingQuotation) {
-        // If the product is already in the quotation list, show a warning message
-        return redirect()->back()->with('warning', 'Produk ini sudah ada dalam permintaan quotation Anda.');
-    }
-
-    // Validate the quantity if it's coming from a form (optional)
+    // Validate the quantity input with a default message if missing
     $request->validate([
         'quantity' => 'required|integer|min:1'
+    ], [
+        'quantity.required' => 'Kuantitas produk harus diisi.',
+        'quantity.integer' => 'Kuantitas produk harus berupa angka.',
+        'quantity.min' => 'Kuantitas produk minimal 1.'
     ]);
 
     // Get the quantity from the request, default to 1 if not provided
     $quantity = $request->input('quantity', 1);
 
-    // Insert a new quotation entry for the user
-    DB::table('quotations')->insert([
-        'user_id' => $userId,
-        'product_id' => $id,
-        'quantity' => $quantity,
-        'status' => 'pending', // Set a default status for the quotation
-        'created_at' => now(),
-        'updated_at' => now(),
-    ]);
+    // Check if a quotation already exists for this user and product
+    $existingQuotation = Quotation::where('user_id', $user->id)
+        ->where('produk_id', $id)
+        ->first();
 
-    // Redirect back with a success message
-    return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke permintaan quotation.');
+    if ($existingQuotation) {
+        // If the product is already in the quotation list, increment the quantity
+        $existingQuotation->increment('quantity', $quantity);
+    } else {
+        // If no existing quotation, create a new one
+        Quotation::create([
+            'user_id' => $user->id,
+            'produk_id' => $produk->id,
+            'quantity' => $quantity,
+            'status' => 'pending', // Set a default status for the quotation
+        ]);
+    }
+
+    // Redirect to the request-quotation page with a success message
+    return redirect()->route('distribution.request-quotation')->with('success', 'Produk berhasil ditambahkan ke permintaan quotation.');
 }
+
+    
     
 }

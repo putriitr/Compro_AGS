@@ -32,6 +32,10 @@
     use App\Http\Controllers\Admin\Distributor\DistributorApprovalController;
     use App\Http\Controllers\Distribution\Portal\DistributionController;
     use App\Http\Controllers\Distribution\Portal\TicketDistributorController;
+    use App\Http\Controllers\Distribution\Portal\QuotationController;
+    use App\Http\Controllers\Admin\Quotation\QuotationAdminController;
+
+
 
 
 
@@ -131,7 +135,9 @@
             Route::put('/portal/distribution/tickets/{id}', [TicketDistributorController::class, 'update'])->name('distribution.tickets.update');
 
             Route::post('/portal/distribution/product/{id}/add-to-quotation', [ProdukMemberController::class, 'addToQuotation'])->name('Distributor.product.addToQuotation');
-
+            // Quotation Routes
+            Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation
+            Route::put('/portal/distribution/quotations/{id}/cancel', [QuotationController::class, 'cancel'])->name('quotations.cancel'); // Cancel quotation
         });
     });
 
@@ -164,6 +170,10 @@
             Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
             Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
 
+            Route::get('/admin/quotations', [QuotationAdminController::class, 'index'])->name('admin.quotations.index');
+            Route::put('/quotations/{id}/status', [QuotationAdminController::class, 'updateStatus'])->name('admin.quotations.updateStatus');
+            Route::post('/quotations/{id}/upload-file', [QuotationAdminController::class, 'uploadFile'])->name('admin.quotations.uploadFile');
+
             Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
                 Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');
                 Route::get('/create/{userProdukId}', [MonitoringController::class, 'inspeksiCreate'])->name('create');
@@ -187,4 +197,5 @@
             Route::post('/froala/upload_image', [MetaController::class, 'uploadImage'])->name('froala.upload_image');
             Route::resource('admin/location', LocationController::class)->names('admin.location');
         });
+      
     });

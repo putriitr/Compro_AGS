@@ -5,23 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use App\Models\Produk; // Assuming 'Produk' is the model for your products
+use App\Models\Produk;
+
 class Quotation extends Model
 {
     use HasFactory;
 
+    // Specify the fillable attributes for mass assignment
     protected $fillable = [
-        'user_id', 'product_id', 'quantity', 'status'
+        'user_id', 'produk_id', 'quantity', 'status'
     ];
 
-    // Define relationships
+    /**
+     * Define relationship with the User model.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function product()
+    /**
+     * Define relationship with the Produk model.
+     * Assuming 'produk_id' is the foreign key that links to the Produk model.
+     */
+    public function produk()
     {
-        return $this->belongsTo(Produk::class, 'product_id');
+        return $this->belongsTo(Produk::class, 'produk_id');
     }
 }

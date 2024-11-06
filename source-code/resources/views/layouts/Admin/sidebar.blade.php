@@ -92,6 +92,11 @@
                                     <span class="sub-item">Tiketing Layanan</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.quotations.index') }}">
+                                    <span class="sub-item">Quotation</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
