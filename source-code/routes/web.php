@@ -173,6 +173,10 @@
             Route::get('/admin/quotations', [QuotationAdminController::class, 'index'])->name('admin.quotations.index');
             Route::put('/quotations/{id}/status', [QuotationAdminController::class, 'updateStatus'])->name('admin.quotations.updateStatus');
             Route::post('/quotations/{id}/upload-file', [QuotationAdminController::class, 'uploadFile'])->name('admin.quotations.uploadFile');
+            Route::get('admin/quotations/{id}/show', [QuotationAdminController::class, 'show'])->name('admin.quotations.show');
+            Route::get('admin/quotations/{id}/edit', [QuotationAdminController::class, 'edit'])->name('admin.quotations.edit');
+            Route::put('admin/quotations/{id}', [QuotationAdminController::class, 'update'])->name('admin.quotations.update');
+
 
             Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
                 Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');
@@ -197,5 +201,4 @@
             Route::post('/froala/upload_image', [MetaController::class, 'uploadImage'])->name('froala.upload_image');
             Route::resource('admin/location', LocationController::class)->names('admin.location');
         });
-      
     });
