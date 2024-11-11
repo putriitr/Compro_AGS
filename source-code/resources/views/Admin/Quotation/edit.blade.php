@@ -14,7 +14,7 @@
 <div class="container mt-5">
     <div class="card p-4 shadow">
         <h2>Edit quotations for:
-            {{ $quotations->isNotEmpty() ? $quotations->first()->produk->nama : 'No Product Available' }}
+            {{ $quotations->first()->user->name ?? 'N/A' }}
         </h2>
         
         <!-- Mengambil satu instance model untuk menghindari error -->
@@ -64,39 +64,39 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($quotations as $key => $quotationItem)
+                        @foreach($quotation->quotationProducts as $key => $product)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $quotationItem->produk->nama ?? 'Produk tidak tersedia' }}</td>
-                                <td>{{ $quotationItem->produk->merk ?? 'Merk tidak tersedia' }}</td>
+                                <td>{{ $product->equipment_name ?? 'Produk tidak tersedia' }}</td>
+                                <td>{{ $product->merk_type ?? 'Merk tidak tersedia' }}</td>
                                 <td>
                                     <input type="number" class="form-control" name="products[{{ $key }}][quantity]"
-                                           value="{{ old("products.$key.quantity", $quotationItem->quantity ?? 0) }}" readonly>
+                                           value="{{ old("products.$key.quantity", $product->quantity ?? 0) }}" readonly>
                                 </td>
                                 <td>
                                     <input type="number" class="form-control unit-price"
                                            name="products[{{ $key }}][unit_price]"
-                                           value="{{ old("products.$key.unit_price", $quotationItem->unit_price ?? 0) }}"
-                                           data-qty="{{ $quotationItem->quantity }}">
+                                           value="{{ old("products.$key.unit_price", $product->unit_price ?? 0) }}"
+                                           data-qty="{{ $product->quantity }}">
                                 </td>
                                 <td>
                                     <input type="number" class="form-control total-price"
                                            name="products[{{ $key }}][total_price]"
-                                           value="{{ old("products.$key.total_price", $quotationItem->total_price ?? 0) }}"
+                                           value="{{ old("products.$key.total_price", $product->total_price ?? 0) }}"
                                            readonly>
                                 </td>
                                 <!-- Input hidden untuk produk_id dari relasi produk -->
                                 <input type="hidden" name="products[{{ $key }}][produk_id]"
-                                       value="{{ $quotationItem->produk->id ?? '' }}">
+                                       value="{{ $product->produk_id ?? '' }}">
                             </tr>
                         @endforeach
                     </tbody>
-                    
-                    
                 </table>
             </div>
 
-            <!-- Price Calculations -->
+            <!-- Bagian lainnya tetap sama sesuai kode awal Anda -->
+            <!-- Mulai dari Price Calculations hingga Submit Button -->
+
             <div class="mb-3">
                 <label for="subtotal_price" class="form-label">Sub Total Price</label>
                 <input type="number" class="form-control" id="subtotal_price" name="subtotal_price"
@@ -127,7 +127,6 @@
                        value="{{ old('grand_total', $quotation->grand_total) }}" readonly>
             </div>
 
-            <!-- Notes and Terms -->
             <div class="mb-3">
                 <label for="notes" class="form-label">Note</label>
                 <textarea class="form-control" id="notes" name="notes" rows="4">{{ old('notes', $quotation->notes) }}</textarea>
@@ -138,7 +137,6 @@
                 <textarea class="form-control" id="terms_conditions" name="terms_conditions" rows="4">{{ old('terms_conditions', $quotation->terms_conditions) }}</textarea>
             </div>
 
-            <!-- Signature Information -->
             <h5>Signature Information</h5>
             <div class="mb-3">
                 <label for="signer_name" class="form-label">Signer Name</label>
@@ -152,7 +150,6 @@
                        value="{{ old('signer_position', $quotation->authorized_person_position) }}">
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-success mt-3">Update</button>
         </form>
     </div>

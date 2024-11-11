@@ -21,7 +21,7 @@ class DistributionController extends Controller
 public function requestQuotation()
 {
     // Get the authenticated user's ID
-    $quotations = Quotation::with('produk')->where('user_id', auth()->id())->get();
+    $quotations = Quotation::with('quotationProducts')->get();
 
 
     // Pass the quotations to the view

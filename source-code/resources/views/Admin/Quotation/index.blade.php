@@ -34,9 +34,25 @@
                     @forelse($quotations as $key => $quotation)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $quotation->produk->nama ?? 'Produk tidak tersedia' }}</td>
+                            
+                            <!-- Menampilkan Nama Produk -->
+                            <td>
+                                @foreach ($quotation->quotationProducts as $product)
+                                    - {{ $product->equipment_name ?? 'Produk tidak tersedia' }} <br>
+                                @endforeach
+                            </td>
+                            
+                            <!-- Menampilkan Distributor -->
                             <td>{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
-                            <td>{{ $quotation->quantity }}</td>
+                            
+                            <!-- Menampilkan Quantity untuk setiap produk -->
+                            <td>
+                                @foreach ($quotation->quotationProducts as $product)
+                                    {{ $product->quantity }} <br>
+                                @endforeach
+                            </td>
+                            
+                            <!-- Status dengan Badge -->
                             <td>
                                 <span class="badge 
                                     @if($quotation->status == 'pending') bg-warning 
@@ -46,6 +62,8 @@
                                     {{ ucfirst($quotation->status) }}
                                 </span>
                             </td>
+                            
+                            <!-- Menampilkan Dokumen PDF jika ada -->
                             <td>
                                 @if($quotation->pdf_path)
                                     <p>
@@ -63,8 +81,7 @@
                                 @endif
                             </td>
                             
-                            
-                            
+                            <!-- Actions -->
                             <td>
                                 <a href="{{ route('admin.quotations.show', $quotation->id) }}" class="btn btn-primary btn-sm">View</a>
                                 <a href="{{ route('admin.quotations.edit', $quotation->id) }}" class="btn btn-secondary btn-sm">Edit</a>
@@ -76,7 +93,7 @@
                         </tr>
                     @endforelse
                 </tbody>
-            </table>
+            </table>    
         </div>
     </div>
 </div>

@@ -22,6 +22,9 @@
         <a href="{{ url('/en/products') }}" class="btn btn-primary" style="border-radius: 10px; padding: 10px 20px;">
             Ajukan Quotation
         </a>
+        <a href="{{ route('quotations.cart') }}" class="btn btn-secondary" style="border-radius: 10px; padding: 10px 20px; margin-left: 10px;">
+            Lihat Keranjang
+        </a>
     </div>
     <!-- Quotation Requests Table -->
     <h3 class="mt-5">Daftar Permintaan Quotation</h3>
@@ -29,26 +32,40 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Hari & Tanggal</th>
                 <th>Nama Produk</th>
                 <th>Quantity</th>
                 <th>Status</th>
                 <th>Actions</th>
-
             </tr>
         </thead>
         <tbody>
             @forelse($quotations as $key => $quotation)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <!-- Use the 'produk' relationship to access the product name -->
-                    <td>{{ $quotation->produk->nama ?? 'Produk tidak tersedia' }}</td>
-                    <td>{{ $quotation->quantity }}</td>
-                    <td>{{ ucfirst($quotation->status) }}</td>
+                    
+                    <!-- Kolom Hari & Tanggal -->
+                    <td>{{ \Carbon\Carbon::parse($quotation->created_at)->translatedFormat('l, d-m-Y') }}</td>
+                    
+                    <!-- Nama Produk dan Quantity -->
                     <td>
-                        <!-- View Action -->
+                        @foreach ($quotation->quotationProducts as $product)
+                            - {{ $product->equipment_name ?? 'Produk tidak tersedia' }} <br>
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($quotation->quotationProducts as $product)
+                            {{ $product->quantity }} <br>
+                        @endforeach
+                    </td>
+                    
+                    <!-- Status -->
+                    <td>{{ ucfirst($quotation->status) }}</td>
+                    
+                    <!-- Actions -->
+                    <td>
                         <a href="{{ route('quotations.show', $quotation->id) }}" class="btn btn-sm btn-info">View</a>
-
-                        <!-- Cancel Action -->
+        
                         <form action="{{ route('quotations.cancel', $quotation->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
@@ -60,10 +77,13 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="text-center text-muted">Belum ada permintaan quotation.</td>
+                    <td colspan="6" class="text-center text-muted">Belum ada permintaan quotation.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
+    
+    
+    
 </div>
 @endsection
