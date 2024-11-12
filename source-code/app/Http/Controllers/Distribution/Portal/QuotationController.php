@@ -20,6 +20,13 @@ class QuotationController extends Controller
     public function show($id)
     {
         $quotation = Quotation::with('produk')->findOrFail($id);
+     
+
+          // Periksa apakah file PDF sudah tersedia dan status masih "Pending"
+    if ($quotation->pdf_path && $quotation->status === 'pending') {
+        // Perbarui status menjadi "Quotation"
+        $quotation->update(['status' => 'quotation']);
+    }
         
         return view('Distributor.Portal.show', compact('quotation'));
     }
