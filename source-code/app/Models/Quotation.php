@@ -60,6 +60,9 @@ class Quotation extends Model
     {
         return $this->hasMany(QuotationNegotiation::class);
     }
-    
+    public function purchaseOrder()
+{
+    return $this->hasOne(PurchaseOrder::class);
+}
 }
 
