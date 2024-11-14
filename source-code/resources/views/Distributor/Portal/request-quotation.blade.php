@@ -34,7 +34,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Hari & Tanggal</th>
+                    <th>Nomor Pengajuan</th>
                     <th>Nama Produk</th>
                     <th>Quantity</th>
                     <th>Status</th>
@@ -46,9 +46,8 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
 
-                        <!-- Kolom Hari & Tanggal -->
-                        <td>{{ \Carbon\Carbon::parse($quotation->created_at)->translatedFormat('l, d-m-Y') }}</td>
-
+                        <!-- Kolom Nomor Pengajuan -->
+                <td>{{ $quotation->nomor_pengajuan ?? 'Nomor pengajuan tidak tersedia' }}</td>
                         <!-- Nama Produk dan Quantity -->
                         <td>
                             @foreach ($quotation->quotationProducts as $product)

@@ -28,49 +28,73 @@
                 <a href="{{ route('distributor.purchase-orders.index') }}" class="btn btn-primary">Lihat Purchase Orders</a>
             </div>
         @else
+         <!-- Tombol untuk mengarahkan ke halaman index invoice -->
+         <div class="mb-3">
+            <a href="{{ route('distributor.invoices.index') }}" class="btn btn-secondary">Lihat Invoices</a>
+        </div>
             <!-- Jika ada Proforma Invoices, tampilkan tabelnya -->
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>PI Number</th>
-                        <th>PI Date</th>
-                        <th>PO Number</th>
-                        <th>Subtotal</th>
-                        <th>PPN</th>
-                        <th>Grand Total</th>
-                        <th>DP</th>
-                        <th>Actions</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">PI Number</th>
+                        <th class="text-center">PI Date</th>
+                        <th class="text-center">PO Number</th>
+                        <th class="text-center">Subtotal</th>
+                        <th class="text-center">PPN</th>
+                        <th class="text-center">Grand Total</th>
+                        <th class="text-center">DP</th>
+                        <th class="text-center">Remaining Payment</th>
+                        <th class="text-center">Actions</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($proformaInvoices as $invoice)
                         <tr>
-                            <td>{{ $invoice->id }}</td>
-                            <td>{{ $invoice->pi_number }}</td>
-                            <td>{{ \Carbon\Carbon::parse($invoice->pi_date)->format('d M Y') }}</td>
-                            <td>{{ $invoice->purchaseOrder->po_number }}</td>
-                            <td>{{ number_format($invoice->subtotal, 2) }}</td>
-                            <td>{{ number_format($invoice->ppn, 2) }}</td>
-                            <td>{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
-                            <td>{{ number_format($invoice->dp, 2) }}</td>
+                            <td class="text-center">{{ $invoice->id }}</td>
+                            <td class="text-center">{{ $invoice->pi_number }}</td>
+                            <td class="text-center">{{ \Carbon\Carbon::parse($invoice->pi_date)->format('d M Y') }}</td>
+                            <td class="text-center">{{ $invoice->purchaseOrder->po_number }}</td>
+                            <td class="text-center">{{ number_format($invoice->subtotal, 2) }}</td>
+                            <td class="text-center">{{ number_format($invoice->ppn, 2) }}</td>
+                            <td class="text-center">{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
+                            <td class="text-center">{{ number_format($invoice->dp, 2) }} ({{ $invoice->dp_percent }}%)</td>
+                            <td class="text-center">{{ number_format($invoice->remaining_payment, 2) }}</td> <!-- Menampilkan sisa pembayaran -->
+                
                             <td>
                                 <div class="d-flex flex-column gap-2">
-                                    <!-- Tautan untuk View dan Download PDF Proforma Invoice -->
+                                    <!-- Tombol View dan Download PDF Proforma Invoice -->
                                     <a href="{{ asset($invoice->file_path) }}" target="_blank" class="btn btn-info btn-sm">View PDF</a>
                                     <a href="{{ asset($invoice->file_path) }}" download class="btn btn-secondary btn-sm">Download PDF</a>
-                
-                                    <!-- Cek apakah ada bukti pembayaran -->
+                                    
+                                    <!-- Cek apakah ada bukti pembayaran DP -->
                                     @if($invoice->payment_proof_path)
-                                        <!-- Tampilkan tombol View dan Download Bukti Pembayaran jika sudah diunggah -->
-                                        <a href="{{ asset($invoice->payment_proof_path) }}" target="_blank" class="btn btn-success btn-sm">View Payment Proof</a>
-                                        <a href="{{ asset($invoice->payment_proof_path) }}" download class="btn btn-secondary btn-sm">Download Payment Proof</a>
+                                        <!-- Tampilkan tombol View dan Download Bukti Pembayaran DP jika sudah diunggah -->
+                                        <a href="{{ asset($invoice->payment_proof_path) }}" target="_blank" class="btn btn-success btn-sm">View DP Proof</a>
+                                        <a href="{{ asset($invoice->payment_proof_path) }}" download class="btn btn-secondary btn-sm">Download DP Proof</a>
+                                        
+                                        <!-- Cek apakah ada bukti pembayaran kedua (untuk sisa pembayaran) -->
+                                        @if($invoice->second_payment_proof_path)
+                                            <!-- Tampilkan tombol View dan Download Bukti Pembayaran Sisa jika sudah diunggah -->
+                                            <a href="{{ asset($invoice->second_payment_proof_path) }}" target="_blank" class="btn btn-success btn-sm">View Remaining Payment Proof</a>
+                                            <a href="{{ asset($invoice->second_payment_proof_path) }}" download class="btn btn-secondary btn-sm">Download Remaining Payment Proof</a>
+                                        @else
+                                            <!-- Form untuk Upload Bukti Pembayaran Sisa jika belum ada -->
+                                            <form action="{{ route('distributor.proforma-invoices.upload', $invoice->id) }}" method="POST" enctype="multipart/form-data" class="mt-2">
+                                                @csrf
+                                                <input type="file" name="payment_proof" class="form-control mb-2" accept=".pdf,.jpg,.jpeg,.png" required>
+                                                <button type="submit" class="btn btn-warning btn-sm">Upload Remaining Payment Proof</button>
+                                                <p class="text-muted">Remaining Payment: Rp{{ number_format($invoice->remaining_payment, 2) }}</p>
+                                            </form>
+                                        @endif
                                     @else
-                                        <!-- Form untuk Upload Bukti Pembayaran jika belum ada -->
+                                        <!-- Form untuk Upload Bukti Pembayaran DP jika belum ada -->
                                         <form action="{{ route('distributor.proforma-invoices.upload', $invoice->id) }}" method="POST" enctype="multipart/form-data" class="mt-2">
                                             @csrf
                                             <input type="file" name="payment_proof" class="form-control mb-2" accept=".pdf,.jpg,.jpeg,.png" required>
-                                            <button type="submit" class="btn btn-success btn-sm">Upload Bukti Pembayaran</button>
+                                            <button type="submit" class="btn btn-success btn-sm">Upload DP Proof</button>
+                                            <p class="text-muted">DP: Rp{{ number_format($invoice->dp, 2) }} ({{ $invoice->dp_percent }}%)</p>
                                         </form>
                                     @endif
                                 </div>
@@ -78,6 +102,7 @@
                         </tr>
                     @endforeach
                 </tbody>
+                
                 
             </table>
         @endif

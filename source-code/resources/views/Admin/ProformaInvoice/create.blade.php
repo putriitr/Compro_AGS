@@ -34,31 +34,32 @@
             @enderror
         </div>
 
-        <!-- Vendor Information -->
-        <h4>Vendor Information</h4>
-        <div class="mb-3">
-            <label for="vendor_name" class="form-label">Vendor Name</label>
-            <input type="text" class="form-control @error('vendor_name') is-invalid @enderror" id="vendor_name" name="vendor_name" required>
-            @error('vendor_name')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+      <!-- Vendor Information -->
+<h4>Vendor Information</h4>
+<div class="mb-3">
+    <label for="vendor_name" class="form-label">Vendor Name</label>
+    <input type="text" class="form-control @error('vendor_name') is-invalid @enderror" id="vendor_name" name="vendor_name" value="{{ old('vendor_name', $user->name) }}" readonly>
+    @error('vendor_name')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
 
-        <div class="mb-3">
-            <label for="vendor_address" class="form-label">Vendor Address</label>
-            <textarea class="form-control @error('vendor_address') is-invalid @enderror" id="vendor_address" name="vendor_address" rows="2" required></textarea>
-            @error('vendor_address')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+<div class="mb-3">
+    <label for="vendor_address" class="form-label">Vendor Address</label>
+    <textarea class="form-control @error('vendor_address') is-invalid @enderror" id="vendor_address" name="vendor_address" rows="2" readonly>{{ old('vendor_address', $user->alamat) }}</textarea>
+    @error('vendor_address')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
 
-        <div class="mb-3">
-            <label for="vendor_phone" class="form-label">Vendor Phone</label>
-            <input type="text" class="form-control @error('vendor_phone') is-invalid @enderror" id="vendor_phone" name="vendor_phone" required>
-            @error('vendor_phone')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+<div class="mb-3">
+    <label for="vendor_phone" class="form-label">Vendor Phone</label>
+    <input type="text" class="form-control @error('vendor_phone') is-invalid @enderror" id="vendor_phone" name="vendor_phone" value="{{ old('vendor_phone', $user->no_telp) }}" readonly>
+    @error('vendor_phone')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
 
 
         <!-- Product List -->
@@ -106,14 +107,15 @@
             <input type="number" class="form-control" id="grand_total_include_ppn" name="grand_total_include_ppn" value="{{ $grandTotalIncludePPN }}" readonly>
         </div>
 
-         <!-- DP Input -->
-         <div class="mb-3">
-            <label for="dp" class="form-label">DP</label>
-            <input type="number" class="form-control @error('dp') is-invalid @enderror" id="dp" name="dp" step="0.01">
-            @error('dp')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+        <!-- DP Input dalam Persen -->
+<div class="mb-3">
+    <label for="dp" class="form-label">DP (%)</label>
+    <input type="number" class="form-control @error('dp') is-invalid @enderror" id="dp" name="dp" step="0.01" max="100" placeholder="Masukkan persentase DP (0-100)">
+    @error('dp')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
 
         <button type="submit" class="btn btn-primary">Simpan Proforma Invoice</button>
     </form>

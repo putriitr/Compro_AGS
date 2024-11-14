@@ -22,11 +22,11 @@
                     <thead class="table-primary">
                         <tr>
                             <th>No</th>
+                            <th>Nomor Pengajuan</th>
                             <th>Nama Produk</th>
                             <th>Distributor</th>
                             <th>Quantity</th>
                             <th>Status</th>
-                            <th>File</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -34,6 +34,9 @@
                         @forelse($quotations as $key => $quotation)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                 <!-- Menampilkan Nomor Pengajuan -->
+                <td>{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
+
                     
                                 <!-- Menampilkan Nama Produk -->
                                 <td>
@@ -63,7 +66,7 @@
                                     </span>
                                 </td>
                     
-                                <!-- Menampilkan Dokumen PDF jika ada -->
+                                {{-- <!-- Menampilkan Dokumen PDF jika ada -->
                                 <td>
                                     @if ($quotation->pdf_path)
                                         <div class="d-flex flex-column">
@@ -77,7 +80,7 @@
                                     @else
                                         <span class="text-muted">No file</span>
                                     @endif
-                                </td>
+                                </td> --}}
                     
                                 <!-- Actions -->
                                 <td>

@@ -36,22 +36,23 @@
                     </div>
                 </div>
 
-                <!-- Kelola Invoice -->
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded">
-                        <div class="service-img rounded-top"
-                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
-                            <i class='bx bx-receipt' style="font-size: 200px; color: #000000;"></i>
-                        </div>
-                        <div class="service-content rounded-bottom bg-light p-4">
-                            <div class="service-content-inner">
-                                <h5 class="mb-4">Invoice</h5>
-                                <a href="{{ route('distribution.invoices') }}"
-                                    class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Lihat Invoice</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <!-- Kelola Invoice -->
+<div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+    <div class="service-item rounded">
+        <div class="service-img rounded-top"
+            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
+            <i class='bx bx-receipt' style="font-size: 200px; color: #000000;"></i> <!-- Icon untuk Invoice -->
+        </div>
+        <div class="service-content rounded-bottom bg-light p-4">
+            <div class="service-content-inner">
+                <h5 class="mb-4">Invoice</h5>
+                <a href="{{ route('distributor.invoices.index') }}"
+                   class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Lihat Invoice</a>
+            </div>
+        </div>
+    </div>
+</div>
+
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item rounded">
                         <div class="service-img rounded-top"

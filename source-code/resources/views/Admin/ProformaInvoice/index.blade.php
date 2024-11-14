@@ -50,18 +50,29 @@
                                 
                                 <!-- Tombol View dan Download Bukti Pembayaran -->
                                 @if($invoice->payment_proof_path)
-                                    <a href="{{ asset($invoice->payment_proof_path) }}" target="_blank" class="btn btn-success btn-sm mb-1">View Payment Proof</a>
-                                    <a href="{{ asset($invoice->payment_proof_path) }}" download class="btn btn-secondary btn-sm mb-1">Download Proof</a>
-                                    <a href="{{ route('invoices.create', $invoice->id) }}" class="btn btn-primary btn-sm mt-1">Create Invoice</a>
-
+                                    <a href="{{ asset($invoice->payment_proof_path) }}" target="_blank" class="btn btn-success btn-sm mb-1">View First Payment Proof</a>
+                                    <a href="{{ asset($invoice->payment_proof_path) }}" download class="btn btn-secondary btn-sm mb-1">Download First Payment Proof</a>
                                 @else
-                                    <span class="text-muted mt-1">No Payment Proof</span>
+                                    <span class="text-muted mt-1">First Payment Proof Not Available</span>
+                                @endif
+            
+                                @if($invoice->second_payment_proof_path)
+                                    <a href="{{ asset($invoice->second_payment_proof_path) }}" target="_blank" class="btn btn-success btn-sm mb-1">View Final Payment Proof</a>
+                                    <a href="{{ asset($invoice->second_payment_proof_path) }}" download class="btn btn-secondary btn-sm mb-1">Download Final Payment Proof</a>
+                                @else
+                                    <span class="text-muted mt-1">Final Payment Proof Not Available</span>
+                                @endif
+            
+                                <!-- Tombol Create Invoice, hanya muncul jika status "partially_paid" atau "paid" -->
+                                @if(in_array($invoice->status, ['partially_paid', 'paid']))
+                                    <a href="{{ route('invoices.create', $invoice->id) }}" class="btn btn-primary btn-sm mt-1">Create Invoice</a>
                                 @endif
                             </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
+            
             
         </table>
     @endif

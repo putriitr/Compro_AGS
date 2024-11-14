@@ -65,8 +65,8 @@
             <td>{{ number_format($proformaInvoice->grand_total_include_ppn, 2) }}</td>
         </tr>
         <tr>
-            <td colspan="4">DP</td>
-            <td>{{ number_format($proformaInvoice->dp, 2) }}</td>
+            <td colspan="4"><strong>Down Payment (DP)</strong></td>
+            <td>{{ number_format($dpPercent, 2) }}% - Rp {{ number_format($proformaInvoice->dp, 2) }}</td>
         </tr>
     </table>
 

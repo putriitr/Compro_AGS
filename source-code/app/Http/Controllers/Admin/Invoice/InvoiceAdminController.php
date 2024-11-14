@@ -34,9 +34,12 @@ class InvoiceAdminController extends Controller
         $subtotal = $proformaInvoice->subtotal;
         $ppn = $proformaInvoice->ppn;
         $grandTotalIncludePPN = $proformaInvoice->grand_total_include_ppn;
+
+         // Ambil data user dari Purchase Order untuk mengisi informasi vendor otomatis
+    $user = $proformaInvoice->purchaseOrder->user;
     
         // Tampilkan form create dengan data yang sudah disiapkan
-        return view('Admin.Invoice.create', compact('proformaInvoice', 'subtotal', 'ppn', 'grandTotalIncludePPN'));
+        return view('Admin.Invoice.create', compact('proformaInvoice', 'subtotal', 'ppn', 'grandTotalIncludePPN', 'user'));
     }
     
 

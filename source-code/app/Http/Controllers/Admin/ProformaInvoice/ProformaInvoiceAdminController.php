@@ -29,6 +29,8 @@ class ProformaInvoiceAdminController extends Controller
         $subtotal = $quotation->subtotal_price;
         $ppn = $quotation->ppn;
         $grandTotalIncludePPN = $quotation->total_after_discount + ($quotation->total_after_discount * ($ppn / 100));
+         // Ambil data user terkait untuk mengisi vendor information
+    $user = $purchaseOrder->user;
     
         // Mendapatkan daftar produk dari quotation_products
         $products = $quotation->quotationProducts->map(function ($product) {
@@ -40,7 +42,7 @@ class ProformaInvoiceAdminController extends Controller
             ];
         });
     
-        return view('Admin.ProformaInvoice.create', compact('purchaseOrder', 'subtotal', 'ppn', 'grandTotalIncludePPN', 'products'));
+        return view('Admin.ProformaInvoice.create', compact('purchaseOrder', 'subtotal', 'ppn', 'grandTotalIncludePPN', 'products', 'user'));
     }
     
 
@@ -50,13 +52,20 @@ class ProformaInvoiceAdminController extends Controller
         $request->validate([
             'pi_number' => 'required|unique:proforma_invoices',
             'pi_date' => 'required|date',
-            'dp' => 'nullable|numeric',
+            'dp' => 'nullable|numeric|min:0|max:100', // Validasi DP sebagai persentase
             'vendor_name' => 'required|string',
             'vendor_address' => 'required|string',
             'vendor_phone' => 'required|string',
             'products' => 'required|array',
         ]);
+        $purchaseOrder = PurchaseOrder::with('quotation')->findOrFail($purchaseOrderId);
 
+    // Ambil grand total dari quotation
+    $grandTotalIncludePPN = $purchaseOrder->quotation->total_after_discount + ($purchaseOrder->quotation->total_after_discount * ($purchaseOrder->quotation->ppn / 100));
+
+    // Hitung DP dalam nominal berdasarkan grand_total_include_ppn
+    $dpPercent = $request->dp;
+    $dpAmount = ($dpPercent / 100) * $grandTotalIncludePPN;
         // Buat Proforma Invoice
         $proformaInvoice = ProformaInvoice::create([
             'purchase_order_id' => $purchaseOrderId,
@@ -65,7 +74,8 @@ class ProformaInvoiceAdminController extends Controller
             'subtotal' => $request->subtotal,
             'ppn' => $request->ppn,
             'grand_total_include_ppn' => $request->grand_total_include_ppn,
-            'dp' => $request->dp,
+            'dp' => $dpAmount, // Simpan nominal DP
+
         ]);
 
         // Generate PDF
@@ -76,6 +86,8 @@ class ProformaInvoiceAdminController extends Controller
             'vendorAddress' => $request->vendor_address,
             'vendorPhone' => $request->vendor_phone,
             'products' => $request->products,
+            'dpPercent' => $dpPercent,  // Kirim $dpPercent ke view PDF
+
         ]);
 
         // Buat nama file PDF
