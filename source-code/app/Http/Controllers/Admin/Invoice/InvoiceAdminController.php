@@ -56,7 +56,23 @@ class InvoiceAdminController extends Controller
     ]);
 
     // Ambil Proforma Invoice terkait
-    $proformaInvoice = ProformaInvoice::with('purchaseOrder')->findOrFail($proformaInvoiceId);
+    $proformaInvoice = ProformaInvoice::with('purchaseOrder.user')->findOrFail($proformaInvoiceId);
+    // Dapatkan nama perusahaan dan buat singkatan nama
+    $namaPerusahaan = $proformaInvoice->purchaseOrder->user->nama_perusahaan ?? 'Perusahaan';
+    $singkatanNamaPerusahaan = strtoupper(implode('', array_filter(array_map(function ($kata) {
+        return $kata !== 'PT' ? $kata[0] : ''; // Hindari "PT" dari singkatan
+    }, explode(' ', $namaPerusahaan)))));
+
+    // Konversi tanggal menjadi Romawi dan ambil tahun
+    $tanggalRomawi = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI', 'XXII', 'XXIII', 'XXIV', 'XXV', 'XXVI', 'XXVII', 'XXVIII', 'XXIX', 'XXX', 'XXXI'];
+    $hariIni = \Carbon\Carbon::now();
+    $dayRoman = $tanggalRomawi[$hariIni->day - 1];
+    $tahun = $hariIni->year;
+
+    // Format nomor PO dan nomor Invoice
+    $poNumberFormatted = sprintf("%s/SPO/%s/%s/%s", $proformaInvoice->purchaseOrder->po_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
+    $piNumberFormatted = sprintf("%s/PI-AGS-%s/%s/%s", $request->invoice_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
+
 
     // Buat data invoice dan simpan ke database
     $invoice = Invoice::create([
@@ -76,6 +92,8 @@ class InvoiceAdminController extends Controller
         'vendor_name' => $request->vendor_name,
         'vendor_address' => $request->vendor_address,
         'vendor_phone' => $request->vendor_phone,
+        'poNumberFormatted' => $poNumberFormatted,  // Kirim format nomor PO ke view
+        'piNumberFormatted' => $piNumberFormatted,  // Kirim format nomor Invoice ke view
     ]);
 
     // Buat nama file unik dan simpan PDF ke direktori publik

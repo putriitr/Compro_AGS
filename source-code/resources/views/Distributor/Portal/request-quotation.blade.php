@@ -85,11 +85,10 @@
                                         Batal
                                     </button>
                                 </form>
-                            @elseif($quotation->status === 'quotation')
-                                <!-- Tampilkan tombol Nego dan Create PO jika status sudah Quotation -->
-                                <a href="{{ route('distributor.quotations.negotiations.create', $quotation->id) }}"
-                                    class="btn btn-sm btn-warning">Nego</a>
-                                    @if (!$quotation->purchaseOrder)
+                                @elseif($quotation->status === 'quotation')
+                                <!-- Tampilkan tombol Nego jika status adalah 'quotation' dan belum ada PO -->
+                                @if (!$quotation->purchaseOrder)
+                                    <a href="{{ route('distributor.quotations.negotiations.create', $quotation->id) }}" class="btn btn-sm btn-warning">Nego</a>
                                     <a href="{{ route('quotations.create_po', $quotation->id) }}" class="btn btn-sm btn-success">Create PO</a>
                                 @endif
                             @endif
