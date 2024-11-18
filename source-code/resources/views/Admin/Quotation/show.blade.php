@@ -5,8 +5,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card p-3 shadow">
-                <h2>Detail Quotation: {{ $quotation->id }}</h2>
-
+                <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">
+                    Detail Quotation #{{ $quotation->id }}
+                </h2>
                 <!-- Daftar Produk di Quotation -->
                 <div class="card mt-4 shadow">
                     <div class="card-body">
@@ -67,9 +68,11 @@
                     </div>
                 </div>
 
-                <!-- Tombol Kembali -->
-                <div class="mt-4">
-                    <a href="{{ route('admin.quotations.index') }}" class="btn btn-secondary">Kembali ke Daftar Quotation</a>
+                 <!-- Tombol Kembali -->
+                 <div class="mt-4 text-end">
+                    <a href="{{ route('admin.quotations.index') }}" class="btn btn-secondary rounded-pill shadow-sm">
+                        <i class="fas fa-arrow-left me-2"></i>Kembali ke Daftar Quotation
+                    </a>
                 </div>
             </div>
         </div>

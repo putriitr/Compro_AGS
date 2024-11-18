@@ -1,39 +1,55 @@
 @extends('layouts.Member.master')
 @section('content')
- <!-- Header Start -->
- <div class="container-fluid bg-breadcrumb">
+<!-- Header Start -->
+<div class="container-fluid bg-breadcrumb">
     <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Create Purchase Order 
-        </h3>
+        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Create Purchase Order</h3>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
-            <li class="breadcrumb-item active text-primary">Create Purchase Order </li>
+            <li class="breadcrumb-item active text-primary">Create Purchase Order</li>
         </ol>
     </div>
 </div>
-<!-- Header End --><br><br>
+<!-- Header End -->
+
 <div class="container mt-5">
-    <h2>Create Purchase Order for Quotation #{{ $quotation->quotation_number }}</h2>
-    
-    <form action="{{ route('quotations.store_po', $quotation->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="form-group mb-3">
-            <label for="po_number">PO Number</label>
-            <input type="text" class="form-control" id="po_number" name="po_number" required>
-        </div>
+    <div class="card shadow-lg p-4 rounded-3">
+        <div class="card-body">
+            <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">
+                Create Purchase Order for Quotation #{{ $quotation->quotation_number }}
+            </h2>
+            
+            <form action="{{ route('quotations.store_po', $quotation->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                
+                <!-- PO Number -->
+                <div class="form-group mb-4">
+                    <label for="po_number" class="form-label" style="font-weight: bold; color: #004d40;">PO Number</label>
+                    <input type="text" class="form-control rounded-pill shadow-sm" id="po_number" name="po_number" placeholder="Enter PO Number" required>
+                </div>
+                
+                <!-- PO Date -->
+                <div class="form-group mb-4">
+                    <label for="po_date" class="form-label" style="font-weight: bold; color: #004d40;">PO Date</label>
+                    <input type="date" class="form-control rounded-pill shadow-sm" id="po_date" name="po_date" required>
+                </div>
 
-        <div class="form-group mb-3">
-            <label for="po_date">PO Date</label>
-            <input type="date" class="form-control" id="po_date" name="po_date" required>
-        </div>
+                <!-- Upload PO File -->
+                <div class="form-group mb-4">
+                    <label for="file_path" class="form-label" style="font-weight: bold; color: #004d40;">Upload PO File</label>
+                    <input type="file" class="form-control rounded-pill shadow-sm" id="file_path" name="file_path" accept=".pdf,.doc,.docx" required>
+                    <small class="form-text text-muted">Supported formats: PDF, DOC, DOCX</small>
+                </div>
 
-        <div class="form-group mb-3">
-            <label for="file_path">Upload PO File (optional)</label>
-            <input type="file" class="form-control" id="file_path" name="file_path" accept=".pdf,.doc,.docx" required>
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm" style="background: #00796b; border: none;">
+                        <i class="fas fa-paper-plane me-2"></i>Create PO
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <button type="submit" class="btn btn-primary">Create PO</button>
-    </form>
+    </div>
 </div>
 @endsection

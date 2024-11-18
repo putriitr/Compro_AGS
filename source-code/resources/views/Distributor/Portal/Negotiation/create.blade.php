@@ -11,23 +11,37 @@
         </ol>
     </div>
 </div>
-<!-- Header End --><br><br>
+<!-- Header End -->
+
 <div class="container mt-5">
-    <h2>Negotiate Quotation #{{ $quotation->quotation_number }}</h2>
-    
-    <form action="{{ route('distributor.quotations.negotiations.store', $quotation->id) }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="negotiated_price">Negotiated Price</label>
-            <input type="number" step="0.01" class="form-control" id="negotiated_price" name="negotiated_price" required>
-        </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4 rounded-3 border-0" style="background: linear-gradient(135deg, #e0f7fa, #80deea);">
+                <div class="card-body">
+                    <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">
+                        Negotiate Quotation #{{ $quotation->quotation_number }}
+                    </h2>
+                    <form action="{{ route('distributor.quotations.negotiations.store', $quotation->id) }}" method="POST">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <label for="negotiated_price" class="form-label" style="font-weight: bold; color: #004d40;">Negotiated Price</label>
+                            <input type="number" step="0.01" class="form-control rounded-pill px-3 py-2 border-0 shadow-sm" id="negotiated_price" name="negotiated_price" placeholder="Enter negotiated price" required>
+                        </div>
 
-        <div class="form-group">
-            <label for="notes">Notes</label>
-            <textarea class="form-control" id="notes" name="notes" rows="4"></textarea>
-        </div>
+                        <div class="form-group mb-4">
+                            <label for="notes" class="form-label" style="font-weight: bold; color: #004d40;">Notes</label>
+                            <textarea class="form-control rounded-3 px-3 py-2 border-0 shadow-sm" id="notes" name="notes" rows="4" placeholder="Add any additional notes..."></textarea>
+                        </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Submit Negotiation</button>
-    </form>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm" style="background: #00796b; border: none;">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Negotiation
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
