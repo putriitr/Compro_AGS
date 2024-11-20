@@ -9,14 +9,15 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
         <div class="row g-5">
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="footer-item d-flex flex-column">
+                    @guest
                     <form action="{{ route('guest-messages.store') }}" method="POST" class="bg-light p-4 rounded">
                         @csrf
                         <h4 class="text-dark mb-4">{{ __('messages.leave_message') }}</h4>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="first_name" class="form-label">{{ __('messages.full_name') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                    <label for="nama" class="form-label">{{ __('messages.full_name') }} <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="nama" name="nama" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -29,23 +30,30 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="company" class="form-label">{{ __('messages.company') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="company" name="company" required>
+                                    <label for="perusahaan" class="form-label">{{ __('messages.company') }}</label>
+                                    <input type="text" class="form-control" id="perusahaan" name="perusahaan">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label">{{ __('messages.phone') }} <span class="text-danger">*</span></label>
+                                    <label for="no_wa" class="form-label">{{ __('messages.phone') }} <span class="text-danger">*</span></label>
                                     <input type="tel" id="no_wa" name="no_wa" class="form-control" required pattern="\d{10,12}" title="Nomor WhatsApp harus terdiri dari 10 hingga 12 digit angka" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="12">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="message" class="form-label">{{ __('messages.your_message') }} <span class="text-danger">*</span></label>
-                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                            <label for="pesan" class="form-label">{{ __('messages.your_message') }} <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="pesan" name="pesan" rows="3" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">{{ __('messages.send_message') }}</button>
                     </form>
+                    @endguest
+                    @auth
+                    <!-- Placeholder agar tata letak tetap rapi -->
+                    <div class="bg-light p-4 rounded d-flex justify-content-center align-items-center" style="height: 100%;">
+                        <p class="text-muted text-center m-0">{{ __('messages.form_not_available_logged_in') }}</p>
+                    </div>
+                @endauth
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">

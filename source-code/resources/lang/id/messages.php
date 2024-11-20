@@ -110,4 +110,7 @@ return [
     'show_all_categories' => 'Semua Kategori',
     'show_less_categories' => 'Lihat Lebih Sedikit',
     'search' => 'Cari Disini ..',
+
+    'form_not_available_logged_in' => 'Form tidak tersedia karena Anda sudah login. Silakan gunakan portal untuk mengakses layanan.',
+
 ];

@@ -109,4 +109,7 @@ return [
     'show_all_categories' => 'Show All',
     'show_less_categories' => 'Show Less',
     'search' => 'Search Here ..',
+
+    'form_not_available_logged_in' => 'Form is not available because you are logged in. Please use the portal to access services.',
+
 ];

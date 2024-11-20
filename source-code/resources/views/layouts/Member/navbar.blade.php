@@ -160,6 +160,12 @@
                         </div>
                     @endforeach
                     @auth
+                    @if (session('error'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Peringatan:</strong> {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="memberDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ __('Portal') }}

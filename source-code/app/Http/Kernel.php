@@ -22,7 +22,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrackVisitors::class,
-
+ // Middleware custom
+ \App\Http\Middleware\QuotationCountMiddleware::class,
     ];
 
     /**
