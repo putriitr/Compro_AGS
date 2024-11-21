@@ -15,7 +15,8 @@
     use App\Http\Controllers\Member\Produk\ProdukMemberController;
     use App\Http\Controllers\Admin\Slider\SliderController;
     use App\Http\Controllers\Admin\Activity\ActivityController;
-    use App\Http\Controllers\Member\Activity\ActivityMemberController;
+use App\Http\Controllers\Admin\Admin\AdminController;
+use App\Http\Controllers\Member\Activity\ActivityMemberController;
     use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
     use App\Http\Controllers\Admin\Meta\MetaController;
     use App\Http\Controllers\Member\Meta\MetaMemberController;
@@ -182,6 +183,12 @@ use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorControlle
             Route::get('/admin/distributors', [DistributorApprovalController::class, 'index'])->name('admin.distributors.index');
             Route::post('/admin/distributors/{id}/approve', [DistributorApprovalController::class, 'approve'])->name('admin.distributors.approve');
             Route::get('/admin/distributors/{id}', [DistributorApprovalController::class, 'show'])->name('admin.distributors.show'); // Route for viewing details
+            Route::get('/', [AdminController::class, 'index'])->name('admin.index'); // Daftar admin
+            Route::get('/create', [AdminController::class, 'create'])->name('admin.create'); // Form tambah admin
+            Route::post('/', [AdminController::class, 'store'])->name('admin.store'); // Simpan admin baru
+            Route::get('/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit'); // Form edit admin
+            Route::put('/{admin}', [AdminController::class, 'update'])->name('admin.update'); // Update admin
+            Route::delete('/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy'); // Hapus admin
 
             Route::resource('admin/members', MemberController::class);
             Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');

@@ -37,30 +37,39 @@
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Kelola Member & Distributor</h4>
+                    <h4 class="text-section">Kelola User</h4>
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#member-management">
                         <i class="fas fa-user"></i>
-                        <p>Member & Distributor</p>
+                        <p>User</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="member-management">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('members.index') }}">
-                                    <span class="sub-item">Semua Member</span>
+                                    <i class="fas fa-users"></i>
+                                    <p>Semua Member</p>
                                 </a>
                             </li>
-                             <!-- Approve Distributor Link -->
-            <li>
-                <a href="{{ route('admin.distributors.index') }}">
-                    <span class="sub-item">Semua Distributor</span>
-                </a>
-            </li>
+                            <li>
+                                <a href="{{ route('admin.distributors.index') }}">
+                                    <i class="fas fa-warehouse"></i>
+                                    <p>Semua Distributor</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.index') }}">
+                                    <i class="fas fa-user-shield"></i>
+                                    <p>Kelola Admin</p>
+                                </a>
+                            </li>
+                            
                         </ul>
                     </div>
                 </li>
+
 
                 <!-- Product Management -->
                 <li class="nav-section">
@@ -73,7 +82,7 @@
                     <a data-bs-toggle="collapse" href="#product-management">
                         <i class="fas fa-shopping-cart"></i>
                         <p>Produk</p>
-                        @if($totalPendingProducts > 0)
+                        @if ($totalPendingProducts > 0)
                             <span class="badge bg-danger">{{ $totalPendingProducts }}</span>
                         @endif
                         <span class="caret"></span>
@@ -88,25 +97,25 @@
                             <li>
                                 <a href="{{ route('admin.tickets.index') }}">
                                     <span class="sub-item">Tiketing Layanan</span>
-                                    @if($openTickets > 0)
+                                    @if ($openTickets > 0)
                                         <span class="badge bg-danger">{{ $openTickets }}</span>
                                     @endif
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{ route('admin.quotations.index') }}">
                                     <span class="sub-item">Quotation</span>
-                                    @if($pendingCount > 0)
+                                    @if ($pendingCount > 0)
                                         <span class="badge bg-danger">{{ $pendingCount }}</span>
                                     @endif
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{ route('admin.quotations.negotiations.index') }}">
                                     <span class="sub-item">Negosiasi</span>
-                                    @if($pendingNegotiations > 0)
+                                    @if ($pendingNegotiations > 0)
                                         <span class="badge bg-danger">{{ $pendingNegotiations }}</span>
                                     @endif
                                 </a>
@@ -114,7 +123,7 @@
                             <li>
                                 <a href="{{ route('admin.purchase-orders.index') }}">
                                     <span class="sub-item">Purchase Orders</span>
-                                    @if($pendingPOs > 0)
+                                    @if ($pendingPOs > 0)
                                         <span class="badge bg-danger">{{ $pendingPOs }}</span>
                                     @endif
                                 </a>
@@ -122,7 +131,7 @@
                             <li>
                                 <a href="{{ route('admin.proforma-invoices.index') }}">
                                     <span class="sub-item">Proforma Invoices</span>
-                                    @if($pendingPIs > 0)
+                                    @if ($pendingPIs > 0)
                                         <span class="badge bg-danger">{{ $pendingPIs }}</span>
                                     @endif
                                 </a>
