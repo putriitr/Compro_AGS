@@ -149,157 +149,163 @@
     @endif
     <!-- Product End -->
 
-    <!-- Partner Section Start -->
-    <section id="merek-mitra">
-        <div class="container-fluid service mb-5">
-            <div class="container">
-                <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
-                    </div>
-                    <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
-                </div>
-                @if ($partners->isNotEmpty())
-                    <div class="container overflow-hidden">
-                        <div class="row gy-4">
-                            @foreach ($partners as $key => $p)
-                                <div
-                                    class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
-                                    <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
-                                            width="100%" height="100" style="object-fit:contain;">
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        @if ($partners->count() > 4)
-                            <div class="text-center mt-4">
-                                <button id="show-more-partners"
-                                    class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                                <button id="show-less-partners"
-                                    class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
-                            </div>
-                        @endif
-                    </div>
-            </div>
-        </div>
-    </section>
-    @endif
-    <!-- Partner Section End -->
-
-    <!-- Principal Section Start -->
-    <div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
+   <!-- Partner Section Start -->
+<section id="merek-mitra">
+    <div class="container-fluid service mb-5">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
                 <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">{{ __('messages.trusted_collaboration') }}</h4>
+                    <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
                 </div>
-                <h1 class="display-3 mb-4">{{ __('messages.distributor_company') }}</h1>
+                <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
             </div>
-            @if ($principals->isNotEmpty())
+            @if ($partners->isNotEmpty())
                 <div class="container overflow-hidden">
                     <div class="row gy-4">
-                        @foreach ($principals as $key => $p)
-                            <div
-                                class="col-6 col-md-4 col-xl-3 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
+                        @foreach ($partners as $key => $p)
+                            <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
                                 <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
-                                        width="100%" height="65">
+                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%" height="100" style="object-fit:contain;">
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    @if ($principals->count() > 8)
+                    @if ($partners->count() > 8)
                         <div class="text-center mt-4">
-                            <button id="show-more-principals"
-                                class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                            <button id="show-less-principals"
-                                class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                            <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                            <button id="show-less-partners" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
                         </div>
                     @endif
                 </div>
+            @endif
         </div>
     </div>
-    @endif
-    <!-- Principal Section End -->
+</section>
+<!-- Partner Section End -->
 
-    <!-- Script to Show More and Show Less Items -->
-    <script>
-        document.getElementById('show-more-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-partners').classList.remove('d-none');
-        });
+<!-- Principal Section Start -->
+<div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="section-title">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">{{ __('messages.trusted_collaboration') }}</h4>
+            </div>
+            <h1 class="display-3 mb-4">{{ __('messages.distributor_company') }}</h1>
+        </div>
+        @if ($principals->isNotEmpty())
+            <div class="container overflow-hidden">
+                <div class="row gy-4">
+                    @foreach ($principals as $key => $p)
+                        <div class="col-6 col-md-4 col-xl-3 text-center principal-item {{ $key >= 8 ? 'd-none' : '' }}">
+                            <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%" height="65">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                @if ($principals->count() > 8)
+                    <div class="text-center mt-4">
+                        <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                        <button id="show-less-principals" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                    </div>
+                @endif
+            </div>
+        @endif
+    </div>
+</div>
+<!-- Principal Section End -->
 
-        document.getElementById('show-less-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item').forEach(function(item, index) {
-                if (index >= 8) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-partners').style.display = 'inline-block';
-        });
+<!-- Combined Script for Show More and Show Less -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function setupShowMoreLess(sectionClass, showMoreBtnId, showLessBtnId, itemClass, limit) {
+            const showMoreBtn = document.getElementById(showMoreBtnId);
+            const showLessBtn = document.getElementById(showLessBtnId);
+            const items = document.querySelectorAll(`.${itemClass}`);
 
-        document.getElementById('show-more-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-principals').classList.remove('d-none');
-        });
+            if (showMoreBtn && showLessBtn) {
+                showMoreBtn.addEventListener('click', function () {
+                    items.forEach(function (item, index) {
+                        if (index >= limit) {
+                            item.classList.remove('d-none'); // Show additional items
+                        }
+                    });
+                    showMoreBtn.classList.add('d-none'); // Hide Show More button
+                    showLessBtn.classList.remove('d-none'); // Show Show Less button
+                });
 
-        document.getElementById('show-less-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item').forEach(function(item, index) {
-                if (index >= 8) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-principals').style.display = 'inline-block';
-        });
-    </script>
+                showLessBtn.addEventListener('click', function () {
+                    items.forEach(function (item, index) {
+                        if (index >= limit) {
+                            item.classList.add('d-none'); // Hide additional items
+                        }
+                    });
+                    showLessBtn.classList.add('d-none'); // Hide Show Less button
+                    showMoreBtn.classList.remove('d-none'); // Show Show More button
+                });
+            }
+        }
+
+        // Setup Show More/Less for Partner Section
+        setupShowMoreLess(
+            'partner-section',
+            'show-more-partners',
+            'show-less-partners',
+            'partner-item',
+            8
+        );
+
+        // Setup Show More/Less for Principal Section
+        setupShowMoreLess(
+            'principal-section',
+            'show-more-principals',
+            'show-less-principals',
+            'principal-item',
+            8
+        );
+    });
+</script>
 
 
 
 
     <!-- E-commerce Section Start -->
-    @if ($brand->isNotEmpty())
-        <div class="container-fluid service py-5">
-            <div class="container py-5">
-                <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">{{ __('messages.ecommerce_title') }}</h4>
-                    </div>
-                    <h1 class="display-3 mb-4">{{ __('messages.explore_more_products') }}</h1>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 mb-4">
-                        <div class="col-12 wow fadeInUp text-center" data-wow-delay="0.1s">
-                            <div class="logo-container text-center">
-                                <div class="logo-static text-center"
-                                    style="display: flex; justify-content: center; flex-wrap: wrap;">
-                                    @foreach ($brand as $b)
-                                        <a href="{{ $b->url }}"
-                                            style="display: inline-block; margin: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;"
-                                            onmouseover="this.firstElementChild.style.transform='scale(1.2)'; this.firstElementChild.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
-                                            onmouseout="this.firstElementChild.style.transform='scale(1)'; this.firstElementChild.style.boxShadow='none';">
-                                            <img src="{{ asset('storage/' . $b->gambar) }}" alt="{{ $b->type }}"
-                                                class="logo"
-                                                style="width: 400px; height: auto; object-fit: contain; padding: 10px; border-radius: 8px; transition: transform 0.3s ease;">
-                                        </a>
-                                    @endforeach
-                                </div>
-                            </div>
+@if ($brand->isNotEmpty())
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">{{ __('messages.ecommerce_title') }}</h4>
+            </div>
+            <h1 class="display-3 mb-4">{{ __('messages.explore_more_products') }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="col-12 wow fadeInUp text-center" data-wow-delay="0.1s">
+                    <div class="logo-container text-center">
+                        <div class="logo-static text-center"
+                            style="display: flex; justify-content: center; flex-wrap: wrap;">
+                            @foreach ($brand as $b)
+                                <a href="{{ strpos($b->url, 'http://') === 0 || strpos($b->url, 'https://') === 0 ? $b->url : 'http://' . $b->url }}"
+                                    target="_blank"
+                                    style="display: inline-block; margin: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                                    onmouseover="this.firstElementChild.style.transform='scale(1.2)'; this.firstElementChild.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
+                                    onmouseout="this.firstElementChild.style.transform='scale(1)'; this.firstElementChild.style.boxShadow='none';">
+                                    <img src="{{ asset('storage/' . $b->gambar) }}" alt="{{ $b->type }}"
+                                        class="logo"
+                                        style="width: 400px; height: auto; object-fit: contain; padding: 10px; border-radius: 8px; transition: transform 0.3s ease;">
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @endif
-    <!-- E-commerce Section End -->
+    </div>
+</div>
+@endif
+<!-- E-commerce Section End -->
+
 
     <!-- Map Start -->
     <div class="container"

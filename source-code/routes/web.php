@@ -183,12 +183,12 @@ use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorControlle
             Route::get('/admin/distributors', [DistributorApprovalController::class, 'index'])->name('admin.distributors.index');
             Route::post('/admin/distributors/{id}/approve', [DistributorApprovalController::class, 'approve'])->name('admin.distributors.approve');
             Route::get('/admin/distributors/{id}', [DistributorApprovalController::class, 'show'])->name('admin.distributors.show'); // Route for viewing details
-            Route::get('/', [AdminController::class, 'index'])->name('admin.index'); // Daftar admin
-            Route::get('/create', [AdminController::class, 'create'])->name('admin.create'); // Form tambah admin
-            Route::post('/', [AdminController::class, 'store'])->name('admin.store'); // Simpan admin baru
-            Route::get('/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit'); // Form edit admin
-            Route::put('/{admin}', [AdminController::class, 'update'])->name('admin.update'); // Update admin
-            Route::delete('/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy'); // Hapus admin
+            Route::get('/admin', [AdminController::class, 'index'])->name('admin.index'); // Daftar admin
+            Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create'); // Form tambah admin
+            Route::post('/admin', [AdminController::class, 'store'])->name('admin.store'); // Simpan admin baru
+            Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit'); // Form edit admin
+            Route::put('/admin/{admin}', [AdminController::class, 'update'])->name('admin.update'); // Update admin
+            Route::delete('/admin/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy'); // Hapus admin
 
             Route::resource('admin/members', MemberController::class);
             Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
