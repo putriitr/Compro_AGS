@@ -19,6 +19,37 @@
                 @endif
 
                 <div class="card-body">
+                    <!-- Search Form -->
+                    <form action="{{ route('admin.produk.index') }}" method="GET" class="mb-4">
+                        <div class="row">
+                            <!-- Search by Keyword -->
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" placeholder="Cari produk..." 
+                                           value="{{ request()->input('search') }}">
+                                </div>
+                            </div>
+
+                            <!-- Filter by Kategori -->
+                            <div class="col-md-4">
+                                <select name="kategori" class="form-select">
+                                    <option value="">Semua Kategori</option>
+                                    @foreach ($kategori as $kat)
+                                        <option value="{{ $kat->id }}" 
+                                            {{ request()->input('kategori') == $kat->id ? 'selected' : '' }}>
+                                            {{ $kat->nama }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-md-2">
+                                <button class="btn btn-primary w-100" type="submit">Filter</button>
+                            </div>
+                        </div>
+                    </form>
+
                     <div class="row">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
@@ -34,7 +65,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($produks as $produk)
+                                    @forelse ($produks as $produk)
                                         <tr>
                                             <td>{{ $produk->id }}</td>
                                             <td class="text-truncate" style="max-width: 150px;">{{ $produk->nama }}</td>
@@ -56,10 +87,19 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">Tidak ada produk ditemukan.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+
+                    <!-- Pagination Links -->
+                    <div class="d-flex justify-content-center mt-4">
+                        {{ $produks->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
 

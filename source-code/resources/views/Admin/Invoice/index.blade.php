@@ -14,6 +14,15 @@
                 </div>
             @endif
 
+            <!-- Search Form -->
+            <form action="{{ route('invoices.index') }}" method="GET" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nomor invoice, status, atau total..."
+                           value="{{ request()->input('search') }}">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                </div>
+            </form>
+
             <!-- Tabel Invoice -->
             <div class="table-responsive">
                 <table class="table table-hover shadow-sm rounded">
@@ -62,11 +71,22 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="9" class="text-center text-muted">Belum ada Invoice.</td>
+                                <td colspan="9" class="text-center text-muted">
+                                    @if(request()->has('search'))
+                                        Data tidak ditemukan.
+                                    @else
+                                        Belum ada Invoice.
+                                    @endif
+                                </td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $invoices->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>

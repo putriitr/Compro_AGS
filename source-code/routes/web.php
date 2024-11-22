@@ -15,8 +15,8 @@
     use App\Http\Controllers\Member\Produk\ProdukMemberController;
     use App\Http\Controllers\Admin\Slider\SliderController;
     use App\Http\Controllers\Admin\Activity\ActivityController;
-use App\Http\Controllers\Admin\Admin\AdminController;
-use App\Http\Controllers\Member\Activity\ActivityMemberController;
+    use App\Http\Controllers\Admin\Admin\AdminController;
+    use App\Http\Controllers\Member\Activity\ActivityMemberController;
     use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
     use App\Http\Controllers\Admin\Meta\MetaController;
     use App\Http\Controllers\Member\Meta\MetaMemberController;
@@ -40,9 +40,10 @@ use App\Http\Controllers\Member\Activity\ActivityMemberController;
     use App\Http\Controllers\Admin\Quotation\QuotationAdminController;
     use App\Http\Controllers\Admin\Quotation\QuotationNegotiationController;
     use App\Http\Controllers\Distribution\Portal\DistributorQuotationNegotiationController;
-use App\Http\Controllers\Distribution\Portal\InvoiceController;
-use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
+    use App\Http\Controllers\Distribution\Portal\InvoiceController;
+    use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
     use App\Http\Controllers\Distribution\Portal\PurchaseOrderController;
+    use App\Http\Controllers\Distribution\Profile\ProfileDistributorController;
 
     /*
     |--------------------------------------------------------------------------
@@ -173,6 +174,9 @@ use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorControlle
             Route::get('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'create'])->name('quotations.create_po');
             Route::post('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'store'])->name('quotations.store_po');
             Route::get('/distributor/purchase-orders', [PurchaseOrderController::class, 'index'])->name('distributor.purchase-orders.index');
+            Route::get('/distributor/profile', [ProfileDistributorController::class, 'show'])->name('distributor.profile.show');
+            Route::get('/distributor/profile/edit', [ProfileDistributorController::class, 'edit'])->name('distributor.profile.edit');
+            Route::put('/distributor/profile/update', [ProfileDistributorController::class, 'update'])->name('distributor.profile.update');
         });
     });
 

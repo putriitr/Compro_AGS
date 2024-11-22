@@ -18,7 +18,15 @@
 
     <div class="card shadow-sm border-0 rounded">
         <div class="card-body p-0">
-            @if($distributors->isEmpty())
+            <!-- Form Pencarian -->
+            <form action="{{ route('admin.distributors.index') }}" method="GET" class="m-3">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Cari nama, email, atau perusahaan..." value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
+            </form>
+
+            @if($distributors->isEmpty() && !request('search'))
                 <div class="alert alert-info m-3">
                     <i class="fas fa-info-circle me-2"></i>Belum ada distributor yang mendaftar.
                 </div>
@@ -35,9 +43,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($distributors as $key => $distributor)
+                        @forelse($distributors as $key => $distributor)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $distributors->firstItem() + $key }}</td>
                                 <td>{{ $distributor->name }}</td>
                                 <td>{{ $distributor->email }}</td>
                                 <td>{{ $distributor->nama_perusahaan }}</td>
@@ -66,9 +74,20 @@
                                     </a>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">Data tidak ditemukan.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
+
+                <!-- Pagination -->
+                @if($distributors->isNotEmpty())
+                    <div class="d-flex justify-content-center mt-3">
+                        {{ $distributors->withQueryString()->links() }}
+                    </div>
+                @endif
             @endif
         </div>
     </div>

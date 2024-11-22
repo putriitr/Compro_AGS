@@ -10,6 +10,9 @@
                     </div>
                     <p class="text-dark text-wrap text-center">Email anda telah terverifikasi.</p>
                     <p class="text-dark text-wrap text-center">Temukan teknologi terbaru bersama kami.</p>
+                    <div class="text-center mt-3">
+                        <a href="{{ url('/') }}" class="btn btn-primary">Kembali ke Home</a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 right-box">

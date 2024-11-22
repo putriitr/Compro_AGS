@@ -14,6 +14,15 @@
                 </div>
             @endif
 
+            <!-- Search Form -->
+            <form action="{{ route('admin.quotations.negotiations.index') }}" method="GET" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nomor quotation, harga negosiasi, atau status..."
+                           value="{{ request()->input('search') }}">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                </div>
+            </form>
+
             <!-- Tabel Negotiations -->
             <div class="table-responsive">
                 <table class="table table-hover shadow-sm rounded">
@@ -27,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody style="background-color: #f9f9f9;">
-                        @foreach($negotiations as $negotiation)
+                        @forelse($negotiations as $negotiation)
                             <tr>
                                 <td class="text-center">{{ $negotiation->id }}</td>
                                 <td class="text-center">{{ $negotiation->quotation->quotation_number }}</td>
@@ -52,9 +61,18 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">Belum ada negosiasi.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $negotiations->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>

@@ -14,6 +14,15 @@
                 </div>
             @endif
 
+            <!-- Search Form -->
+            <form action="{{ route('admin.purchase-orders.index') }}" method="GET" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nomor PO, distributor, atau status..."
+                           value="{{ request()->input('search') }}">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                </div>
+            </form>
+
             <!-- Tabel Purchase Orders -->
             <div class="table-responsive">
                 <table class="table table-hover shadow-sm rounded">
@@ -28,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody style="background-color: #f9f9f9;">
-                        @foreach($purchaseOrders as $po)
+                        @forelse($purchaseOrders as $po)
                             <tr>
                                 <td class="text-center">{{ $po->id }}</td>
                                 <td class="text-center">{{ $po->po_number }}</td>
@@ -76,9 +85,24 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="9" class="text-center text-muted">
+                                @if(request()->has('search'))
+                                    Data tidak ditemukan.
+                                @else
+                                    Belum ada Purchase Order.
+                                @endif
+                            </td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $purchaseOrders->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>

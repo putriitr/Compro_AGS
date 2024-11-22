@@ -5,3 +5,4 @@
 @include('layouts.member.content')
 
 @include('layouts.member.footer')
+@include('layouts.member.whatsapp')

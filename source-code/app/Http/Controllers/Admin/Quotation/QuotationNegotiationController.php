@@ -10,11 +10,25 @@ use App\Models\QuotationNegotiation;
 class QuotationNegotiationController extends Controller
 {
    // Menampilkan daftar negosiasi yang masuk
-   public function index()
+   public function index(Request $request)
    {
-    $negotiations = QuotationNegotiation::with('quotation')->get();
-    return view('Admin.Quotation.Negotiation.index', compact('negotiations'));
+       // Ambil keyword pencarian dari input pengguna
+       $keyword = $request->input('search');
+   
+       // Query negotiations dengan pencarian dan pagination
+       $negotiations = QuotationNegotiation::with('quotation')
+           ->when($keyword, function ($query) use ($keyword) {
+               $query->whereHas('quotation', function ($q) use ($keyword) {
+                   $q->where('quotation_number', 'like', "%{$keyword}%");
+               })
+               ->orWhere('negotiated_price', 'like', "%{$keyword}%")
+               ->orWhere('status', 'like', "%{$keyword}%");
+           })
+           ->paginate(10); // Menampilkan 10 item per halaman
+   
+       return view('Admin.Quotation.Negotiation.index', compact('negotiations', 'keyword'));
    }
+   
 
    public function accept($id, Request $request)
    {

@@ -18,11 +18,27 @@ use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $members = User::where('type', 0)->paginate(10); // Assuming type 0 is for members
+        // Ambil query untuk user dengan tipe 0 (members)
+        $query = User::where('type', 0);
+    
+        // Tambahkan logika pencarian
+        if ($request->has('search') && $request->search !== null) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('nama_perusahaan', 'like', "%{$search}%");
+            });
+        }
+    
+        // Pagination 10 data per halaman
+        $members = $query->paginate(10);
+    
+        // Kembalikan data ke view
         return view('admin.members.index', compact('members'));
     }
+    
 
     public function create()
     {

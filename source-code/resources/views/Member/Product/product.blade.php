@@ -8,7 +8,6 @@
                 <div class="d-flex justify-content-between mb-4">
                     <h4 class="text-dark font-weight-bold">{{ __('messages.category') }}<i
                             class="fas fa-chevron-down ms-2"></i></h4>
-
                 </div>
 
                 <div class="mb-4 shadow-sm mt-n2">
@@ -59,7 +58,7 @@
                             <input type="text" name="keyword" id="find" placeholder="{{ __('messages.search') }}"
                                 class="form-control bg-light shadow-sm" style="border-radius: 10px; padding: 12px;" />
                             <button type="submit" class="btn btn-primary ms-2 px-4"
-                                style="margin-left: 10px; padding: 16px; border: none; border-radius: 10px; background-color: ##6196f; color: white;">
+                                style="padding: 12px; border: none; border-radius: 10px; background-color: #6196FF; color: white;">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>
@@ -81,7 +80,7 @@
                                 <a href="{{ route('product.show', $produk->id) }}">
                                     <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
                                         class="card-img-top" alt="{{ $produk->nama }}"
-                                        style="object-fit: contain; height: 250px; transition: transform 0.3s ease;">
+                                        style="object-fit: cover; height: 250px; transition: transform 0.3s ease;">
                                 </a>
                                 <div class="card-body text-center">
                                     @php
@@ -96,14 +95,14 @@
                                     </a>
                                     <!-- Ajukan Quotation Button for Distributor Users Only -->
                                     @if (auth()->user() && auth()->user()->type === 'distributor')
-                                    <form action="{{ route('quotations.add_to_cart') }}" method="POST" class="d-inline-flex align-items-center">
-                                        @csrf
-                                        <input type="hidden" name="produk_id" value="{{ $produk->id }}">
-                                        <input type="number" name="quantity" min="1" value="1" 
-                                               class="form-control form-control-sm me-2" style="width: 70px;">
-                                        <button type="submit" class="btn btn-primary btn-sm px-3">Tambah</button>
-                                    </form>
-                                    
+                                        <form action="{{ route('quotations.add_to_cart') }}" method="POST"
+                                            class="d-flex justify-content-center align-items-center">
+                                            @csrf
+                                            <input type="hidden" name="produk_id" value="{{ $produk->id }}">
+                                            <input type="number" name="quantity" min="1" value="1"
+                                                class="form-control form-control-sm me-2" style="width: 70px;">
+                                            <button type="submit" class="btn btn-primary btn-sm px-3">Tambah</button>
+                                        </form>
                                     @endif
                                 </div>
                             </div>
@@ -111,25 +110,27 @@
                     @endforeach
                 </div>
 
-                <!-- Pagination Links -->
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $produks->links() }} <!-- Menampilkan link pagination -->
-                </div>
 
             </div>
-            <!-- Main Content End -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $produks->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </div>
 @endsection
 
+
 <script>
     function toggleButtonText(button) {
-        if (button.textContent.trim() === '{{ __('messages.show_all_categories') }}') {
-            button.textContent = '{{ __('messages.show_less_categories') }}';
+        const showText = '{{ __('messages.show_all_categories') }}';
+        const hideText = '{{ __('messages.show_less_categories') }}';
+
+        if (button.textContent.trim() === showText) {
+            button.textContent = hideText;
             button.classList.add('btn-danger');
             button.classList.remove('btn-link');
         } else {
-            button.textContent = '{{ __('messages.show_all_categories') }}';
+            button.textContent = showText;
             button.classList.add('btn-link');
             button.classList.remove('btn-danger');
         }
@@ -138,16 +139,8 @@
 
 <!-- Additional Custom CSS -->
 <style>
-    /* General layout adjustments */
-    .container-fluid.bg-breadcrumb {
-        background-size: cover;
-        background-position: center;
-        color: #fff;
-    }
-
-    /* Product cards */
     .product-card {
-        border-radius: 12px;
+        border-radius: 10px;
         background-color: #fff;
         transition: all 0.3s ease-in-out;
     }
@@ -157,7 +150,16 @@
         box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
     }
 
-    /* Button styles */
+    .product-card img {
+        object-fit: cover;
+        height: 250px;
+        transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img {
+        transform: scale(1.05);
+    }
+
     .btn-outline-primary {
         border: 2px solid #007bff;
         color: #007bff;
@@ -170,30 +172,19 @@
         color: #fff;
     }
 
-    /* Image hover effects */
-    .product-card img {
-        transition: transform 0.3s ease;
+    .pagination {
+        justify-content: center;
+        margin-top: 20px;
     }
 
-    .product-card:hover img {
-        transform: scale(1.05);
+    .pagination .page-item.active .page-link {
+        background-color: #6196FF;
+        border-color: #6196FF;
+        color: #fff;
     }
 
-    /* Breadcrumbs */
-    .breadcrumb-item a {
-        color: #333;
-    }
-
-    .breadcrumb-item a:hover {
-        text-decoration: underline;
-    }
-
-    /* Custom Typography */
-    h1,
-    h3,
-    h5 {
-        font-family: 'Montserrat', sans-serif;
-        letter-spacing: 1px;
-        text-transform: uppercase;
+    .pagination .page-item .page-link {
+        color: #007bff;
+        border-radius: 50px;
     }
 </style>

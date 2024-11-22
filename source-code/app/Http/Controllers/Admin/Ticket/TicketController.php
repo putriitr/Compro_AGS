@@ -11,12 +11,22 @@ use App\Models\PermintaanData;
 
 class TicketController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tickets = AfterSales::all();
-        return view('Admin.Ticket.index', compact('tickets'));
+        // Ambil keyword pencarian dari input pengguna
+        $keyword = $request->input('search');
+    
+        // Query tiket dengan pencarian dan pagination
+        $tickets = AfterSales::when($keyword, function ($query) use ($keyword) {
+            $query->where('jenis_layanan', 'like', "%{$keyword}%")
+                  ->orWhere('keterangan_layanan', 'like', "%{$keyword}%")
+                  ->orWhere('tgl_pengajuan', 'like', "%{$keyword}%")
+                  ->orWhere('status', 'like', "%{$keyword}%");
+        })->paginate(10); // Menampilkan 10 item per halaman
+    
+        return view('Admin.Ticket.index', compact('tickets', 'keyword'));
     }
-
+    
     public function show($id)
     {
         $ticket = AfterSales::findOrFail($id);

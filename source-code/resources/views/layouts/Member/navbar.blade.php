@@ -66,9 +66,12 @@
                                 <ul class="dropdown-menu" aria-labelledby="companyDropdown">
                                     <!-- Show Profile -->
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('profile.show') }}">
-                                            <i class="fa fa-user me-2"></i>Profil
-                                        </a>
+                                        <a class="dropdown-item"
+                                        href="{{ auth()->user()->type === 'member' ? route('profile.show') : route('distributor.profile.show') }}">
+                                         <i class="fa fa-user me-2"></i>Profil
+                                     </a>
+                                     
+                                     
                                     </li>
 
                                     <!-- Logout -->
@@ -114,7 +117,7 @@
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
                 <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" class="me-2"
                     style="height: auto; width: 100px;">
-                    <img src="{{ asset('images/catalogue.png') }}" alt="Logo" class="me-2"
+                <img src="{{ asset('images/catalogue.png') }}" alt="Logo" class="me-2"
                     style="height: auto; width: 150px; padding-left: 10px;">
                 <span class="fs-6 text-dark" style="font-weight: bold;">PT Arkamaya Guna Saharsa</span>
             </a>
@@ -160,27 +163,31 @@
                         </div>
                     @endforeach
                     @auth
-                    @if (session('error'))
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Peringatan:</strong> {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="memberDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ __('Portal') }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="memberDropdown">
-                            <li>
-                                <a href="{{ route('portal') }}" class="dropdown-item">{{ __('messages.portal_member') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('distribution') }}" class="dropdown-item">{{ __('messages.portal_distribution') }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                @endauth
-                
+                        @if (session('error'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Peringatan:</strong> {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="memberDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ __('Portal') }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="memberDropdown">
+                                <li>
+                                    <a href="{{ route('portal') }}"
+                                        class="dropdown-item">{{ __('messages.portal_member') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('distribution') }}"
+                                        class="dropdown-item">{{ __('messages.portal_distribution') }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endauth
+
                     {{-- @auth
                         <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
                     @endauth --}}

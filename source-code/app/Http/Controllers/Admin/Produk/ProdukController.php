@@ -18,12 +18,26 @@ class ProdukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $produks = Produk::all();
+        // Ambil keyword pencarian dan kategori dari input pengguna
+        $keyword = $request->input('search');
+        $kategoriId = $request->input('kategori');
+    
+        // Query produk dengan pencarian, kategori, dan pagination
+        $produks = Produk::when($keyword, function ($query) use ($keyword) {
+            $query->where('nama', 'like', "%{$keyword}%")
+                  ->orWhere('merk', 'like', "%{$keyword}%");
+        })->when($kategoriId, function ($query) use ($kategoriId) {
+            $query->where('kategori_id', $kategoriId);
+        })->paginate(10);
+    
+        // Ambil semua kategori untuk dropdown filter
         $kategori = Kategori::all();
-        return view('admin.produk.index', compact('produks','kategori'));
+    
+        return view('admin.produk.index', compact('produks', 'kategori', 'keyword', 'kategoriId'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

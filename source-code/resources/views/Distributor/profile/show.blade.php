@@ -48,7 +48,9 @@
                     <a href="{{ auth()->user()->type === 'member' ? route('profile.edit') : route('distributor.profile.edit') }}" 
                        class="btn btn-primary px-4 py-2">Edit Profil</a>
                 @endif
+                
                 </div>
+                
             </div>
         </div>
     </div>

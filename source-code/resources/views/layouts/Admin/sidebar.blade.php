@@ -50,13 +50,13 @@
                             <li>
                                 <a href="{{ route('members.index') }}">
                                     <i class="fas fa-users"></i>
-                                    <p>Semua Member</p>
+                                    <p>Kelola Member</p>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.distributors.index') }}">
                                     <i class="fas fa-warehouse"></i>
-                                    <p>Semua Distributor</p>
+                                    <p>Kelola Distributor</p>
                                 </a>
                             </li>
                             <li>
@@ -162,7 +162,7 @@
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.guest-messages.index') }}">
-                                    <span class="sub-item">Semua Produk</span>
+                                    <span class="sub-item">Semua Pesan</span>
                                 </a>
                             </li>
                         </ul>
