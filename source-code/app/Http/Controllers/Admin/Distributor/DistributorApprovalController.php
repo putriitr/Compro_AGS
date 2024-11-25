@@ -14,7 +14,7 @@ class DistributorApprovalController extends Controller
     $distributor = User::findOrFail($id);
 
     // Pass the distributor to the view
-    return view('admin.distributors.show', compact('distributor'));
+    return view('Admin.Distributors.show', compact('distributor'));
 }
 
 public function index(Request $request)
@@ -34,7 +34,7 @@ public function index(Request $request)
     // Pagination 10 data per halaman
     $distributors = $query->paginate(10);
 
-    return view('admin.distributors.index', compact('distributors'));
+    return view('Admin.Distributors.index', compact('distributors'));
 }
 
     public function approve($id)

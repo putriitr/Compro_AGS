@@ -35,7 +35,7 @@ class ProdukController extends Controller
         // Ambil semua kategori untuk dropdown filter
         $kategori = Kategori::all();
     
-        return view('admin.produk.index', compact('produks', 'kategori', 'keyword', 'kategoriId'));
+        return view('Admin.Produk.index', compact('produks', 'kategori', 'keyword', 'kategoriId'));
     }
     
 
@@ -45,7 +45,7 @@ class ProdukController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('admin.produk.create', (compact('kategori')));
+        return view('Admin.Produk.create', (compact('kategori')));
     }
 
     /**
@@ -156,13 +156,13 @@ class ProdukController extends Controller
     {
         $produk = Produk::findOrFail($id);
         $kategori = Kategori::all();
-        return view('admin.produk.edit', compact('produk','kategori'));
+        return view('Admin.Produk.edit', compact('produk','kategori'));
     }
 
     public function show($id)
     {
         $produk = Produk::with('images', 'videos', 'documentCertificationsProduk', 'brosur')->findOrFail($id);
-        return view('admin.produk.show', compact('produk'));
+        return view('Admin.Produk.show', compact('produk'));
     }
 
 

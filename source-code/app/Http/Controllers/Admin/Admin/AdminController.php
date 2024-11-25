@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index()
     {
         $admins = User::where('type', 1)->get(); // Tampilkan hanya pengguna dengan type = 1 (Admin)
-        return view('admin.admins.index', compact('admins'));
+        return view('Admin.Admins.index', compact('admins'));
     }
 
     /**
@@ -23,7 +23,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.admins.create');
+        return view('Admin.Admins.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class AdminController extends Controller
     
     public function edit(User $admin)
     {
-        return view('admin.admins.edit', compact('admin'));
+        return view('Admin.Admins.edit', compact('admin'));
     }
 
     /**

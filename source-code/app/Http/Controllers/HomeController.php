@@ -106,7 +106,7 @@ class HomeController extends Controller
             $company->misi = TranslateHelper::translate($company->misi, $locale);
         }
 
-        return view('member.about.about', compact('company','brand', 'partners', 'principals'));
+        return view('Member.About.about', compact('company','brand', 'partners', 'principals'));
     }
 
 

@@ -36,7 +36,7 @@ class MemberController extends Controller
         $members = $query->paginate(10);
     
         // Kembalikan data ke view
-        return view('admin.members.index', compact('members'));
+        return view('Admin.Members.index', compact('members'));
     }
     
 
@@ -44,7 +44,7 @@ class MemberController extends Controller
     {
         $locations = Location::all();
         $bidangPerusahaan = BidangPerusahaan::all();
-        return view('admin.members.create', compact('bidangPerusahaan','locations'));
+        return view('Admin.Members.create', compact('bidangPerusahaan','locations'));
     }
 
 
@@ -87,7 +87,7 @@ class MemberController extends Controller
         $password = session('password');
 
 
-        return view('admin.members.show', compact('member', 'password'));
+        return view('Admin.Members.show', compact('member', 'password'));
     }
 
 
@@ -95,7 +95,7 @@ class MemberController extends Controller
 {
     $member = User::findOrFail($id);
     $bidangPerusahaan = BidangPerusahaan::all(); // Assuming this comes from your database
-    return view('admin.members.edit', compact('member', 'bidangPerusahaan'));
+    return view('Admin.Members.edit', compact('member', 'bidangPerusahaan'));
 }
 
 public function update(Request $request, $id)
@@ -143,7 +143,7 @@ public function update(Request $request, $id)
         $member = User::findOrFail($id);
         $produks = Produk::all(); // Mendapatkan semua produk yang tersedia
 
-        return view('admin.members.add-products', compact('member', 'produks'));
+        return view('Admin.Members.add-products', compact('member', 'produks'));
     }
 
     public function storeProducts(Request $request, $id)
@@ -184,7 +184,7 @@ public function update(Request $request, $id)
 
         $userProduks = $member->userProduk;
 
-        return view('admin.members.edit-products', compact('member', 'userProduks'));
+        return view('Admin.Members.edit-products', compact('member', 'userProduks'));
     }
 
 

@@ -15,7 +15,7 @@ class PortalController extends Controller
 {
     public function index()
     {
-        return view('member.portal.portal');
+        return view('Member.Portal.portal');
     }
 
     public function userProduk()
@@ -28,7 +28,7 @@ class PortalController extends Controller
 
         $produks = $user->userProduk; // Fetch products associated with the authenticated user
 
-        return view('member.portal.user-product', compact('produks'));
+        return view('Member.Portal.user-product', compact('produks'));
     }
 
     public function detailProduk($id)
@@ -39,7 +39,7 @@ class PortalController extends Controller
 
         $userProduk = $user ? $user->userProduk->where('produk_id', $id)->first() : null;
 
-        return view('member.portal.detail-product', compact('produk', 'userProduk'));
+        return view('Member.Portal.detail-product', compact('produk', 'userProduk'));
     }
 
 
@@ -60,7 +60,7 @@ class PortalController extends Controller
         $uniqueProduks = $produks->unique('id');
 
 
-        return view('member.portal.instructions', compact('uniqueProduks'));
+        return view('Member.Portal.instructions', compact('uniqueProduks'));
     }
 
 
@@ -82,7 +82,7 @@ class PortalController extends Controller
         // Remove duplicate products based on a unique identifier, e.g., product ID
         $uniqueProduks = $produks->unique('id');
 
-        return view('member.portal.tutorials', compact('uniqueProduks'));
+        return view('Member.Portal.tutorials', compact('uniqueProduks'));
     }
 
 
@@ -106,33 +106,11 @@ class PortalController extends Controller
 
 
         // Mengembalikan tampilan dengan data produk dan dokumen sertifikasi
-        return view('member.portal.document', compact('uniqueProduks'));
-    }
-
-    public function Monitoring()
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'Please login to access your monitoring.');
-        }
-
-        $userProduks = UserProduk::with(['produk', 'monitoring'])->where('user_id', auth()->id())->get();
-
-        $inspeksi = InspeksiMaintenance::where('user_produk_id', auth()->id())->get();
-
-
-        return view('member.portal.monitoring', compact('userProduks'));
-    }
-
-    public function showInspeksiMaintenance($id)
-    {
-        // Retrieve the specific userProduk with its related InspeksiMaintenance
-        $userProduk = UserProduk::with(['produk', 'inspeksiMaintenance'])->findOrFail($id);
-
-        return view('member.portal.monitoring-detail', compact('userProduk'));
+        return view('Member.Portal.document', compact('uniqueProduks'));
     }
     public function Faq()
     {
         $faqs = Faq::all();
-        return view('member.portal.qna', compact('faqs'));
+        return view('Member.Portal.qna', compact('faqs'));
     }
 }

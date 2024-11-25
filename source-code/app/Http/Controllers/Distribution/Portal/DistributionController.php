@@ -12,7 +12,7 @@ class DistributionController extends Controller
     // Halaman utama portal distributor
     public function index()
     {
-        return view('Distributor.portal.portal'); // Pastikan view ini ada di resources/views/Distributor/portal/portal.blade.php
+        return view('Distributor.Portal.portal'); // Pastikan view ini ada di resources/views/Distributor/portal/portal.blade.php
     }
 
     // Menampilkan halaman untuk memilih produk dan meminta quotation
@@ -37,7 +37,7 @@ class DistributionController extends Controller
         }
     
         // Kirim data quotations ke view
-        return view('Distributor.portal.request-quotation', compact('quotations'));
+        return view('Distributor.Portal.request-quotation', compact('quotations'));
     }
     
     // Menampilkan halaman untuk membuat dan mengirim Purchase Order (PO)

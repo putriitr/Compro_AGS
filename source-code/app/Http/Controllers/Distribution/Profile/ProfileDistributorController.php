@@ -15,7 +15,7 @@ class ProfileDistributorController extends Controller
         $user = User::findOrFail(Auth::id());  // Get the logged-in user by ID
         $bidangPerusahaan = BidangPerusahaan::all();
 
-        return view('distributor.profile.show', compact('user', 'bidangPerusahaan'));  // Pass the data to the view
+        return view('Distributor.profile.show', compact('user', 'bidangPerusahaan'));  // Pass the data to the view
     }
 
     public function edit()
@@ -23,7 +23,7 @@ class ProfileDistributorController extends Controller
         $user = User::findOrFail(Auth::id());  // Get the logged-in user by ID
         $bidangPerusahaan = BidangPerusahaan::all();
 
-        return view('distributor.profile.edit', compact('user', 'bidangPerusahaan'));  // Pass the data to the view
+        return view('Distributor.profile.edit', compact('user', 'bidangPerusahaan'));  // Pass the data to the view
     }
 
     /**
