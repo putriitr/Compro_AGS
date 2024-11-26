@@ -12,26 +12,34 @@ use Illuminate\Support\Facades\File;
 
 class ProformaInvoiceAdminController extends Controller
 {
+    public function show($id)
+    {
+        // Temukan Proforma Invoice berdasarkan ID
+        $proformaInvoice = ProformaInvoice::with('purchaseOrder.user')->findOrFail($id);
+
+        // Kirim data ke view
+        return view('Admin.ProformaInvoice.show', compact('proformaInvoice'));
+    }
     public function index(Request $request)
-{
-    // Ambil keyword pencarian dari input pengguna
-    $keyword = $request->input('search');
+    {
+        // Ambil keyword pencarian dari input pengguna
+        $keyword = $request->input('search');
 
-    // Query Proforma Invoices dengan pencarian dan pagination
-    $proformaInvoices = ProformaInvoice::with('purchaseOrder', 'purchaseOrder.user')
-        ->when($keyword, function ($query) use ($keyword) {
-            $query->where('pi_number', 'like', "%{$keyword}%")
-                ->orWhereHas('purchaseOrder', function ($q) use ($keyword) {
-                    $q->where('po_number', 'like', "%{$keyword}%")
-                        ->orWhereHas('user', function ($qUser) use ($keyword) {
-                            $qUser->where('name', 'like', "%{$keyword}%");
-                        });
-                });
-        })
-        ->paginate(10); // Menampilkan 10 item per halaman
+        // Query Proforma Invoices dengan pencarian dan pagination
+        $proformaInvoices = ProformaInvoice::with('purchaseOrder', 'purchaseOrder.user')
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('pi_number', 'like', "%{$keyword}%")
+                    ->orWhereHas('purchaseOrder', function ($q) use ($keyword) {
+                        $q->where('po_number', 'like', "%{$keyword}%")
+                            ->orWhereHas('user', function ($qUser) use ($keyword) {
+                                $qUser->where('name', 'like', "%{$keyword}%");
+                            });
+                    });
+            })
+            ->paginate(10); // Menampilkan 10 item per halaman
 
-    return view('Admin.ProformaInvoice.index', compact('proformaInvoices', 'keyword'));
-}
+        return view('Admin.ProformaInvoice.index', compact('proformaInvoices', 'keyword'));
+    }
 
     // Menampilkan form untuk membuat Proforma Invoice
     public function create($purchaseOrderId)
@@ -64,8 +72,7 @@ class ProformaInvoiceAdminController extends Controller
     public function store(Request $request, $purchaseOrderId)
     {
         $request->validate([
-            'pi_number' => 'required|unique:proforma_invoices',
-            'pi_date' => 'required|date',
+            'installments' => 'required|integer|min:1',
             'dp' => 'nullable|numeric|min:0|max:100', // Validasi DP sebagai persentase
             'vendor_name' => 'required|string',
             'vendor_address' => 'required|string',
@@ -73,6 +80,12 @@ class ProformaInvoiceAdminController extends Controller
             'products' => 'required|array',
         ]);
         $purchaseOrder = PurchaseOrder::with('quotation', 'user')->findOrFail($purchaseOrderId);
+        // Ambil nomor terakhir dari Proforma Invoice
+        $lastPiNumber = ProformaInvoice::max('id'); // Ambil ID terakhir sebagai dasar increment
+        $nextPiNumber = str_pad($lastPiNumber + 1, 3, '0', STR_PAD_LEFT); // Format dengan leading zero (001, 002, ...)
+
+        // Format PI Number untuk Database
+        $piFormatted = sprintf("%s", $nextPiNumber); // Format sederhana, hanya angka increment
 
         // Ambil grand total dari quotation
         $grandTotalIncludePPN = $purchaseOrder->quotation->total_after_discount + ($purchaseOrder->quotation->total_after_discount * ($purchaseOrder->quotation->ppn / 100));
@@ -94,19 +107,19 @@ class ProformaInvoiceAdminController extends Controller
 
         // Format Nomor PO dan PI dengan format yang diminta
         $poNumberFormatted = sprintf("%s/SPO/%s/%s/%s", $purchaseOrder->po_number, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
-        $piNumberFormatted = sprintf("%s/PI-AGS-%s/%s/%s", $request->pi_number, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
+        $piNumberFormatted = sprintf("%s/PI-AGS-%s/%s/%s", $piFormatted, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
 
 
         // Buat Proforma Invoice
         $proformaInvoice = ProformaInvoice::create([
             'purchase_order_id' => $purchaseOrderId,
-            'pi_number' => $request->pi_number,
-            'pi_date' => $request->pi_date,
+            'pi_number' => $piFormatted, // Simpan nomor sederhana di database
+            'pi_date' => now(), // Tanggal otomatis
             'subtotal' => $request->subtotal,
             'ppn' => $request->ppn,
             'grand_total_include_ppn' => $request->grand_total_include_ppn,
             'dp' => $dpAmount, // Simpan nominal DP
-
+            'installments' => $request->installments,
         ]);
 
         // Generate PDF
@@ -140,4 +153,32 @@ class ProformaInvoiceAdminController extends Controller
 
         return redirect()->route('admin.proforma-invoices.index')->with('success', 'Proforma Invoice created and PDF generated successfully.');
     }
+    public function approveRejectPayment(Request $request, $id)
+    {
+        $request->validate([
+            'remarks' => 'nullable|string|max:500',
+            'action' => 'required|in:approve,reject',
+        ]);
+    
+        $proformaInvoice = ProformaInvoice::findOrFail($id);
+    
+        if ($request->action === 'approve') {
+            $proformaInvoice->payments_completed++;
+            $proformaInvoice->last_payment_status = 'approved';
+    
+            if ($proformaInvoice->payments_completed >= $proformaInvoice->installments) {
+                $proformaInvoice->status = 'paid'; // Tandai sebagai paid jika semua pembayaran selesai
+            } else {
+                $proformaInvoice->status = 'partially_paid'; // Tandai sebagai partially_paid jika masih ada pembayaran
+            }
+        } elseif ($request->action === 'reject') {
+            $proformaInvoice->last_payment_status = 'rejected';
+        }
+    
+        $proformaInvoice->remarks = $request->input('remarks');
+        $proformaInvoice->save();
+    
+        return redirect()->back()->with('success', 'Pembayaran berhasil ' . ($request->action === 'approve' ? 'disetujui' : 'ditolak') . '.');
+    }
+    
 }

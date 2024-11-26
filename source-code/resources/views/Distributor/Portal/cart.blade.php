@@ -55,15 +55,10 @@
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td>{{ $item['nama'] }}</td>
                             <td class="text-center">
-                                <form action="{{ route('quotations.cart.update') }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
-                                    <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" class="form-control d-inline-block" style="width: 80px;">
-                                    <button type="submit" class="btn btn-sm btn-success ms-2">
-                                        <i class="fas fa-sync-alt"></i>
-                                    </button>
-                                </form>
+                                <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" 
+                                       class="form-control d-inline-block update-quantity" 
+                                       style="width: 80px;" 
+                                       data-produk-id="{{ $item['produk_id'] }}">
                             </td>
                             <td class="text-center">
                                 <form action="{{ route('quotations.cart.remove') }}" method="POST" class="d-inline">
@@ -96,4 +91,33 @@
         </form>
     @endif
 </div>
+
+<!-- JavaScript for AJAX -->
+<script>
+    document.querySelectorAll('.update-quantity').forEach(input => {
+        input.addEventListener('change', function () {
+            const produkId = this.getAttribute('data-produk-id');
+            const quantity = this.value;
+
+            fetch('{{ route('quotations.cart.update') }}', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ produk_id: produkId, quantity: quantity })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Optional: Reload or update part of the page
+                    console.log('Quantity updated successfully');
+                } else {
+                    alert(data.message || 'Error updating quantity.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+</script>
 @endsection

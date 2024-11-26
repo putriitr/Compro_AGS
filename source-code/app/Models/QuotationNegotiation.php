@@ -15,7 +15,6 @@ class QuotationNegotiation extends Model
     // Kolom yang dapat diisi (mass assignable)
     protected $fillable = [
         'quotation_id',
-        'negotiated_price',
         'status',
         'notes',
         'admin_notes',

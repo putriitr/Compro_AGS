@@ -21,7 +21,6 @@ class QuotationNegotiationController extends Controller
                $query->whereHas('quotation', function ($q) use ($keyword) {
                    $q->where('quotation_number', 'like', "%{$keyword}%");
                })
-               ->orWhere('negotiated_price', 'like', "%{$keyword}%")
                ->orWhere('status', 'like', "%{$keyword}%");
            })
            ->paginate(10); // Menampilkan 10 item per halaman

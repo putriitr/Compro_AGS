@@ -36,9 +36,7 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">Nomor Pengajuan</th>
-                            <th class="text-center">Nama Produk</th>
                             <th class="text-center">Distributor</th>
-                            <th class="text-center">Quantity</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -48,25 +46,8 @@
                             <tr>
                                 <td class="text-center">{{ $quotations->firstItem() + $key }}</td>
                                 <td class="text-center">{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
-                                <td>
-                                    @if ($quotation->quotationProducts)
-                                        @foreach ($quotation->quotationProducts as $product)
-                                            <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
-                                        @endforeach
-                                    @else
-                                        <div>Produk tidak tersedia</div>
-                                    @endif
-                                </td>
                                 <td class="text-center">{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
-                                <td>
-                                    @if ($quotation->quotationProducts)
-                                        @foreach ($quotation->quotationProducts as $product)
-                                            <div class="text-center">{{ $product->quantity }}</div>
-                                        @endforeach
-                                    @else
-                                        <div>0</div>
-                                    @endif
-                                </td>
+                            
                                 <td class="text-center">
                                     <span
                                         class="badge 

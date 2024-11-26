@@ -17,29 +17,6 @@
       <!-- Form Proforma Invoice -->
       <form action="{{ route('admin.proforma-invoices.store', $purchaseOrder->id) }}" method="POST">
         @csrf
-
-        <!-- PI Number and Date -->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="pi_number" class="form-label">PI Number</label>
-                    <input type="text" class="form-control shadow-sm @error('pi_number') is-invalid @enderror" id="pi_number" name="pi_number" placeholder="Masukkan Nomor PI" required>
-                    @error('pi_number')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="pi_date" class="form-label">PI Date</label>
-                    <input type="date" class="form-control shadow-sm @error('pi_date') is-invalid @enderror" id="pi_date" name="pi_date" required>
-                    @error('pi_date')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-        </div>
-
         <!-- Vendor Information -->
         <h4 class="mt-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Vendor Information</h4>
         <div class="mb-3">
@@ -112,6 +89,14 @@
             <label for="dp" class="form-label">DP (%)</label>
             <input type="number" class="form-control shadow-sm @error('dp') is-invalid @enderror" id="dp" name="dp" step="0.01" max="100" placeholder="Masukkan persentase DP (0-100)">
             @error('dp')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+         <!-- Installments Input -->
+         <div class="mb-3">
+            <label for="installments" class="form-label">Jumlah Pembayaran (Installments)</label>
+            <input type="number" class="form-control shadow-sm @error('installments') is-invalid @enderror" id="installments" name="installments" min="1" placeholder="Masukkan jumlah pembayaran setelah DP" required>
+            @error('installments')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

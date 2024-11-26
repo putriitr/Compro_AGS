@@ -22,6 +22,9 @@ class ProformaInvoice extends Model
         'grand_total_include_ppn',
         'dp',
         'file_path',
+        'remarks',
+        'installments',
+        'payments_completed',
     ];
 
     /**
@@ -41,4 +44,14 @@ class ProformaInvoice extends Model
 {
     return $this->grand_total_include_ppn - $this->dp;
 }
+public function getPaymentProofPathsAttribute($value)
+{
+    return $value ? json_decode($value, true) : [];
+}
+
+public function setPaymentProofPathsAttribute($value)
+{
+    $this->attributes['payment_proof_paths'] = json_encode($value);
+}
+
 }

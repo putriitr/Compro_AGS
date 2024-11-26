@@ -42,7 +42,7 @@
                                     <th>ID</th>
                                     <th>PO Number</th>
                                     <th>PO Date</th>
-                                    <th>Status</th>
+                                    <th>Quotation Number</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -52,31 +52,21 @@
                                         <td>{{ $po->id }}</td>
                                         <td>{{ $po->po_number }}</td>
                                         <td>{{ \Carbon\Carbon::parse($po->po_date)->format('d M Y') }}</td>
-                                        <td>
-                                            <span class="badge 
-                                                @if ($po->status === 'pending') bg-warning
-                                                @elseif ($po->status === 'approved') bg-success
-                                                @elseif ($po->status === 'rejected') bg-danger
-                                                @endif">
-                                                {{ ucfirst($po->status) }}
-                                            </span>
-                                        </td>
+                                        <td>{{ $po->quotation->quotation_number ?? 'N/A' }}</td>
                                         <td>
                                             <a href="{{ route('quotations.show', $po->quotation_id) }}" class="btn btn-info btn-sm rounded-pill shadow-sm">
                                                 <i class="fas fa-eye"></i> View Quotation
                                             </a>
-                                            @if ($po->status === 'pending')
-                                                <span class="text-muted">PO masih dalam peninjauan</span>
-                                            @elseif ($po->status === 'approved')
-                                                @if ($po->proformaInvoice)
-                                                    <a href="{{ route('distributor.proforma-invoices.index', $po->proformaInvoice->id) }}"
-                                                        class="btn btn-primary btn-sm rounded-pill shadow-sm">
-                                                        <i class="fas fa-file-invoice"></i> View Proforma Invoice
-                                                    </a>
-                                                @else
-                                                    <span class="text-muted">Proforma Invoice akan segera dikirim</span>
-                                                @endif
-                                            @endif
+                                            @if ($po->proformaInvoice)
+                                            <!-- View Proforma Invoice -->
+                                            <a href="{{ route('distributor.proforma-invoices.index', $po->proformaInvoice->id) }}"
+                                                class="btn btn-primary btn-sm rounded-pill shadow-sm">
+                                                <i class="fas fa-file-invoice"></i> View Proforma Invoice
+                                            </a>
+                                        @else
+                                            <!-- Proforma Invoice Pending -->
+                                            <span class="text-muted">Proforma Invoice akan segera dikirim</span>
+                                        @endif
                                         </td>
                                     </tr>
                                 @endforeach

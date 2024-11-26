@@ -39,14 +39,12 @@ class DistributorQuotationNegotiationController extends Controller
 
         // Validasi input
         $request->validate([
-            'negotiated_price' => 'required|numeric|min:0',
             'notes' => 'nullable|string',
         ]);
 
         // Simpan negosiasi baru
         QuotationNegotiation::create([
             'quotation_id' => $quotation->id,
-            'negotiated_price' => $request->input('negotiated_price'),
             'status' => 'in_progress',
             'notes' => $request->input('notes'),
         ]);

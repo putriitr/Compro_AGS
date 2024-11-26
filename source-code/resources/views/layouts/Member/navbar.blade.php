@@ -188,10 +188,6 @@
                         </div>
                     @endauth
 
-                    {{-- @auth
-                        <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
-                    @endauth --}}
-
                     <a href="#footer-section" id="contact-link"
                         class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
 
@@ -217,6 +213,22 @@
                             </a>
                         </div>
                     </div>
+                  <!-- Shopping Cart Icon -->
+                  @auth
+                  @if (Auth::user()->type === 'distributor')
+                      <div class="nav-item">
+                        <a href="{{ route('quotations.cart') }}" class="nav-link">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count" class="badge bg-primary rounded-pill">
+                                {{ session('quotation_cart') ? count(session('quotation_cart')) : 0 }}
+                            </span>
+                        </a>
+                        
+                      </div>
+                  @endif
+              @endauth
+              
+
                 </div>
             </div>
         </nav>

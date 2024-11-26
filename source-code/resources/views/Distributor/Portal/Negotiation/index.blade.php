@@ -21,7 +21,6 @@
                 <tr>
                     <th scope="col" class="text-center" style="vertical-align: middle;">ID</th>
                     <th scope="col" class="text-center" style="vertical-align: middle;">Quotation Number</th>
-                    <th scope="col" class="text-center" style="vertical-align: middle;">Negotiated Price</th>
                     <th scope="col" class="text-center" style="vertical-align: middle;">Status</th>
                     <th scope="col" class="text-center" style="vertical-align: middle;">Notes</th>
                     <th scope="col" class="text-center" style="vertical-align: middle;">Admin Notes</th>
@@ -32,9 +31,6 @@
                     <tr style="vertical-align: middle;">
                         <td class="text-center">{{ $negotiation->id }}</td>
                         <td class="text-center">{{ $negotiation->quotation->quotation_number }}</td>
-                        <td class="text-center text-success">
-                            <strong>{{ number_format($negotiation->negotiated_price, 2) }}</strong>
-                        </td>
                         <td class="text-center">
                             <span class="badge {{ $negotiation->status == 'accepted' ? 'bg-success' : ($negotiation->status == 'rejected' ? 'bg-danger' : 'bg-warning') }} text-uppercase">
                                 {{ ucfirst($negotiation->status) }}

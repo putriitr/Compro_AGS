@@ -17,7 +17,7 @@
             <!-- Search Form -->
             <form action="{{ route('admin.quotations.negotiations.index') }}" method="GET" class="mb-4">
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nomor quotation, harga negosiasi, atau status..."
+                    <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nomor quotation,  status..."
                            value="{{ request()->input('search') }}">
                     <button class="btn btn-primary" type="submit">Cari</button>
                 </div>
@@ -30,8 +30,9 @@
                         <tr>
                             <th class="text-center">ID</th>
                             <th class="text-center">Quotation Number</th>
-                            <th class="text-center">Negotiated Price</th>
                             <th class="text-center">Status</th>
+                            <th class="text-center">Notes</th>
+                            <th class="text-center">Notes Admin</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -40,7 +41,6 @@
                             <tr>
                                 <td class="text-center">{{ $negotiation->id }}</td>
                                 <td class="text-center">{{ $negotiation->quotation->quotation_number }}</td>
-                                <td class="text-center">Rp{{ number_format($negotiation->negotiated_price, 2) }}</td>
                                 <td class="text-center">
                                     <span class="badge 
                                         @if ($negotiation->status === 'pending') bg-warning
@@ -50,7 +50,10 @@
                                         {{ ucfirst($negotiation->status) }}
                                     </span>
                                 </td>
-                                <td class="text-center">
+                            <td class="text-center">{{ $negotiation->notes ?? '-' }}</td>
+                            <td class="text-center">{{ $negotiation->admin_notes ?? '-' }}</td>
+                            <td class="text-center">
+                                @if ($negotiation->status === 'in_progress')
                                     <div class="d-flex justify-content-center gap-2">
                                         <button class="btn btn-success btn-sm rounded-pill shadow-sm" onclick="openModal({{ $negotiation->id }}, 'accept')">
                                             <i class="fas fa-check"></i> Accept
@@ -59,14 +62,17 @@
                                             <i class="fas fa-times"></i> Reject
                                         </button>
                                     </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="text-center text-muted">Belum ada negosiasi.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
+                                @else
+                                    <span class="text-muted">No Actions Available</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">Belum ada negosiasi.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
                 </table>
             </div>
 

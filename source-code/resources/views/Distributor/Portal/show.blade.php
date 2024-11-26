@@ -31,65 +31,61 @@
                 </p>
                 <p><strong>Tanggal Permintaan:</strong> {{ $quotation->created_at->format('d M Y') }}</p>
             </div>
+<!-- Menampilkan Daftar Quotation -->
+<h4 style="color: #004d40;">Detail Quotation:</h4>
+<div class="table-responsive">
+    <table class="table table-striped table-hover shadow-sm rounded">
+        <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
+            <tr>
+                <th>No</th>
+                <th>No Pengajuan</th>
+                <th>Tanggal</th>
+                <th>Nomor Quotation</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: #f9f9f9;">
+            <tr>
+                <td>1</td>
+                <td>{{ $quotation->nomor_pengajuan ?? 'Nomor pengajuan tidak tersedia' }}</td>
+                <td>{{ $quotation->created_at->format('d M Y') ?? 'Tanggal tidak tersedia' }}</td>
+                <td>
+                    @if ($quotation->status === 'quotation')
+                        {{ $quotation->quotation_number ?? 'Nomor quotation tidak tersedia' }}
+                    @else
+                        <span class="text-muted">Nomor quotation tidak tersedia</span>
+                    @endif
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-            <!-- Menampilkan Daftar Produk dalam Quotation -->
-            <h4 style="color: #004d40;">Produk dalam Quotation:</h4>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover shadow-sm rounded">
-                    <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Produk</th>
-                            <th>Merk</th>
-                            <th>Quantity</th>
-                            <th>Harga Satuan</th>
-                            <th>Total Harga</th>
-                        </tr>
-                    </thead>
-                    <tbody style="background-color: #f9f9f9;">
-                        @forelse($quotation->quotationProducts as $index => $product)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $product->equipment_name ?? 'Produk tidak tersedia' }}</td>
-                                <td>{{ $product->merk_type ?? 'Tidak tersedia' }}</td>
-                                <td>{{ $product->quantity }}</td>
-                                <td>{{ number_format($product->unit_price, 2) }}</td>
-                                <td>{{ number_format($product->total_price, 2) }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="6" class="text-center text-muted">Tidak ada produk dalam permintaan quotation ini.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+<!-- Menampilkan file PDF jika ada -->
+<div class="mt-4">
+    <h5 style="color: #00796b;">Dokumen PDF:</h5>
+    @if($quotation->pdf_path)
+        <p>
+            <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill">
+                <i class="fas fa-file-alt me-2"></i>Lihat Dokumen PDF
+            </a>
+        </p>
+        <p>
+            <a href="{{ asset($quotation->pdf_path) }}" download class="btn btn-secondary btn-sm rounded-pill">
+                <i class="fas fa-download me-2"></i>Download PDF
+            </a>
+        </p>
+    @else
+        <p class="text-muted">Tidak ada dokumen tersedia.</p>
+    @endif
+</div>
 
-            <!-- Menampilkan file PDF jika ada -->
-            <div class="mt-4">
-                <h5 style="color: #00796b;">Dokumen PDF:</h5>
-                @if($quotation->pdf_path)
-                    <p>
-                        <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill">
-                            <i class="fas fa-file-alt me-2"></i>Lihat Dokumen PDF
-                        </a>
-                    </p>
-                    <p>
-                        <a href="{{ asset($quotation->pdf_path) }}" download class="btn btn-secondary btn-sm rounded-pill">
-                            <i class="fas fa-download me-2"></i>Download PDF
-                        </a>
-                    </p>
-                @else
-                    <p class="text-muted">Tidak ada dokumen tersedia.</p>
-                @endif
-            </div>
+<!-- Tombol Kembali -->
+<div class="text-end mt-4">
+    <a href="{{ route('distribution.request-quotation') }}" class="btn btn-secondary btn-lg rounded-pill shadow-sm">
+        <i class="fas fa-arrow-left me-2"></i>Kembali
+    </a>
+</div>
 
-            <!-- Tombol Kembali -->
-            <div class="text-end mt-4">
-                <a href="{{ route('distribution.request-quotation') }}" class="btn btn-secondary btn-lg rounded-pill shadow-sm">
-                    <i class="fas fa-arrow-left me-2"></i>Kembali
-                </a>
-            </div>
         </div>
     </div>
 </div>

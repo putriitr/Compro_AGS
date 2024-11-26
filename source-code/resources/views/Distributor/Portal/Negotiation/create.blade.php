@@ -23,10 +23,6 @@
                     </h2>
                     <form action="{{ route('distributor.quotations.negotiations.store', $quotation->id) }}" method="POST">
                         @csrf
-                        <div class="form-group mb-3">
-                            <label for="negotiated_price" class="form-label" style="font-weight: bold; color: #004d40;">Negotiated Price</label>
-                            <input type="number" step="0.01" class="form-control rounded-pill px-3 py-2 border-0 shadow-sm" id="negotiated_price" name="negotiated_price" placeholder="Enter negotiated price" required>
-                        </div>
 
                         <div class="form-group mb-4">
                             <label for="notes" class="form-label" style="font-weight: bold; color: #004d40;">Notes</label>

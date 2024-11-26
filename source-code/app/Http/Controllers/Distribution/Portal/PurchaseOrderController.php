@@ -31,8 +31,6 @@ class PurchaseOrderController extends Controller
 {
     // Validasi input
     $request->validate([
-        'po_number' => 'required|unique:purchase_orders',
-        'po_date' => 'required|date',
         'file_path' => 'required|file|mimes:pdf,doc,docx|max:10048', // Validasi agar file wajib diisi
     ]);
 
@@ -55,10 +53,10 @@ class PurchaseOrderController extends Controller
     PurchaseOrder::create([
         'quotation_id' => $quotationId,
         'user_id' => auth()->id(),
-        'po_number' => $request->po_number,
-        'po_date' => $request->po_date,
-        'status' => 'pending',
+        'po_date' => now(), // Tanggal otomatis diisi dengan waktu saat ini
         'file_path' => $filePath,
+        'po_number' => null, // Kolom po_number dibiarkan kosong
+
     ]);
 
     return redirect()->route('distributor.purchase-orders.index')->with('success', 'Purchase Order created successfully.');

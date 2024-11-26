@@ -1,4 +1,4 @@
-(function ($) {
+    (function ($) {
     "use strict";
 
     // Spinner
@@ -74,8 +74,6 @@
             $("#video").attr('src', $videoSrc);
         })
     });
-
-    js
 
     // International carousel
         $(".testimonials-carousel").owlCarousel({

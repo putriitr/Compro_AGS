@@ -27,6 +27,21 @@
                 <i class="fas fa-shopping-cart me-2"></i>Lihat Keranjang
             </a>
         </div>
+        <!-- Form Pencarian -->
+<form method="GET" action="{{ route('distribution.request-quotation') }}" class="mb-4">
+    <div class="row g-3">
+        <div class="col-md-10">
+            <input type="text" name="search" class="form-control" placeholder="Cari Nomor Pengajuan atau Status"
+                value="{{ request('search') }}">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-search me-2"></i>Cari
+            </button>
+        </div>
+    </div>
+</form>
+
 
         <!-- Quotation Requests Table -->
         <div class="table-responsive">
@@ -36,8 +51,7 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Nomor Pengajuan</th>
-                        <th class="text-center">Nama Produk</th>
-                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Tanggal</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -47,16 +61,7 @@
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">{{ $quotation->nomor_pengajuan ?? 'Nomor pengajuan tidak tersedia' }}</td>
-                            <td>
-                                @foreach ($quotation->quotationProducts as $product)
-                                    - {{ $product->equipment_name ?? 'Produk tidak tersedia' }} <br>
-                                @endforeach
-                            </td>
-                            <td class="text-center">
-                                @foreach ($quotation->quotationProducts as $product)
-                                    {{ $product->quantity }} <br>
-                                @endforeach
-                            </td>
+                            <td class="text-center">{{ $quotation->created_at->format('d M Y') ?? 'Tanggal tidak tersedia' }}</td>
                             <td class="text-center">
                                 <span class="badge 
                                     @if ($quotation->status === 'cancelled') bg-danger
@@ -69,6 +74,13 @@
                                 <a href="{{ route('quotations.show', $quotation->id) }}" class="btn btn-info btn-sm rounded-pill">
                                     <i class="fas fa-eye"></i> View
                                 </a>
+                                 <!-- Tombol Download PDF -->
+                        @if ($quotation->pdf_path)
+                        <a href="{{ asset($quotation->pdf_path) }}" download class="btn btn-secondary btn-sm rounded-pill">
+                            <i class="fas fa-download me-2"></i>Download PDF
+                        </a>
+                    @endif
+
 
                                 @if ($quotation->status === 'pending')
                                     <form action="{{ route('quotations.cancel', $quotation->id) }}" method="POST" style="display: inline;">
@@ -96,6 +108,11 @@
                     @endforelse
                 </tbody>
             </table>
+            <!-- Pagination -->
+<div class="mt-4 d-flex justify-content-center">
+    {{ $quotations->links('pagination::bootstrap-4') }}
+</div>
+
         </div>
     </div>
 @endsection

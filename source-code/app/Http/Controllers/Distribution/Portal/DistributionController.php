@@ -18,27 +18,34 @@ class DistributionController extends Controller
     // Menampilkan halaman untuk memilih produk dan meminta quotation
    
    
-    public function requestQuotation()
+    public function requestQuotation(Request $request)
     {
         // Ambil ID pengguna yang sedang login
         $userId = auth()->id();
     
-        // Ambil semua quotations milik pengguna yang sedang login
+        // Ambil keyword pencarian dari input pengguna
+        $keyword = $request->input('search');
+    
+        // Query quotations dengan filter user_id, pencarian, dan pagination
         $quotations = Quotation::with('quotationProducts')
             ->where('user_id', $userId)
-            ->get();
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('nomor_pengajuan', 'like', "%{$keyword}%")
+                    ->orWhere('status', 'like', "%{$keyword}%");
+            })
+            ->paginate(10); // Menampilkan 10 item per halaman
     
-        // Periksa status setiap quotation dan perbarui jika perlu
+        // Perbarui status jika diperlukan
         foreach ($quotations as $quotation) {
             if ($quotation->pdf_path && $quotation->status === 'pending') {
-                // Perbarui status menjadi "Quotation" jika PDF tersedia dan status masih "Pending"
                 $quotation->update(['status' => 'quotation']);
             }
         }
     
         // Kirim data quotations ke view
-        return view('Distributor.Portal.request-quotation', compact('quotations'));
+        return view('Distributor.Portal.request-quotation', compact('quotations', 'keyword'));
     }
+    
     
     // Menampilkan halaman untuk membuat dan mengirim Purchase Order (PO)
     public function createPO()
