@@ -26,6 +26,7 @@ class ProformaInvoice extends Model
         'installments',
         'payments_completed',
         'next_payment_amount', // Kolom untuk menyimpan jumlah pembayaran berikutnya
+        'dp_invoice_created',
 
     ];
 
@@ -60,4 +61,9 @@ public function quotation()
 {
     return $this->belongsTo(Quotation::class, 'quotation_id');
 }
+public function getNextPaymentPercentageAttribute($value)
+{
+    return $value ?: 100; // Default ke 100% jika nilai tidak ada
+}
+
 }

@@ -165,12 +165,19 @@
                         <td>{{ $index + 1 }}</td>
                         <td>
                             {{ $product->equipment_name }}
-                            @if ($invoice->proformaInvoice->next_payment_amount)
+                            @if ($invoice->type === 'dp')
                                 <br>
-                                <small><em>(Persentase:
-                                        {{ number_format(($invoice->proformaInvoice->next_payment_amount / $invoice->proformaInvoice->purchaseOrder->quotation->subtotal_price) * 100, 2) }}%)</em></small>
+                                <small><em>(Uang muka: 
+                                    {{ number_format(($invoice->proformaInvoice->dp / $invoice->proformaInvoice->grand_total_include_ppn) * 100, 2) }}%)</em></small>
+                            @elseif ($invoice->type === 'next_payment')
+                                <br>
+                                <small><em>(Pembayaran termin 
+                                    {{ $invoice->proformaInvoice->payments_completed }} dari {{ $invoice->proformaInvoice->installments }} termin 
+                                    - Persentase: {{ number_format(($invoice->percentage), 2) }}%)</em></small>
                             @endif
                         </td>
+                        
+                        
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->merk_type }}</td>
                         <td>{{ number_format($product->unit_price, 2) }}</td>

@@ -19,6 +19,8 @@ class Invoice extends Model
         'percentage',
         'status',
         'file_path',
+        'type',
+        
     ];
 
     public function proformaInvoice()
