@@ -13,10 +13,10 @@ class Invoice extends Model
         'proforma_invoice_id',
         'invoice_number',
         'invoice_date',
-        'due_date',
         'subtotal',
         'ppn',
         'grand_total_include_ppn',
+        'percentage',
         'status',
         'file_path',
     ];

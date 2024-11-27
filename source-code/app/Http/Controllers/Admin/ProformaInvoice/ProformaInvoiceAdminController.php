@@ -158,27 +158,49 @@ class ProformaInvoiceAdminController extends Controller
         $request->validate([
             'remarks' => 'nullable|string|max:500',
             'action' => 'required|in:approve,reject',
+            'next_payment_percentage' => 'nullable|numeric|min:1|max:100',
         ]);
     
-        $proformaInvoice = ProformaInvoice::findOrFail($id);
+        $proformaInvoice = ProformaInvoice::with('purchaseOrder.quotation')->findOrFail($id);
     
         if ($request->action === 'approve') {
             $proformaInvoice->payments_completed++;
             $proformaInvoice->last_payment_status = 'approved';
-    
+        
+            if ($request->filled('next_payment_percentage')) {
+                // Periksa apakah relasi ke Quotation ada
+                if (!$proformaInvoice->purchaseOrder || !$proformaInvoice->purchaseOrder->quotation) {
+                    return redirect()->back()->with('error', 'Quotation data not found for this Proforma Invoice.');
+                }
+        
+                $percentage = $request->input('next_payment_percentage');
+                $subtotal = $proformaInvoice->purchaseOrder->quotation->subtotal_price;
+        
+                // Hitung jumlah pembayaran berdasarkan persentase
+                $nextPaymentAmount = ($subtotal * $percentage) / 100;
+                $proformaInvoice->next_payment_amount = $nextPaymentAmount;
+            }
+        
             if ($proformaInvoice->payments_completed >= $proformaInvoice->installments) {
-                $proformaInvoice->status = 'paid'; // Tandai sebagai paid jika semua pembayaran selesai
+                $proformaInvoice->status = 'paid';
             } else {
-                $proformaInvoice->status = 'partially_paid'; // Tandai sebagai partially_paid jika masih ada pembayaran
+                $proformaInvoice->status = 'partially_paid';
             }
         } elseif ($request->action === 'reject') {
             $proformaInvoice->last_payment_status = 'rejected';
         }
     
         $proformaInvoice->remarks = $request->input('remarks');
-        $proformaInvoice->save();
+        $proformaInvoice->save(); // Pastikan ini dipanggil untuk menyimpan perubahan
+    
+        // Redirect sesuai kondisi
+        if ($proformaInvoice->status === 'paid') {
+            return redirect()->route('invoices.create', $proformaInvoice->id)
+                ->with('success', 'Payment approved and invoice creation initiated.');
+        }
     
         return redirect()->back()->with('success', 'Pembayaran berhasil ' . ($request->action === 'approve' ? 'disetujui' : 'ditolak') . '.');
     }
+    
     
 }

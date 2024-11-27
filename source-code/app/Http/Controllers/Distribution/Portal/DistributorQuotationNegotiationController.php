@@ -36,19 +36,36 @@ class DistributorQuotationNegotiationController extends Controller
     public function store(Request $request, $quotationId)
     {
         $quotation = Quotation::findOrFail($quotationId);
-
+    
         // Validasi input
         $request->validate([
             'notes' => 'nullable|string',
         ]);
-
-        // Simpan negosiasi baru
-        QuotationNegotiation::create([
-            'quotation_id' => $quotation->id,
-            'status' => 'in_progress',
-            'notes' => $request->input('notes'),
-        ]);
-
-        return redirect()->route('distributor.quotations.negotiations.index', $quotation->id)->with('success', 'Negotiation submitted successfully.');
+    
+        // Cari negosiasi berdasarkan quotation_id
+        $negotiation = QuotationNegotiation::where('quotation_id', $quotation->id)->first();
+    
+        if ($negotiation) {
+            // Tentukan status berdasarkan keberadaan admin_notes
+            $status = $negotiation->admin_notes ? 'in_progress' : 'pending';
+    
+            // Perbarui negosiasi yang ada
+            $negotiation->update([
+                'status' => $status, // Tetapkan status sesuai kondisi
+                'notes' => $request->input('notes'), // Perbarui catatan distributor
+            ]);
+        } else {
+            // Buat negosiasi baru jika belum ada
+            QuotationNegotiation::create([
+                'quotation_id' => $quotation->id,
+                'status' => 'pending', // Status default
+                'notes' => $request->input('notes'),
+            ]);
+        }
+    
+        return redirect()->route('distributor.quotations.negotiations.index')
+            ->with('success', 'Negotiation submitted successfully.');
     }
+    
+    
 }

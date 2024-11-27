@@ -23,24 +23,21 @@
             <!-- Form Buat Invoice -->
             <form action="{{ route('invoices.store', $proformaInvoice->id) }}" method="POST">
                 @csrf
+<!-- Input Persentase -->
+<div class="mb-3">
+    <label for="percentage" class="form-label">Percentage (%)</label>
+    <input 
+        type="number" 
+        class="form-control shadow-sm" 
+        id="percentage" 
+        name="percentage" 
+        placeholder="Masukkan persentase pembayaran (contoh: 50)" 
+        min="1" 
+        max="100" 
+        value="{{ old('percentage', $percentage) }}" 
+        required readonly>
+</div>
 
-                <!-- Nomor Invoice -->
-                <div class="mb-3">
-                    <label for="invoice_number" class="form-label">Invoice Number</label>
-                    <input type="text" class="form-control shadow-sm" id="invoice_number" name="invoice_number" placeholder="Masukkan Nomor Invoice" required>
-                </div>
-
-                <!-- Tanggal Invoice -->
-                <div class="mb-3">
-                    <label for="invoice_date" class="form-label">Invoice Date</label>
-                    <input type="date" class="form-control shadow-sm" id="invoice_date" name="invoice_date" required>
-                </div>
-
-                <!-- Tanggal Jatuh Tempo -->
-                <div class="mb-3">
-                    <label for="due_date" class="form-label">Due Date</label>
-                    <input type="date" class="form-control shadow-sm" id="due_date" name="due_date" placeholder="Opsional">
-                </div>
 
                 <!-- Informasi Subtotal, PPN, dan Grand Total -->
                 <div class="row">

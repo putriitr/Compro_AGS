@@ -25,6 +25,8 @@ class ProformaInvoice extends Model
         'remarks',
         'installments',
         'payments_completed',
+        'next_payment_amount', // Kolom untuk menyimpan jumlah pembayaran berikutnya
+
     ];
 
     /**
@@ -32,9 +34,9 @@ class ProformaInvoice extends Model
      * Proforma Invoice memiliki satu Purchase Order.
      */
     public function purchaseOrder()
-    {
-        return $this->belongsTo(PurchaseOrder::class);
-    }
+{
+    return $this->belongsTo(PurchaseOrder::class, 'purchase_order_id');
+}
 
     public function invoice()
     {
@@ -54,4 +56,8 @@ public function setPaymentProofPathsAttribute($value)
     $this->attributes['payment_proof_paths'] = json_encode($value);
 }
 
+public function quotation()
+{
+    return $this->belongsTo(Quotation::class, 'quotation_id');
+}
 }

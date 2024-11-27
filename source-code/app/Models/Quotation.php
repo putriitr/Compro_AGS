@@ -31,6 +31,7 @@ class Quotation extends Model
         'authorized_person_name',
         'authorized_person_position',
         'nomor_pengajuan',
+        'topik',
         'pdf_path' // Tambahkan kolom pdf_path
 
     ];
@@ -57,13 +58,14 @@ class Quotation extends Model
         return $this->hasMany(QuotationProduct::class, 'quotation_id');
     }
     // Relasi ke model QuotationNegotiation
-    public function negotiations()
-    {
-        return $this->hasMany(QuotationNegotiation::class);
-    }
-    public function purchaseOrder()
+    public function negotiation()
 {
-    return $this->hasOne(PurchaseOrder::class);
+    return $this->hasOne(QuotationNegotiation::class, 'quotation_id');
+}
+
+public function purchaseOrder()
+{
+    return $this->hasOne(PurchaseOrder::class, 'quotation_id');
 }
 }
 

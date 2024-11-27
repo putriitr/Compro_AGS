@@ -42,6 +42,17 @@
                         <td>{{ $proformaInvoice->installments }} kali pembayaran</td>
                     </tr>
                     <tr>
+                        <th>Next Payment Amount</th>
+                        <td>
+                            @if (!empty($proformaInvoice->next_payment_amount) && !empty($proformaInvoice->purchaseOrder->quotation->subtotal_price))
+                                {{ number_format($proformaInvoice->next_payment_amount, 2) }} IDR
+                                ({{ number_format(($proformaInvoice->next_payment_amount / $proformaInvoice->purchaseOrder->quotation->subtotal_price) * 100, 2) }}%)
+                            @else
+                                <span class="text-muted">Belum ada pembayaran berikutnya</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Payments Completed</th>
                         <td>{{ $proformaInvoice->payments_completed }} dari {{ $proformaInvoice->installments }}</td>
                     </tr>

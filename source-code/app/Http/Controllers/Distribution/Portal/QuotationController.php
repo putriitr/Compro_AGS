@@ -102,8 +102,15 @@ public function addToCart(Request $request)
 }
 
 
-public function submitCart()
+public function submitCart(Request $request)
 {
+    // Validasi input termasuk kolom topik
+    $request->validate([
+        'topik' => 'required|string|max:255', // Tambahkan validasi untuk kolom topik
+    ]);
+
+    // Ambil nilai topik dari input
+    $topik = $request->input('topik');
     $cartItems = session()->get('quotation_cart', []);
     if (empty($cartItems)) {
         return redirect()->route('quotations.cart')->with('error', 'Keranjang kosong.');
@@ -144,6 +151,7 @@ public function submitCart()
         'user_id' => auth()->id(),
         'status' => 'pending',
         'nomor_pengajuan' => $nomorPengajuan,
+        'topik' => $topik, // Simpan topik ke database
         'created_at' => now(),
         'updated_at' => now(),
     ]);

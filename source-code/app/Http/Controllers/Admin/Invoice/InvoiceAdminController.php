@@ -37,31 +37,44 @@ public function index(Request $request)
 }
 
 
-    public function create($proformaInvoiceId)
-    {
-        // Ambil data Proforma Invoice dan relasi terkait seperti Purchase Order
-        $proformaInvoice = ProformaInvoice::with('purchaseOrder')->findOrFail($proformaInvoiceId);
-    
-        // Ambil subtotal, ppn, dan grand_total dari proforma invoice untuk ditampilkan di form
-        $subtotal = $proformaInvoice->subtotal;
-        $ppn = $proformaInvoice->ppn;
-        $grandTotalIncludePPN = $proformaInvoice->grand_total_include_ppn;
+public function create($proformaInvoiceId)
+{
+    // Ambil data Proforma Invoice dan relasi terkait seperti Purchase Order
+    $proformaInvoice = ProformaInvoice::with('purchaseOrder.quotation')->findOrFail($proformaInvoiceId);
 
-         // Ambil data user dari Purchase Order untuk mengisi informasi vendor otomatis
+    // Ambil subtotal dan ppn asli dari Proforma Invoice
+    $subtotal = $proformaInvoice->subtotal;
+    $ppn = $proformaInvoice->ppn;
+
+    // Hitung persentase jika ada `next_payment_amount`
+    $percentage = $proformaInvoice->next_payment_amount
+        ? ($proformaInvoice->next_payment_amount / $proformaInvoice->purchaseOrder->quotation->subtotal_price) * 100
+        : 100; // Jika tidak ada `next_payment_amount`, gunakan 100%
+
+    // Hitung Subtotal setelah Persentase
+    $adjustedSubtotal = $subtotal - ($subtotal * $percentage / 100);
+
+    // Hitung PPN berdasarkan Subtotal setelah Persentase
+    $ppnAmount = $adjustedSubtotal * ($ppn / 100);
+
+    // Hitung Grand Total (Include PPN)
+    $grandTotalIncludePPN = $adjustedSubtotal + $ppnAmount;
+
+    // Ambil data user dari Purchase Order untuk mengisi informasi vendor otomatis
     $user = $proformaInvoice->purchaseOrder->user;
-    
-        // Tampilkan form create dengan data yang sudah disiapkan
-        return view('Admin.Invoice.create', compact('proformaInvoice', 'subtotal', 'ppn', 'grandTotalIncludePPN', 'user'));
-    }
+
+    // Kirim data ke view
+    return view('Admin.Invoice.create', compact('proformaInvoice', 'subtotal', 'ppn', 'grandTotalIncludePPN', 'user', 'percentage'));
+}
+
+
+
     
 
     public function store(Request $request, $proformaInvoiceId)
 {
     // Validasi input
     $request->validate([
-        'invoice_number' => 'required|unique:invoices',
-        'invoice_date' => 'required|date',
-        'due_date' => 'nullable|date',
         'vendor_name' => 'required|string',
         'vendor_address' => 'required|string',
         'vendor_phone' => 'required|string',
@@ -80,21 +93,34 @@ public function index(Request $request)
     $hariIni = \Carbon\Carbon::now();
     $dayRoman = $tanggalRomawi[$hariIni->day - 1];
     $tahun = $hariIni->year;
+  // Tentukan nomor invoice otomatis
+  $lastInvoice = Invoice::orderBy('id', 'desc')->first();
+  $nextInvoiceNumber = str_pad($lastInvoice ? $lastInvoice->id + 1 : 1, 3, '0', STR_PAD_LEFT);
 
     // Format nomor PO dan nomor Invoice
     $poNumberFormatted = sprintf("%s/SPO/%s/%s/%s", $proformaInvoice->purchaseOrder->po_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
-    $piNumberFormatted = sprintf("%s/INV-AGS-%s/%s/%s", $request->invoice_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
+    $piNumberFormatted = sprintf("%s/INV-AGS-%s/%s/%s",  $nextInvoiceNumber, $singkatanNamaPerusahaan, $dayRoman, $tahun);
+  // Ambil persentase dari Proforma Invoice
+  $percentage = $proformaInvoice->next_payment_amount
+  ? ($proformaInvoice->next_payment_amount / $proformaInvoice->purchaseOrder->quotation->subtotal_price) * 100
+  : 100; // Jika tidak ada persentase, gunakan 100% sebagai default.
 
+// Hitung Subtotal setelah Persentase
+$adjustedSubtotal = $proformaInvoice->subtotal - ($proformaInvoice->subtotal * $percentage / 100);
 
+// Hitung PPN berdasarkan Subtotal setelah Persentase
+$ppnAmount = $adjustedSubtotal * ($proformaInvoice->ppn / 100);
+
+// Hitung Grand Total (Include PPN)
+$grandTotalIncludePPN = $adjustedSubtotal + $ppnAmount;
     // Buat data invoice dan simpan ke database
     $invoice = Invoice::create([
         'proforma_invoice_id' => $proformaInvoice->id,
-        'invoice_number' => $request->invoice_number,
-        'invoice_date' => $request->invoice_date,
-        'due_date' => $request->due_date,
-        'subtotal' => $proformaInvoice->subtotal,
-        'ppn' => $proformaInvoice->ppn,
-        'grand_total_include_ppn' => $proformaInvoice->grand_total_include_ppn,
+        'invoice_number' => $nextInvoiceNumber,
+        'invoice_date' => $hariIni,
+     'subtotal' =>$adjustedSubtotal, // Subtotal berdasarkan persentase
+     'ppn' => $proformaInvoice->ppn,           // PPN disimpan dalam bentuk persentase awal
+     'grand_total_include_ppn' => $grandTotalIncludePPN, // Grand Total // Grand total berdasarkan subtotal + PPN
     ]);
 
     // Generate PDF dengan data invoice yang baru saja dibuat

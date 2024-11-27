@@ -21,8 +21,9 @@ class PurchaseOrder extends Model
     // Relasi ke model Quotation
     public function quotation()
     {
-        return $this->belongsTo(Quotation::class);
+        return $this->belongsTo(Quotation::class, 'quotation_id');
     }
+    
 
     // Relasi ke model User (distributor yang membuat PO)
     public function user()

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Invoice #{{ $invoice->invoice_number }}</title>
     <style>
         @page {
-            margin: 120px 50px 80px; /* Top, Right, Bottom, Left */
+            margin: 120px 50px 80px;
+            /* Top, Right, Bottom, Left */
         }
+
         body {
             font-family: Arial, sans-serif;
             color: #333;
@@ -23,6 +26,7 @@
             height: 100px;
             text-align: center;
         }
+
         .header img {
             width: 100%;
             height: auto;
@@ -37,6 +41,7 @@
             height: 100px;
             text-align: center;
         }
+
         .footer img {
             width: 100%;
             height: auto;
@@ -51,11 +56,13 @@
             text-align: right;
             margin-bottom: 20px;
         }
+
         .invoice-info h1 {
             font-size: 24px;
             margin: 0;
             color: #b89222;
         }
+
         .invoice-info p {
             margin: 2px 0;
             font-size: 12px;
@@ -72,11 +79,14 @@
             margin-top: 15px;
             font-size: 12px;
         }
-        .table th, .table td {
+
+        .table th,
+        .table td {
             border: 1px solid black;
             padding: 8px;
             text-align: center;
         }
+
         .table th {
             background-color: #f2f2f2;
             font-weight: bold;
@@ -98,11 +108,13 @@
             font-size: 12px;
             text-align: left;
         }
+
         .signature img {
             height: 50px;
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <div class="header">
@@ -133,7 +145,8 @@
 
         <!-- Invoice Description -->
         <p>Dear :{{ $vendor_name }}</p>
-        <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Arkamaya Guna Saharsa submits the following invoice:</p>
+        <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Arkamaya Guna Saharsa submits the following invoice:
+        </p>
 
         <!-- Product Table -->
         <table class="table">
@@ -148,13 +161,20 @@
             </thead>
             <tbody>
                 @foreach ($invoice->proformaInvoice->purchaseOrder->quotation->quotationProducts as $index => $product)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $product->equipment_name }}</td>
-                    <td>{{ $product->quantity }}</td>
-                    <td>{{ $product->merk_type }}</td>
-                    <td>{{ number_format($product->unit_price, 2) }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            {{ $product->equipment_name }}
+                            @if ($invoice->proformaInvoice->next_payment_amount)
+                                <br>
+                                <small><em>(Persentase:
+                                        {{ number_format(($invoice->proformaInvoice->next_payment_amount / $invoice->proformaInvoice->purchaseOrder->quotation->subtotal_price) * 100, 2) }}%)</em></small>
+                            @endif
+                        </td>
+                        <td>{{ $product->quantity }}</td>
+                        <td>{{ $product->merk_type }}</td>
+                        <td>{{ number_format($product->unit_price, 2) }}</td>
+                    </tr>
                 @endforeach
 
                 <!-- Row untuk Subtotal, PPN, dan Grand Total -->
@@ -194,4 +214,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -45,6 +45,17 @@
                     <td>{{ $proformaInvoice->installments ?? '-' }} kali pembayaran</td>
                 </tr>
                 <tr>
+                    <th>Next Payment Amount</th>
+                    <td>
+                        @if (!empty($proformaInvoice->next_payment_amount) && !empty($proformaInvoice->purchaseOrder->quotation->subtotal_price))
+                            {{ number_format($proformaInvoice->next_payment_amount, 2) }} IDR
+                            ({{ number_format(($proformaInvoice->next_payment_amount / $proformaInvoice->purchaseOrder->quotation->subtotal_price) * 100, 2) }}%)
+                        @else
+                            <span class="text-muted">Belum ada pembayaran berikutnya</span>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
                     <th>Payments Completed</th>
                     <td>{{ $proformaInvoice->payments_completed ?? 0 }}</td>
                 </tr>
@@ -94,6 +105,12 @@
                                         <textarea name="remarks" id="remarks_{{ $index }}" rows="2" class="form-control" required></textarea>
                                     </div>
             
+                                      <!-- Input Persentase Pembayaran -->
+        <div class="mb-3">
+            <label for="next_payment_percentage_{{ $index }}" class="form-label">Next Payment Percentage</label>
+            <input type="number" name="next_payment_percentage" id="next_payment_percentage_{{ $index }}" class="form-control" placeholder="Enter percentage (e.g., 20)" required>
+            <small class="text-muted">Masukkan persentase pembayaran berikutnya dalam %</small>
+        </div>
                                     <div class="d-flex gap-2">
                                         <button type="submit" name="action" value="approve" class="btn btn-success btn-sm rounded-pill">
                                             <i class="fas fa-check-circle"></i> Approve Payment {{ $index + 1 }}

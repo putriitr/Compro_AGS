@@ -17,15 +17,6 @@
                     <p><strong>PO Number:</strong> {{ $purchaseOrder->po_number }}</p>
                     <p><strong>PO Date:</strong> {{ \Carbon\Carbon::parse($purchaseOrder->po_date)->format('d M Y') }}</p>
                     <p><strong>Distributor:</strong> {{ $purchaseOrder->user->name }}</p>
-                    <p><strong>Status:</strong> 
-                        <span class="badge 
-                            @if($purchaseOrder->status === 'pending') bg-warning
-                            @elseif($purchaseOrder->status === 'approved') bg-success
-                            @else bg-danger
-                            @endif">
-                            {{ ucfirst($purchaseOrder->status) }}
-                        </span>
-                    </p>
 
                     @if($purchaseOrder->file_path)
                         <p><strong>Attached File:</strong> 
