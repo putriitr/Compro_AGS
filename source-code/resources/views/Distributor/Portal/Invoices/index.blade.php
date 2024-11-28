@@ -39,7 +39,6 @@
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Invoice Number</th>
                                 <th class="text-center">Invoice Date</th>
-                                <th class="text-center">Due Date</th>
                                 <th class="text-center">Subtotal</th>
                                 <th class="text-center">PPN</th>
                                 <th class="text-center">Grand Total</th>
@@ -53,7 +52,6 @@
                                     <td class="text-center">{{ $invoice->id }}</td>
                                     <td class="text-center">{{ $invoice->invoice_number }}</td>
                                     <td class="text-center">{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}</td>
-                                    <td class="text-center">{{ $invoice->due_date ? \Carbon\Carbon::parse($invoice->due_date)->format('d M Y') : '-' }}</td>
                                     <td class="text-center">Rp{{ number_format($invoice->subtotal, 2) }}</td>
                                     <td class="text-center">Rp{{ number_format($invoice->ppn, 2) }}</td>
                                     <td class="text-center">Rp{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
