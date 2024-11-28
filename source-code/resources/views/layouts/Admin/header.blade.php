@@ -19,11 +19,13 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> --}}
 
+<link rel="stylesheet" href="{{asset('assets/css/admin/fontawesome-free-5.15.4-web/css/all.css')}}" />
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{asset('assets/css/admin/bootstrap.min.css')}}" />
+
     
     <link rel="stylesheet" href="{{asset('assets/css/admin/plugins.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/admin/kaiadmin.min.css')}}" />
