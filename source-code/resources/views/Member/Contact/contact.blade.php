@@ -1,4 +1,4 @@
-@extends('layouts.customer.master')
+@extends('layouts.Member.master')
 
 @section('content')
 <!-- Header Start -->

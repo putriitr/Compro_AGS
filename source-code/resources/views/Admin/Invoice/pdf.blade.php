@@ -164,17 +164,23 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>
-                            @if ($invoice->type === 'dp')
-                                <!-- Keterangan DP -->
-                                <small><em>(Uang muka: 
-                                    {{ number_format(($invoice->proformaInvoice->dp / $invoice->proformaInvoice->grand_total_include_ppn) * 100, 2) }}%)</em></small>
-                                <br>
-                            @elseif ($invoice->type === 'next_payment')
-                                <!-- Keterangan Next Payment -->
-                                <small><em>(Pembayaran termin 
-                                    {{ $invoice->proformaInvoice->payments_completed + 1 }} dari {{ $invoice->proformaInvoice->installments }} termin 
-                                    - Persentase: {{ number_format(($invoice->percentage), 2) }}%)</em></small>
-                                <br>
+                            @if ($loop->first)
+                                @if ($invoice->type === 'dp')
+                                    <!-- Keterangan DP -->
+                                    <small><em>(Uang muka: 
+                                        {{ number_format(($invoice->proformaInvoice->dp / $invoice->proformaInvoice->grand_total_include_ppn) * 100, 2) }}%)</em></small>
+                                    <br>
+                                @elseif ($invoice->type === 'next_payment')
+                                    <!-- Keterangan Next Payment -->
+                                    <small><em>(Pembayaran termin 
+                                        {{ $invoice->proformaInvoice->payments_completed + 1 }} dari {{ $invoice->proformaInvoice->installments }} termin 
+                                        - Persentase: {{ number_format(($invoice->percentage), 2) }}%)</em>
+                                        @if ($invoice->proformaInvoice->payments_completed + 1 == $invoice->proformaInvoice->installments)
+                                            <strong>- Pelunasan</strong>
+                                        @endif
+                                    </small>
+                                    <br>
+                                @endif
                             @endif
                         
                             <!-- Nama Produk -->

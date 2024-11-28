@@ -83,6 +83,20 @@
                                     </li>
                                 </ul>
                             </div>
+                             <!-- Shopping Cart Icon -->
+                  @auth
+                  @if (Auth::user()->type === 'distributor')
+                      <div class="nav-item">
+                        <a href="{{ route('quotations.cart') }}" class="nav-link">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count" class="badge bg-primary rounded-pill">
+                                {{ session('quotation_cart') ? count(session('quotation_cart')) : 0 }}
+                            </span>
+                        </a>
+                        
+                      </div>
+                  @endif
+              @endauth
 
                             <!-- Logout Form -->
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -213,20 +227,7 @@
                             </a>
                         </div>
                     </div>
-                  <!-- Shopping Cart Icon -->
-                  @auth
-                  @if (Auth::user()->type === 'distributor')
-                      <div class="nav-item">
-                        <a href="{{ route('quotations.cart') }}" class="nav-link">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span id="cart-count" class="badge bg-primary rounded-pill">
-                                {{ session('quotation_cart') ? count(session('quotation_cart')) : 0 }}
-                            </span>
-                        </a>
-                        
-                      </div>
-                  @endif
-              @endauth
+                 
               
 
                 </div>
