@@ -28,10 +28,17 @@
                     <th>Subtotal</th>
                     <td>Rp{{ number_format($proformaInvoice->subtotal, 2) }}</td>
                 </tr>
+                @if (!empty($proformaInvoice->purchaseOrder->quotation->discount) && $proformaInvoice->purchaseOrder->quotation->discount > 0)
+                <tr>
+                    <th>Discount</th>
+                    <td>Rp{{ number_format($proformaInvoice->purchaseOrder->quotation->discount, 2) }}</td>
+                </tr>
+            @endif
                 <tr>
                     <th>PPN</th>
                     <td>Rp{{ number_format($proformaInvoice->ppn, 2) }}</td>
                 </tr>
+            
                 <tr>
                     <th>Grand Total</th>
                     <td>Rp{{ number_format($proformaInvoice->grand_total_include_ppn, 2) }}</td>

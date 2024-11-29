@@ -58,7 +58,7 @@
                         <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
                             style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
                             <h5>{{ __('messages.visi') }}</h5>
-                            <p class="mb-0" style="font-weight: bold;">{{ $company->visi ?? ' ' }}</p>
+                            <p class="mb-0" style="font-weight: bold; color: #333;">{{ $company->visi ?? ' ' }}</p>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
                             style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
                             <h5>{{ __('messages.misi') }}</h5>
-                            <p class="mb-0" style="font-weight: bold;">{{ $company->misi ?? ' ' }}</p>
+                            <p class="mb-0" style="font-weight: bold; color: #333;">{{ $company->misi ?? ' ' }}</p>
                         </div>
                     </div>
                 </div>
