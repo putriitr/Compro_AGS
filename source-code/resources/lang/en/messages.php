@@ -10,6 +10,8 @@ return [
     'our_partners' => 'Our Partners',
     'show_more' => 'Show More',
     'show_less' => 'Show Less',
+    'showing' => 'Showing',
+    'from' => 'from',
 
     'trusted_collaboration' => 'Trusted Collaboration',
     'distributor_company' => 'Distributor Company',
@@ -32,6 +34,11 @@ return [
     'bahasa' => 'Bahasa',
     'english' => 'English',
     'portal_distribution' => 'Distributor Portal',
+
+    'lokasi' => 'Office',
+    'profil' => 'Profile',
+    'keluar' => 'Logout',
+    'masuk' => 'Login',
 
     'tujuan_kami' => 'Our Goals',
     'visi_misi_perusahaan' => 'Company Vision & Mission',
@@ -88,7 +95,7 @@ return [
     'send_message' => 'Send Message',
     'qna-guest' => 'QnA',
 
-    'category' => 'Category',
+    'category' => 'Product Category',
     'sort_by' => 'Sort By',
     'newest' => 'Newest',
     'latest' => 'Latest',
@@ -112,4 +119,11 @@ return [
 
     'form_not_available_logged_in' => 'Form is not available because you are logged in. Please use the portal to access services.',
 
+    'my_product' => 'My Product',
+    'user_manual' => 'User Manual',
+    'doc_cert' => 'Document & Certification',
+    'tutor' => 'Tutorial Videos',
+    'monitoring' => 'Monitoring',
+    'qna' => 'Questions & Answers',
+    'ticketing' => 'Ticketing',
 ];

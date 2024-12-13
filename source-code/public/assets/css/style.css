@@ -72,7 +72,7 @@
 
 .btn.btn-primary:hover {
     box-shadow: inset 300px 0 0 0 var(--bs-light) !important;
-    color: #6196FF !important !important;
+    color: #6196FF !important;
 }
 
 .btn.btn-light {
@@ -91,6 +91,7 @@
 .btn-hover:hover {
     color: var(--bs-secondary) !important;
 }
+
 
 /*** Section Title Start ***/
 .section-title {
@@ -127,7 +128,7 @@
     transform: translateY(-50%);
     margin-bottom: 5px;
     margin-left: -50px;
-    border: 1px solid #6196FF !important !important;
+    border: 1px solid #6196FF !important;
 }
 
 .sub-title {
@@ -173,7 +174,7 @@ html {
 
 .topbar {
     padding: 2px 10px 2px 20px;
-    background: #6196FF !important !important;
+    background: #6196FF !important;
 }
 
 .topbar a,
@@ -199,8 +200,8 @@ html {
 .navbar-light .navbar-nav .nav-link {
     font-family: 'Open Sans', sans-serif;
     position: relative;
-    margin-right: 25px;
-    padding: 35px 0;
+    margin-right: 0;
+    padding: 10px 20px;
     color: var(--bs-dark) !important;
     font-size: 16px;
     font-weight: 400;
@@ -328,6 +329,7 @@ html {
         display: none;
     }
 }
+
 /*** Carousel Hero Header Start ***/
 .header-carousel {
     position: relative;
@@ -375,7 +377,7 @@ html {
 .header-carousel .owl-nav .owl-prev:hover,
 .header-carousel .owl-nav .owl-next:hover {
     box-shadow: inset 150px 0 0 0 var(--bs-light) !important;
-    color: #6196FF !important !important;
+    color: #6196FF !important;
 }
 
 @media (max-width: 576px) {
@@ -635,7 +637,7 @@ html {
 
 .appointment .appointment-form .btn.btn-primary:hover {
     box-shadow: inset 600px 0 0 0 var(--bs-light) !important;
-    color: #6196FF !important !important;
+    color: #6196FF !important;
 }
 /*** Youtube Video start ***/
 .video {
@@ -894,7 +896,7 @@ html {
 
 .testimonial .testimonial-carousel .owl-nav .owl-prev:hover,
 .testimonial .testimonial-carousel .owl-nav .owl-next:hover {
-    box-shadow: inset 100px 0 0 0 #6196FF !important !important;
+    box-shadow: inset 100px 0 0 0 #6196FF !important;
     color: var(--bs-white) !important;
 }
 
@@ -1105,7 +1107,7 @@ html {
 }
 
 .contact .contact-form .btn.btn-light:hover {
-    box-shadow: inset 600px 0 0 0 #6196FF !important !important;
+    box-shadow: inset 600px 0 0 0 #6196FF !important;
     color: var(--bs-white) !important;
 }
 

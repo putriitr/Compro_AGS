@@ -4,11 +4,11 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.about_us') }}</h1>
-                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
-                    <li class="breadcrumb-item active text-primary">{{ __('messages.about_us') }}</li>
-                </ol>
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.about_us') }}</h3>
+            <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+                <li class="breadcrumb-item active text-primary">{{ __('messages.about_us') }}</li>
+            </ol>
         </div>
     </div>
     <!-- Header End -->
@@ -17,23 +17,30 @@
     <div class="container-fluid about bg-light py-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
+                <!-- Teks Bagian Kiri -->
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
                     <div class="section-title text-start mb-5">
                         <h4 class="sub-title pe-3 mb-0">{{ __('messages.about_us') }}</h4>
-                        <h4 class="display-3 mb-4" style="font-size: 50px;">
+                        <h4 class="display-3 mb-4" style="font-size: 40px;">
                             {{ $company->nama_perusahaan ?? 'Arkamaya Guna Saharsa' }}</h4>
                         <p class="mb-4" style="text-align: justify;">
                             {{ $company->sejarah_singkat ?? ' ' }}
                         </p>
                     </div>
                 </div>
+
+                <!-- Gambar Bagian Kanan -->
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
-                    <div class="about-img pb-5 ps-5">
+                    <div class="about-img position-relative overflow-hidden">
+                        <!-- Gambar About -->
                         <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/images/about.jpg') }}"
-                            class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
-                        <div class="about-img-inner">
+                            class="img-fluid rounded w-100 h-auto" alt="About Image"
+                            style="object-fit: cover; max-height: 400px;">
+
+                        <!-- Gambar Logo -->
+                        <div class="about-logo">
                             <img src="{{ $company && $company->logo ? asset('storage/' . $company->logo) : asset('assets/img/about.jpeg') }}"
-                                class="img-fluid rounded-circle w-100 h-100" alt="Image">
+                                class="img-fluid rounded-circle" alt="Company Logo">
                         </div>
                     </div>
                 </div>
@@ -41,6 +48,7 @@
         </div>
     </div>
     <!-- About End -->
+
 
     <!-- Vision Start -->
     <div class="container-fluid team py-5">
@@ -75,8 +83,6 @@
             </div>
         </div>
     </div>
-
-
     <!-- Vision End -->
 
 
@@ -183,40 +189,7 @@
             </div>
         </div>
     </div>
-
     <!-- Value End -->
-
-    <!-- Custom CSS -->
-    <style>
-        /* Feature item consistent height */
-        .feature-item {
-            background-color: #fff;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* Icon and Image styling */
-        .feature-item img {
-            max-width: 100%;
-            object-fit: cover;
-        }
-
-        /* Hover effect on feature items */
-        .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Responsive Behavior */
-        @media (max-width: 768px) {
-            .feature-item {
-                min-height: 300px;
-            }
-        }
-    </style>
-
 
     <!-- Sales Channel Start -->
     <div class="container-fluid team py-5">
@@ -225,7 +198,7 @@
                 <div class="sub-style">
                     <h4 class="sub-title px-3 mb-0">{{ __('messages.kemitraan') }}</h4>
                 </div>
-                <h1 class="display-3 mb-4">Saluran Penjualan</h1>
+                <h1 class="display-3 mb-4">{{ __('messages.saluran_penjualan') }}</h1>
             </div>
             <div class="row g-3 justify-content-center">
                 <!-- Card 1 -->
@@ -336,7 +309,7 @@
 
         <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Para Pelanggan Terbaik Kami</h4>
+                <h4 class="sub-title px-3 mb-0">{{ __('messages.our_loyal_customers') }}</h4>
             </div>
             <h1 class="display-3 mb-4">{{ __('messages.our_customers') }}</h1>
         </div>
@@ -407,6 +380,105 @@
             })
             .catch(error => console.error('Error:', error));
     </script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Feature item consistent height */
+        .feature-item {
+            background-color: #fff;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Icon and Image styling */
+        .feature-item img {
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        /* Hover effect on feature items */
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Behavior */
+        @media (max-width: 768px) {
+            .feature-item {
+                min-height: 300px;
+            }
+        }
+    </style>
+
+    <style>
+        /* Styling About Image */
+        .about-img {
+            position: relative;
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        .about-img img {
+            object-fit: cover;
+        }
+
+        /* Styling Logo di Atas Layer */
+        .about-logo {
+            position: absolute;
+            top: 88%;
+            /* Posisi vertikal (default: tengah) */
+            left: 8%;
+            /* Posisi horizontal (default: tengah) */
+            transform: translate(-50%, -50%);
+            /* Agar posisi logo tepat di tengah */
+            z-index: 10;
+            /* Membawa logo ke depan layer gambar utama */
+            width: 130px;
+            /* Ukuran default logo */
+            height: 130px;
+            border: 3px solid #fff;
+            /* Border putih opsional */
+            border-radius: 50%;
+            /* Membuat logo berbentuk lingkaran */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Opsional: Bayangan */
+            overflow: hidden;
+        }
+
+        .about-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .about-logo {
+                width: 110px;
+                /* Ukuran logo lebih kecil di layar kecil */
+                height: 110px;
+                top: 90%;
+                /* Menyesuaikan posisi vertikal */
+                left: 10%;
+                /* Menyesuaikan posisi horizontal */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-logo {
+                width: 90px;
+                /* Ukuran logo paling kecil di layar sangat kecil */
+                height: 90px;
+                top: 90%;
+                /* Menyesuaikan posisi vertikal */
+                left: 10%;
+                /* Menyesuaikan posisi horizontal */
+            }
+        }
+    </style>
 
     <style>
         .marker-tooltip {

@@ -10,25 +10,24 @@
     <div class="container-fluid blog py-5">
         <div class="container py-5">
             <!-- Navigation Section -->
-            <div class="row mb-4">
+            <div class="row mb-4 d-flex align-items-center justify-content-between">
                 <!-- Showing X-Y of Z -->
-                <div class="col-md-4 d-flex align-items-center">
-                    <p class="mb-0">Menampilkan {{ $activities->firstItem() }} - {{ $activities->lastItem() }} dari
-                        {{ $activities->total() }}</p>
+                <div class="col-md-4">
+                    <p class="mb-0">{{ __('messages.showing') }} {{ $activities->firstItem() }} - {{ $activities->lastItem() }}
+                        {{ __('messages.from') }} {{ $activities->total() }}</p>
                 </div>
                 <!-- Show per Page and Sort By -->
-                <div class="col-md-8 d-flex justify-content-end align-items-center">
-                    <div class="d-flex align-items-center">
-                        <label for="sort-by" class="mb-0 me-4" style="display: inline-block; white-space: nowrap;">
-                            Urut berdasarkan :
-                        </label>
-                        <select id="sort-by" class="form-select form-select-sm">
-                            <option value="newest">Terbaru</option>
-                            <option value="latest">Terlama</option>
-                        </select>
-                    </div>
+                <div class="col-md-4 d-flex justify-content-end align-items-center">
+                    <label for="sort-by" class="mb-0 me-4" style="white-space: nowrap;">
+                        {{ __('messages.sort_by') }} :
+                    </label>
+                    <select id="sort-by" class="form-select form-select-sm">
+                        <option value="newest">{{ __('messages.newest') }}</option>
+                        <option value="latest">{{ __('messages.latest') }}</option>
+                    </select>
                 </div>
             </div>
+
 
             <!-- Activity Content -->
             <div class="row g-4 justify-content-center">

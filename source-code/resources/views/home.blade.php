@@ -1,7 +1,6 @@
 @extends('layouts.Member.master')
 
 @section('content')
-
     <!-- Menampilkan pesan error -->
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -69,24 +68,27 @@
         @endif
     </div>
 
-
     <!-- About Start -->
     <div class="container-fluid about bg-light py-5 mb-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
-                    <div class="about-img pb-5 ps-5">
+                    <div class="about-img position-relative overflow-hidden">
+                        <!-- Gambar About -->
                         <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/images/about.jpg') }}"
-                            class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
-                        <div class="about-img-inner">
+                            class="img-fluid rounded w-100 h-auto" alt="About Image"
+                            style="object-fit: cover; max-height: 400px;">
+
+                        <!-- Gambar Logo -->
+                        <div class="about-logo">
                             <img src="{{ $company && $company->logo ? asset('storage/' . $company->logo) : asset('assets/img/about.jpeg') }}"
-                                class="img-fluid rounded-circle w-100 h-100" alt="Image">
+                                class="img-fluid rounded-circle" alt="Company Logo">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
                     <div class="section-title text-start mb-5">
-                        <h4 class="display-3 mb-4" style="font-size: 50px;">
+                        <h4 class="display-3 mb-4" style="font-size: 40px;">
                             {{ $company->nama_perusahaan ?? 'Arkamaya Guna Saharsa' }}</h4>
                         <p class="mb-4" style="text-align: justify;">
                             {{ $company->sejarah_singkat ?? ' ' }}
@@ -149,162 +151,167 @@
     @endif
     <!-- Product End -->
 
-   <!-- Partner Section Start -->
-<section id="merek-mitra">
-    <div class="container-fluid service mb-5">
-        <div class="container">
-            <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
+    <!-- Partner Section Start -->
+    <section id="merek-mitra">
+        <div class="container-fluid service mb-5">
+            <div class="container">
+                <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="sub-style">
+                        <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
+                    </div>
+                    <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
                 </div>
-                <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
+                @if ($partners->isNotEmpty())
+                    <div class="container overflow-hidden">
+                        <div class="row gy-4">
+                            @foreach ($partners as $key => $p)
+                                <div
+                                    class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
+                                    <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                                        <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
+                                            width="100%" height="100" style="object-fit:contain;">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        @if ($partners->count() > 8)
+                            <div class="text-center mt-4">
+                                <button id="show-more-partners"
+                                    class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                                <button id="show-less-partners"
+                                    class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                            </div>
+                        @endif
+                    </div>
+                @endif
             </div>
-            @if ($partners->isNotEmpty())
+        </div>
+    </section>
+    <!-- Partner Section End -->
+
+    <!-- Principal Section Start -->
+    <div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="section-title">
+                <div class="sub-style">
+                    <h4 class="sub-title px-3 mb-0">{{ __('messages.trusted_collaboration') }}</h4>
+                </div>
+                <h1 class="display-3 mb-4">{{ __('messages.distributor_company') }}</h1>
+            </div>
+            @if ($principals->isNotEmpty())
                 <div class="container overflow-hidden">
                     <div class="row gy-4">
-                        @foreach ($partners as $key => $p)
-                            <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
+                        @foreach ($principals as $key => $p)
+                            <div
+                                class="col-6 col-md-4 col-xl-3 text-center principal-item {{ $key >= 8 ? 'd-none' : '' }}">
                                 <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%" height="100" style="object-fit:contain;">
+                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
+                                        width="100%" height="65">
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    @if ($partners->count() > 8)
+                    @if ($principals->count() > 8)
                         <div class="text-center mt-4">
-                            <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                            <button id="show-less-partners" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                            <button id="show-more-principals"
+                                class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                            <button id="show-less-principals"
+                                class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
                         </div>
                     @endif
                 </div>
             @endif
         </div>
     </div>
-</section>
-<!-- Partner Section End -->
+    <!-- Principal Section End -->
 
-<!-- Principal Section Start -->
-<div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
-    <div class="container">
-        <div class="section-title">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">{{ __('messages.trusted_collaboration') }}</h4>
-            </div>
-            <h1 class="display-3 mb-4">{{ __('messages.distributor_company') }}</h1>
-        </div>
-        @if ($principals->isNotEmpty())
-            <div class="container overflow-hidden">
-                <div class="row gy-4">
-                    @foreach ($principals as $key => $p)
-                        <div class="col-6 col-md-4 col-xl-3 text-center principal-item {{ $key >= 8 ? 'd-none' : '' }}">
-                            <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%" height="65">
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                @if ($principals->count() > 8)
-                    <div class="text-center mt-4">
-                        <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                        <button id="show-less-principals" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
-                    </div>
-                @endif
-            </div>
-        @endif
-    </div>
-</div>
-<!-- Principal Section End -->
+    <!-- Combined Script for Show More and Show Less -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function setupShowMoreLess(sectionClass, showMoreBtnId, showLessBtnId, itemClass, limit) {
+                const showMoreBtn = document.getElementById(showMoreBtnId);
+                const showLessBtn = document.getElementById(showLessBtnId);
+                const items = document.querySelectorAll(`.${itemClass}`);
 
-<!-- Combined Script for Show More and Show Less -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function setupShowMoreLess(sectionClass, showMoreBtnId, showLessBtnId, itemClass, limit) {
-            const showMoreBtn = document.getElementById(showMoreBtnId);
-            const showLessBtn = document.getElementById(showLessBtnId);
-            const items = document.querySelectorAll(`.${itemClass}`);
-
-            if (showMoreBtn && showLessBtn) {
-                showMoreBtn.addEventListener('click', function () {
-                    items.forEach(function (item, index) {
-                        if (index >= limit) {
-                            item.classList.remove('d-none'); // Show additional items
-                        }
+                if (showMoreBtn && showLessBtn) {
+                    showMoreBtn.addEventListener('click', function() {
+                        items.forEach(function(item, index) {
+                            if (index >= limit) {
+                                item.classList.remove('d-none'); // Show additional items
+                            }
+                        });
+                        showMoreBtn.classList.add('d-none'); // Hide Show More button
+                        showLessBtn.classList.remove('d-none'); // Show Show Less button
                     });
-                    showMoreBtn.classList.add('d-none'); // Hide Show More button
-                    showLessBtn.classList.remove('d-none'); // Show Show Less button
-                });
 
-                showLessBtn.addEventListener('click', function () {
-                    items.forEach(function (item, index) {
-                        if (index >= limit) {
-                            item.classList.add('d-none'); // Hide additional items
-                        }
+                    showLessBtn.addEventListener('click', function() {
+                        items.forEach(function(item, index) {
+                            if (index >= limit) {
+                                item.classList.add('d-none'); // Hide additional items
+                            }
+                        });
+                        showLessBtn.classList.add('d-none'); // Hide Show Less button
+                        showMoreBtn.classList.remove('d-none'); // Show Show More button
                     });
-                    showLessBtn.classList.add('d-none'); // Hide Show Less button
-                    showMoreBtn.classList.remove('d-none'); // Show Show More button
-                });
+                }
             }
-        }
 
-        // Setup Show More/Less for Partner Section
-        setupShowMoreLess(
-            'partner-section',
-            'show-more-partners',
-            'show-less-partners',
-            'partner-item',
-            8
-        );
+            // Setup Show More/Less for Partner Section
+            setupShowMoreLess(
+                'partner-section',
+                'show-more-partners',
+                'show-less-partners',
+                'partner-item',
+                8
+            );
 
-        // Setup Show More/Less for Principal Section
-        setupShowMoreLess(
-            'principal-section',
-            'show-more-principals',
-            'show-less-principals',
-            'principal-item',
-            8
-        );
-    });
-</script>
-
-
-
+            // Setup Show More/Less for Principal Section
+            setupShowMoreLess(
+                'principal-section',
+                'show-more-principals',
+                'show-less-principals',
+                'principal-item',
+                8
+            );
+        });
+    </script>
 
     <!-- E-commerce Section Start -->
-@if ($brand->isNotEmpty())
-<div class="container-fluid service py-5">
-    <div class="container py-5">
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">{{ __('messages.ecommerce_title') }}</h4>
-            </div>
-            <h1 class="display-3 mb-4">{{ __('messages.explore_more_products') }}</h1>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 mb-4">
-                <div class="col-12 wow fadeInUp text-center" data-wow-delay="0.1s">
-                    <div class="logo-container text-center">
-                        <div class="logo-static text-center"
-                            style="display: flex; justify-content: center; flex-wrap: wrap;">
-                            @foreach ($brand as $b)
-                                <a href="{{ strpos($b->url, 'http://') === 0 || strpos($b->url, 'https://') === 0 ? $b->url : 'http://' . $b->url }}"
-                                    target="_blank"
-                                    style="display: inline-block; margin: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;"
-                                    onmouseover="this.firstElementChild.style.transform='scale(1.2)'; this.firstElementChild.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
-                                    onmouseout="this.firstElementChild.style.transform='scale(1)'; this.firstElementChild.style.boxShadow='none';">
-                                    <img src="{{ asset('storage/' . $b->gambar) }}" alt="{{ $b->type }}"
-                                        class="logo"
-                                        style="width: 400px; height: auto; object-fit: contain; padding: 10px; border-radius: 8px; transition: transform 0.3s ease;">
-                                </a>
-                            @endforeach
+    @if ($brand->isNotEmpty())
+        <div class="container-fluid service py-5">
+            <div class="container py-5">
+                <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="sub-style">
+                        <h4 class="sub-title px-3 mb-0">{{ __('messages.ecommerce_title') }}</h4>
+                    </div>
+                    <h1 class="display-3 mb-4">{{ __('messages.explore_more_products') }}</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 mb-4">
+                        <div class="col-12 wow fadeInUp text-center" data-wow-delay="0.1s">
+                            <div class="logo-container text-center">
+                                <div class="logo-static text-center"
+                                    style="display: flex; justify-content: center; flex-wrap: wrap;">
+                                    @foreach ($brand as $b)
+                                        <a href="{{ strpos($b->url, 'http://') === 0 || strpos($b->url, 'https://') === 0 ? $b->url : 'http://' . $b->url }}"
+                                            target="_blank"
+                                            style="display: inline-block; margin: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                                            onmouseover="this.firstElementChild.style.transform='scale(1.2)'; this.firstElementChild.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
+                                            onmouseout="this.firstElementChild.style.transform='scale(1)'; this.firstElementChild.style.boxShadow='none';">
+                                            <img src="{{ asset('storage/' . $b->gambar) }}" alt="{{ $b->type }}"
+                                                class="logo"
+                                                style="width: 300px; height: auto; object-fit: contain; padding: 10px; border-radius: 8px; transition: transform 0.3s ease;">
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@endif
-<!-- E-commerce Section End -->
+    @endif
+    <!-- E-commerce Section End -->
 
 
     <!-- Map Start -->
@@ -542,6 +549,74 @@
             .logo {
                 margin: 10px 0;
                 /* Add vertical spacing between logos in mobile view */
+            }
+        }
+    </style>
+
+    <style>
+        /* Styling About Image */
+        .about-img {
+            position: relative;
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        .about-img img {
+            object-fit: cover;
+        }
+
+        /* Styling Logo di Atas Layer */
+        .about-logo {
+            position: absolute;
+            top: 88%;
+            /* Posisi vertikal (default: tengah) */
+            left: 8%;
+            /* Posisi horizontal (default: tengah) */
+            transform: translate(-50%, -50%);
+            /* Agar posisi logo tepat di tengah */
+            z-index: 10;
+            /* Membawa logo ke depan layer gambar utama */
+            width: 130px;
+            /* Ukuran default logo */
+            height: 130px;
+            border: 3px solid #fff;
+            /* Border putih opsional */
+            border-radius: 50%;
+            /* Membuat logo berbentuk lingkaran */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Opsional: Bayangan */
+            overflow: hidden;
+        }
+
+        .about-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .about-logo {
+                width: 110px;
+                /* Ukuran logo lebih kecil di layar kecil */
+                height: 110px;
+                top: 90%;
+                /* Menyesuaikan posisi vertikal */
+                left: 10%;
+                /* Menyesuaikan posisi horizontal */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-logo {
+                width: 90px;
+                /* Ukuran logo paling kecil di layar sangat kecil */
+                height: 90px;
+                top: 90%;
+                /* Menyesuaikan posisi vertikal */
+                left: 10%;
+                /* Menyesuaikan posisi horizontal */
             }
         }
     </style>

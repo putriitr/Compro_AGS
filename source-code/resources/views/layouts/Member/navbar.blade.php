@@ -1,17 +1,9 @@
 <body>
-    {{-- <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End --> --}}
-
     <!-- Topbar Start -->
     @php
-        // Fetch the first record from the company_parameter table
         $compro = \App\Models\CompanyParameter::first();
     @endphp
+
 
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="container">
@@ -21,7 +13,7 @@
                         <!-- Maps / Office Location -->
                         @if (!empty($compro->maps))
                             <a href="{{ $compro->maps }}" class="text-light me-4" target="_blank">
-                                <i class="fas fa-map-marker-alt text-primary me-2"></i>Lokasi Kantor
+                                <i class="fas fa-map-marker-alt text-primary me-2"></i>{{ __('messages.lokasi') }}
                             </a>
                         @else
                             <p class="text-light me-4">
@@ -67,36 +59,36 @@
                                     <!-- Show Profile -->
                                     <li>
                                         <a class="dropdown-item"
-                                        href="{{ auth()->user()->type === 'member' ? route('profile.show') : route('distributor.profile.show') }}">
-                                         <i class="fa fa-user me-2"></i>Profil
-                                     </a>
-                                     
-                                     
+                                            href="{{ auth()->user()->type === 'member' ? route('profile.show') : route('distributor.profile.show') }}">
+                                            <i class="fa fa-user me-2"></i>{{ __('messages.profil') }}
+                                        </a>
+
+
                                     </li>
 
                                     <!-- Logout -->
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out-alt me-2"></i>Keluar
+                                            <i class="fa fa-sign-out-alt me-2"></i>{{ __('messages.keluar') }}
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                             <!-- Shopping Cart Icon -->
-                  @auth
-                  @if (Auth::user()->type === 'distributor')
-                      <div class="nav-item">
-                        <a href="{{ route('quotations.cart') }}" class="nav-link">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span id="cart-count" class="badge bg-primary rounded-pill">
-                                {{ session('quotation_cart') ? count(session('quotation_cart')) : 0 }}
-                            </span>
-                        </a>
-                        
-                      </div>
-                  @endif
-              @endauth
+                            <!-- Shopping Cart Icon -->
+                            @auth
+                                @if (Auth::user()->type === 'distributor')
+                                    <div class="nav-item">
+                                        <a href="{{ route('quotations.cart') }}" class="nav-link">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <span id="cart-count" class="badge bg-primary rounded-pill">
+                                                {{ session('quotation_cart') ? count(session('quotation_cart')) : 0 }}
+                                            </span>
+                                        </a>
+
+                                    </div>
+                                @endif
+                            @endauth
 
                             <!-- Logout Form -->
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -104,8 +96,8 @@
                             </form>
                         @else
                             <a href="{{ route('login') }}">
-                                <small class="btn btn-primary rounded-pill text-white py-1 px-1">
-                                    <i class="fa fa-sign-in-alt text-white me-2"></i>Masuk Member
+                                <small class="btn btn-primary rounded-pill text-white py-1 px-1" style="width: 120px;">
+                                    <i class="fa fa-sign-in-alt text-white me-2"></i>{{ __('messages.masuk') }}
                                 </small>
                             </a>
                         @endif
@@ -126,117 +118,159 @@
     @endphp
 
     <!-- Navbar & Hero Start -->
-    <div class="container-fluid position-relative p-5 shadow">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
-            <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
-                <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" class="me-2"
-                    style="height: auto; width: 100px;">
-                <img src="{{ asset('images/catalogue.png') }}" alt="Logo" class="me-2"
-                    style="height: auto; width: 150px; padding-left: 10px;">
-                <span class="fs-6 text-dark" style="font-weight: bold;">PT Arkamaya Guna Saharsa</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ route('home') }}" class="nav-item nav-link">{{ __('messages.home') }}</a>
-                    <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
-                    <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
-                    <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
+    <nav id="navbar1" class="navbar1">
+        <div class="container-fluid position-relative p-5 shadow">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
+                <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
+                    <img src="{{ asset('assets/img/AGS-logo.png') }}" alt="Logo" class="me-2"
+                        style="height: auto; width: 90px;">
+                    <img src="{{ asset('images/catalogue.png') }}" alt="Logo" class="me-2"
+                        style="height: auto; width: 150px; padding-left: 10px;">
+                    {{-- <h6 class="fs-6 text-dark mb-9" style="font-weight: bold;">{{ $company->nama_perusahaan ?? 'Arkamaya Guna Saharsa' }}</h6> --}}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="{{ route('home') }}" class="nav-item nav-link">{{ __('messages.home') }}</a>
+                        <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
+                        <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
+                        <a href="{{ route('product.index') }}"
+                            class="nav-item nav-link">{{ __('messages.products') }}</a>
 
-                    <!-- E-commerce Dropdown -->
-                    @if ($brand->isNotEmpty())
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="ecommerceDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ __('messages.ecommerce') }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ecommerceDropdown">
-                                @foreach ($brand as $singleBrand)
-                                    <li>
-                                        <a href="{{ strpos($singleBrand->url, 'http://') === 0 || strpos($singleBrand->url, 'https://') === 0 ? $singleBrand->url : 'http://' . $singleBrand->url }}"
-                                            target="_blank" class="dropdown-item">{{ $singleBrand->nama }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-
-                    @foreach ($activeMetas as $type => $metas)
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}"
-                                aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
-                            <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
-                                @foreach ($metas as $meta)
-                                    <a href="{{ route('member.meta.show', $meta->slug) }}"
-                                        class="dropdown-item">{{ $meta->title }}</a>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endforeach
-                    @auth
-                        @if (session('error'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong>Peringatan:</strong> {{ session('error') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
+                        <!-- E-commerce Dropdown -->
+                        @if ($brand->isNotEmpty())
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="ecommerceDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ __('messages.ecommerce') }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ecommerceDropdown">
+                                    @foreach ($brand as $singleBrand)
+                                        <li>
+                                            <a href="{{ strpos($singleBrand->url, 'http://') === 0 || strpos($singleBrand->url, 'https://') === 0 ? $singleBrand->url : 'http://' . $singleBrand->url }}"
+                                                target="_blank" class="dropdown-item">{{ $singleBrand->nama }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endif
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="memberDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ __('Portal') }}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="memberDropdown">
-                                <li>
-                                    <a href="{{ route('portal') }}"
-                                        class="dropdown-item">{{ __('messages.portal_member') }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('distribution') }}"
-                                        class="dropdown-item">{{ __('messages.portal_distribution') }}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    @endauth
 
-                    <a href="#footer-section" id="contact-link"
-                        class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
 
-                    <!-- Dropdown for language selection -->
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            @if (LaravelLocalization::getCurrentLocale() == 'id')
-                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
-                            @elseif(LaravelLocalization::getCurrentLocale() == 'en')
-                                <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
-                            @else
-                                {{ LaravelLocalization::getCurrentLocaleNative() }}
+                        @foreach ($activeMetas as $type => $metas)
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle"
+                                    id="navbarDropdown-{{ $type }}" aria-expanded="false"
+                                    data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
+                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
+                                    @foreach ($metas as $meta)
+                                        <a href="{{ route('member.meta.show', $meta->slug) }}"
+                                            class="dropdown-item">{{ $meta->title }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                        @auth
+                            @if (session('error'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Peringatan:</strong> {{ session('error') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
                             @endif
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end m-0">
-                            <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
-                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
-                                {{ __('messages.bahasa') }}
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="memberDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ __('Portal') }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="memberDropdown">
+                                    <li>
+                                        <a href="{{ route('portal') }}"
+                                            class="dropdown-item">{{ __('messages.portal_member') }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('distribution') }}"
+                                            class="dropdown-item">{{ __('messages.portal_distribution') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endauth
+
+                        <a href="#footer-section" id="contact-link"
+                            class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
+
+                        <!-- Dropdown for language selection -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                @if (LaravelLocalization::getCurrentLocale() == 'id')
+                                    <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}"
+                                        alt="Bahasa Indonesia">
+                                @elseif(LaravelLocalization::getCurrentLocale() == 'en')
+                                    <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English">
+                                @else
+                                    {{ LaravelLocalization::getCurrentLocaleNative() }}
+                                @endif
                             </a>
-                            <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
-                                <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
-                                {{ __('messages.english') }}
-                            </a>
+                            <div class="dropdown-menu dropdown-menu-end m-0">
+                                <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
+                                    <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}"
+                                        alt="Bahasa Indonesia">
+                                    {{ __('messages.bahasa') }}
+                                </a>
+                                <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
+                                    <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English">
+                                    {{ __('messages.english') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
-                 
-              
-
                 </div>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
+    </nav>
     <!-- Navbar End -->
 
     <style>
+        @media (min-width: 992px) {
+            .navbar1 {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                width: 100%;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+
+            .navbar1.fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        /* For smaller screens (mobile), navbar is not sticky */
+        @media (max-width: 991px) {
+            .navbar1 {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                width: 100%;
+                transition: all 0.3s ease;
+                z-index: 999;
+                background: white;
+            }
+
+            .navbar1.fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
+
         .navbar-nav .nav-link.active {
             color: #6196FF !important;
             border-bottom: 2px solid #6196FF;
@@ -253,8 +287,18 @@
             const currentPath = window.location.pathname;
 
             navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPath) {
+                if (link.href === window.location.href) {
                     link.classList.add('active');
+                }
+            });
+
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar1');
+
+                if (window.scrollY > 50) {
+                    navbar.classList.add('fixed');
+                } else {
+                    navbar.classList.remove('fixed');
                 }
             });
         });

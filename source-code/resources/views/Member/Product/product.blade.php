@@ -6,46 +6,48 @@
         <div class="row">
             <!-- Sidebar Start -->
             <div class="col-lg-3">
-                <div class="d-flex justify-content-between mb-4">
-                    <h4 class="text-dark font-weight-bold">{{ __('messages.category') }}<i
-                            class="fas fa-chevron-down ms-2"></i></h4>
-                </div>
+                <div class="mb-4">
+                    <!-- Header kategori -->
+                    <h4 class="text-dark font-weight-bold d-flex justify-content-left align-items-center"
+                        style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#categoryList">
+                        {{ __('messages.category') }}
+                        <i id="category-icon" class="fas fa-chevron-down ms-2"></i>
+                    </h4>
 
-                <div class="mb-4 shadow-sm mt-n2">
-                    <!-- Menampilkan 10 kategori pertama -->
-                    <ul class="list-group">
-                        @foreach ($kategori->take(10) as $kat)
-                            <li class="list-group-item category-item text-center py-3 mb-2"
-                                style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }};
-                                    color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
-                                onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
-                                <strong>{{ $kat->nama }}</strong>
-                            </li>
-                        @endforeach
-                    </ul>
+                    <!-- Daftar kategori -->
+                    <div class="collapse show" id="categoryList">
+                        <ul class="list-group">
+                            @foreach ($kategori->take(10) as $kat)
+                                <li class="list-group-item category-item text-center py-3 mb-2"
+                                    style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
+                                    onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
+                                    <strong>{{ $kat->nama }}</strong>
+                                </li>
+                            @endforeach
+                        </ul>
 
-                    <!-- Tombol untuk melihat kategori selebihnya -->
-                    @if ($kategori->count() > 10)
-                        <button class="btn btn-link w-100 text-center mt-2" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#moreCategories" aria-expanded="false" aria-controls="moreCategories"
-                            onclick="toggleButtonText(this)">
-                            {{ __('messages.show_all_categories') }}
-                        </button>
+                        <!-- Tombol untuk menampilkan kategori lainnya -->
+                        @if ($kategori->count() > 10)
+                            <button class="btn btn-link w-100 text-center mt-2" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#moreCategories" aria-expanded="false" aria-controls="moreCategories"
+                                onclick="toggleButtonText(this)">
+                                {{ __('messages.show_all_categories') }}
+                            </button>
 
-                        <!-- Dropdown kategori selebihnya -->
-                        <div class="collapse" id="moreCategories">
-                            <ul class="list-group mt-2">
-                                @foreach ($kategori->slice(10) as $kat)
-                                    <li class="list-group-item category-item text-center py-3 mb-2"
-                                        style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }};
-                                               color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
-                                        onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
-                                        <strong>{{ $kat->nama }}</strong>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                            <!-- Kategori selebihnya -->
+                            <div class="collapse" id="moreCategories">
+                                <ul class="list-group mt-2">
+                                    @foreach ($kategori->slice(10) as $kat)
+                                        <li class="list-group-item category-item text-center py-3 mb-2"
+                                            style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
+                                            onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
+                                            <strong>{{ $kat->nama }}</strong>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
             <!-- Sidebar End -->
@@ -65,7 +67,7 @@
                         </form>
                     </div>
                     <div class="col-lg-3 mt-n2">
-                        <select class="form-select border-0 bg-light shadow-sm" style="border-radius: 10px; padding: 12px">
+                        <select class="form-select border-0 bg-light shadow-sm" style="border-radius: 10px; padding: 12px; margin-left: 20px; margin-right: 20px;">
                             <option selected>{{ __('messages.sort_by') }}</option>
                             <option value="1">{{ __('messages.newest') }}</option>
                             <option value="2">{{ __('messages.latest') }}</option>
@@ -99,7 +101,7 @@
                                     <a href="{{ route('product.show', $produk->id) }}"
                                         class="btn btn-outline-primary rounded-pill px-4 py-2 mt-3"
                                         style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
-                                        View Product →
+                                        {{ __('messages.show_more') }} →
                                     </a>
                                     <!-- Form untuk Distributor -->
                                     @if (auth()->user() && auth()->user()->type === 'distributor')
@@ -119,11 +121,9 @@
                         </div>
                     @endforeach
                 </div>
-
-
             </div>
             <div class="d-flex justify-content-center mt-4">
-                {{ $produks->links('pagination::bootstrap-4') }}
+                {{ $produks->onEachSide(2)->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>
@@ -232,6 +232,17 @@
         margin-top: 20px;
     }
 
+    .pagination .page-item {
+        margin: 0 5px;
+    }
+
+    .pagination .page-link {
+        color: #007bff;
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+
     .pagination .page-item.active .page-link {
         background-color: #6196FF;
         border-color: #6196FF;
@@ -239,7 +250,68 @@
     }
 
     .pagination .page-item .page-link {
-        color: #007bff;
-        border-radius: 50px;
+        border: 1px solid #ddd;
+    }
+
+    @media (max-width: 768px) {
+        .pagination .page-link {
+            padding: 8px 10px;
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .pagination .page-item {
+            font-size: 12px;
+            margin: 0 3px;
+        }
+
+        .pagination .page-link {
+            padding: 6px 8px;
+            font-size: 12px;
+        }
+    }
+
+    .category-item {
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .category-item:hover {
+        background-color: #6196FF;
+        color: #fff;
+    }
+
+    #category-icon {
+        transition: transform 0.3s ease;
+    }
+
+    #categoryList {
+        margin-top: 10px;
+    }
+
+    #categoryList .list-group-item {
+        font-size: 14px;
+    }
+
+    .btn-link {
+        color: #6196FF;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .btn-link:hover {
+        color: #4576d5;
+    }
+
+    @media (max-width: 768px) {
+        .category-item {
+            font-size: 12px;
+        }
+
+        #categoryList .list-group-item {
+            padding: 12px;
+        }
     }
 </style>

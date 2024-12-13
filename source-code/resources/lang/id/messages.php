@@ -10,7 +10,8 @@ return [
     'our_partners' => 'Mitra Kami',
     'show_more' => 'Selanjutnya',
     'show_less' => 'Kembali',
-
+    'showing' => 'Menampilkan',
+    'from' => 'dari',
 
     'trusted_collaboration' => 'Kolaborasi Terpercaya',
     'distributor_company' => 'Perusahaan Distributor',
@@ -21,8 +22,13 @@ return [
     'our_loyal_customers' => 'Pelanggan Setia Kami',
     'our_customers' => 'Pelanggan Kami',
 
+    'lokasi' => 'Kantor',
+    'profil' => 'Profil',
+    'keluar' => 'Keluar',
+    'masuk' => 'Masuk',
+
     'members_in_province' => 'Kami memiliki :count member di :province:',
-    "Created on"=> "Menjadi Member pada",
+    "Created on" => "Menjadi Member pada",
 
     'home' => 'Beranda',
     'about' => 'Tentang',
@@ -89,7 +95,15 @@ return [
     'send_message' => 'Kirim Pesan',
     'qna-guest' => 'Pertanyaan',
 
-    'category' => 'Kategori',
+    'my_product' => 'Produk Saya',
+    'user_manual' => 'Panduan Penggunaan',
+    'doc_cert' => 'Dokumen & Sertifikat',
+    'tutor' => 'Video Cara Penggunaan',
+    'monitoring' => 'Monitoring',
+    'qna' => 'Pertanyaan & Jawaban',
+    'ticketing' => 'Tiketing',
+
+    'category' => 'Kategori Produk',
     'sort_by' => 'Urut Berdasarkan',
     'newest' => 'Terbaru',
     'latest' => 'Terlama',
