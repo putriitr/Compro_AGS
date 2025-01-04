@@ -12,12 +12,20 @@ class RemovePaymentProofColumnsFromProformaInvoices extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::table('proforma_invoices', function (Blueprint $table) {
-            // Hapus kolom payment_proof_path, second_payment_proof_path, dan payment_proof_amounts
-            $table->dropColumn(['payment_proof_path', 'second_payment_proof_path', 'payment_proof_amounts']);
-        });
-    }
+{
+    Schema::table('proforma_invoices', function (Blueprint $table) {
+        if (Schema::hasColumn('proforma_invoices', 'payment_proof_path')) {
+            $table->dropColumn('payment_proof_path');
+        }
+        if (Schema::hasColumn('proforma_invoices', 'second_payment_proof_path')) {
+            $table->dropColumn('second_payment_proof_path');
+        }
+        if (Schema::hasColumn('proforma_invoices', 'payment_proof_amounts')) {
+            $table->dropColumn('payment_proof_amounts');
+        }
+    });
+}
+
 
     /**
      * Reverse the migrations.
